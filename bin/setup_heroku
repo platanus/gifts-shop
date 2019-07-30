@@ -1,0 +1,21 @@
+#!/bin/sh
+
+# Setup heroku application remotes
+if heroku auth:whoami &> /dev/null; then
+  if heroku apps:info --app pl-gifts-shop-staging &> /dev/null; then
+    git remote add staging git@heroku.com:pl-gifts-shop-staging.git || true
+    git config heroku.remote staging
+    echo 'You are a collaborator on the "pl-gifts-shop-staging" Heroku app'
+  else
+    echo 'Ask for access to the "pl-gifts-shop-staging" Heroku app'
+  fi
+
+  if heroku apps:info --app pl-gifts-shop-production &> /dev/null; then
+    git remote add production git@heroku.com:pl-gifts-shop-production.git || true
+    echo 'You are a collaborator on the "pl-gifts-shop-production" Heroku app'
+  else
+    echo 'Ask for access to the "pl-gifts-shop-production" Heroku app'
+  fi
+else
+  echo 'You need to login to heroku. Run "heroku login"'
+fi
