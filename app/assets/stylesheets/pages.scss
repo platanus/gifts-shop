@@ -1,0 +1,62 @@
+// @import "bootstrap";
+
+// h1 {
+//   color: rgb(243, 186, 0);
+// };
+$primary-color: #00a9e0;
+
+.header {
+  &__title {
+    color: $primary-color;
+    font-size: 18px;
+  }
+
+  &__subtitle {
+    padding-top: 10px;
+    font-size: 12px;
+  }
+
+  &__selector {
+    padding-left: 10px;
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gifts-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.gift {
+  border: 5px solid red;
+  height: 200px;
+  width: 200px;
+
+  &__title {
+    font-size: 14px;
+  }
+
+  &__image {
+    width: 150px;
+  }
+
+  &__like {
+    font-size: 20px;
+    font-weight: bold;
+    border: 1px solid black;
+    display: none;
+
+    &:hover {
+      display: block;
+    }
+  }
+
+  &-promoted {
+    border: 10px solid blueviolet;
+    font-weight: bold;
+  }
+}
