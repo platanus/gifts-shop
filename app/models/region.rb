@@ -1,10 +1,11 @@
-class Relation < ApplicationRecord
-  has_many :receivers, dependent: :nullify
+class Region < ApplicationRecord
+  has_many :givers, dependent: :nullify
+  has_many :stores, dependent: :nullify
 end
 
 # == Schema Information
 #
-# Table name: relations
+# Table name: regions
 #
 #  id         :bigint(8)        not null, primary key
 #  name       :string

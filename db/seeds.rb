@@ -8,4 +8,6 @@
 # Country.create(name: "Chile") # BAD
 # Country.find_or_create_by(name: "Chile") # GOOD
 #
-Relation.create(name: 'Jefe')
+Relation.find_or_create_by(name: 'Jefe')
+
+

@@ -1,10 +1,10 @@
-class Relation < ApplicationRecord
-  has_many :receivers, dependent: :nullify
+class Occation < ApplicationRecord
+  has_many :reminders, dependent: :destroy
 end
 
 # == Schema Information
 #
-# Table name: relations
+# Table name: occations
 #
 #  id         :bigint(8)        not null, primary key
 #  name       :string
