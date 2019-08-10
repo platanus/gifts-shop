@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_07_215239) do
+ActiveRecord::Schema.define(version: 2019_08_10_060446) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,18 +62,18 @@ ActiveRecord::Schema.define(version: 2019_08_07_215239) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "attribute_values", force: :cascade do |t|
+  create_table "categories", force: :cascade do |t|
     t.string "name"
-    t.bigint "attribute_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attribute_id"], name: "index_attribute_values_on_attribute_id"
   end
 
-  create_table "attributes", force: :cascade do |t|
+  create_table "category_values", force: :cascade do |t|
     t.string "name"
+    t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_category_values_on_category_id"
   end
 
   create_table "givers", force: :cascade do |t|
@@ -90,13 +90,13 @@ ActiveRecord::Schema.define(version: 2019_08_07_215239) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_values", force: :cascade do |t|
+  create_table "product_tags", force: :cascade do |t|
     t.bigint "product_id"
-    t.bigint "attribute_value_id"
+    t.bigint "category_value_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["attribute_value_id"], name: "index_product_values_on_attribute_value_id"
-    t.index ["product_id"], name: "index_product_values_on_product_id"
+    t.index ["category_value_id"], name: "index_product_tags_on_category_value_id"
+    t.index ["product_id"], name: "index_product_tags_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -183,9 +183,9 @@ ActiveRecord::Schema.define(version: 2019_08_07_215239) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "attribute_values", "attributes"
-  add_foreign_key "product_values", "attribute_values"
-  add_foreign_key "product_values", "products"
+  add_foreign_key "category_values", "categories"
+  add_foreign_key "product_tags", "category_values"
+  add_foreign_key "product_tags", "products"
   add_foreign_key "products", "stores"
   add_foreign_key "receivers", "givers"
   add_foreign_key "receivers", "relations"
