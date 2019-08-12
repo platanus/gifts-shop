@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+  <div class="header-container">
+    <div class="header">
+      <div class="header__title">Gifts Shop</div>
+      <div class="header__subtitle"> Se acabaron los dolores de cabeza buscando regalos!</div> 
+    </div>
+  </div>
+  <div class="user-info-container">
+    <div class="question">Ponle un nombre a tu regalado</div>
+    <div class="user_input">
+      <%= form_tag({controller: "pages", action: "start"}, method: "post") do |f| %>
+        <div class="user_input__text_input"><%= text_field_tag(:name) %></div>
+        <div class="user_input__button"><%= submit_tag("Listo!") %></div>
+      <% end %>
+    </div>
+  </div>
+  <div class="footer-container">
+    <div class="footer">
+      <div class="footer__link">
+        <%= link_to "Saltar", pages_home_path %>
+      </div>      
+    </div>
+  </div>
+</html>
