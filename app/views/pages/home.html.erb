@@ -5,7 +5,7 @@
   <div class="header-container"> 
     <div class="header">
       <% if params[:name] %>
-        <h1 class="header__title"> Recomendaciones para <%= params[:name] %></h1>
+        <h1 class="header__title"> Recomendaciones para <span class="header__receiver_name"><%= params[:name] %></span></h1>
       <% else %>
         <h1 class="header__title"> Regalos recomendados</h1>
       <% end %>
@@ -13,21 +13,16 @@
   </div>
 
   <div class="gifts-container">
-    <div class="gift">
-      <div class="gift__title">Collar para perro</div>
-      <img class="gift__image" src="https://images-na.ssl-images-amazon.com/images/I/51b9ZaXrYJL._SX466_.jpg" />
-      <div class="gift__like"> hgoasld </div>
-    </div>
-
-    <div class="gift gift-promoted">
-      <div class="gift__title">Collar para gatos</div>
-      <img class="gift__image" src="https://images1.tiendanimal.es/g/collar-para-gatos-rosa-rogz-fancycat-cascabel-mta-11928.jpg" />
-    </div>
-
-    <div class="gift">
-      <div class="gift__title">Collar para loros</div>
-      <img class="gift__image" src="https://labouvet.com/tienda/1672-home_default/collares-protectores-para-aves-tamano-o-80mm.jpg" />
-    </div>
+    <% @products.each do |product| %>
+      <div class="gift">
+        <div class="gift__title"><%= product.name %></div>
+        <div><%= image_tag(url_for(product.image), :class => "gift__image") %></div>
+        <div class="gift__bottom">
+          <div class="gift__store"><%= product.store.name %></div>
+          <div class="gift__price">$<%= product.price %></div>
+        </div>
+      </div>
+    <% end %>
   </div>
 </body>
 </html>

@@ -16,6 +16,10 @@ $primary-color: #00a9e0;
   &__selector {
     padding-left: 10px;
   }
+
+  &__receiver_name {
+    color: red;
+  }
 }
 
 .header-container {
@@ -25,20 +29,35 @@ $primary-color: #00a9e0;
 
 .gifts-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-left: 40px;
+  margin-top: 30px;
 }
 
 .gift {
-  border: 5px solid red;
   height: 200px;
   width: 200px;
+  flex: 1 0 21%;
+  margin-bottom: 130px;
 
   &__title {
-    font-size: 14px;
+    font-size: 20px;
+  }
+
+  &__store {
+    font-size: 15px;
+  }
+
+  &__price {
+    font-size: 15px;
+    font-weight: bold;
   }
 
   &__image {
-    width: 150px;
+    width: 200px;
+    height: 200px;
+    border: 5px solid red;
   }
 
   &__like {
