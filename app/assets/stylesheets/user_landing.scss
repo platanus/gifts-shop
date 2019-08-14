@@ -1,14 +1,74 @@
+$primary-color: #00a9e0;
 
-.header-container {
+
+.header-landing {
   display: flex;
   justify-content: center;
-}
+  flex-direction: column;
+  align-items: center;
 
-.header {
   &__title {
+    color: $primary_color;
+    font-size: 40px;
+    padding: 1%;
   }
 
-  &-landing {
-      
+  &__subtitle {
+    font-size: 15px;
+  }
+}
+
+.prompt-container {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.prompt {
+  text-align: center;
+
+  &__btn, input[type="submit"] {
+    margin: 3%;
+    min-width: 187px;
+    padding: 13px 25px;
+    border: 0;
+    border-radius: 100px;
+    font-size: 18px;
+    background-color: #3dade2;
+    color: #fff;
+  }
+
+  &__input,
+  input[type="text"] {
+    outline: none;
+    text-align: center;
+    font-size: 35px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    background: transparent;
+    padding: 2px 5px;
+    width: 500px;
+  
+    :focus {
+      outline: 0 !important;
+      outline-width: 0px;
+    }
+  }
+
+  &__text {
+    font-weight: bold;
+  }
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+
+  &__link {
+    // pass
   }
 }

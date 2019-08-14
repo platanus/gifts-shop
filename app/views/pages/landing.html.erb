@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-  <div class="header-container">
-    <div class="header">
-      <div class="header__title-landing">Gifts Shop</div>
-      <div class="header__subtitle-landing"> Se acabaron los dolores de cabeza buscando regalos!</div> 
-    </div>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <div class="header-landing">
+    <div class="header-landing__title">Gifts Shop</div>
+    <div class="header-landing__subtitle">Se acabaron los dolores de cabeza buscando regalos!</div>
   </div>
-  <div class="user-info-container">
-    <div class="question">Ponle un nombre a tu regalado</div>
-    <div class="user_input">
-      <%= form_tag({controller: "pages", action: "start"}, method: "post") do |f| %>
-        <div class="user_input__text_input"><%= text_field_tag(:name) %></div>
-        <div class="user_input__button"><%= submit_tag("Listo!") %></div>
+  <div class="prompt-container">
+    <div class="prompt">
+      <h3 class="prompt__text">Dale un nombre a tu regalado</h3>
+      <%= form_tag({controller: "pages", action: "start"}, method: "post", autocomplete: "off") do |f| %>
+        <div><%= text_field_tag :name, "", class: "prompt__input" %></div>
+        <div><%= submit_tag "Empezar", class: "prompt__btn" %></div>
       <% end %>
-    </div>
+      </div>
   </div>
   <div class="footer-container">
     <div class="footer">

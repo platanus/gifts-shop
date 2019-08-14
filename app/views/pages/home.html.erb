@@ -4,8 +4,8 @@
   
   <div class="header-container"> 
     <div class="header">
-      <% if params[:name] %>
-        <h1 class="header__title"> Recomendaciones para <span class="header__receiver_name"><%= params[:name] %></span></h1>
+      <% if params[:name] != "" %>
+        <h1 class="header__title"> Recomendaciones para <span class="header__receiver-name"><%= params[:name] %></span></h1>
       <% else %>
         <h1 class="header__title"> Regalos recomendados</h1>
       <% end %>
