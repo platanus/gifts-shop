@@ -4,7 +4,6 @@ class Giver < ApplicationRecord
   belongs_to :region
 
   validates :region, presence: true
-  validates_associated :region
 end
 
 # == Schema Information

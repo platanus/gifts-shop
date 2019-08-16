@@ -1,19 +1,12 @@
 class HomeController < ApplicationController
+  before_action :redirect_to_landing_if_no_cookies, only: :show
   def show
-    user_redirect
-  end
-
-  def user_redirect
-    if !get_giver_cookies
-      redirect_to landing_show_path
-    else
-      get_receivers_name
-      get_products
-    end
+    get_receivers_name
+    get_products
   end
 
   def get_receivers_name
-    get_receiver_cookies
+    set_receiver_id
     @receiver_name = Receiver.find(@receiver_id).name
   end
 
@@ -23,11 +16,15 @@ class HomeController < ApplicationController
 
   private
 
-  def get_receiver_cookies
+  def redirect_to_landing_if_no_cookies
+    redirect_to landing_show_path if !set_giver_id
+  end
+
+  def set_receiver_id
     @receiver_id = cookies[:receiver_id]
   end
 
-  def get_giver_cookies
+  def set_giver_id
     @giver_id = cookies[:giver_id]
   end
 end

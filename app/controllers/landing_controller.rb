@@ -1,21 +1,20 @@
-DEFAULT_REGION = ENV.fetch('DEFAULT_REGION', 1).to_i
-DEFAULT_RELATION = ENV.fetch('DEFAULT_RELATION', 2).to_i
-
 class LandingController < ApplicationController
+  DEFAULT_REGION = ENV.fetch('DEFAULT_REGION', 1).to_i
+  DEFAULT_RELATION = ENV.fetch('DEFAULT_RELATION', 2).to_i
   def show; end
 
   def search
     create_giver_and_receiver
-    set_giver_cookies(@giver.id)
-    set_receiver_cookies(@receiver.id)
+    save_giver_cookies(@giver.id)
+    save_receiver_cookies(@receiver.id)
     redirect_to home_show_path
   end
 
-  def set_giver_cookies(giver_id)
+  def save_giver_cookies(giver_id)
     cookies[:giver_id] = giver_id
   end
 
-  def set_receiver_cookies(receiver_id);
+  def save_receiver_cookies(receiver_id);
     cookies[:receiver_id] = receiver_id
   end
 

@@ -4,9 +4,7 @@ class Receiver < ApplicationRecord
   has_one :reminder, dependent: :destroy
   has_one :whishlist, dependent: :destroy
 
-  validates_associated :relation
   validates :relation, presence: true
-  validates_associated :giver
   validates :giver, presence: true
 end
 
