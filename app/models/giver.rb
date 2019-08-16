@@ -2,6 +2,9 @@ class Giver < ApplicationRecord
   has_many :receivers, dependent: :destroy
   has_many :reminders, through: :receivers
   belongs_to :region
+
+  validates :region, presence: true
+  validates_associated :region
 end
 
 # == Schema Information

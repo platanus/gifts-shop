@@ -1,5 +1,7 @@
 class Relation < ApplicationRecord
   has_many :receivers, dependent: :nullify
+
+  validates :name, presence: true
 end
 
 # == Schema Information

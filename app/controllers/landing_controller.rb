@@ -22,6 +22,7 @@ class LandingController < ApplicationController
 
   def create_giver_and_receiver
     @giver = Giver.create!(region_id: DEFAULT_REGION)
+    # TODO: CHECK IF NAME==NULL
     @receiver = Receiver.create!(
       name: params[:name],
       giver_id: @giver.id,

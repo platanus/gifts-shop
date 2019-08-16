@@ -2,7 +2,13 @@ class Receiver < ApplicationRecord
   belongs_to :giver
   belongs_to :relation
   has_one :reminder, dependent: :destroy
-  has_many :whishlists, dependent: :destroy
+  has_one :whishlist, dependent: :destroy
+
+  validates_associated :relation
+  validates :relation, presence: true
+  validates_associated :giver
+  validates :giver, presence: true
+  validates :name, presence: true
 end
 
 # == Schema Information

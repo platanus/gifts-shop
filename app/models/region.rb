@@ -1,6 +1,8 @@
 class Region < ApplicationRecord
   has_many :givers, dependent: :nullify
   has_many :stores, dependent: :nullify
+
+  validates :name, presence: true
 end
 
 # == Schema Information

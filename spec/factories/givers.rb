@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :giver do
     email { "MyString" }
-    region { "" }
+    region
   end
 end

@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :receiver do
     name { "MyString" }
     email { "MyString" }
-    giver { nil }
-    relation { nil }
+    giver
+    relation
   end
 end
