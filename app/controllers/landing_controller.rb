@@ -7,22 +7,22 @@ class LandingController < ApplicationController
   def search
     create_giver_and_receiver
     set_giver_cookies(@giver.id)
-    redirect_to home_show_path(name: params[:name])
+    set_receiver_cookies(@receiver.id)
+    redirect_to home_show_path
   end
 
   def set_giver_cookies(giver_id)
     cookies[:giver_id] = giver_id
   end
 
-  def get_giver_cookies
-    @giver_id = cookies[:giver_id]
+  def set_receiver_cookies(receiver_id);
+    cookies[:receiver_id] = receiver_id
   end
 
   private
 
   def create_giver_and_receiver
     @giver = Giver.create!(region_id: DEFAULT_REGION)
-    # TODO: CHECK IF NAME==NULL
     @receiver = Receiver.create!(
       name: params[:name],
       giver_id: @giver.id,

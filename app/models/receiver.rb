@@ -8,7 +8,6 @@ class Receiver < ApplicationRecord
   validates :relation, presence: true
   validates_associated :giver
   validates :giver, presence: true
-  validates :name, presence: true
 end
 
 # == Schema Information
