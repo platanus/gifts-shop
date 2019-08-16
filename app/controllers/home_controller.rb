@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
-  before_action :redirect_to_landing_if_no_cookies, only: :show
   before_action :set_receiver_id, :set_giver_id, only: :show
+  before_action :redirect_to_landing_if_no_cookies, only: :show
+
   def show
     receiver
     @products = Product.all
