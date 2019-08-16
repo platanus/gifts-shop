@@ -81,8 +81,6 @@ GEM
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (9.0.0)
-    autoprefixer-rails (9.6.1)
-      execjs
     aws-eventstream (1.0.3)
     aws-partitions (1.195.0)
     aws-sdk (3.0.1)
@@ -850,10 +848,6 @@ GEM
       debug_inspector (>= 0.0.1)
     bootsnap (1.4.4)
       msgpack (~> 1.0)
-    bootstrap (4.0.0)
-      autoprefixer-rails (>= 6.0.3)
-      popper_js (>= 1.12.9, < 2)
-      sass (>= 3.5.2)
     builder (3.2.3)
     byebug (11.0.1)
     coderay (1.1.2)
@@ -970,7 +964,6 @@ GEM
       shellany (~> 0.0)
     orm_adapter (0.5.0)
     pg (1.1.4)
-    popper_js (1.14.5)
     power-types (0.3.1)
     pry (0.12.2)
       coderay (~> 1.1.0)
@@ -1127,7 +1120,6 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootsnap
-  bootstrap (~> 4.0.0)
   coffee-rails (~> 4.2)
   devise
   devise-i18n
