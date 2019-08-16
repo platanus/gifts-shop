@@ -1,23 +1,19 @@
 class HomeController < ApplicationController
   before_action :redirect_to_landing_if_no_cookies, only: :show
+  before_action :set_receiver_id, :set_giver_id, only: :show
   def show
-    get_receivers_name
-    get_products
-  end
-
-  def get_receivers_name
-    set_receiver_id
-    @receiver_name = Receiver.find(@receiver_id).name
-  end
-
-  def get_products
+    receiver
     @products = Product.all
+  end
+
+  def receiver
+    @receiver = Receiver.find(@receiver_id)
   end
 
   private
 
   def redirect_to_landing_if_no_cookies
-    redirect_to landing_show_path if !set_giver_id
+    redirect_to landing_show_path if !@giver_id
   end
 
   def set_receiver_id
