@@ -3,12 +3,8 @@ class HomeController < ApplicationController
   before_action :redirect_to_landing_if_no_cookies, only: :show
 
   def show
-    receiver
-    @products = Product.all
-  end
-
-  def receiver
     @receiver = Receiver.find(@receiver_id)
+    @products = Product.all
   end
 
   private
