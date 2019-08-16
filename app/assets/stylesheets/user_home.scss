@@ -1,0 +1,76 @@
+@import 'global.scss';
+
+.header {
+  &__title {
+    color: $primary-color;
+    font-size: 40px;
+    padding-left: 30px;
+  }
+
+  &__subtitle {
+    padding-top: 10px;
+    font-size: 12px;
+  }
+
+  &__selector {
+    padding-left: 10px;
+  }
+
+  &__receiver-name {
+    color: $receiver-name-color;
+  }
+}
+
+.header-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.gifts-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.gift {
+  height: 200px;
+  width: 200px;
+  flex: 1 0 21%;
+  margin-bottom: 130px;
+
+  &__title {
+    font-size: 20px;
+  }
+
+  &__store {
+    font-size: 15px;
+  }
+
+  &__price {
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  &__image {
+    width: 200px;
+    height: 200px;
+    border: 5px solid $product-color;
+  }
+
+  &__like {
+    font-size: 20px;
+    font-weight: bold;
+    display: none;
+
+    &:hover {
+      display: block;
+    }
+  }
+
+  &-promoted {
+    border: 10px solid $promoted-product-color;
+    font-weight: bold;
+  }
+}
