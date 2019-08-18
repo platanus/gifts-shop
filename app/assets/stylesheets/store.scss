@@ -1,0 +1,12 @@
+
+.action-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register {
+  &__link {
+    text-align: center;
+  }
+}
