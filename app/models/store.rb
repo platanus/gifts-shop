@@ -5,6 +5,8 @@ class Store < ApplicationRecord
     :recoverable, :rememberable, :validatable
   has_many :products, dependent: :destroy
   belongs_to :region
+
+  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
 end
 
 # == Schema Information
