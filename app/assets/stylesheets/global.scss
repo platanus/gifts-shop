@@ -4,4 +4,20 @@ $promoted-product-color: rgb(235, 214, 30);
 $product-color: #dc143c;
 $receiver-name-color: #dc143c;
 
+.header-container {
+  display: flex;
+}
 
+.header {
+  display: flex;
+  justify-content: end;
+
+  &__link {
+    margin-top: 1%;
+    margin-right: 1%;
+  }
+}
+
+.btn {
+  text-align: center;
+}

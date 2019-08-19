@@ -1,6 +1,11 @@
 @import 'global.scss';
 
-.header {
+.mission-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.mission {
   &__title {
     color: $primary-color;
     font-size: 40px;
@@ -12,18 +17,9 @@
     font-size: 12px;
   }
 
-  &__selector {
-    padding-left: 10px;
-  }
-
-  &__receiver-name {
+  &__receiver {
     color: $receiver-name-color;
   }
-}
-
-.header-container {
-  display: flex;
-  justify-content: flex-start;
 }
 
 .gifts-container {

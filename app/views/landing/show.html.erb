@@ -1,14 +1,18 @@
-
-<div class="header-landing">
-  <div class="header-landing__title">Gifts Shop</div>
-  <div class="header-landing__subtitle">Se acabaron los dolores de cabeza buscando regalos!</div>
+<div class="header">
+  <div class="header__link">
+    <%= link_to "¿Tienes una tienda?", new_store_session_path %>
+  </div>
+</div>
+<div class="hero-container">
+  <div class="hero-container__title">Gifts Shop</div>
+  <div class="hero-container__subtitle">Se acabaron los dolores de cabeza buscando regalos!</div>
 </div>
 <div class="prompt-container">
   <div class="prompt">
     <h3 class="prompt__text">Dale un nombre a tu regalado</h3>
     <%= form_tag({controller: "landing", action: "search"}, method: "post", autocomplete: "off") do |f| %>
       <div><%= text_field_tag :name, "", class: "prompt__input" %></div>
-      <div><%= submit_tag "Empezar", class: "prompt__btn" %></div>
+      <div><%= submit_tag "Empezar", class: "btn prompt__btn" %></div>
     <% end %>
   </div>
 </div>

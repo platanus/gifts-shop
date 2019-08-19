@@ -1,9 +1,14 @@
- <div class="header-container"> 
-  <div class="header">
+<div class="header">
+  <div class="header__link">
+    <%= link_to "¿Tienes una tienda?", new_store_session_path %>
+  </div>
+</div>
+<div class="mission-container"> 
+  <div class="mission">
     <% if @receiver.name.present? %>
-      <h1 class="header__title"> Recomendaciones para <span class="header__receiver-name"><%=  @receiver.name %></span></h1>
+      <h1 class="mission__title"> Recomendaciones para <span class="mission__receiver"><%=  @receiver.name %></span></h1>
     <% else %>
-      <h1 class="header__title"> Regalos recomendados</h1>
+      <h1 class="mission__title"> Regalos recomendados</h1>
     <% end %>
   </div>
 </div>

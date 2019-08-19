@@ -1,0 +1,37 @@
+
+<div class="registration-container">
+  <div class="registration-title">Comenzemos!!</div>
+  <div class="registration-form">
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="registration-form__field">
+        <%= f.label :Nombre_de_tu_tienda%><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+      <div class="registration-form__field">
+        <%= f.label :País%><br />
+        <%= f.collection_select :region_id, Region.all, :id, :name %>
+      </div>
+      <div class="registration-form__field">
+        <%= f.label :Correo %><br />
+        <%= f.email_field :email, autocomplete: "email" %>
+      </div>
+      <div class="registration-form__field">
+        <%= f.label :Contraseña %>
+        <% if @minimum_password_length %>
+          <em>(mínimo <%= @minimum_password_length %> caracteres)</em>
+        <% end %><br />
+        <%= f.password_field :password, autocomplete: "nueva contraseña" %>
+      </div>
+      <div class="registration-form__field">
+        <%= f.label :confirmar_contraseña %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+      <div class="registration-form__btn">
+        <%= f.submit "Registrarse" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render "stores/shared/links" %>
