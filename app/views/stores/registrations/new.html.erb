@@ -22,11 +22,11 @@
         <% if @minimum_password_length %>
           <em>(mínimo <%= @minimum_password_length %> caracteres)</em>
         <% end %><br />
-        <%= f.password_field :password, autocomplete: "nueva-contraseña" %>
+        <%= f.password_field :password, autocomplete: "off" %>
       </div>
       <div class="registration-form__field">
         <%= f.label :confirmar_contraseña %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+        <%= f.password_field :password_confirmation, autocomplete: "off" %>
       </div>
       <div class="registration-form__btn">
         <%= f.submit "Registrarse" %>
