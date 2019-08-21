@@ -1,6 +1,20 @@
-<div class=header>
-  <div class=header__link>
+<div class="header">
+  <div class="header__link">
     <%= link_to "Cerrar Sesión", sign_out_path %>
   </div>
 </div>
-<h1>Hola Mundo!</h1>
+<div class="info-container">
+  <div class="store-name"><%= current_store.name %></div>
+  <div class="store-balance">
+    Balance <%= current_store.balance %>
+  </div>
+</div>
+<div class="catalog-title">Tus productos</div>
+<div class="product-container">
+  <div class="product">
+    <div class="product__name"></div>
+    <div class="product__image"></div>
+    <div class="prodcuct__price"></div>
+    <div class="product__clicks"></div>
+  </div>
+</div>

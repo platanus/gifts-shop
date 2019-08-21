@@ -1,5 +1,5 @@
 <div class="login-container">
-  <div class="login-title">Log in Stores</div>
+  <div class="login-title">Inicia sesión</div>
   <div class="login-form">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="login-form__field">
@@ -10,12 +10,6 @@
           <%= f.label :Contraseña %><br />
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
-        <% if devise_mapping.rememberable? %>
-          <div class="login-form__field">
-            <%= f.check_box :remember_me %>
-            <%= f.label :Recordarme %>
-          </div>
-        <% end %>
         <div class="login-form__btn">
           <%= f.submit "Iniciar Sesión" %>
         </div>
