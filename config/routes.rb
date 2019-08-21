@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
     end
   end
+  devise_scope :store do
+    get '/signout', to: 'devise/sessions#destroy', as: :signout
+  end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
