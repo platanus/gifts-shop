@@ -1,9 +1,36 @@
 @import 'global.scss';
 
-.catalog-container {
-  text-align: left;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: 300;
-  line-height: 1.42em;
+* {
+  box-sizing: border-box;
 }
 
+.catalog-container {
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 24px;
+  height: 500px;
+  display: table;
+}
+
+.catalog {
+  border-collapse: collapse;
+  overflow: auto;
+  text-align: left;
+}
+
+.catalog-header {
+  &__label {
+  }
+}
+
+.catalog-body {
+  
+}
+
+.product {
+
+  &__label {
+
+  }
+}

@@ -10,27 +10,23 @@
   </div>
 </div>
 <div class="catalog-title">Catálogo</div>
-<table class="catalog-container">
-  <thead class="catalog-header">
-    <tr>
-      <th>
-        <h1 class="catalog-header__label">Producto</h1>
-      </th>
-      <th>
-        <h1 class="catalog-header__label">Precio</h1>
-      </th>
-      <th>
-        <h1 class="catalog-header__label">Visitas</h1>
-      </th>
-    </tr>
-  </thead>
-  <tbody class="catalog-list">
-    <% @products.each do |product| %>
-      <tr class="product">
-        <td class="product__label"><%= product.name %></td>
-        <td class="product__label"><%= product.price %></td>
-        <td class="product__label"><%= product.clicks %></td>
+<div class="catalog-container">
+  <table class="catalog">
+    <thead class="catalog-header">
+      <tr>
+        <th class="catalog-header__label">Producto</th>
+        <th class="catalog-header__label">Precio</th>
+        <th class="catalog-header__label">Visitas</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody class="catalog-body">
+      <% @products.each do |product| %>
+        <tr class="product">
+          <td class="product__label"><%= product.name %></td>
+          <td class="product__label"><%= product.price %></td>
+          <td class="product__label"><%= product.clicks %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
