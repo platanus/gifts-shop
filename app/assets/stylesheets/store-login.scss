@@ -1,29 +1,4 @@
-
-.store-name {
-  font-size: 50px;
-}
-
-.catalog-title {
-  font-size: 30px;
-}
-
-.product-container {
-  display: flex;
-  flex-direction: column;
-}
-
-.product {
-  border: 1px;
-
-  &__name {
-    font-weight: bold;
-    font-size: 9px;
-  }
-
-  &__price {
-    color: gray;
-  }
-}
+@import 'global.scss';
 
 .login-title {
   font-size: 40px;

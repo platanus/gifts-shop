@@ -14,6 +14,8 @@ $receiver-name-color: #dc143c;
   }
 }
 
-.btn {
+.btn,
+input[type="submit"] {
   text-align: center;
+  background-color: $primary_color;
 }
