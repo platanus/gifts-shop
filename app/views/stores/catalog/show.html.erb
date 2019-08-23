@@ -14,21 +14,23 @@
   <thead class="catalog-header">
     <tr>
       <th>
-        <h1 class="catalog-header__title">Nombre producto</h1>
+        <h1 class="catalog-header__label">Nombre producto</h1>
       </th>
       <th>
-        <h1 class="catalog-header__title">Precio</h1>
+        <h1 class="catalog-header__label">Precio</h1>
       </th>
       <th>
-        <h1 class="catalog-header__title">Visitas</h1>
+        <h1 class="catalog-header__label">Visitas</h1>
       </th>
     </tr>
   </thead>
-  <tbody class="product">
+  <tbody class="catalog-list">
     <% @products.each do |product| %>
-      <tr class="product__subtitle"><%= product.name %></tr>
-      <tr class="product__subtitle"><%= product.price %></tr>
-      <tr class="product__subtitle"><%= product.clicks %></tr>
+      <tr class="product">
+        <td class="product__label"><%= product.name %></td>
+        <td class="product__label"><%= product.price %></td>
+        <td class="product__label"><%= product.clicks %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>
