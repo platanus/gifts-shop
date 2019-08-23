@@ -10,11 +10,25 @@
   </div>
 </div>
 <div class="catalog-title">Tus productos</div>
-<div class="product-container">
-  <div class="product">
-    <div class="product__name"></div>
-    <div class="product__image"></div>
-    <div class="prodcuct__price"></div>
-    <div class="product__clicks"></div>
-  </div>
-</div>
+<table class="catalog-container">
+  <thead class="catalog-header">
+    <tr>
+      <th>
+        <h1 class="catalog-header__title">Nombre producto</h1>
+      </th>
+      <th>
+        <h1 class="catalog-header__title">Precio</h1>
+      </th>
+      <th>
+        <h1 class="catalog-header__title">Visitas</h1>
+      </th>
+    </tr>
+  </thead>
+  <tbody class="product">
+    <% @products.each do |product| %>
+      <tr class="product__subtitle"><%= product.name %></tr>
+      <tr class="product__subtitle"><%= product.price %></tr>
+      <tr class="product__subtitle"><%= product.clicks %></tr>
+    <% end %>
+  </tbody>
+</table>
