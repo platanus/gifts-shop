@@ -10,25 +10,29 @@
   padding: 24px;
   height: 500px;
   display: table;
+  border-radius: 20px;
 }
 
 .catalog {
+  width: 100%;
   border-collapse: collapse;
   overflow: auto;
-  text-align: left;
+}
+
+.catalog-title {
+  background-color: darken($primary-color, 5%);
+  color: $white;
+  font-size: 1.5em;
+  padding: 10px;
+  text-align: center;
+  text-transform: uppercase;
 }
 
 .catalog-header {
   &__label {
-  }
-}
-
-.catalog-body {
-  
-}
-
-.product {
-
-  &__label {
+    background-color: lighten($color: $primary_color, $amount: 40%);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: left;
   }
 }
