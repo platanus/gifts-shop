@@ -10,9 +10,7 @@
           <%= f.label :Contraseña %><br />
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
-        <div class="login-form__btn">
-          <%= f.submit "Iniciar Sesión", class: "btn btn--login" %>
-        </div>
+        <div><%= submit_tag "Iniciar Sesión", class: "btn login-form__btn" %></div>
       <% end %>
   </div>
 </div>
