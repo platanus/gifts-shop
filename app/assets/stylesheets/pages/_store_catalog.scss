@@ -75,17 +75,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   width: 100%;
+  line-height: 25px;
 
   &:hover {
     background-color: rgb(149, 202, 252);
   }
 
   &__label {
+    vertical-align: middle;
     color: rgb(65, 63, 63);
     display: flex;
     flex-direction: column;
     flex-basis: 100%;
     flex: 1;
-    margin-bottom: 1%;
   }
 }
