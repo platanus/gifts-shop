@@ -4,16 +4,17 @@
   </div>
 </div>
 <div class="info-container">
-  <div class="store-name"><%= current_store.name %></div>
-  <div class="store-balance">
-    Balance <%= current_store.balance %>
-  </div>
+  <div class="store-name"><%=current_store.name %></div>
+  <div class="store-balance">Balance <%=current_store.balance %></div>
 </div>
 <div class="catalog-container">
-  <table class="catalog">
+  <div class="catalog-top">
     <div class="catalog-title">Productos</div>
-    <thead class="catalog-header">
-      <tr>
+    <%= button_to "Agregar producto",stores_catalog_new_path, class: "new-product-btn"  %>
+  </div>
+  <table class="catalog">
+    <thead class="catalog-header-container">
+      <tr class="catalog-header">
         <th class="catalog-header__label">Nombre</th>
         <th class="catalog-header__label">Precio</th>
         <th class="catalog-header__label">Visitas</th>
@@ -29,6 +30,4 @@
       <% end %>
     </tbody>
   </table>
-  <%= link_to "Nuevo",stores_catalog_new_path, class: "add_product"  %>
 </div>
-
