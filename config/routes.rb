@@ -14,9 +14,10 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  get 'stores/catalog/show'
-  get 'stores/catalog/new'
   get 'home', to: 'home#show'
+  resource :stores do
+    resource :catalog, controller: 'stores/catalog', only: [:show, :new]
+  end
   get 'landing/show'
   match '/search', to: 'landing#search', via: 'post'
   root to: 'landing#show'
