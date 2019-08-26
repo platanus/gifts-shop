@@ -1,3 +1,7 @@
 class Stores::CatalogController < ApplicationController
-  def show; end
+  before_action :authenticate_store!
+
+  def show
+    @products = current_store.products
+  end
 end

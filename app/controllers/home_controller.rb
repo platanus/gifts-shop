@@ -10,7 +10,11 @@ class HomeController < ApplicationController
   private
 
   def redirect_to_landing_if_no_cookies
-    redirect_to landing_show_path if !@giver_id
+    if current_store
+      redirect_to stores_catalog_show_path
+    elsif !@giver_id
+      redirect_to landing_show_path
+    end
   end
 
   def set_receiver_id
