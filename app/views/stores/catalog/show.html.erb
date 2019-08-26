@@ -10,7 +10,7 @@
 <div class="catalog-container">
   <div class="catalog-top">
     <div class="catalog-title">Productos</div>
-    <%= button_to "Agregar producto",stores_catalog_new_path, class: "new-product-btn"  %>
+    <%= button_to "Agregar producto", stores_catalog_new_path, class: "new-product-btn", method: :get %>
   </div>
   <table class="catalog">
     <thead class="catalog-header-container">
