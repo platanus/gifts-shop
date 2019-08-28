@@ -1,0 +1,27 @@
+
+<h1 class="form-title">Agrega un producto</h1>
+<%= form_tag({controller: "catalog", action: "new"}, method: "post", autocomplete: "off", class: "new-product-form") do |f| %>
+  <div class="new-product-info">
+    <div class=input-container>
+      <div class="new-product__label">Nombre</div>
+      <%= text_field_tag :name, "", class: "new-product__input" %>
+    </div>
+    <div class="input-container">
+      <div class="new-product__label">Precio</div>
+      <%= text_field_tag :price, "", class: "new-product__input" %>
+    </div>
+    <div class="input-container">
+      <div class="new-product__label">Link</div>
+      <%= text_field_tag :link, "", class: "new-product__input" %>
+    </div>
+    <div class="input-container">
+      <%= submit_tag "Agregar", class: "new-product__btn" %>
+    </div>
+  </div>
+  <div class="new-product-image">
+    <div class="current-image"></div>
+    <%# <div class="upload-image"> %>
+      <%# <%= image_tag :image, class: "upload-image__button" %>
+    <%# </div> %>
+  </div>
+<% end %>
