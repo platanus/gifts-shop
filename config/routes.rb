@@ -16,7 +16,7 @@ Rails.application.routes.draw do
   devise_for :users
   get 'stores/catalog/show'
   get 'stores/catalog/new'
-  get 'home/show'
+  get 'home', to: 'home#show'
   get 'landing/show'
   match '/search', to: 'landing#search', via: 'post'
   root to: 'landing#show'
