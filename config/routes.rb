@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   }
   scope path: '/api' do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
+      resources :products, only: [:index]
     end
   end
   devise_scope :store do
@@ -18,6 +19,6 @@ Rails.application.routes.draw do
   get 'home/show'
   get 'landing/show'
   match '/search', to: 'landing#search', via: 'post'
-  root to: 'home#show'
+  root to: 'landing#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
