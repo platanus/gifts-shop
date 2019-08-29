@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   end
   get 'landing/show'
   match '/search', to: 'landing#search', via: 'post'
-  root to: 'landing#show'
+  match '/create', to: 'stores/catalog#create', via: 'post'
+  root to: 'home#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
