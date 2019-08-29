@@ -1,7 +1,10 @@
 class Stores::CatalogController < ApplicationController
   before_action :authenticate_store!
+  protect_from_forgery with: :exception
 
-  def create; end
+  def create
+    Rails.logger.debug params.inspect
+  end
 
   def show
     @products = current_store.products
