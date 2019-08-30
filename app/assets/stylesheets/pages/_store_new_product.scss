@@ -1,0 +1,55 @@
+.new-product-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.new-product {
+  display: flex;
+
+  &__label {
+    margin-left: 10%;
+    margin-right: 2%;
+    padding: 1%;
+    width: 80px;
+    font-size: 15px;
+    text-align: right;
+    color: rgb(6, 69, 141);
+    font-weight: bold;
+  }
+
+  &__input {
+    margin-left: 2%;
+    margin-bottom: 3%;
+    text-align: left;
+    font-size: 12px;
+    background: transparent;
+    padding: 2px 5px;
+    width: 400px;
+    border: 1px solid rgb(185, 184, 184);
+    border-radius: 5px;
+  }
+
+  &__btn {
+    padding: 5px;
+    background-color: $primary_color;
+    color: $white;
+    margin-top: 3%;
+    width: 20%;
+    font-size: 15px;
+    margin-left: 0%;
+    margin-bottom: 3%;
+    border: 0;
+    border-radius: 6px;
+
+    &:hover {
+      background-color: darken($color: $primary-color, $amount: 10%);
+    }
+  }
+}
+
+.input-container {
+  display: flex;
+  flex-direction: row;
+}
