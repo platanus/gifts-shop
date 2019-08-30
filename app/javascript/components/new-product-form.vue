@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form action="/create" method="post" class="new-product-form">
+    <form action="/create" method="POST" class="new-product-form" enctype=multipart/form-data >
       <input type="hidden" name="authenticity_token" :value="csrfToken" autocomplete="off">
       <div class="new-product-form__info">
         <div class="product-input">
@@ -26,7 +26,7 @@
         <div class="image-preview" v-else>
           <img class="image-preview__preview" src="../../assets/images/default-gift.png" >
         </div>
-        <input class="image-preview__input" type="file" @change="previewImage" accept="image/*" name="imageData">
+        <input class="image-preview__input" type="file" @change="previewImage" accept="image/*" name="image">
       </div>
     </form>
   </div>
@@ -41,7 +41,7 @@ export default {
   data() {
     return {
       csrfToken: getCsrfToken(),
-      imageData: "",
+      imageData: ""
     }
   },
   methods: {

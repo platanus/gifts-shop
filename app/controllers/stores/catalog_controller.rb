@@ -3,7 +3,8 @@ class Stores::CatalogController < ApplicationController
   protect_from_forgery with: :exception
 
   def create
-    Rails.logger.debug params.inspect
+    add_product
+    redirect_to stores_catalog_path
   end
 
   def show
@@ -14,7 +15,12 @@ class Stores::CatalogController < ApplicationController
 
   private
 
-  def post_params
-    params.require(:product).permit(:name, :link, :price, :image)
+  def add_product
+    @product = Product.create!(product_params)
+    @product.image.attach(params[:image])
+  end
+
+  def product_params
+    params.permit(:name, :link, :price).merge(store_id: current_store.id)
   end
 end
