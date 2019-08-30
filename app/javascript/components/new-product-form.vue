@@ -1,30 +1,35 @@
 <template>
-  <form action="/create" method="post" class="new-product-form">
-    <input type="hidden" name="authenticity_token" :value="csrfToken" autocomplete="off">
-    <div class="new-product-form__info">
-      <div class="product-input">
-        <div class="product-input__label">Nombre</div>
-        <input type="text" class="product-input__box" name="name"/>
+  <div>
+    <form action="/create" method="post" class="new-product-form">
+      <input type="hidden" name="authenticity_token" :value="csrfToken" autocomplete="off">
+      <div class="new-product-form__info">
+        <div class="product-input">
+          <div class="product-input__label">Nombre</div>
+          <input type="text" class="product-input__box" name="name"/>
+        </div>
+        <div class="product-input">
+          <div class="product-input__label">Precio</div>
+          <input type="text" class="product-input__box" name="price"/>
+        </div>
+        <div class="product-input">
+          <div class="product-input__label">Link</div>
+          <input type="text" class="product-input__box" name="link"/>
+        </div>
+        <div class="product-input">
+          <input type="submit" class="product-input__btn" value="Agregar" >
+        </div>
       </div>
-      <div class="product-input">
-        <div class="product-input__label">Precio</div>
-        <input type="text" class="product-input__box" name="price"/>
+      <div class="new-product-form__image">
+        <div class="image-preview" v-if="imageData.length > 0" >
+          <img class="image-preview__preview" :src="imageData">
+        </div>
+        <div class="image-preview" v-else>
+          <img class="image-preview__preview" src="../../assets/images/default-gift.png" >
+        </div>
+        <input class="image-preview__input" type="file" @change="previewImage" accept="image/*" name="imageData">
       </div>
-      <div class="product-input">
-        <div class="product-input__label">Link</div>
-        <input type="text" class="product-input__box" name="link"/>
-      </div>
-      <div class="product-input">
-        <input type="submit" class="product-input__btn" value="Agregar" >
-      </div>
-    </div>
-    <div class="new-product-form__image">
-      <div class="image-preview" v-if="imageData.length > 0" >
-        <img class="preview" :src="imageData">
-      </div>
-      <input type="file" class="upload-image" @change="previewImage" accept="image/*" name="imageData">
-    </div>
-  </form>
+    </form>
+  </div>
 </template>
 
 
