@@ -3,31 +3,32 @@
     <%= link_to "Cerrar Sesión", sign_out_path %>
   </div>
 </div>
-<div class="info-container">
-  <div class="store-name"><%=current_store.name %></div>
-  <div class="store-balance">Balance <%=current_store.balance %></div>
-</div>
-<div class="catalog-container">
-  <div class="catalog-top">
-    <div class="catalog-title">Productos</div>
-    <%= button_to "Agregar producto",  new_stores_catalog_path, class: "new-product-btn", method: :get %>
+<div class="catalog-body">
+  <div class="info-container">
+    <div class="catalog-left">
+      <div class="catalog-title">Productos</div>
+      <%= button_to "Agregar producto",  new_stores_catalog_path, class: "new-product-btn", method: :get %>
+    </div>
+    <div class="store-balance">Créditos <%=current_store.balance %></div>
   </div>
-  <table class="catalog">
-    <thead class="catalog-header-container">
-      <tr class="catalog-header">
-        <th class="catalog-header__label">Nombre</th>
-        <th class="catalog-header__label">Precio</th>
-        <th class="catalog-header__label">Visitas</th>
-      </tr>
-    </thead>
-    <tbody class="catalog-body">
-      <% @products.each do |product| %>
-        <tr class="product">
-          <td class="product__label"><%= product.name %></td>
-          <td class="product__label"><%= product.price %></td>
-          <td class="product__label"><%= product.clicks %></td>
+  <div class="catalog-container">
+    <table class="catalog">
+      <thead class="catalog-header-container">
+        <tr class="catalog-header">
+          <th class="catalog-header__label row-label__big">Nombre</th>
+          <th class="catalog-header__label row-label__medium">Precio</th>
+          <th class="catalog-header__label row-label__medium">Vistas</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody class="product-container">
+        <% @products.each do |product| %>
+          <tr class="product">
+            <td class="product__label row-label__big"><%= product.name %></td>
+            <td class="product__label row-label__medium">$<%= product.price %></td>
+            <td class="product__label row-label__medium"><%= product.clicks %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
