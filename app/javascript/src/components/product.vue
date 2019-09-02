@@ -17,7 +17,7 @@
         <span class="home-product__price"> {{ product.price | Price }} </span>
         <img
           class="home-product__icon"
-          src="../assets/heart.svg"
+          src="../assets/heart-outlined.svg"
         >
       </div>
     </div>
@@ -84,9 +84,7 @@ export default {
     }
 
     &__icon {
-      max-width: 20px;
-      flex: 1;
-      opacity: .5;
+      width: 1.7em;
     }
 
     &__title {

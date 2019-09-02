@@ -10,7 +10,7 @@
       <div class="home-title-container__options">
         <img
           class="home-title-container__icon"
-          src="../assets/heart.svg"
+          src="../assets/heart-outlined.svg"
         >
       </div>
     </div>
@@ -76,8 +76,7 @@ export default {
     &__icon {
       align-self: flex-end;
       flex: 1;
-      max-width: 16px;
-      max-height: 16px;
+      max-width: .45em;
     }
   }
 
