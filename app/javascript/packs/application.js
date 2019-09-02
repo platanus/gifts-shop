@@ -20,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
   return '';
 =======
 import NewProductForm from '../components/new-product-form.vue';
+import ToggleDisplay from '../components/toggle-display.vue';
 
 document.addEventListener('turbolinks:load', () => {
   if (document.getElementById('app')) {
@@ -27,6 +28,7 @@ document.addEventListener('turbolinks:load', () => {
       el: '#app',
       components: {
         NewProductForm,
+        ToggleDisplay,
       },
     });
   }

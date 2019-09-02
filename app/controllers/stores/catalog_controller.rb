@@ -8,6 +8,7 @@ class Stores::CatalogController < ApplicationController
   end
 
   def show
+    @balance = current_store.balance
     @products = current_store.products
   end
 
