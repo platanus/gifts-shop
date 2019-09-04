@@ -1,3 +1,4 @@
+import 'circular-std';
 import Vue from 'vue';
 <<<<<<< HEAD
 
