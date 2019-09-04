@@ -119,6 +119,10 @@
   margin-left: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
+
+  &:hover {
+    background-color: darken($color: $primary-color, $amount: 5%);
+  }
 }
 
 .product {
@@ -149,19 +153,11 @@
   }
 }
 
-// component
-$width: 30px;
-$background: #fff;
-$background-active: #35c6ad;
-$border-color: #ddd;
-$button-size: 10px;
-$button-color: $background;
-
 .ToggleDisplay {
-  width: $width;
+  width: 30px;
   height: $button-size;
-  background: $background;
-  border: 2px solid $border-color;
+  background: $white;
+  border: 2px solid #ddd;
   border-radius: 200px;
   padding: 2px;
   transition: background 0.6s;
@@ -170,7 +166,7 @@ $button-color: $background;
   .draggable {
     width: $button-size;
     height: $button-size;
-    background: $button-color;
+    background: $white;
     border-radius: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.6);
     transform: translateX(0%);
@@ -178,7 +174,7 @@ $button-color: $background;
   }
 
   &.active {
-    background: $background-active;
+    background: $primary-color;
     transition: background 0.6s;
   }
 }
