@@ -1,19 +1,19 @@
-<div class="login-container">
-  <div class="login-title">Inicia sesión</div>
-  <div class="login-subtitle">
-    <h2 class="login-subtitle__text">
-      Nuevo en Gifting? Regístrate <%= link_to "aquí", new_registration_path(resource_name), class: "registration-link"%><br />
+<div class="session-container">
+  <div class="session-title">Inicia sesión</div>
+  <div class="session-subtitle">
+    <h2 class="session-subtitle__text">
+      Nuevo en Gifting? Regístrate <%= link_to "aquí", new_registration_path(resource_name), class: "session-link"%><br />
     </h2>
   </div>
-  <div class="login-form">
+  <div class="session-form">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="login-form__rectangle">
-          <%= f.email_field :email, autocomplete: "email", placeholder: "Correo", class: "login-form__field"%>
+        <div class="session-form__rectangle">
+          <%= f.email_field :email, autocomplete: "email", placeholder: "Correo", class: "session-form__field"%>
         </div>
-        <div class="login-form__rectangle">
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class: "login-form__field" %>
+        <div class="session-form__rectangle">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class: "session-form__field" %>
         </div>
-        <div><%= submit_tag "Iniciar Sesión", class: "btn login-form__btn" %></div>
+        <div><%= submit_tag "Iniciar Sesión", class: "btn session-form__btn" %></div>
       <% end %>
   </div>
 </div>

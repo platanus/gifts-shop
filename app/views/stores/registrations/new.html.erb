@@ -1,37 +1,31 @@
 
 <div class="registration-container">
-  <div class="registration-title">Comenzemos!!</div>
-  <div class="registration-form">
+  <div class="session-title">Comenzemos!!</div>
+  <div class="session-subtitle">
+    <h2 class="session-subtitle__text">
+      Estás registrado? Inicia sesión <%= link_to "aquí", new_store_session_path, class: "session-link"%><br />
+    </h2>
+  </div>
+  <div class="session-form">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
       <%= render "devise/shared/error_messages", resource: resource %>
 
-      <div class="registration-form__field">
-        <%= f.label :Nombre_de_tu_tienda%><br />
-        <%= f.text_field :name, autofocus: true %>
+      <div class="session-form__rectangle">
+        <%= f.text_field :name, autofocus: true, class: "session-form__field", placeholder: "Nombre" %>
       </div>
-      <div class="registration-form__field">
-        <%= f.label :País%><br />
-        <%= f.collection_select :region_id, Region.all, :id, :name %>
+      <div class="session-form__rectangle">
+        <%= f.collection_select :region_id, Region.all, :id, :name, class: "session-form__collection", prompt: "País"%>
       </div>
-      <div class="registration-form__field">
-        <%= f.label :Correo %><br />
-        <%= f.email_field :email, autocomplete: "email" %>
+      <div class="session-form__rectangle">
+        <%= f.email_field :email, autocomplete: "email", class: "session-form__field", placeholder: "Correo"%>
       </div>
-      <div class="registration-form__field">
-        <%= f.label :Contraseña %>
-        <% if @minimum_password_length %>
-          <em>(mínimo <%= @minimum_password_length %> caracteres)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "off" %>
+      <div class="session-form__rectangle">
+        <%= f.password_field :password, autocomplete: "off", class: "session-form__field", placeholder: "Contraseña (mínimo 6 caracteres)" %>
       </div>
-      <div class="registration-form__field">
-        <%= f.label :confirmar_contraseña %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "off" %>
+      <div class="session-form__rectangle">
+        <%= f.password_field :password_confirmation, autocomplete: "off", class: "session-form__field", placeholder: "Confirmar contraseña" %>
       </div>
-      <div class="registration-form__btn">
-        <%= f.submit "Registrarse" %>
-      </div>
+      <div><%= f.submit "Registrarse", class: "session-form__btn" %></div>
     <% end %>
   </div>
 </div>
-<%= render "stores/shared/links" %>
