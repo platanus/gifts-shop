@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+  <head>
+    <title>GiftsShop</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= javascript_pack_tag 'stores' %>
+    <%= stylesheet_link_tag 'stores', media: 'all' %>
+  </head>
+
+  <body>
+    <div id="stores-app">
+      <%= yield %>
+    </div>
+  </body>
+</html>

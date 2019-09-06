@@ -1,4 +1,5 @@
 class Stores::CatalogController < ApplicationController
+  layout 'stores'
   before_action :authenticate_store!
   protect_from_forgery with: :exception
 

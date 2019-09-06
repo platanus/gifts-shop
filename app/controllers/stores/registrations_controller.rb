@@ -1,4 +1,5 @@
 class Stores::RegistrationsController < Devise::RegistrationsController
+  layout 'stores'
   protect_from_forgery with: :exception
   before_action :configure_permitted_params, if: :devise_controller?
 
