@@ -6,7 +6,7 @@ services:
       context: "."
       dockerfile: Dockerfile.ci
     volumes:
-    - "./vendor/bundle:/usr/local/bundle"
+    - "test_data:/usr/local/bundle"
     environment:
       RACK_ENV: test
       DB_USER: postgres
@@ -19,3 +19,5 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: ''
+volumes:
+  test_data:
