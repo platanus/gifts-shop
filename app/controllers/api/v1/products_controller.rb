@@ -20,7 +20,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
     end
     if response.code == '200'
       order = JSON.parse(response.body)['product_ids']
-      products.sort_by { |product| order.index(product.id) }
+      products = products.sort_by { |product| order.index(product.id) }
     end
     products
   end
