@@ -4,7 +4,6 @@ class HomeController < ApplicationController
 
   def show
     @receiver = Receiver.find(@receiver_id)
-    @products = Product.all
   end
 
   private
