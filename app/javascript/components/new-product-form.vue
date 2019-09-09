@@ -5,7 +5,7 @@
       <div class="new-product-form__info">
         <div class="product-input">
           <div class="product-input__label">Nombre</div>
-          <input type="text" class="product-input__box" name="name"/>
+          <input type="text" class="product-input__box" name="name">
         </div>
         <div class="product-input">
           <div class="product-input__label">Precio</div>
@@ -32,29 +32,27 @@
   </div>
 </template>
 
-
 <script>
 import getCsrfToken from '../utils/csrf_token.js';
-
 
 export default {
   data() {
     return {
       csrfToken: getCsrfToken(),
-      imageData: ""
-    }
+      imageData: '',
+    };
   },
   methods: {
     previewImage(event) {
-      var input = event.target;
+      const input = event.target;
       if (input.files && input.files[0]) {
-        var reader = new FileReader();
+        const reader = new FileReader();
         reader.onload = (e) => {
           this.imageData = e.target.result;
-        }
+        };
         reader.readAsDataURL(input.files[0]);
       }
-    }
+    },
   },
 };
 </script>
