@@ -4,8 +4,8 @@
   "dependencies": {
     "@rails/webpacker": "^4.0.7",
     "axios": "^0.19.0",
-    "humps": "^2.0.1",
     "circular-std": "^1.0.0",
+    "humps": "^2.0.1",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.1",
     "vue-router": "^3.1.2",
@@ -13,6 +13,9 @@
     "vuex": "^3.1.1"
   },
   "devDependencies": {
+    "eslint": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-vue": "^5.2.3",
     "webpack-dev-server": "^3.8.0"
   }
 }
