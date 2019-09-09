@@ -6,6 +6,8 @@ class RecommenderService < PowerTypes::Service.new
   end
 
   def get_products(num_of_products, likes = [], dislikes = [])
+    return get_random_products(num_of_products) if URL.blank?
+
     uri = products_uri(num_of_products, likes, dislikes)
     ids = get_products_ids(uri)
     return get_random_products(num_of_products) if ids.empty?
