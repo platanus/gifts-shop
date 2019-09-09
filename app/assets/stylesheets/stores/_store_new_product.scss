@@ -1,79 +1,128 @@
 
+.form-title {
+  height: 60px;
+  color: #353434;
+  font-family: 'Work Sans';
+  font-size: 40px;
+  letter-spacing: -.4px;
+  line-height: 60px;
+  margin-left: 60px;
+}
+
 .new-product-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: initial;
 
   &__info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 5%;
   }
 
   &__image {
     display: flex;
     flex-direction: column;
+    margin-top: 60px;
+    margin-left: 60px;
   }
 };
 
 .image-preview {
   display: flex;
   justify-content: flex-start;
-  margin-top: -5%;
 
   &__preview {
-    width: 50%;
+    width: 56px;
+    height: 56px;
     background-color: $white;
     border: 1px solid $white;
     padding: 5px;
   }
 
-  &__input {
+  &__input > input[type='file'] {
     text-align: left;
+    
+
   }
 }
 
 .product-input {
+  margin-top: 50px;
   display: flex;
+  flex-direction: column;
+  margin-left: 60px;
 
   &__btn {
-    justify-self: flex-end;
+    width: 136px;
+    height: 40px;
     padding: 5px;
     background-color: $primary_color;
     color: $white;
     margin-top: 3%;
-    width: 20%;
     font-size: 15px;
-    margin-left: 50%;
     margin-bottom: 3%;
     border: 0;
-    border-radius: 6px;
+    border-radius: 30.5px;
+    margin-right: 25px;
 
     &:hover {
       background-color: darken($color: $primary-color, $amount: 10%);
     }
+
+    &--accept {
+      background-color: $primary-color;
+    }
+
+    &--cancel {
+      background-color: #949494;
+    }
   }
 
   &__box {
-    margin-left: 2%;
+    margin-top: 10px;
     margin-bottom: 3%;
     text-align: left;
-    font-size: 12px;
+    font-size: 20px;
     background: transparent;
-    padding: 2px 5px;
-    width: 400px;
-    border: 1px solid rgb(185, 184, 184);
-    border-radius: 5px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    height: 33px;
+    width: 350px;
+    border-color: $primary-color;
+    color: #949393;
   }
 
   &__label {
-    margin-left: 10%;
-    margin-right: 2%;
-    padding: 1%;
-    width: 80px;
-    font-size: 15px;
-    text-align: right;
-    color: rgb(6, 69, 141);
-    font-weight: bold;
+    height: 16px;
+    width: 175px;
+    color: #949494;
+    font-family: 'Work Sans';
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
   }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 60px;
+}
+
+.file-container > input[type="file"]{
+  display: flex;
+  flex-direction: row;
+  margin-top: 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  pointer-events: all;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
 }
