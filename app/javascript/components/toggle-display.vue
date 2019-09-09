@@ -6,6 +6,10 @@
 
 <script>
 
+const fullSize = 100;
+const halfSize = 50;
+const emptySize = 30;
+
 export default {
   props: {
     value: { type: Boolean, required: true },
@@ -28,17 +32,19 @@ export default {
       };
     },
     posPercentage() {
-      return `${this.position / this.width * 100}%`;
+      return `${this.position / this.width * fullSize}%`;
     },
     stateClass() {
       if (this.state) {
         return 'active';
       }
+
+      return '';
     },
   },
   watch: {
     position() {
-      this.state = this.position >= 50;
+      this.state = this.position >= halfSize;
     },
   },
   methods: {
@@ -48,20 +54,24 @@ export default {
     },
     toggleDisplay(state) {
       this.state = state;
-      this.position = !state ?
-        0 :
-        100;
+      this.position = state ?
+        fullSize :
+        0;
     },
     dragging(e) {
       const pos = e.clientX - this.$el.offsetLeft;
-      const percent = pos / this.width * 100
-      this.position = percent <= 0 ?
-        0 :
-        percent >= 100 ?
-          100 :
-          percent;
+      const percent = pos / this.width * fullSize;
+      if (percent <= 0) {
+        this.position = 0;
+      } else {
+        if (percent >= fullSize) {
+          this.position = fullSize;
+        } else {
+          this.position = percent;
+        }
+      }
     },
-    dragStart(e) {
+    dragStart() {
       this.startTimer();
       window.addEventListener('mousemove', this.dragging);
       window.addEventListener('mouseup', this.dragStop);
@@ -71,7 +81,7 @@ export default {
       window.removeEventListener('mouseup', this.dragStop);
       this.resolvePosition();
       clearInterval(this.$options.interval);
-      if (this.pressed < 30) {
+      if (this.pressed < emptySize) {
         this.toggleDisplay(!this.state);
       }
       this.pressed = 0;
@@ -84,7 +94,7 @@ export default {
     },
     resolvePosition() {
       this.position = this.state ?
-        100 :
+        fullSize :
         0;
     },
     emit() {
