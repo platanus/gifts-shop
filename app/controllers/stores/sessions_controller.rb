@@ -1,9 +1,10 @@
 class Stores::SessionsController < Devise::SessionsController
+  layout 'stores'
   protect_from_forgery with: :exception
   before_action :configure_permitted_params, if: :devise_controller?
 
   def after_sign_in_path_for(_resource)
-    stores_catalog_show_path
+    stores_catalog_path
   end
 
   private
