@@ -86,23 +86,23 @@
   }
 }
 
-.row-label__big {
-  flex-basis: 50%;
-  text-align: left;
+.row-label {
+  &--big {
+    flex-basis: 50%;
+    text-align: left;
+  }
+
+  &--medium {
+    flex-basis: 17%;
+    text-align: center;
+  }
+
+  &--small {
+    margin-right: 20px;
+    flex-basis: 8.5%;
+    text-align: center;
+  }
 }
-
-.row-label__medium {
-  flex-basis: 17%;
-  text-align: center;
-}
-
-.row-label__small {
-  margin-right: 20px;
-  flex-basis: 8.5%;
-  text-align: center;
-}
-
-
 
 .new-product-btn {
   height: 40px;
@@ -156,7 +156,7 @@
   }
 }
 
-.ToggleDisplay {
+.toggle-display {
   width: 30px;
   height: $button-size;
   background: #949494;
