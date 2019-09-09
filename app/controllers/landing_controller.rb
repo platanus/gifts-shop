@@ -7,7 +7,7 @@ class LandingController < ApplicationController
     create_giver_and_receiver
     save_giver_cookies(@giver.id)
     save_receiver_cookies(@receiver.id)
-    redirect_to home_show_path
+    redirect_to home_path
   end
 
   def save_giver_cookies(giver_id)
