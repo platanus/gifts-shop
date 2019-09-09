@@ -1,6 +1,14 @@
 <template>
-  <div class="toggle-display" :class="stateClass" @click.self="onClick" >
-    <div class="draggable" @mousedown.prevent="dragStart" :style="style"/>
+  <div
+    class="toggle-display"
+    :class="stateClass"
+    @click.self="onClick"
+  >
+    <div
+      class="draggable"
+      @mousedown.prevent="dragStart"
+      :style="style"
+    />
   </div>
 </template>
 
