@@ -4,8 +4,8 @@ import store from '../src/store/index';
 import app from '../src/app';
 
 document.addEventListener('DOMContentLoaded', () => {
-  if (document.getElementById('app') !== null) {
-    const el = document.getElementById('app');
+  if (document.getElementById('home') !== null) {
+    const el = document.getElementById('home');
 
     return new Vue({
       el,
