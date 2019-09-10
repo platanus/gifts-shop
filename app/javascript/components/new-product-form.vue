@@ -76,11 +76,17 @@
         </div>
       </div>
       <div class="button-container">
-        <input
-          type="submit"
-          class="product-input__btn product-input__btn--cancel"
-          value="VOLVER"
+        <form
+          class=""
+          method="get"
+          action="/stores/catalog"
         >
+          <input
+            class="product-input__btn product-input__btn--cancel"
+            value="VOLVER"
+            type="submit"
+          >
+        </form>
         <input
           type="submit"
           class="product-input__btn product-input__btn--accept"
