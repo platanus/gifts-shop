@@ -4,6 +4,8 @@ $promoted-product-color: rgb(235, 214, 30);
 $product-color: #dc143c;
 $receiver-name-color: #dc143c;
 $white: #fff;
+$label-color: #949494;
+
 $button-size: 10px;
 $main-font: 'Work Sans';
 
@@ -24,4 +26,5 @@ body {
 .btn {
   text-align: center;
   background-color: $primary_color;
+  text-decoration: none;
 }
