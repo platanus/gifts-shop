@@ -6,17 +6,15 @@
     <title>GiftsShop</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= javascript_pack_tag 'application' %>
+    <%= javascript_pack_tag 'home' %>
+    <%= stylesheet_pack_tag 'home' %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'application'%>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link href="https://fonts.googleapis.com/css?family=Work+Sans&display=swap" rel="stylesheet">
   </head>
 
   <body>
-    <div>
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>
