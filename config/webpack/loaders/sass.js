@@ -1,4 +1,4 @@
-module.exports = {
+module.export = {
   test: /\.scss$/,
   use: [
       'vue-style-loader',
