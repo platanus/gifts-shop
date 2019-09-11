@@ -2,7 +2,7 @@
 .form-title {
   height: 60px;
   color: #353434;
-  font-family: 'Work Sans';
+  font-family: $main-font;
   font-size: 40px;
   letter-spacing: -.4px;
   line-height: 60px;
@@ -80,7 +80,7 @@
     height: 16px;
     width: 175px;
     color: #949494;
-    font-family: 'Work Sans';
+    font-family: $main-font;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -142,7 +142,7 @@
     height: 16px;
     width: 175px;
     color: #949494;
-    font-family: 'Work Sans';
+    font-family: $main-font;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
@@ -156,7 +156,7 @@
     width: 208px;
     opacity: .32;
     color: #353434;
-    font-family: 'Work Sans';
+    font-family: $main-font;
     font-size: 20px;
     line-height: 24px;
   }
