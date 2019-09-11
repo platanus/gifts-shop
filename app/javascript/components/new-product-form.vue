@@ -76,22 +76,20 @@
         </div>
       </div>
       <div class="button-container">
-        <form
-          class=""
-          method="get"
-          action="/stores/catalog"
+        <a
+          href="/stores/catalog"
+          class="btn product-input__link product-input__link--cancel"
         >
-          <input
-            class="product-input__btn product-input__btn--cancel"
-            value="VOLVER"
-            type="submit"
-          >
-        </form>
-        <input
+          <div class="link-button-text">
+            VOLVER
+          </div>
+        </a>
+        <button
           type="submit"
           class="product-input__btn product-input__btn--accept"
-          value="AGREGAR"
         >
+          AGREGAR
+        </button>
       </div>
     </form>
   </div>
