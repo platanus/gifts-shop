@@ -15,68 +15,81 @@
       <div class="new-product-form__info">
         <div class="product-input">
           <div class="product-input__label">
-            Nombre
+            NOMBRE DEL PRODUCTO
           </div>
           <input
             type="text"
             class="product-input__box"
             name="name"
+            placeholder="Ej: Cortinas Roller"
           >
         </div>
         <div class="product-input">
           <div class="product-input__label">
-            Precio
+            PRECIO
           </div>
           <input
             type="text"
             class="product-input__box"
             name="price"
+            placeholder="$0"
           >
         </div>
         <div class="product-input">
           <div class="product-input__label">
-            Link
+            LINK A TIENDA
           </div>
           <input
             type="text"
             class="product-input__box"
             name="link"
-          >
-        </div>
-        <div class="product-input">
-          <input
-            type="submit"
-            class="product-input__btn"
-            value="Agregar"
+            placeholder="http://"
           >
         </div>
       </div>
       <div class="new-product-form__image">
-        <div
-          class="image-preview"
-          v-if="imageData.length > 0"
-        >
-          <img
-            class="image-preview__preview"
-            :src="imageData"
-          >
+        <div class="image-preview__label">
+          FOTO DEL PRODUCTO
         </div>
-        <div
-          class="image-preview"
-          v-else
-        >
-          <img
-            class="image-preview__preview"
-            src="../../assets/images/default-gift.png"
+        <div class="file-container">
+          <div
+            class="image-preview"
+            v-if="imageData.length > 0"
           >
+            <img
+              class="image-preview__preview"
+              :src="imageData"
+            >
+          </div>
+          <div class="image-preview__value">
+            Seleccionar archivo...
+          </div>
+          <div class="file-input">
+            <input
+              class="image-preview__input"
+              type="file"
+              @change="previewImage"
+              accept="image/*"
+              name="image"
+            >
+          </div>
         </div>
-        <input
-          class="image-preview__input"
-          type="file"
-          @change="previewImage"
-          accept="image/*"
-          name="image"
+      </div>
+      <div class="button-container">
+        <a
+          href="/stores/catalog"
+          class="btn product-input__link product-input__link--cancel"
         >
+          <div class="link-button-text">
+            VOLVER
+          </div>
+        </a>
+        <button
+          type="submit"
+          class="product-input__btn product-input__btn--accept"
+        >
+          AGREGAR
+        </button>
       </div>
     </form>
   </div>

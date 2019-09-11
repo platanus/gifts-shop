@@ -1,79 +1,191 @@
+$title-font: #353434;
+
+.form-title {
+  height: 60px;
+  color: $title-font;
+  font-family: $main-font;
+  font-size: 40px;
+  letter-spacing: -.4px;
+  line-height: 60px;
+  margin-left: 60px;
+}
 
 .new-product-form {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: initial;
 
   &__info {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-right: 5%;
+    flex-wrap: wrap;
   }
 
   &__image {
-    display: flex;
-    flex-direction: column;
+    margin-top: 60px;
+    margin-left: 60px;
   }
 };
 
-.image-preview {
-  display: flex;
-  justify-content: flex-start;
-  margin-top: -5%;
-
-  &__preview {
-    width: 50%;
-    background-color: $white;
-    border: 1px solid $white;
-    padding: 5px;
-  }
-
-  &__input {
-    text-align: left;
-  }
-}
-
 .product-input {
+  margin-top: 50px;
   display: flex;
+  flex-direction: column;
+  margin-left: 60px;
 
   &__btn {
-    justify-self: flex-end;
+    width: 136px;
+    height: 40px;
     padding: 5px;
     background-color: $primary_color;
     color: $white;
-    margin-top: 3%;
-    width: 20%;
     font-size: 15px;
-    margin-left: 50%;
     margin-bottom: 3%;
     border: 0;
-    border-radius: 6px;
+    border-radius: 30.5px;
+    margin-right: 25px;
 
-    &:hover {
-      background-color: darken($color: $primary-color, $amount: 10%);
+    &--accept {
+      background-color: $primary-color;
+
+      &:hover {
+        background-color: darken($color: $primary-color, $amount: 10%);
+      }
+    }
+
+    &--cancel {
+      background-color: $label-color;
+
+      &:hover {
+        background-color: darken($color: $label-color, $amount: 10%);
+      }
     }
   }
 
   &__box {
-    margin-left: 2%;
+    margin-top: 10px;
     margin-bottom: 3%;
     text-align: left;
-    font-size: 12px;
+    font-size: 20px;
     background: transparent;
-    padding: 2px 5px;
-    width: 400px;
-    border: 1px solid rgb(185, 184, 184);
-    border-radius: 5px;
+    border-top: 0;
+    border-right: 0;
+    border-left: 0;
+    height: 33px;
+    width: 350px;
+    border-color: $primary-color;
+    color: $label-color;
   }
 
   &__label {
-    margin-left: 10%;
-    margin-right: 2%;
-    padding: 1%;
-    width: 80px;
-    font-size: 15px;
-    text-align: right;
-    color: rgb(6, 69, 141);
-    font-weight: bold;
+    height: 16px;
+    width: 175px;
+    color: $label-color;
+    font-family: $main-font;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
   }
+
+  &__link {
+    width: 129px;
+    height: 30px;
+    padding: 5px;
+    background-color: $primary_color;
+    color: $white;
+    font-size: 15px;
+    margin-bottom: 3%;
+    border: 0;
+    border-radius: 30.5px;
+    margin-right: 25px;
+
+    &--cancel {
+      background-color: $label-color;
+
+      &:hover {
+        background-color: darken($color: $label-color, $amount: 10%);
+      }
+    }
+  }
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  margin-left: 60px;
+  margin-top: 120px;
+}
+
+.file-container {
+  display: flex;
+  flex-direction: row;
+  height: 56px;
+  width: 350px;
+  pointer-events: all;
+  cursor: pointer;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  background-color: rgba(67, 225, 198, .12);
+  position: absolute;
+}
+
+.file-input > input[type='file'] {
+  position: absolute;
+  height: 56px;
+  width: 350px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  opacity: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+}
+
+.image-preview {
+  &__preview {
+    width: 56px;
+    height: 56px;
+    z-index: 1;
+  }
+
+  &__input {
+    text-align: left;
+    height: 56px;
+    width: 56px;
+    pointer-events: all;
+    z-index: 2;
+  }
+
+  &__label {
+    z-index: 1;
+    margin-bottom: 16px;
+    height: 16px;
+    width: 175px;
+    color: $label-color;
+    font-family: $main-font;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 16px;
+  }
+
+  &__value {
+    z-index: 1;
+    padding-top: 17px;
+    padding-left: 8px;
+    height: 24px;
+    width: 208px;
+    opacity: .32;
+    color: #353434;
+    font-family: $main-font;
+    font-size: 20px;
+    line-height: 24px;
+  }
+}
+
+.link-button-text {
+  padding-top: 7px;
+  font-family: $main-font;
 }

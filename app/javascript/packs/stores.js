@@ -1,4 +1,3 @@
-import 'circular-std';
 import Vue from 'vue';
 
 import NewProductForm from '../components/new-product-form.vue';
