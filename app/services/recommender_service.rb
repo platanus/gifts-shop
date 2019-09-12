@@ -5,10 +5,10 @@ class RecommenderService < PowerTypes::Service.new
     get_products(Product.count)
   end
 
-  def get_products(num_of_products, likes = [], dislikes = [])
+  def get_products(num_of_products, receiver = nil)
     return get_random_products(num_of_products) if URL.blank?
 
-    uri = products_uri(num_of_products, likes, dislikes)
+    uri = products_uri(num_of_products, receiver)
     ids = get_products_ids(uri)
     return get_random_products(num_of_products) if ids.empty?
 
@@ -17,10 +17,13 @@ class RecommenderService < PowerTypes::Service.new
 
   private
 
-  def products_uri(num_of_products, likes = [], dislikes = [])
-    path = "#{URL}/recommend/#{num_of_products}?"
-    likes.each { |like| path.concat("&likes=#{like}") }
-    dislikes.each { |dislike| path.concat("&dislikes=#{dislike}") }
+  def products_uri(num_of_products, receiver = nil)
+    path = if receiver.nil?
+             "#{URL}/recommend/#{num_of_products}"
+           else
+             "#{URL}/recommend/#{receiver}/#{num_of_products}"
+           end
+
     URI(path)
   end
 
