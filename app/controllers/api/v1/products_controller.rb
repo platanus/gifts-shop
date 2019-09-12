@@ -13,6 +13,10 @@ class Api::V1::ProductsController < Api::V1::BaseController
   end
 
   def receiver_is_valid?
-    Receiver.find(cookies[:receiver_id]).giver_id == cookies[:giver_id]
+    if receiver_id = cookies[:receiver_id]
+      Receiver.find(receiver_id).giver_id == cookies[:giver_id]
+    else
+      false
+    end
   end
 end
