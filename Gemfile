@@ -55,6 +55,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-nc', require: false
   gem 'rspec-rails'
+  gem 'webmock'
 end
 
 group :production, :development, :test do
