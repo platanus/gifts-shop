@@ -15,11 +15,9 @@ class GetProductsRecommendation < PowerTypes::Command.new(:receiver, :number_of_
   end
 
   def perform_recommendation_request
-    begin
-      response = Net::HTTP.get_response(uri)
-    rescue Errno::ECONNREFUSED => _
-      return false
-    end
+    response = Net::HTTP.get_response(uri)
     JSON.parse(response.body)['product_ids']
+  rescue Errno::ECONNREFUSED
+    false
   end
 end
