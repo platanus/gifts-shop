@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :product_action do
-    product { nil }
-    receiver { nil }
+    product
+    receiver
     action_type { 1 }
   end
 end
