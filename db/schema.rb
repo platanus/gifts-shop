@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_02_153325) do
+ActiveRecord::Schema.define(version: 2019_09_16_144238) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,16 @@ ActiveRecord::Schema.define(version: 2019_09_02_153325) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "product_actions", force: :cascade do |t|
+    t.bigint "product_id"
+    t.bigint "receiver_id"
+    t.integer "action_type", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_actions_on_product_id"
+    t.index ["receiver_id"], name: "index_product_actions_on_receiver_id"
   end
 
   create_table "product_tags", force: :cascade do |t|
@@ -186,6 +196,8 @@ ActiveRecord::Schema.define(version: 2019_09_02_153325) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "category_values", "categories"
+  add_foreign_key "product_actions", "products"
+  add_foreign_key "product_actions", "receivers"
   add_foreign_key "product_tags", "category_values"
   add_foreign_key "product_tags", "products"
   add_foreign_key "products", "stores"

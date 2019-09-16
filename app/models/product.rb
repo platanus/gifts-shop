@@ -1,7 +1,7 @@
 class Product < ApplicationRecord
   has_one_attached :image
   belongs_to :store
-  has_many :whishlists, dependent: :destroy
+  has_many :product_actions, dependent: :destroy
   has_many :product_values, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2 }
