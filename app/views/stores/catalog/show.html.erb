@@ -30,7 +30,7 @@
             </td>
             <td class="product__label row-label row-label--big"><%= product.name %></td>
             <td class="product__label row-label row-label--medium">$<%= product.price %></td>
-            <td class="product__label row-label row-label--medium"><%= product.clicks %></td>
+            <td class="product__label row-label row-label--medium"><%= product.product_actions.display.count %></td>
             <td class="product__image row-label row-label--medium"><%= image_tag(url_for(product.image), :size => '56x56' )%></td>
           </tr>
         <% end %>
