@@ -25,6 +25,7 @@ const store = new Vuex.Store({
           return acc;
         }, {});
         context.commit('setProducts', products);
+        productsApi.markDisplay(products);
       });
     },
   },

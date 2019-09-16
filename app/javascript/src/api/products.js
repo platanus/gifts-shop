@@ -9,4 +9,13 @@ export default {
       url: path,
     });
   },
+  markDisplay(products) {
+    const path = '/api/v1/product_actions';
+
+    return api({
+      method: 'post',
+      url: path,
+      data: { products },
+    });
+  },
 };
