@@ -2,7 +2,7 @@ class Receiver < ApplicationRecord
   belongs_to :giver
   belongs_to :relation
   has_one :reminder, dependent: :destroy
-  has_one :whishlist, dependent: :destroy
+  has_many :product_actions, dependent: :destroy
 
   validates :relation, presence: true
   validates :giver, presence: true
