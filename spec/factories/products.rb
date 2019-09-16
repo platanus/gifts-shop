@@ -5,6 +5,6 @@ FactoryBot.define do
     clicks { "" }
     link { "MyString" }
     clicks_cost { 1.5 }
-    store { nil }
+    store
   end
 end
