@@ -36,6 +36,7 @@
 
 <script>
 import convertToClp from '../utils/convert-to-clp';
+import { mapActions } from 'vuex';
 
 export default {
   data() {
@@ -52,13 +53,16 @@ export default {
     },
   },
   methods: {
+    ...mapActions([
+      'markLiked',
+      'markDisplayed',
+    ]),
     setLikeStatus() {
       if (this.liked) {
         this.liked = false;
-        console.log("primer if");
       } else {
         this.liked = true;
-        console.log("segundo")
+        this.markLiked(this.product.id);
       }
     },
   },
@@ -73,7 +77,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch('markDisplayed', this.product.id);
+    this.markDisplayed(this.product.id);
   },
 };
 </script>
