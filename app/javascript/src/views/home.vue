@@ -26,11 +26,13 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import InfiniteLoading from 'vue-infinite-loading';
 import product from '../components/product';
 
 export default {
   name: 'HomeView',
   components: {
+    InfiniteLoading,
     product,
   },
   computed: {
@@ -40,6 +42,8 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getProducts');
+  },
+  methods: {
   },
 };
 </script>
