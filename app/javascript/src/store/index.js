@@ -28,8 +28,11 @@ const store = new Vuex.Store({
       });
     },
     markDisplayed: (context, payload) => {
-      productsApi.markDisplayed(payload)
-    }
+      productsApi.markDisplayed(payload);
+    },
+    markLiked: (context, payload) => {
+      productsApi.markLiked(payload);
+    },
   },
   getters: {
     productsArray: state => (
