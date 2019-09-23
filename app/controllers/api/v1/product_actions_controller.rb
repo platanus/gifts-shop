@@ -1,28 +1,20 @@
 class Api::V1::ProductActionsController < Api::V1::BaseController
   def create
-    if permitted_params[:action_type] == 'display'
-      respond_with mark_displayed
-    else
-      puts 'Pendiente para like'
-    end
-  end
-
-  private
-
-  def mark_displayed
-    receiver_id = set_receiver_id
-    ProductAction.create!(
+    product_action = ProductAction.create!(
       receiver_id: receiver_id,
       product_id: permitted_params[:product_id],
       action_type: permitted_params[:action_type]
     )
+    respond_with product_action
   end
+
+  private
 
   def permitted_params
     params.permit(:product_id, :action_type)
   end
 
-  def set_receiver_id
+  def receiver_id
     cookies[:receiver_id]
   end
 end
