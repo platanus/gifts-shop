@@ -44,6 +44,9 @@ export default {
       return value.toUpperCase();
     },
   },
+  mounted() {
+    this.$store.dispatch('markDisplayed', this.product.id);
+  },
 };
 </script>
 
