@@ -1,6 +1,5 @@
 <template>
   <div class="home-product-container">
-    {{ markDisplayed(product.id) }}
     <div class="home-product">
       <div class="home-product__image-wrapper">
         <img
@@ -45,10 +44,8 @@ export default {
       return value.toUpperCase();
     },
   },
-  methods: {
-    markDisplayed(payload) {
-      this.$store.dispatch('markDisplayed', payload);
-    }
+  mounted() {
+    this.$store.dispatch('markDisplayed', this.product.id);
   },
 };
 </script>
