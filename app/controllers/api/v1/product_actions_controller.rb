@@ -11,7 +11,7 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
   private
 
   def permitted_params
-    params.permit(:product_id, :action_type)
+    params.require(:product_action).permit(:product_id, :action_type)
   end
 
   def receiver_id
