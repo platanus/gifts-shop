@@ -1,5 +1,8 @@
 <template>
-  <div class="home-product-container">
+  <div
+    class="home-product-container"
+    @click="openNewTab()"
+  >
     <div class="home-product">
       <div class="home-product__image-wrapper">
         <img
@@ -34,6 +37,11 @@ export default {
       default: null,
     },
   },
+  methods: {
+    openNewTab: function() {
+      window.open(this.product.link, '_blank');
+    },
+  },
   filters: {
     Price(value) {
       const price = convertToClp(value);
@@ -54,6 +62,7 @@ export default {
     display: flex;
     justify-content: center;
     flex: 0 0 20%;
+    cursor: pointer;
   }
 
   .home-product {
