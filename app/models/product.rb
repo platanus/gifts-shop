@@ -2,11 +2,15 @@ class Product < ApplicationRecord
   has_one_attached :image
   belongs_to :store
   has_many :product_actions, dependent: :destroy
-  has_many :product_values, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2 }
   validates :price, presence: true
   validates :link, presence: true
+
+  def attach_image_from_url(url)
+    downloaded_image = open(url)
+    self.image.attach(io: downloaded_image, filename: "#{self.name}_#{self.id}.jpg")
+  end
 end
 
 # == Schema Information
