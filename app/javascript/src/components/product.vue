@@ -43,8 +43,8 @@
 </template>
 
 <script>
-import convertToClp from '../utils/convert-to-clp';
 import { mapActions } from 'vuex';
+import convertToClp from '../utils/convert-to-clp';
 
 export default {
   data() {
