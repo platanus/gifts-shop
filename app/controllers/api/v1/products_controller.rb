@@ -2,10 +2,9 @@ class Api::V1::ProductsController < Api::V1::BaseController
   before_action :redirect_to_landing_if_receiver_not_valid, only: :index
 
   def index
-    default_product_number = 5
     products = GetProductsRecommendation.for(
       receiver: receiver,
-      number_of_products: permitted_params[:number_of_products].to_i || default_product_number
+      number_of_products: permitted_params[:number_of_products].to_i
     )
     respond_with products
   end
