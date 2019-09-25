@@ -14,7 +14,7 @@ class LandingController < ApplicationController
     cookies[:giver_id] = giver_id
   end
 
-  def save_receiver_cookies(receiver_id);
+  def save_receiver_cookies(receiver_id)
     cookies[:receiver_id] = receiver_id
   end
 
