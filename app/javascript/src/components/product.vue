@@ -1,16 +1,21 @@
 <template>
   <div
     class="home-product-container"
-    @click="openNewTab()"
   >
     <div class="home-product">
-      <div class="home-product__image-wrapper">
+      <div
+        class="home-product__image-wrapper"
+        @click="openNewTab"
+      >
         <img
           class="home-product__image"
           :src="product.imageUrl"
         >
       </div>
-      <div class="home-product__title">
+      <div
+        class="home-product__title"
+        @click="openNewTab"
+      >
         {{ product.name }}
       </div>
       <div class="home-product__store-name">
@@ -18,18 +23,18 @@
       </div>
       <div class="home-product__bottom-row-container">
         <span class="home-product__price"> {{ product.price | Price }} </span>
-        <div 
-          @click="setLikeStatus" 
+        <div
+          @click="setLikeStatus"
         >
           <img
             v-if="liked"
             class="home-product__icon"
-            :src="heartFilled"
+            src="../assets/heart-filled.svg"
           >
           <img
             v-else
             class="home-product__icon"
-            :src="heartOutlined"
+            src="../assets/heart-outlined.svg"
           >
         </div>
       </div>
@@ -45,8 +50,6 @@ export default {
   data() {
     return {
       liked: false,
-      heartFilled: "/packs/media/src/assets/heart-filled-bf0c782fd35f9d63ac1a07f730aad400.svg",
-      heartOutlined: "/packs/media/src/assets/heart-outlined-6a8e3c8eb2ebab409cd726c91cf14777.svg",
     };
   },
   props: {
@@ -68,7 +71,7 @@ export default {
         this.markLiked(this.product.id);
       }
     },
-    openNewTab: function() {
+    openNewTab() {
       window.open(this.product.link, '_blank');
     },
   },
@@ -95,7 +98,6 @@ export default {
     display: flex;
     justify-content: center;
     flex: 0 0 20%;
-    cursor: pointer;
   }
 
   .home-product {
@@ -110,6 +112,7 @@ export default {
       display: flex;
       justify-content: center;
       height: 200px;
+      cursor: pointer;
     }
 
     &__bottom-row-container {
@@ -134,6 +137,7 @@ export default {
       overflow-wrap: break-word;
       padding: .9em 0;
       height: 2.5em;
+      cursor: pointer;
     }
 
     &__store-name {
