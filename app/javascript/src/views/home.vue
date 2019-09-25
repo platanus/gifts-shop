@@ -26,13 +26,11 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import InfiniteLoading from 'vue-infinite-loading';
 import product from '../components/product';
 
 export default {
   name: 'HomeView',
   components: {
-    InfiniteLoading,
     product,
   },
   computed: {
@@ -42,8 +40,18 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getProducts');
+    this.scroll();
   },
   methods: {
+    scroll() {
+      window.onscroll = () => {
+        const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight ===
+          document.getElementById('home').offsetHeight;
+        if (bottomOfWindow) {
+          this.$store.dispatch('moreProducts');
+        }
+      };
+    },
   },
 };
 </script>
