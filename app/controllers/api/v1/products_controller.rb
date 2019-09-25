@@ -2,11 +2,19 @@ class Api::V1::ProductsController < Api::V1::BaseController
   before_action :redirect_to_landing_if_receiver_not_valid, only: :index
 
   def index
-    products = GetProductsRecommendation.for(receiver: receiver, number_of_products: 5)
+    default_product_number = 5
+    products = GetProductsRecommendation.for(
+      receiver: receiver,
+      number_of_products: permitted_params[:number_of_products].to_i || default_product_number
+    )
     respond_with products
   end
 
   private
+
+  def permitted_params
+    params.require(:number_of_products).permit(:format)
+  end
 
   def receiver
     receiver_id = cookies[:receiver_id]

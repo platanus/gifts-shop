@@ -1,8 +1,8 @@
 import api from './index';
 
 export default {
-  products() {
-    const path = '/api/v1/products';
+  products(numberOfProducts) {
+    const path = `/api/v1/products?number_of_products=${numberOfProducts}`;
 
     return api({
       method: 'get',
