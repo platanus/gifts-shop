@@ -1,28 +1,20 @@
 class Api::V1::ProductActionsController < Api::V1::BaseController
   def create
-    mark_displayed
+    product_action = ProductAction.create!(
+      receiver_id: receiver_id,
+      product_id: permitted_params[:product_id],
+      action_type: permitted_params[:action_type]
+    )
+    respond_with product_action
   end
 
   private
 
-  def mark_displayed
-    receiver_id = set_receiver_id
-    ActiveRecord::Base.transaction do
-      permitted_params[:products].each do |_key, value|
-        ProductAction.create!(
-          receiver_id: receiver_id,
-          product_id: value[:id],
-          action_type: 0
-        )
-      end
-    end
-  end
-
   def permitted_params
-    params.permit(products: {})
+    params.require(:product_action).permit(:product_id, :action_type)
   end
 
-  def set_receiver_id
+  def receiver_id
     cookies[:receiver_id]
   end
 end

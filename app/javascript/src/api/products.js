@@ -9,13 +9,27 @@ export default {
       url: path,
     });
   },
-  markDisplay(products) {
+  markDisplayed(payload) {
     const path = '/api/v1/product_actions';
 
     return api({
       method: 'post',
       url: path,
-      data: { products },
+      data: { 
+        product_id: payload,
+        action_type: 'display',
+      },
     });
   },
+  markLiked(payload) {
+    const path = '/api/v1/product_actions';
+    return api({
+      method: 'post',
+      url: path,
+      data: { 
+        product_id: payload,
+        action_type: 'like',
+      },
+    });
+  }
 };
