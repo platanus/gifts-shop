@@ -75,6 +75,12 @@
     padding-left: 15px;
   }
 
+  &__btn-container {
+    display: flex;
+    margin: auto;
+    width: 341px;
+  }
+
   &__btn {
     height: 40px;
     width: 341px;
@@ -95,15 +101,14 @@
       background-color: darken($color: $primary-color, $amount: 5%);
     }
 
-    &--danger {
-      background-color: $danger-color;
-      margin-top: 30px;
+    &--cancel {
+      background-color: $label-color;
+      margin-right: 25px;
 
       &:hover {
-        background-color: darken($color: $danger-color, $amount: 5%);
+        background-color: darken($color: $label-color, $amount: 10%);
       }
     }
-
   }
 
   select {
