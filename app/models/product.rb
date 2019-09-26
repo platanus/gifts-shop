@@ -8,8 +8,10 @@ class Product < ApplicationRecord
   validates :link, presence: true
 
   def attach_image_from_url(url)
+    require 'open-uri'
     downloaded_image = open(url)
-    self.image.attach(io: downloaded_image, filename: "#{self.name}_#{self.id}.jpg")
+    filename = File.basename(URI.parse(url).path)
+    image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
   end
 end
 

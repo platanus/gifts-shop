@@ -6,7 +6,7 @@ class UpdateStoreProducts < PowerTypes::Command.new(:store, :csv_url)
         name: params.name,
         link: params.link,
         price: params.price,
-        store_id: @store.id,
+        store_id: @store.id
       )
       product.attach_image_from_url(params.image)
     end
