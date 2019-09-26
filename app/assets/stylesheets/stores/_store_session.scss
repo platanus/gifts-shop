@@ -13,6 +13,7 @@
   height: 60px;
   font-weight: 300;
   line-height: 60px;
+  margin-bottom: 20px;
   text-align: center;
 }
 
@@ -21,7 +22,6 @@
   justify-content: center;
   flex-direction: row;
   margin-bottom: 41px;
-  margin-top: 20px;
 
   &__text {
     color: #848686;
@@ -50,6 +50,12 @@
 
   &__rectangle {
     margin-bottom: 20px;
+  }
+
+  &__message {
+    margin-bottom: 10px;
+    font-family: $main-font;
+    font-size: 14px;
   }
 
   &__field {
@@ -87,6 +93,16 @@
     &:hover {
       background-color: darken($color: $primary-color, $amount: 5%);
     }
+
+    &--danger {
+      background-color: $danger-color;
+      margin-top: 30px;
+
+      &:hover {
+        background-color: darken($color: $danger-color, $amount: 5%);
+      }
+    }
+
   }
 
   select {
