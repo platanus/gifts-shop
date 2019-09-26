@@ -2,11 +2,17 @@ class Product < ApplicationRecord
   has_one_attached :image
   belongs_to :store
   has_many :product_actions, dependent: :destroy
-  has_many :product_values, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 2 }
   validates :price, presence: true
   validates :link, presence: true
+
+  def attach_image_from_url(url)
+    require 'open-uri'
+    downloaded_image = open(url)
+    filename = File.basename(URI.parse(url).path)
+    image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
+  end
 end
 
 # == Schema Information
