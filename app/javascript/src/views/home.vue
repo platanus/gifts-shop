@@ -40,6 +40,18 @@ export default {
   },
   mounted() {
     this.$store.dispatch('getProducts');
+    this.scroll();
+  },
+  methods: {
+    scroll() {
+      window.onscroll = () => {
+        const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight ===
+          document.getElementById('home').offsetHeight;
+        if (bottomOfWindow) {
+          this.$store.dispatch('moreProducts');
+        }
+      };
+    },
   },
 };
 </script>

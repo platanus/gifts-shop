@@ -4,21 +4,24 @@ import Vuex from 'vuex';
 import productsApi from '../api/products';
 
 Vue.use(Vuex);
-
+const INITIAL_NUMBER_OF_PRODUCTS = 7;
+const NUMBER_OF_PRODUCTS = 2;
 // eslint-disable-next-line new-cap
 const store = new Vuex.Store({
   state: {
     products: {},
-    productRows: {},
   },
   mutations: {
     setProducts: (state, payload) => {
       state.products = payload;
     },
+    addProducts: (state, payload) => {
+      state.products = { ...state.products, ...payload };
+    },
   },
   actions: {
     getProducts: context => {
-      productsApi.products().then((response) => {
+      productsApi.products(INITIAL_NUMBER_OF_PRODUCTS).then((response) => {
         const products = response.products.reduce((acc, product) => {
           acc[product.id] = { ...product };
 
@@ -32,6 +35,16 @@ const store = new Vuex.Store({
     },
     markLiked: (context, payload) => {
       productsApi.markLiked(payload);
+    },
+    moreProducts: context => {
+      productsApi.products(NUMBER_OF_PRODUCTS).then((response) => {
+        const products = response.products.reduce((acc, product) => {
+          acc[product.id] = { ...product };
+
+          return acc;
+        }, {});
+        context.commit('addProducts', products);
+      });
     },
   },
   getters: {

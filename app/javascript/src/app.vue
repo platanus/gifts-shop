@@ -14,9 +14,7 @@
     display: flex;
     align-self: center;
     justify-content: center;
-    overflow-y: scroll;
     font-family: 'Work Sans', sans-serif;
-    height: 100vh;
     font-size: 11px;
   }
 </style>
