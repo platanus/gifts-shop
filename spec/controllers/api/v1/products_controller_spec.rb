@@ -9,7 +9,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       before do
         request.cookies['receiver_id'] = receiver.id
         request.cookies['giver_id'] = giver.id
-        get :index, format: :json
+        get :index, params: { number_of_products: "5", format: :json }
       end
 
       it 'returns http success' do
@@ -20,7 +20,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
     context 'without giver_id' do
       before do
         request.cookies['receiver_id'] = receiver.id
-        get :index, format: :json
+        get :index, params: { number_of_products: "5", format: :json }
       end
 
       it 'redirects to landing page' do
@@ -31,7 +31,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
     context 'without receiver_id' do
       before do
         request.cookies['giver_id'] = giver.id
-        get :index, format: :json
+        get :index, params: { number_of_products: "5", format: :json }
       end
 
       it 'redirects to landing page' do
