@@ -4,8 +4,8 @@ import Vuex from 'vuex';
 import productsApi from '../api/products';
 
 Vue.use(Vuex);
-const INITIAL_NUMBER_OF_PRODUCTS = 7;
-const NUMBER_OF_PRODUCTS = 2;
+const INITIAL_NUMBER_OF_PRODUCTS = 15;
+const NUMBER_OF_PRODUCTS = 15;
 // eslint-disable-next-line new-cap
 const store = new Vuex.Store({
   state: {
