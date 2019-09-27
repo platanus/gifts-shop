@@ -10,6 +10,7 @@ const NUMBER_OF_PRODUCTS = 15;
 const store = new Vuex.Store({
   state: {
     products: {},
+    loading: false,
   },
   mutations: {
     setProducts: (state, payload) => {

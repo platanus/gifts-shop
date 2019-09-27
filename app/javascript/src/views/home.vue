@@ -52,9 +52,11 @@ export default {
         console.log(document.getElementById('home').offsetHeight);
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
-        if (bottomOfWindow) {
-          console.log('bottom');
-          this.$store.dispatch('moreProducts');
+        if (bottomOfWindow && !this.$store.loading) {
+          this.$store.loading = true;
+          debounce(this.$store.dispatch('moreProducts'), DEBOUNCE_TIMOUT).then(
+            this.$store.loading = false
+          );
         }
       };
     },
