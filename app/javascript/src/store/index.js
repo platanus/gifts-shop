@@ -37,7 +37,7 @@ const store = new Vuex.Store({
     markLiked: (context, payload) => {
       productsApi.markLiked(payload);
     },
-    moreProducts: context => {
+    moreProducts: context => new Promise((resolve, reject) => {
       productsApi.products(NUMBER_OF_PRODUCTS).then((response) => {
         const products = response.products.reduce((acc, product) => {
           acc[product.id] = { ...product };
@@ -45,8 +45,11 @@ const store = new Vuex.Store({
           return acc;
         }, {});
         context.commit('addProducts', products);
+        resolve();
+      }, error => {
+        reject(error);
       });
-    },
+    }),
   },
   getters: {
     productsArray: state => (

@@ -47,16 +47,13 @@ export default {
   methods: {
     scroll() {
       window.onscroll = () => {
-        console.log(document.documentElement.scrollTop + window.innerHeight);
-        console.log('vs');
-        console.log(document.getElementById('home').offsetHeight);
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
         if (bottomOfWindow && !this.$store.loading) {
           this.$store.loading = true;
-          debounce(this.$store.dispatch('moreProducts'), DEBOUNCE_TIMOUT).then(
-            this.$store.loading = false
-          );
+          this.$store.dispatch('moreProducts').then(() => {
+            this.$store.loading = false;
+          }, () => {});
         }
       };
     },
