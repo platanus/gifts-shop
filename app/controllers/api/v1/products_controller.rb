@@ -4,7 +4,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
   def index
     products = GetProductsRecommendation.for(
       receiver: receiver,
-      number_of_products: permitted_params[:number_of_products].to_i
+      number_of_products: permitted_params.to_i
     )
     respond_with products
   end
@@ -12,7 +12,7 @@ class Api::V1::ProductsController < Api::V1::BaseController
   private
 
   def permitted_params
-    params.require(:number_of_products).permit(:format)
+    params.require(:number_of_products)
   end
 
   def receiver
