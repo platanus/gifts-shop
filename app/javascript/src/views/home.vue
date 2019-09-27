@@ -28,6 +28,8 @@
 import { mapGetters } from 'vuex';
 import product from '../components/product';
 
+const SCROLL_OFFSET = 30;
+
 export default {
   name: 'HomeView',
   components: {
@@ -45,9 +47,13 @@ export default {
   methods: {
     scroll() {
       window.onscroll = () => {
-        const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight ===
-          document.getElementById('home').offsetHeight;
+        console.log(document.documentElement.scrollTop + window.innerHeight);
+        console.log('vs');
+        console.log(document.getElementById('home').offsetHeight);
+        const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
+          document.getElementById('home').offsetHeight - SCROLL_OFFSET;
         if (bottomOfWindow) {
+          console.log('bottom');
           this.$store.dispatch('moreProducts');
         }
       };
