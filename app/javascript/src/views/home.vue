@@ -16,17 +16,19 @@
         <div class="home-title-container__price-filter">
           <input
             class="home-title-container__price-input"
-            v-model="minPrice" placeholder="precio mínimo"
+            v-model="minPrice"
+            placeholder="precio mínimo"
           >
           <span>
             -
           </span>
           <input
             class="home-title-container__price-input"
-            v-model="maxPrice" placeholder="precio máximo"
+            v-model="maxPrice"
+            placeholder="precio máximo"
           >
           <button
-            class=""
+            @click="submitPriceFilter"
           >
             Filtrar
           </button>
@@ -93,6 +95,10 @@ export default {
       this.$cookies.keys().forEach(
         cookie => this.$cookies.remove(cookie)
       );
+      window.location.reload();
+    },
+    submitPriceFilter() {
+      this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
       window.location.reload();
     },
   },
