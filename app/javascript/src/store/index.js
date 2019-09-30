@@ -9,15 +9,15 @@ const NUMBER_OF_PRODUCTS = 15;
 // eslint-disable-next-line new-cap
 const store = new Vuex.Store({
   state: {
-    products: {},
+    products: [],
     loading: false,
   },
   mutations: {
     setProducts: (state, payload) => {
-      state.products = payload;
+      state.products = Object.values(payload);
     },
     addProducts: (state, payload) => {
-      state.products = { ...state.products, ...payload };
+      state.products = [...state.products, ...Object.values(payload)];
     },
   },
   actions: {
@@ -52,11 +52,7 @@ const store = new Vuex.Store({
     }),
   },
   getters: {
-    productsArray: state => (
-      Object.keys(state.products).map(
-        key => ({ id: key, ...state.products[key] })
-      )
-    ),
+    productsList: state => state.products,
   },
 });
 
