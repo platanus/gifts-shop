@@ -1,6 +1,6 @@
 <div class="session-form">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= render "error_messages", resource: resource %>
     <div class="session-form__rectangle">
       <%= f.text_field :name, autofocus: true, class: "session-form__field", placeholder: "Nombre" %>
     </div>
@@ -25,7 +25,7 @@
         <%= f.password_field :current_password, autocomplete: "current-password", class: "session-form__field", placeholder: "Contraseña actual" %>
       </div>
       <div class="session-form__btn-container">
-        <%= button_to "Volver", "/stores/catalog", method: "get", class: "session-form__btn session-form__btn--cancel" %>
+        <%= link_to "Volver", "/stores/catalog", class: "session-form__btn session-form__btn--cancel" %>
         <%= f.submit "Guardar", class: "session-form__btn" %>
       </div>
     <% else %>
