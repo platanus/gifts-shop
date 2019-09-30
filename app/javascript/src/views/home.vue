@@ -6,6 +6,11 @@
         <span class="home-title-container__user-name">
           Diego
         </span>
+        <img
+          class="home-title-container__icon home-title-container__icon--clear"
+          src="../assets/close-badge.svg"
+          @click="clearCookies"
+        >
       </div>
       <div class="home-title-container__options">
         <img
@@ -37,6 +42,14 @@ export default {
     ...mapGetters({
       products: 'productsArray',
     }),
+  },
+  methods: {
+    clearCookies() {
+      this.$cookies.keys().forEach(
+        cookie => this.$cookies.remove(cookie)
+      );
+      window.location.reload();
+    },
   },
   mounted() {
     this.$store.dispatch('getProducts');
@@ -77,6 +90,15 @@ export default {
       align-self: flex-end;
       flex: 1;
       max-width: .45em;
+
+      &--clear {
+        max-width: 1em;
+        filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
     }
   }
 
