@@ -46,18 +46,6 @@ export default {
     }),
   },
   methods: {
-    clearCookies() {
-      this.$cookies.keys().forEach(
-        cookie => this.$cookies.remove(cookie)
-      );
-      window.location.reload();
-    },
-  },
-  mounted() {
-    this.$store.dispatch('getProducts');
-    this.scroll();
-  },
-  methods: {
     scroll() {
       window.onscroll = () => {
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
@@ -70,6 +58,16 @@ export default {
         }
       };
     },
+    clearCookies() {
+      this.$cookies.keys().forEach(
+        cookie => this.$cookies.remove(cookie)
+      );
+      window.location.reload();
+    },
+  },
+  mounted() {
+    this.$store.dispatch('getProducts');
+    this.scroll();
   },
 };
 </script>
