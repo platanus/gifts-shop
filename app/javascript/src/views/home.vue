@@ -26,11 +26,17 @@
         :product="product"
       />
     </div>
+    <pulse-loader
+      :loading="loading"
+      :color="color"
+      :size="size"
+    />
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 import product from '../components/product';
 
 const SCROLL_OFFSET = 30;
@@ -39,6 +45,7 @@ export default {
   name: 'HomeView',
   components: {
     product,
+    PulseLoader,
   },
   computed: {
     ...mapGetters({
