@@ -13,6 +13,24 @@
         >
       </div>
       <div class="home-title-container__options">
+        <div class="home-title-container__price-filter">
+          <input
+            class="home-title-container__price-input"
+            v-model="minPrice" placeholder="precio mínimo"
+          >
+          <span>
+            -
+          </span>
+          <input
+            class="home-title-container__price-input"
+            v-model="maxPrice" placeholder="precio máximo"
+          >
+          <button
+            class=""
+          >
+            Filtrar
+          </button>
+        </div>
         <img
           class="home-title-container__icon"
           src="../assets/heart-outlined.svg"
@@ -43,6 +61,12 @@ const SCROLL_OFFSET = 30;
 
 export default {
   name: 'HomeView',
+  data() {
+    return {
+      minPrice: 1000,
+      maxPrice: 50000,
+    };
+  },
   components: {
     product,
     PulseLoader,
@@ -95,6 +119,7 @@ export default {
     &__title {
       padding: .15em 0;
       color: $title-font-color;
+      flex: 1;
     }
 
     &__user-name {
@@ -104,8 +129,22 @@ export default {
 
     &__options {
       display: flex;
-      flex: 1;
+      flex: .6;
+      height: .75em;
       justify-content: flex-end;
+    }
+
+    &__price-filter {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-evenly;
+      flex: .8;
+      font-size: .5em;
+    }
+
+    &__price-input {
+      border-radius: .5em;
+      padding: 0 5px;
     }
 
     &__icon {
