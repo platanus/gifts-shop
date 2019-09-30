@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import api from './index';
 
 export default {
@@ -15,7 +16,7 @@ export default {
     return api({
       method: 'post',
       url: path,
-      data: { 
+      data: {
         product_id: payload,
         action_type: 'display',
       },
@@ -23,13 +24,14 @@ export default {
   },
   markLiked(payload) {
     const path = '/api/v1/product_actions';
+
     return api({
       method: 'post',
       url: path,
-      data: { 
+      data: {
         product_id: payload,
         action_type: 'like',
       },
     });
-  }
+  },
 };

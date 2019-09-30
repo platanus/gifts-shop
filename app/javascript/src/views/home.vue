@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      products: 'productsArray',
+      products: 'productsList',
     }),
   },
   methods: {
