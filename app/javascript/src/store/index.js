@@ -11,6 +11,8 @@ const store = new Vuex.Store({
   state: {
     products: [],
     loading: false,
+    minPrice: 1000,
+    maxPrice: 50000,
   },
   mutations: {
     setProducts: (state, payload) => {
@@ -19,10 +21,21 @@ const store = new Vuex.Store({
     addProducts: (state, payload) => {
       state.products = [...state.products, ...Object.values(payload)];
     },
+    setMinPrice: (state, payload) => {
+      state.minPrice = payload;
+    },
+    setMaxPrice: (state, payload) => {
+      state.maxPrice = payload;
+    },
   },
   actions: {
     getProducts: context => {
-      productsApi.products(INITIAL_NUMBER_OF_PRODUCTS).then((response) => {
+      const params = [
+        INITIAL_NUMBER_OF_PRODUCTS,
+        context.state.minPrice,
+        context.state.maxPrice,
+      ];
+      productsApi.products(...params).then((response) => {
         const products = response.products.reduce((acc, product) => {
           acc[product.id] = { ...product };
 
@@ -38,7 +51,12 @@ const store = new Vuex.Store({
       productsApi.markLiked(payload);
     },
     moreProducts: context => new Promise((resolve, reject) => {
-      productsApi.products(NUMBER_OF_PRODUCTS).then((response) => {
+      const params = [
+        NUMBER_OF_PRODUCTS,
+        context.state.minPrice,
+        context.state.maxPrice,
+      ];
+      productsApi.products(...params).then((response) => {
         const products = response.products.reduce((acc, product) => {
           acc[product.id] = { ...product };
 
@@ -50,6 +68,10 @@ const store = new Vuex.Store({
         reject(error);
       });
     }),
+    applyPriceFilter: (context, payload) => {
+      context.commit('setMinPrice', payload[0]);
+      context.commit('setMaxPrice', payload[1]);
+    },
   },
   getters: {
     productsList: state => state.products,
