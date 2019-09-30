@@ -25,12 +25,12 @@
         :key="product.id"
         :product="product"
       />
+      <div class="loader-spinner">
+        <pulse-loader
+          :loading="this.$store.loading"
+        />
+      </div>
     </div>
-    <pulse-loader
-      :loading="loading"
-      :color="color"
-      :size="size"
-    />
   </div>
 </template>
 
@@ -130,4 +130,10 @@ export default {
     justify-content: flex-start;
     width: 1200px;
   }
+
+  .loader-spinner {
+    margin-left: 50%;
+    height: 42px;
+  }
+
 </style>
