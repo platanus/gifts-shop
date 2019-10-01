@@ -1,0 +1,35 @@
+<div class="session-form">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+    <%= render "error_messages", resource: resource %>
+    <div class="session-form__rectangle">
+      <%= f.text_field :name, autofocus: true, class: "session-form__field", placeholder: "Nombre" %>
+    </div>
+    <div class="session-form__rectangle">
+      <%= f.collection_select :region_id, Region.all, :id, :name, class: "session-form__collection", prompt: "País"%>
+    </div>
+    <div class="session-form__rectangle">
+      <%= f.email_field :email, autocomplete: "email", class: "session-form__field", placeholder: "Correo"%>
+    </div>
+    <% if edit %>
+      <div class="session-form__message">(Dejar en blanco si no se quiere cambiar)</div>
+    <% end %>
+    <div class="session-form__rectangle">
+      <%= f.password_field :password, autocomplete: "off", class: "session-form__field", placeholder: "Contraseña (mínimo 6 caracteres)" %>
+    </div>
+    <div class="session-form__rectangle">
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "session-form__field", placeholder: "Confirmar contraseña" %>
+    </div>
+    <% if edit %>
+      <div class="session-form__message">(Necesitamos tu contraseña actual para confirmar los cambios)</div>
+      <div class="session-form__rectangle">
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "session-form__field", placeholder: "Contraseña actual" %>
+      </div>
+      <div class="session-form__btn-container">
+        <%= link_to "Volver", "/stores/catalog", class: "session-form__btn session-form__btn--cancel" %>
+        <%= f.submit "Guardar", class: "session-form__btn" %>
+      </div>
+    <% else %>
+      <div><%= f.submit "Registrarse", class: "session-form__btn" %></div>
+    <% end %>
+  <% end %>
+</div>
