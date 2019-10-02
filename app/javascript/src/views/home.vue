@@ -1,11 +1,8 @@
 <template>
   <div class="home-container">
-    <div class="home-title-container">
-      <div class="home-title-container__title">
-        Mira lo que tenemos para
-        <span class="home-title-container__user-name">
-          {{ receiverName }}
-        </span>
+    <div class="home-header">
+      <homeTitle />
+      <div class="home-title-container__options">
         <img
           class="home-title-container__icon home-title-container__icon--clear"
           src="../assets/close-badge.svg"
@@ -58,6 +55,7 @@
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
+import HomeTitle from '../components/home-title';
 
 const SCROLL_OFFSET = 30;
 
@@ -72,11 +70,11 @@ export default {
   components: {
     product,
     ClipLoader,
+    HomeTitle,
   },
   computed: {
     ...mapState([
       'products',
-      'receiverName',
     ]),
   },
   methods: {
@@ -123,29 +121,8 @@ export default {
     width: $m-width-grid;
   }
 
-  .home-title-container {
+  .home-header {
     display: flex;
-    align-items: center;
-    font-size: 2.5em;
-    margin-top: 6.5vh;
-
-    &__title {
-      padding: .15em 0;
-      color: $title-font-color;
-      flex: 1;
-    }
-
-    &__user-name {
-      border-bottom: 2px solid currentColor;
-      color: $user-font-color;
-    }
-
-    &__options {
-      display: flex;
-      flex: .6;
-      height: .75em;
-      justify-content: flex-end;
-    }
 
     &__price-filter {
       display: flex;
