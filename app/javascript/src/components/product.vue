@@ -29,12 +29,12 @@
           <img
             v-if="liked"
             class="home-product__icon"
-            src="../assets/heart-filled.svg"
+            src="../assets/gift-color-badge.svg"
           >
           <img
             v-else
             class="home-product__icon"
-            src="../assets/heart-outlined.svg"
+            src="../assets/gift-badge.svg"
           >
         </div>
       </div>
