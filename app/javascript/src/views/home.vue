@@ -15,7 +15,7 @@
       <div class="home-title-container__options">
         <img
           class="home-title-container__icon"
-          src="../assets/heart-outlined.svg"
+          src="../assets/gift-badge.svg"
         >
       </div>
     </div>
