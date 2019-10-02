@@ -133,7 +133,7 @@ export default {
     margin-top: 2em;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    grid-gap: 2em;
+    grid-gap: 1%;
   }
 
   .loader-spinner {
@@ -144,14 +144,14 @@ export default {
   @media (min-width: $break-tablet) {
     .home-products-container {
       grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-      grid-gap: 2em;
+      grid-gap: 1%;
     }
   }
 
   @media (min-width: $break-desktop) {
     .home-products-container {
       grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-      grid-gap: 3em;
+      grid-gap: 1%;
     }
   }
 
