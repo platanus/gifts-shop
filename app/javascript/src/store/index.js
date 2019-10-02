@@ -71,9 +71,9 @@ const store = new Vuex.Store({
     applyPriceFilter: (context, payload) => {
       context.commit('setMinPrice', payload[0]);
       context.commit('setMaxPrice', payload[1]);
-      context.dispatch('clearProducts');
+      context.dispatch('resetProducts');
     },
-    clearProducts: context => {
+    resetProducts: context => {
       context.commit('setProducts', []);
       context.dispatch('getProducts');
     },
