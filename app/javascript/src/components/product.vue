@@ -137,6 +137,7 @@ export default {
     &__title {
       overflow-wrap: break-word;
       padding: .5em 0;
+      height: fit-content;
       cursor: pointer;
     }
 
