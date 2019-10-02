@@ -94,25 +94,27 @@ export default {
 <style lang="scss">
   @import '../../styles/variables';
 
-  .home-product-container {
-    display: flex;
-    justify-content: center;
-    flex: 0 0 20%;
-  }
-
   .home-product {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    margin: auto;
     font-size: 1.2em;
-    padding: 40px 0;
     color: $product-name-font-color;
 
     &__image-wrapper {
       display: flex;
       justify-content: center;
-      height: 200px;
+      width: 100%;
+      height: 100vw;
       cursor: pointer;
+
+      @media (min-width: $break-tablet) {
+        height: 40vw;
+      }
+
+      @media (min-width: $break-desktop) {
+        height: 30vw;
+      }
     }
 
     &__bottom-row-container {
@@ -124,7 +126,6 @@ export default {
     &__image {
       max-width: 100%;
       max-height: 100%;
-      border-radius: 10px;
       object-fit: contain;
     }
 

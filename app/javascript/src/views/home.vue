@@ -84,6 +84,8 @@ export default {
 
   .home-container {
     display: block;
+    margin: 0 10%;
+    width: 100%;
   }
 
   .home-title-container {
@@ -125,15 +127,31 @@ export default {
   }
 
   .home-products-container {
-    display: flex;
-    flex-flow: wrap;
     justify-content: flex-start;
-    width: 1200px;
+    width: 100%;
+    margin-top: 2em;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
+    grid-gap: 2em;
   }
 
   .loader-spinner {
     margin-left: 50%;
     height: 42px;
+  }
+
+  @media (min-width: $break-tablet) {
+    .home-products-container {
+      grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+      grid-gap: 2em;
+    }
+  }
+
+  @media (min-width: $break-desktop) {
+    .home-products-container {
+      grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+      grid-gap: 3em;
+    }
   }
 
 </style>
