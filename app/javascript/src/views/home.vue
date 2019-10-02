@@ -84,6 +84,7 @@ export default {
 
   .home-container {
     display: block;
+    font-size: calc(1em + .8vw);
     margin: 0 10%;
     width: 100%;
   }
@@ -91,7 +92,7 @@ export default {
   .home-title-container {
     display: flex;
     align-items: center;
-    font-size: 3.5em;
+    font-size: 2.5em;
     margin-top: 6.5vh;
 
     &__title {
@@ -149,7 +150,7 @@ export default {
 
   @media (min-width: $break-desktop) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(30%, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
       grid-gap: 3em;
     }
   }

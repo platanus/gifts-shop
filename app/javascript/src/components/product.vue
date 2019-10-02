@@ -120,7 +120,7 @@ export default {
     &__bottom-row-container {
       display: flex;
       align-items: center;
-      padding: .8em 0;
+      padding: .5em 0;
     }
 
     &__image {
@@ -136,22 +136,21 @@ export default {
 
     &__title {
       overflow-wrap: break-word;
-      padding: .9em 0;
-      height: 2.5em;
+      padding: .5em 0;
       cursor: pointer;
     }
 
     &__store-name {
       opacity: .48;
       letter-spacing: .05em;
-      font-size: .9em;
+      font-size: .7em;
       font-weight: 600;
     }
 
     &__price {
       flex: 1;
       height: 20px;
-      font-size: 1.3em;
+      font-size: 1em;
       letter-spacing: .05em;
       font-weight: 600;
     }
