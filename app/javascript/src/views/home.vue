@@ -99,7 +99,6 @@ export default {
     },
     submitPriceFilter() {
       this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
-      window.location.reload();
     },
   },
   mounted() {
