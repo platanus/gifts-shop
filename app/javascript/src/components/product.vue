@@ -104,16 +104,28 @@ export default {
     &__image-wrapper {
       display: flex;
       justify-content: center;
-      width: 100%;
-      height: 100vw;
+      width: $m-size-image;
+      height: $m-size-image;
       cursor: pointer;
 
-      @media (min-width: $break-tablet) {
-        height: 40vw;
+      @media (min-width: $p-break) {
+        height: $p-size-image;
+        width: $p-size-image;
       }
 
-      @media (min-width: $break-desktop) {
-        height: 30vw;
+      @media (min-width: $t-break) {
+        height: $t-size-image;
+        width: $t-size-image;
+      }
+
+      @media (min-width: $d-break) {
+        height: $d-size-image;
+        width: $d-size-image;
+      }
+
+      @media (min-width: $r-break) {
+        height: $r-size-image;
+        width: $r-size-image;
       }
     }
 

@@ -84,9 +84,10 @@ export default {
 
   .home-container {
     display: block;
-    font-size: calc(1em + .8vw);
-    margin: 0 10%;
-    width: 100%;
+    font-size: $m-font-size;
+    margin: 0 auto;
+    padding: 20px;
+    width: $m-width-grid;
   }
 
   .home-title-container {
@@ -129,11 +130,10 @@ export default {
 
   .home-products-container {
     justify-content: flex-start;
-    width: 100%;
     margin-top: 2em;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(100%, 1fr));
-    grid-gap: 1%;
+    grid-template-columns: repeat(auto-fill, minmax(calc($m-size-image + 20px), 1fr));
+    grid-column-gap: $m-grid-column-gap;
   }
 
   .loader-spinner {
@@ -141,17 +141,55 @@ export default {
     height: 42px;
   }
 
-  @media (min-width: $break-tablet) {
+  @media (min-width: $p-break) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
-      grid-gap: 1%;
+      grid-template-columns: repeat(auto-fill, minmax(calc($p-size-image + 20px), 1fr));
+      grid-column-gap: $p-grid-column-gap;
+    }
+
+    .home-container {
+      font-size: $p-font-size;
+      width: $p-width-grid;
+      padding: 0;
     }
   }
 
-  @media (min-width: $break-desktop) {
+  @media (min-width: $t-break) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
-      grid-gap: 1%;
+      grid-template-columns: repeat(auto-fill, minmax(calc($t-size-image + 20px), 1fr));
+      grid-column-gap: $t-grid-column-gap;
+    }
+
+    .home-container {
+      font-size: $t-font-size;
+      width: $t-width-grid;
+      padding: 0;
+    }
+  }
+
+  @media (min-width: $d-break) {
+    .home-products-container {
+      grid-template-columns: repeat(auto-fill, minmax(calc($d-size-image + 20px), 1fr));
+      grid-column-gap: $d-grid-column-gap;
+    }
+
+    .home-container {
+      font-size: $d-font-size;
+      width: $d-width-grid;
+      padding: 0;
+    }
+  }
+
+  @media (min-width: $r-break) {
+    .home-products-container {
+      grid-template-columns: repeat(auto-fill, minmax(calc($r-size-image + 20px), 1fr));
+      grid-column-gap: $r-grid-column-gap;
+    }
+
+    .home-container {
+      font-size: $r-font-size;
+      width: $r-width-grid;
+      padding: 0;
     }
   }
 

@@ -3,5 +3,33 @@ $title-font-color:	#363535;
 $icon-shadow-color: #979797;
 $product-image-background-color: #979797;
 $product-name-font-color: #353434;
-$break-tablet: 450px;
-$break-desktop: 1200px;
+
+$m-break: 450px;
+$p-break: 700px;
+$t-break: 1000px;
+$d-break: 1500px;
+$r-break: 2000px;
+
+$m-width-grid: 400px;
+$p-width-grid: 600px;
+$t-width-grid: 900px;
+$d-width-grid: 1300px;
+$r-width-grid: 1700px;
+
+$m-grid-column-gap: 0;
+$p-grid-column-gap: 30px;
+$t-grid-column-gap: 70px;
+$d-grid-column-gap: 100px;
+$r-grid-column-gap: 150px;
+
+$m-size-image: 300px;
+$p-size-image: 300px;
+$t-size-image: 300px;
+$d-size-image: 300px;
+$r-size-image: 300px;
+
+$m-font-size: 1em;
+$p-font-size: 1.2em;
+$t-font-size: 1.5em;
+$d-font-size: 2em;
+$r-font-size: 2.5em;
