@@ -4,15 +4,17 @@ class Api::V1::ProductsController < Api::V1::BaseController
   def index
     products = GetProductsRecommendation.for(
       receiver: receiver,
-      number_of_products: permitted_params.to_i
+      number_of_products: recommendation_params[:number_of_products],
+      min_price: recommendation_params[:minPrice],
+      max_price: recommendation_params[:maxPrice]
     )
     respond_with products
   end
 
   private
 
-  def permitted_params
-    params.require(:number_of_products)
+  def recommendation_params
+    params.require(:number_of_products).permit(:minPrice, :maxPrice)
   end
 
   def receiver
