@@ -1,4 +1,6 @@
-class GetProductsRecommendation < PowerTypes::Command.new(:receiver, :number_of_products)
+class GetProductsRecommendation < PowerTypes::Command.new(
+  :receiver, :number_of_products, min_price: false, max_price: false
+)
   URL = ENV.fetch('RECOMMENDER_URL')
   def perform
     if product_ids = perform_recommendation_request
@@ -11,6 +13,17 @@ class GetProductsRecommendation < PowerTypes::Command.new(:receiver, :number_of_
   private
 
   def uri
+    if @min_price && @max_price
+      return URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?"\
+                 "minPrice=#{@min_price}&maxPrice=#{@max_price}")
+    end
+    if @min_price
+      return URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?minPrice=#{@min_price}")
+    end
+    if @max_price
+      return URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?maxPrice=#{@max_price}")
+    end
+
     URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}")
   end
 
