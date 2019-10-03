@@ -132,8 +132,9 @@ export default {
     justify-content: flex-start;
     margin-top: 2em;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(calc($m-size-image + 20px), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax($m-size-image, 1fr));
     grid-column-gap: $m-grid-column-gap;
+    grid-row-gap: 20px;
   }
 
   .loader-spinner {
@@ -143,7 +144,7 @@ export default {
 
   @media (min-width: $p-break) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(calc($p-size-image + 20px), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
       grid-column-gap: $p-grid-column-gap;
     }
 
@@ -156,7 +157,7 @@ export default {
 
   @media (min-width: $t-break) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(calc($t-size-image + 20px), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
       grid-column-gap: $t-grid-column-gap;
     }
 
@@ -169,7 +170,7 @@ export default {
 
   @media (min-width: $d-break) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(calc($d-size-image + 20px), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
       grid-column-gap: $d-grid-column-gap;
     }
 
@@ -182,7 +183,7 @@ export default {
 
   @media (min-width: $r-break) {
     .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax(calc($r-size-image + 20px), 1fr));
+      grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));
       grid-column-gap: $r-grid-column-gap;
     }
 

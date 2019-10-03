@@ -100,6 +100,23 @@ export default {
     margin: auto;
     font-size: 1.2em;
     color: $product-name-font-color;
+    width: $m-size-image;
+
+    @media (min-width: $p-break) {
+        width: $p-size-image;
+    }
+
+    @media (min-width: $t-break) {
+      width: $t-size-image;
+    }
+
+    @media (min-width: $d-break) {
+      width: $d-size-image;
+    }
+
+    @media (min-width: $r-break) {
+      width: $r-size-image;
+    }
 
     &__image-wrapper {
       display: flex;
