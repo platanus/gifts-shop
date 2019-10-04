@@ -12,15 +12,6 @@
           :src="product.imageUrl"
         >
       </div>
-      <div
-        class="home-product__title"
-        @click="openNewTab"
-      >
-        {{ product.name }}
-      </div>
-      <div class="home-product__store-name">
-        {{ product.storeName | toUpper }}
-      </div>
       <div class="home-product__bottom-row-container">
         <span class="home-product__price"> {{ product.price | Price }} </span>
         <div
@@ -37,6 +28,15 @@
             src="../assets/heart-outlined.svg"
           >
         </div>
+      </div>
+      <div
+        class="home-product__title"
+        @click="openNewTab"
+      >
+        {{ product.name }}
+      </div>
+      <div class="home-product__store-name">
+        {{ product.storeName | toUpper }}
       </div>
     </div>
   </div>
@@ -97,6 +97,8 @@ export default {
   .home-product {
     display: flex;
     flex-direction: column;
+    height: 100%;
+    position: relative;
     margin: auto;
     font-size: 1.2em;
     color: $product-name-font-color;
@@ -149,7 +151,7 @@ export default {
     &__bottom-row-container {
       display: flex;
       align-items: center;
-      padding: .5em 0;
+      padding: .5em 0 0 0;
     }
 
     &__image {
@@ -159,13 +161,12 @@ export default {
     }
 
     &__icon {
-      width: 1.7em;
+      width: 1.3em;
       cursor: pointer;
     }
 
     &__title {
-      overflow-wrap: break-word;
-      padding: .5em 0;
+      padding: 0 0 1em 0;
       height: fit-content;
       cursor: pointer;
     }
@@ -175,11 +176,13 @@ export default {
       letter-spacing: .05em;
       font-size: .7em;
       font-weight: 600;
+      position: absolute;
+      bottom: 0;
     }
 
     &__price {
       flex: 1;
-      height: 20px;
+      height: fit-content;
       font-size: 1em;
       letter-spacing: .05em;
       font-weight: 600;
