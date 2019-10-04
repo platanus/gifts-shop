@@ -1,7 +1,7 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation">
-    <% resource.errors.full_messages.each do |message| %>
-      <%= message %><br>
+  <div class="alert alert-danger">
+    <% resource.errors.messages.each do |key, attribute| %>
+      <%= resource.errors.full_messages_for(key).first %><br>
     <% end %>
   </div>
 <% end %>
