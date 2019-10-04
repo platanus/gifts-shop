@@ -5,6 +5,7 @@
       method="POST"
       class="new-product-form"
       enctype="multipart/form-data"
+      @submit="checkForm"
     >
       <input
         type="hidden"
@@ -19,6 +20,7 @@
           </div>
           <input
             type="text"
+            v-model="name"
             class="product-input__box"
             name="name"
             placeholder="Ej: Cortinas Roller"
@@ -30,6 +32,7 @@
           </div>
           <input
             type="text"
+            v-model="price"
             class="product-input__box"
             name="price"
             placeholder="$0"
@@ -41,6 +44,7 @@
           </div>
           <input
             type="text"
+            v-model="link"
             class="product-input__box"
             name="link"
             placeholder="http://"
@@ -98,11 +102,18 @@
 <script>
 import getCsrfToken from '../utils/csrf_token.js';
 
+const MINIMUM_NAME_LENGTH = 5;
+const MINIMUM_LINK_LENGTH = 5;
+
 export default {
   data() {
     return {
       csrfToken: getCsrfToken(),
       imageData: '',
+      errors: {},
+      name: '',
+      link: '',
+      price: null,
     };
   },
   methods: {
@@ -114,6 +125,39 @@ export default {
           this.imageData = e.target.result;
         };
         reader.readAsDataURL(input.files[0]);
+      }
+    },
+    checkForm(e) {
+      this.errors = {};
+      this.validateName();
+      this.validateImage();
+      this.validatePrice();
+      this.validateLink();
+      if (this.errors.length === 0) {
+        return true;
+      }
+      e.preventDefault();
+
+      return false;
+    },
+    validateName() {
+      if (this.name.length < MINIMUM_NAME_LENGTH) {
+        this.errors.name = 'El nombre debe tener al menos 5 caracteres';
+      }
+    },
+    validatePrice() {
+      if (!this.price) {
+        this.errors.price = 'El precio no puede estar estar en blanco';
+      }
+    },
+    validateLink() {
+      if (this.link.length < MINIMUM_LINK_LENGTH) {
+        this.errors.link = 'El link debe ser válido';
+      }
+    },
+    validateImage() {
+      if (!this.imageData) {
+        this.errors.image = 'El producto debe tener una imagen';
       }
     },
   },
