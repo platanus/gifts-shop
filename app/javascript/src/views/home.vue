@@ -4,7 +4,10 @@
       class="home-header"
       v-bind:class="{ 'home-header--shadow': !onTop }"
     >
-      <homeTitle />
+      <homeTitle
+        :likes="likes"
+        :on-top="onTop"
+      />
       <div class="home-header__options">
         <div class="home-header__price-filter">
           <input
@@ -40,8 +43,8 @@
     </div>
     <div class="home-products-container">
       <product
-        v-for="product in products"
-        :key="product.id"
+        v-for="(product, index) in products"
+        :key="index"
         :product="product"
         :onLike="likeProduct"
       />
@@ -68,7 +71,6 @@ export default {
     return {
       minPrice: 1000,
       maxPrice: 50000,
-      title: 'Mira lo que tenemos para Diego',
       likes: 0,
       onTop: true,
     };
@@ -88,7 +90,7 @@ export default {
       window.onscroll = () => {
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
-        this.onTop = document.documentElement.scrollTop < 50;
+        this.onTop = document.documentElement.scrollTop < SCROLL_OFFSET;
         if (bottomOfWindow && !this.$store.loading) {
           this.$store.loading = true;
           this.$store.dispatch('moreProducts').then(() => {
@@ -142,6 +144,7 @@ export default {
 
     &--shadow {
       box-shadow: 0 0 4px;
+      background-color: #16A69E;
     }
 
     &__content {
@@ -153,8 +156,8 @@ export default {
 
     &__title {
       padding: .15em 0;
+      display: flex;
       color: $title-font-color;
-      flex: 1;
     }
 
     &__user-name {
@@ -213,6 +216,7 @@ export default {
       .home-title-container__content {
         width: $p-width-grid;
         display: flex;
+        justify-content: space-between;
       }
 
       .home-products-container {
@@ -231,6 +235,7 @@ export default {
       .home-title-container__content {
         width: $t-width-grid;
         display: flex;
+        justify-content: space-between;
       }
 
       .home-products-container {
@@ -249,6 +254,7 @@ export default {
       .home-title-container__content {
         width: $d-width-grid;
         display: flex;
+        justify-content: space-between;
       }
 
       .home-products-container {
@@ -267,6 +273,7 @@ export default {
       .home-title-container__content {
         width: $r-width-grid;
         display: flex;
+        justify-content: space-between;
       }
 
       .home-products-container {
