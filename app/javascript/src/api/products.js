@@ -3,7 +3,7 @@ import api from './index';
 
 export default {
   products(numberOfProducts, minPrice, maxPrice) {
-    const path = `/api/v1/products?number_of_products=${numberOfProducts}&minPrice=${minPrice}&maxPrice=${maxPrice}`;
+    const path = `/api/v1/products?number_of_products=${numberOfProducts}&min_price=${minPrice}&max_price=${maxPrice}`;
 
     return api({
       method: 'get',
