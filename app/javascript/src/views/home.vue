@@ -1,6 +1,9 @@
 <template>
   <div class="home-container">
-    <div class="home-header">
+    <div
+      class="home-header"
+      v-bind:class="{ 'home-header--shadow': !onTop }"
+    >
       <homeTitle />
       <div class="home-header__options">
         <div class="home-header__price-filter">
@@ -40,6 +43,7 @@
         v-for="product in products"
         :key="product.id"
         :product="product"
+        :onLike="likeProduct"
       />
     </div>
     <div class="loader-spinner">
@@ -64,6 +68,9 @@ export default {
     return {
       minPrice: 1000,
       maxPrice: 50000,
+      title: 'Mira lo que tenemos para Diego',
+      likes: 0,
+      onTop: true,
     };
   },
   components: {
@@ -81,6 +88,7 @@ export default {
       window.onscroll = () => {
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
+        this.onTop = document.documentElement.scrollTop < 50;
         if (bottomOfWindow && !this.$store.loading) {
           this.$store.loading = true;
           this.$store.dispatch('moreProducts').then(() => {
@@ -88,6 +96,15 @@ export default {
           }, () => {});
         }
       };
+    },
+    likeProduct(liked) {
+      this.likes += liked ? 1 : -1;
+    },
+    clearCookies() {
+      this.$cookies.keys().forEach(
+        cookie => this.$cookies.remove(cookie)
+      );
+      window.location.reload();
     },
     submitPriceFilter() {
       this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
@@ -119,21 +136,42 @@ export default {
     background-color: #fff;
     z-index: 100;
     width: 100%;
-    box-shadow: 0 0 4px;
     padding: 3vh calc((100% - $m-width-grid) / 2);
     align-items: center;
     font-size: 1em;
+
+    &--shadow {
+      box-shadow: 0 0 4px;
+    }
+
+    &__content {
+      margin: 0 auto;
+      width: $m-width-grid;
+      align-items: center;
+      font-size: 2.5em;
+    }
+
+    &__title {
+      padding: .15em 0;
+      color: $title-font-color;
+      flex: 1;
+    }
+
+    &__user-name {
+      border-bottom: 2px solid currentColor;
+      color: $user-name-font-color;
+    }
+
+    &__options {
+      display: flex;
+      align-items: center;
+    }
 
     &__price-filter {
       display: flex;
       align-items: flex-end;
       justify-content: space-evenly;
       font-size: .5em;
-    }
-
-    &__options {
-      display: flex;
-      align-items: center;
     }
 
     &__price-input {
