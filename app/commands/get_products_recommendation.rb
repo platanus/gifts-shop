@@ -13,18 +13,10 @@ class GetProductsRecommendation < PowerTypes::Command.new(
   private
 
   def uri
-    if @min_price && @max_price
-      return URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?"\
-                 "min_price=#{@min_price}&max_price=#{@max_price}")
-    end
-    if @min_price
-      return URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?min_price=#{@min_price}")
-    end
-    if @max_price
-      return URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?max_price=#{@max_price}")
-    end
-
-    URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}")
+    params = []
+    params.push("min_price=#{@min_price}") if @min_price
+    params.push("max_price=#{@max_price}") if @max_price
+    URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?#{params.join('&')}")
   end
 
   def perform_recommendation_request
