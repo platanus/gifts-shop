@@ -180,7 +180,7 @@ export default {
     }
 
     &__title {
-      padding: .15em 0;
+      padding: .15em 1em 0 .15em;
       display: flex;
       color: $title-font-color;
     }
@@ -232,15 +232,15 @@ export default {
 
     &__button-options {
       position: absolute;
-      top: 0;
-      right: 1em;
+      top: 0em;
+      right: 0.5em;
       flex-direction: column;
       display: flex;
 
       .home-header__icon {
-        width: 1.5em;
-        height: 1.5em;
-        margin-top: 1em;
+        width: 1.8em;
+        height: 1.8em;
+        margin-top: 0.5em;
         background-color: white;
         border-radius: 50%;
       }
