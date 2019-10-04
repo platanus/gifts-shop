@@ -6,7 +6,7 @@ class GetProductsRecommendation < PowerTypes::Command.new(
     if product_ids = perform_recommendation_request
       Product.find_with_order(product_ids)
     else
-      Product.first(@number_of_products)
+      Product.first(@number_of_products.to_i)
     end
   end
 
