@@ -7,13 +7,13 @@ $product-image-background-color: #979797;
 $product-name-font-color: #353434;
 
 $m-break: 450px; // mobile
-$p-break: 750px; // phablet
+$p-break: 650px; // phablet
 $t-break: 1000px; // tablet
 $d-break: 1500px; // desktop
 $r-break: 2000px; // retina
 
-$m-width-grid: 400px;
-$p-width-grid: 700px;
+$m-width-grid: 300px;
+$p-width-grid: 600px;
 $t-width-grid: 900px;
 $d-width-grid: 1400px;
 $r-width-grid: 1800px;
@@ -24,8 +24,8 @@ $t-grid-column-gap: 70px;
 $d-grid-column-gap: 80px;
 $r-grid-column-gap: 100px;
 
-$m-size-image: 300px;
-$p-size-image: 300px;
+$m-size-image: 250px;
+$p-size-image: 250px;
 $t-size-image: 250px;
 $d-size-image: 250px;
 $r-size-image: 250px;

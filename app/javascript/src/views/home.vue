@@ -23,6 +23,12 @@
             Filtrar
           </button>
         </div>
+        <div class="home-header__options">
+          <img
+            class="home-header__icon"
+            src="../assets/gift-badge.svg"
+          >
+        </div>
         <img
           class="home-header__icon"
           src="../assets/gift-color-badge.svg"
@@ -103,14 +109,20 @@ export default {
   .home-container {
     display: block;
     font-size: $m-font-size;
-    margin: 0 auto;
-    padding: 20px;
-    width: $m-width-grid;
+    width: 100%;
   }
 
   .home-header {
     display: flex;
-    margin-top: 6.5vh;
+    position: sticky;
+    top: 0;
+    background-color: #fff;
+    z-index: 100;
+    width: 100%;
+    box-shadow: 0 0 4px;
+    padding: 3vh calc((100% - $m-width-grid) / 2);
+    align-items: center;
+    font-size: 1em;
 
     &__price-filter {
       display: flex;
@@ -141,7 +153,8 @@ export default {
 
   .home-products-container {
     justify-content: flex-start;
-    margin-top: 2em;
+    width: $m-width-grid;
+    margin: 3vh auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax($m-size-image, 1fr));
     grid-column-gap: $m-grid-column-gap;
@@ -156,54 +169,74 @@ export default {
   }
 
   @media (min-width: $p-break) {
-    .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
-      grid-column-gap: $p-grid-column-gap;
-    }
-
     .home-container {
       font-size: $p-font-size;
-      width: $p-width-grid;
-      padding: 0;
+
+      .home-title-container__content {
+        width: $p-width-grid;
+        display: flex;
+      }
+
+      .home-products-container {
+        grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
+        grid-column-gap: $p-grid-column-gap;
+        width: $p-width-grid;
+        padding: 0;
+      }
     }
   }
 
   @media (min-width: $t-break) {
-    .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
-      grid-column-gap: $t-grid-column-gap;
-    }
-
     .home-container {
       font-size: $t-font-size;
-      width: $t-width-grid;
-      padding: 0;
+
+      .home-title-container__content {
+        width: $t-width-grid;
+        display: flex;
+      }
+
+      .home-products-container {
+        grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
+        grid-column-gap: $t-grid-column-gap;
+        width: $t-width-grid;
+        padding: 0;
+      }
     }
   }
 
   @media (min-width: $d-break) {
-    .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
-      grid-column-gap: $d-grid-column-gap;
-    }
-
     .home-container {
       font-size: $d-font-size;
-      width: $d-width-grid;
-      padding: 0;
+
+      .home-title-container__content {
+        width: $d-width-grid;
+        display: flex;
+      }
+
+      .home-products-container {
+        grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
+        grid-column-gap: $d-grid-column-gap;
+        width: $d-width-grid;
+        padding: 0;
+      }
     }
   }
 
   @media (min-width: $r-break) {
-    .home-products-container {
-      grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));
-      grid-column-gap: $r-grid-column-gap;
-    }
-
     .home-container {
       font-size: $r-font-size;
-      width: $r-width-grid;
-      padding: 0;
+
+      .home-title-container__content {
+        width: $r-width-grid;
+        display: flex;
+      }
+
+      .home-products-container {
+        grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));
+        grid-column-gap: $r-grid-column-gap;
+        width: $r-width-grid;
+        padding: 0;
+      }
     }
   }
 
