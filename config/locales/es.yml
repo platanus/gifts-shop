@@ -1,0 +1,10 @@
+es:
+  activerecord:
+    attributes:
+      store:
+        email: "Correo"
+        region: "Pais"
+        name: "Nombre"
+        password: "Contraseña"
+        password_confirmation: "Contraseña"
+        current_password: "Contraseña actual"
