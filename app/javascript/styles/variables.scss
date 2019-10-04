@@ -4,11 +4,11 @@ $icon-shadow-color: #979797;
 $product-image-background-color: #979797;
 $product-name-font-color: #353434;
 
-$m-break: 450px;
-$p-break: 750px;
-$t-break: 1000px;
-$d-break: 1500px;
-$r-break: 2000px;
+$m-break: 450px; // mobile
+$p-break: 750px; // phablet
+$t-break: 1000px; // tablet
+$d-break: 1500px; // desktop
+$r-break: 2000px; // retina
 
 $m-width-grid: 400px;
 $p-width-grid: 700px;
