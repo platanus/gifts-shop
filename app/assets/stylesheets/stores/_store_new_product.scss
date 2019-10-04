@@ -23,7 +23,7 @@ $title-font: #353434;
   }
 
   &__image {
-    margin-top: 60px;
+    margin-top: 50px;
     margin-left: 60px;
   }
 };
@@ -76,6 +76,10 @@ $title-font: #353434;
     width: 350px;
     border-color: $primary-color;
     color: $label-color;
+
+    &--danger {
+      border-color: $danger-border-color;
+    }
   }
 
   &__label {
@@ -86,6 +90,14 @@ $title-font: #353434;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+
+    &--danger {
+      color: $danger-label-color;
+      font-size: 12px;
+      width: 300px;
+      margin-top: 2px;
+      margin-bottom: -18px;
+    }
   }
 
   &__link {
@@ -128,6 +140,10 @@ $title-font: #353434;
   margin-top: 10px;
   background-color: rgba(67, 225, 198, .12);
   position: absolute;
+
+  &--danger {
+    background-color: $danger-background-color;
+  }
 }
 
 .file-input > input[type='file'] {
@@ -169,6 +185,14 @@ $title-font: #353434;
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+
+    &--danger {
+      color: $danger-label-color;
+      font-size: 12px;
+      width: 300px;
+      margin-top: 23px;
+      margin-bottom: -15px;
+    }
   }
 
   &__value {
@@ -182,6 +206,10 @@ $title-font: #353434;
     font-family: $main-font;
     font-size: 20px;
     line-height: 24px;
+
+    &--danger {
+      color: $danger-label-color;
+    }
   }
 }
 

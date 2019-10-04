@@ -19,12 +19,27 @@
             NOMBRE DEL PRODUCTO
           </div>
           <input
+            v-if="!errors.name"
             type="text"
             v-model="name"
             class="product-input__box"
             name="name"
             placeholder="Ej: Cortinas Roller"
           >
+          <input
+            v-else
+            type="text"
+            v-model="name"
+            class="product-input__box product-input__box--danger"
+            name="name"
+            placeholder="Ej: Cortinas Roller"
+          >
+          <div
+            class="product-input__label product-input__label--danger"
+            v-if="errors.name"
+          >
+            {{ errors.name }}
+          </div>
         </div>
         <div class="product-input">
           <div class="product-input__label">
@@ -32,11 +47,26 @@
           </div>
           <input
             type="text"
+            v-if="!errors.price"
             v-model="price"
             class="product-input__box"
             name="price"
             placeholder="$0"
           >
+          <input
+            type="text"
+            v-else
+            v-model="price"
+            class="product-input__box product-input__box--danger"
+            name="price"
+            placeholder="$0"
+          >
+          <div
+            class="product-input__label product-input__label--danger"
+            v-if="errors.price"
+          >
+            {{ errors.price }}
+          </div>
         </div>
         <div class="product-input">
           <div class="product-input__label">
@@ -44,18 +74,36 @@
           </div>
           <input
             type="text"
+            v-if="!errors.link"
             v-model="link"
             class="product-input__box"
             name="link"
             placeholder="http://"
           >
+          <input
+            type="text"
+            v-else
+            v-model="link"
+            class="product-input__box product-input__box--danger"
+            name="link"
+            placeholder="http://"
+          >
+          <div
+            class="product-input__label product-input__label--danger"
+            v-if="errors.link"
+          >
+            {{ errors.link }}
+          </div>
         </div>
       </div>
       <div class="new-product-form__image">
         <div class="image-preview__label">
           FOTO DEL PRODUCTO
         </div>
-        <div class="file-container">
+        <div
+          class="file-container"
+          v-if="!errors.image"
+        >
           <div
             class="image-preview"
             v-if="imageData.length > 0"
@@ -76,6 +124,44 @@
               accept="image/*"
               name="image"
             >
+          </div>
+        </div>
+        <div
+          class="file-container file-container--danger"
+          v-else
+        >
+          <div
+            class="image-preview"
+            v-if="imageData.length > 0"
+          >
+            <img
+              class="image-preview__preview"
+              :src="imageData"
+            >
+          </div>
+          <div class="image-input-container">
+            <div>
+              <div class="image-preview__value image-preview__value--danger">
+                Seleccionar archivo...
+              </div>
+              <div class="file-input">
+                <input
+                  class="image-preview__input"
+                  type="file"
+                  @change="previewImage"
+                  accept="image/*"
+                  name="image"
+                >
+              </div>
+            </div>
+            <div>
+              <div
+                class="image-preview__label image-preview__label--danger"
+                v-if="errors.image"
+              >
+                {{ errors.image }}
+              </div>
+            </div>
           </div>
         </div>
       </div>
