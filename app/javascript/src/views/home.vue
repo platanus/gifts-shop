@@ -9,7 +9,10 @@
         :on-top="onTop"
       />
       <div class="home-header__options">
-        <div class="home-header__price-filter">
+        <div
+          class="home-header__price-filter"
+          v-if="!mobile || visiblePriceFilter"
+        >
           <input
             class="home-header__price-input"
             v-model="minPrice"
@@ -29,15 +32,21 @@
             Filtrar
           </button>
         </div>
-        <div class="home-header__options">
-          <img
-            class="home-header__icon"
-            src="../assets/gift-badge.svg"
-          >
+        <div class="home-header__button-options">
           <img
             class="home-header__icon home-header__icon--clear"
             src="../assets/close-badge.svg"
             @click="clearCookies"
+          >
+          <img
+            class="home-header__icon home-header__icon--clear"
+            v-bind:class="{ 'home-header__icon--hidden': !mobile }"
+            src="../assets/filter.svg"
+            @click="showPriceFilter"
+          >
+          <img
+            class="home-header__icon"
+            src="../assets/gift-badge.svg"
           >
         </div>
       </div>
@@ -65,15 +74,19 @@ import product from '../components/product';
 import HomeTitle from '../components/home-title';
 
 const SCROLL_OFFSET = 30;
+const MOBILE_WIDTH = 650;
 
 export default {
   name: 'HomeView',
   data() {
+    const mobile = window.innerWidth <= MOBILE_WIDTH;
     return {
       minPrice: 1000,
       maxPrice: 50000,
       likes: 0,
       onTop: true,
+      mobile,
+      visiblePriceFilter: !mobile,
     };
   },
   components: {
@@ -100,8 +113,17 @@ export default {
         }
       };
     },
+    setOnResize() {
+      window.onresize = () => {
+        this.mobile = window.innerWidth <= MOBILE_WIDTH;
+        this.visiblePriceFilter = !this.mobile;
+      }
+    },
     likeProduct(liked) {
       this.likes += liked ? 1 : -1;
+    },
+    showPriceFilter() {
+      this.visiblePriceFilter = !this.visiblePriceFilter;
     },
     clearCookies() {
       this.$cookies.keys().forEach(
@@ -119,6 +141,7 @@ export default {
   mounted() {
     this.$store.dispatch('getProducts');
     this.scroll();
+    this.setOnResize();
   },
 };
 </script>
@@ -185,19 +208,41 @@ export default {
       width: 30%;
     }
 
+
     &__icon {
-      max-width: 1em;
+      align-self: flex-end;
+      flex: 1;
+      width: .45em;
+      height: .45em;
+
+      &--hidden {
+        display: none;
+      }
 
       &--clear {
-        max-width: 1em;
+        width: 1em;
+        height: 1em;
         filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
-        position: absolute;
-        top: 1em;
-        right: 1em;
 
         &:hover {
           cursor: pointer;
         }
+      }
+    }
+
+    &__button-options {
+      position: absolute;
+      top: 0;
+      right: 1em;
+      flex-direction: column;
+      display: flex;
+
+      .home-header__icon {
+        width: 1.5em;
+        height: 1.5em;
+        margin-top: 1em;
+        background-color: white;
+        border-radius: 50%;
       }
     }
   }
