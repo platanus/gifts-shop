@@ -137,6 +137,7 @@ export default {
     position: sticky;
     top: 0;
     background-color: #fff;
+    transition: background-color 400ms linear;
     z-index: 100;
     width: 100%;
     padding: 3vh calc((100% - $m-width-grid) / 2);
