@@ -6,7 +6,7 @@ class Store < ApplicationRecord
   has_many :products, dependent: :destroy
   belongs_to :region
 
-  validates :name, presence: true, length: { minimum: 2, maximum: 20 }
+  validates :name, presence: true, length: { minimum: 5, maximum: 20 }
 end
 
 # == Schema Information
