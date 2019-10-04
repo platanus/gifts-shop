@@ -12,15 +12,6 @@
           :src="product.imageUrl"
         >
       </div>
-      <div
-        class="home-product__title"
-        @click="openNewTab"
-      >
-        {{ product.name }}
-      </div>
-      <div class="home-product__store-name">
-        {{ product.storeName | toUpper }}
-      </div>
       <div class="home-product__bottom-row-container">
         <span class="home-product__price"> {{ product.price | Price }} </span>
         <div
@@ -37,6 +28,15 @@
             src="../assets/heart-outlined.svg"
           >
         </div>
+      </div>
+      <div
+        class="home-product__title"
+        @click="openNewTab"
+      >
+        {{ product.name }}
+      </div>
+      <div class="home-product__store-name">
+        {{ product.storeName | toUpper }}
       </div>
     </div>
   </div>
@@ -94,63 +94,96 @@ export default {
 <style lang="scss">
   @import '../../styles/variables';
 
-  .home-product-container {
-    display: flex;
-    justify-content: center;
-    flex: 0 0 20%;
-  }
-
   .home-product {
     display: flex;
     flex-direction: column;
-    width: 200px;
+    height: 100%;
+    position: relative;
+    margin: auto;
     font-size: 1.2em;
-    padding: 40px 0;
     color: $product-name-font-color;
+    width: $m-size-image;
+
+    @media (min-width: $p-break) {
+        width: $p-size-image;
+    }
+
+    @media (min-width: $t-break) {
+      width: $t-size-image;
+    }
+
+    @media (min-width: $d-break) {
+      width: $d-size-image;
+    }
+
+    @media (min-width: $r-break) {
+      width: $r-size-image;
+    }
 
     &__image-wrapper {
       display: flex;
       justify-content: center;
-      height: 200px;
+      width: $m-size-image;
+      height: $m-size-image;
       cursor: pointer;
+
+      @media (min-width: $p-break) {
+        height: $p-size-image;
+        width: $p-size-image;
+      }
+
+      @media (min-width: $t-break) {
+        height: $t-size-image;
+        width: $t-size-image;
+      }
+
+      @media (min-width: $d-break) {
+        height: $d-size-image;
+        width: $d-size-image;
+      }
+
+      @media (min-width: $r-break) {
+        height: $r-size-image;
+        width: $r-size-image;
+      }
     }
 
     &__bottom-row-container {
       display: flex;
       align-items: center;
-      padding: .8em 0;
+      padding: .5em 0 0 0;
     }
 
     &__image {
       max-width: 100%;
       max-height: 100%;
-      border-radius: 10px;
       object-fit: contain;
     }
 
     &__icon {
-      width: 1.7em;
+      width: 1.3em;
       cursor: pointer;
     }
 
     &__title {
-      overflow-wrap: break-word;
-      padding: .9em 0;
-      height: 2.5em;
+      padding: 0 0 1em 0;
+      height: fit-content;
       cursor: pointer;
     }
 
     &__store-name {
       opacity: .48;
       letter-spacing: .05em;
-      font-size: .9em;
+      font-size: .7em;
       font-weight: 600;
+      position: absolute;
+      bottom: 0;
     }
 
     &__price {
       flex: 1;
-      height: 20px;
-      font-size: 1.3em;
+      height: fit-content;
+      font-size: 1em;
       letter-spacing: .05em;
       font-weight: 600;
     }
