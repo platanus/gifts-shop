@@ -45,18 +45,18 @@
         :key="product.id"
         :product="product"
       />
-      <div class="loader-spinner">
-        <pulse-loader
-          :loading="this.$store.loading"
-        />
-      </div>
+    </div>
+    <div class="loader-spinner">
+      <clip-loader
+        :loading="this.$store.loading"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import product from '../components/product';
 
 const SCROLL_OFFSET = 30;
@@ -71,7 +71,7 @@ export default {
   },
   components: {
     product,
-    PulseLoader,
+    ClipLoader,
   },
   computed: {
     ...mapGetters({
@@ -182,8 +182,10 @@ export default {
   }
 
   .loader-spinner {
-    margin-left: 50%;
+    display: flex;
+    justify-content: center;
     height: 42px;
+    margin-top: 25px;
   }
 
   @media (min-width: $p-break) {
