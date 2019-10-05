@@ -7,10 +7,12 @@
         class="home-product__image-wrapper"
         @click="openNewTab"
       >
-        <img
-          class="home-product__image"
-          :src="product.imageUrl"
-        >
+        <div class="image-container">
+          <img
+            class="home-product__image"
+            :src="product.imageUrl"
+          >
+        </div>
       </div>
       <div class="home-product__bottom-row-container">
         <span class="home-product__price"> {{ product.price | Price }} </span>
@@ -105,7 +107,7 @@ export default {
     width: $m-size-image;
 
     @media (min-width: $p-break) {
-        width: $p-size-image;
+      width: $p-size-image;
     }
 
     @media (min-width: $t-break) {
@@ -187,5 +189,21 @@ export default {
       letter-spacing: .05em;
       font-weight: 600;
     }
+
+    &:hover {
+      .home-product {
+        &__title {
+          text-decoration: underline;
+        }
+
+        &__image {
+          opacity: .9;
+        }
+      }
+    }
+  }
+
+  .image-container {
+    background: #000;
   }
 </style>
