@@ -4,7 +4,7 @@
       <div class="home-title-container__title">
         Mira lo que tenemos para
         <span class="home-title-container__user-name">
-          Diego
+          {{ receiverName }}
         </span>
         <img
           class="home-title-container__icon home-title-container__icon--clear"
@@ -55,8 +55,8 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
+import { mapState } from 'vuex';
 import product from '../components/product';
 
 const SCROLL_OFFSET = 30;
@@ -74,9 +74,10 @@ export default {
     ClipLoader,
   },
   computed: {
-    ...mapGetters({
-      products: 'productsList',
-    }),
+    ...mapState([
+      'products',
+      'receiverName',
+    ]),
   },
   methods: {
     scroll() {
@@ -100,6 +101,9 @@ export default {
     submitPriceFilter() {
       this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
     },
+  },
+  created() {
+    this.$store.dispatch('getReceiverName', this.$cookies.get('receiver_id'));
   },
   mounted() {
     this.$store.dispatch('getProducts');
