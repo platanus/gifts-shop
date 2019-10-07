@@ -11,7 +11,7 @@
       <div class="home-header__options">
         <div
           class="home-header__price-filter"
-          v-if="!mobile || visiblePriceFilter"
+          v-if="visiblePriceFilter"
         >
           <input
             class="home-header__price-input"
@@ -39,8 +39,7 @@
             @click="clearCookies"
           >
           <img
-            class="home-header__icon home-header__icon--option"
-            v-bind:class="{ 'home-header__icon--hidden': !mobile }"
+            class="home-header__icon home-header__icon--option home-header__icon--just-mobile"
             src="../assets/filter.svg"
             @click="showPriceFilter"
           >
@@ -79,14 +78,12 @@ const MOBILE_WIDTH = 650;
 export default {
   name: 'HomeView',
   data() {
-    const mobile = window.innerWidth <= MOBILE_WIDTH;
     return {
       minPrice: 1000,
       maxPrice: 50000,
       likes: 0,
       onTop: true,
-      mobile,
-      visiblePriceFilter: !mobile,
+      visiblePriceFilter: window.innerWidth > MOBILE_WIDTH,
     };
   },
   components: {
@@ -115,8 +112,7 @@ export default {
     },
     setOnResize() {
       window.onresize = () => {
-        this.mobile = window.innerWidth <= MOBILE_WIDTH;
-        this.visiblePriceFilter = !this.mobile;
+        this.visiblePriceFilter = window.innerWidth > MOBILE_WIDTH;
       };
     },
     likeProduct(liked) {
@@ -215,8 +211,12 @@ export default {
       width: .45em;
       height: .45em;
 
-      &--hidden {
-        display: none;
+      &--just-mobile {
+        display: block;
+
+        @media (min-width: $p-break) {
+          display: none;
+        }
       }
 
       &--option {
@@ -289,15 +289,12 @@ export default {
 
       .home-header__content {
         width: $t-width-grid;
-        display: flex;
-        justify-content: space-between;
       }
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
         grid-column-gap: $t-grid-column-gap;
         width: $t-width-grid;
-        padding: 0;
       }
     }
   }
@@ -308,15 +305,12 @@ export default {
 
       .home-header__content {
         width: $d-width-grid;
-        display: flex;
-        justify-content: space-between;
       }
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
         grid-column-gap: $d-grid-column-gap;
         width: $d-width-grid;
-        padding: 0;
       }
     }
   }
@@ -327,15 +321,12 @@ export default {
 
       .home-header__content {
         width: $r-width-grid;
-        display: flex;
-        justify-content: space-between;
       }
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));
         grid-column-gap: $r-grid-column-gap;
         width: $r-width-grid;
-        padding: 0;
       }
     }
   }
