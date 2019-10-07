@@ -254,7 +254,7 @@ export default {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax($m-size-image, 1fr));
     grid-column-gap: $m-grid-column-gap;
-    grid-row-gap: 20px;
+    grid-row-gap: 40px;
   }
 
   .loader-spinner {
