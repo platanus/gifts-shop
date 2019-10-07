@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
       resources :products, only: [:index]
       resources :product_actions, only: [:create]
+      resources :receivers, only: [:show]
     end
   end
   devise_scope :store do
