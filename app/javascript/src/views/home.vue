@@ -10,29 +10,9 @@
           :on-top="onTop"
         />
         <div class="home-header__options">
-          <div
-            class="home-header__price-filter"
+          <price-filter
             v-if="visiblePriceFilter"
-          >
-            <input
-              class="home-header__price-input"
-              v-model="minPrice"
-              placeholder="precio mínimo"
-            >
-            <span>
-              -
-            </span>
-            <input
-              class="home-header__price-input"
-              v-model="maxPrice"
-              placeholder="precio máximo"
-            >
-            <button
-              @click="submitPriceFilter"
-            >
-              Filtrar
-            </button>
-          </div>
+          />
           <div class="home-header__button-options">
             <img
               class="home-header__icon home-header__icon--option"
@@ -73,6 +53,7 @@ import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
 import HomeTitle from '../components/home-title';
+import PriceFilter from '../components/price-filter';
 
 const SCROLL_OFFSET = 30;
 const MOBILE_WIDTH = 650;
@@ -92,6 +73,7 @@ export default {
     product,
     ClipLoader,
     HomeTitle,
+    PriceFilter,
   },
   computed: {
     ...mapState([
@@ -128,9 +110,6 @@ export default {
         cookie => this.$cookies.remove(cookie)
       );
       window.location.reload();
-    },
-    submitPriceFilter() {
-      this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
     },
   },
   created() {
@@ -188,20 +167,6 @@ export default {
       display: flex;
       align-items: center;
     }
-
-    &__price-filter {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-evenly;
-      font-size: .5em;
-    }
-
-    &__price-input {
-      border-radius: .5em;
-      padding: 0 5px;
-      width: 30%;
-    }
-
 
     &__icon {
       align-self: flex-end;
