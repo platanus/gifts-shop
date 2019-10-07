@@ -2,17 +2,10 @@
   <div class="home-container">
     <div class="home-header">
       <homeTitle />
-      <div class="home-title-container__options">
-        <img
-          class="home-title-container__icon home-title-container__icon--clear"
-          src="../assets/close-badge.svg"
-          @click="clearCookies"
-        >
-      </div>
-      <div class="home-title-container__options">
-        <div class="home-title-container__price-filter">
+      <div class="home-header__options">
+        <div class="home-header__price-filter">
           <input
-            class="home-title-container__price-input"
+            class="home-header__price-input"
             v-model="minPrice"
             placeholder="precio mínimo"
           >
@@ -20,7 +13,7 @@
             -
           </span>
           <input
-            class="home-title-container__price-input"
+            class="home-header__price-input"
             v-model="maxPrice"
             placeholder="precio máximo"
           >
@@ -31,8 +24,8 @@
           </button>
         </div>
         <img
-          class="home-title-container__icon"
-          src="../assets/gift-badge.svg"
+          class="home-header__icon"
+          src="../assets/gift-color-badge.svg"
         >
       </div>
     </div>
@@ -90,12 +83,6 @@ export default {
         }
       };
     },
-    clearCookies() {
-      this.$cookies.keys().forEach(
-        cookie => this.$cookies.remove(cookie)
-      );
-      window.location.reload();
-    },
     submitPriceFilter() {
       this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
     },
@@ -123,32 +110,31 @@ export default {
 
   .home-header {
     display: flex;
+    margin-top: 6.5vh;
 
     &__price-filter {
       display: flex;
       align-items: flex-end;
       justify-content: space-evenly;
-      flex: .8;
       font-size: .5em;
+    }
+
+    &__options {
+      display: flex;
+      align-items: center;
     }
 
     &__price-input {
       border-radius: .5em;
       padding: 0 5px;
+      width: 30%;
     }
 
     &__icon {
-      align-self: flex-end;
-      flex: 1;
-      max-width: .45em;
+      max-width: 1em;
 
-      &--clear {
-        max-width: 1em;
-        filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
-
-        &:hover {
-          cursor: pointer;
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
   }
