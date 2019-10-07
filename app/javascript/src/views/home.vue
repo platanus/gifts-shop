@@ -143,7 +143,7 @@ export default {
 
     &--shadow {
       box-shadow: 0 0 4px;
-      background-color: #16a69e;
+      background-color: #dbe8ff;
     }
 
     &__content {
