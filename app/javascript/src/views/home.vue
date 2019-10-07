@@ -1,21 +1,11 @@
 <template>
   <div class="home-container">
-    <div class="home-title-container">
-      <div class="home-title-container__title">
-        Mira lo que tenemos para
-        <span class="home-title-container__user-name">
-          {{ receiverName }}
-        </span>
-        <img
-          class="home-title-container__icon home-title-container__icon--clear"
-          src="../assets/close-badge.svg"
-          @click="clearCookies"
-        >
-      </div>
-      <div class="home-title-container__options">
-        <div class="home-title-container__price-filter">
+    <div class="home-header">
+      <homeTitle />
+      <div class="home-header__options">
+        <div class="home-header__price-filter">
           <input
-            class="home-title-container__price-input"
+            class="home-header__price-input"
             v-model="minPrice"
             placeholder="precio mínimo"
           >
@@ -23,7 +13,7 @@
             -
           </span>
           <input
-            class="home-title-container__price-input"
+            class="home-header__price-input"
             v-model="maxPrice"
             placeholder="precio máximo"
           >
@@ -34,8 +24,8 @@
           </button>
         </div>
         <img
-          class="home-title-container__icon"
-          src="../assets/gift-badge.svg"
+          class="home-header__icon"
+          src="../assets/gift-color-badge.svg"
         >
       </div>
     </div>
@@ -58,6 +48,7 @@
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
+import HomeTitle from '../components/home-title';
 
 const SCROLL_OFFSET = 30;
 
@@ -72,11 +63,11 @@ export default {
   components: {
     product,
     ClipLoader,
+    HomeTitle,
   },
   computed: {
     ...mapState([
       'products',
-      'receiverName',
     ]),
   },
   methods: {
@@ -91,12 +82,6 @@ export default {
           }, () => {});
         }
       };
-    },
-    clearCookies() {
-      this.$cookies.keys().forEach(
-        cookie => this.$cookies.remove(cookie)
-      );
-      window.location.reload();
     },
     submitPriceFilter() {
       this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
@@ -123,55 +108,33 @@ export default {
     width: $m-width-grid;
   }
 
-  .home-title-container {
+  .home-header {
     display: flex;
-    align-items: center;
-    font-size: 2.5em;
     margin-top: 6.5vh;
-
-    &__title {
-      padding: .15em 0;
-      color: $title-font-color;
-      flex: 1;
-    }
-
-    &__user-name {
-      border-bottom: 2px solid currentColor;
-      color: $user-font-color;
-    }
-
-    &__options {
-      display: flex;
-      flex: .6;
-      height: .75em;
-      justify-content: flex-end;
-    }
 
     &__price-filter {
       display: flex;
       align-items: flex-end;
       justify-content: space-evenly;
-      flex: .8;
       font-size: .5em;
+    }
+
+    &__options {
+      display: flex;
+      align-items: center;
     }
 
     &__price-input {
       border-radius: .5em;
       padding: 0 5px;
+      width: 30%;
     }
 
     &__icon {
-      align-self: flex-end;
-      flex: 1;
-      max-width: .45em;
+      max-width: 1em;
 
-      &--clear {
-        max-width: 1em;
-        filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
-
-        &:hover {
-          cursor: pointer;
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
   }
