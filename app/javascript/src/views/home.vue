@@ -158,6 +158,7 @@ export default {
     top: 0;
     background-color: #fff;
     transition: background-color 400ms linear;
+    padding: 2vh 0;
     z-index: 100;
     align-items: center;
 
