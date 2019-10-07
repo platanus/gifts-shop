@@ -4,49 +4,51 @@
       class="home-header"
       v-bind:class="{ 'home-header--shadow': !onTop }"
     >
-      <homeTitle
-        :likes="likes"
-        :on-top="onTop"
-      />
-      <div class="home-header__options">
-        <div
-          class="home-header__price-filter"
-          v-if="visiblePriceFilter"
-        >
-          <input
-            class="home-header__price-input"
-            v-model="minPrice"
-            placeholder="precio mínimo"
+      <div class="home-header__content">
+        <homeTitle
+          :likes="likes"
+          :on-top="onTop"
+        />
+        <div class="home-header__options">
+          <div
+            class="home-header__price-filter"
+            v-if="visiblePriceFilter"
           >
-          <span>
-            -
-          </span>
-          <input
-            class="home-header__price-input"
-            v-model="maxPrice"
-            placeholder="precio máximo"
-          >
-          <button
-            @click="submitPriceFilter"
-          >
-            Filtrar
-          </button>
-        </div>
-        <div class="home-header__button-options">
-          <img
-            class="home-header__icon home-header__icon--option"
-            src="../assets/close-badge.svg"
-            @click="clearCookies"
-          >
-          <img
-            class="home-header__icon home-header__icon--option home-header__icon--just-mobile"
-            src="../assets/filter.svg"
-            @click="showPriceFilter"
-          >
-          <img
-            class="home-header__icon home-header__icon--option"
-            src="../assets/gift-badge.svg"
-          >
+            <input
+              class="home-header__price-input"
+              v-model="minPrice"
+              placeholder="precio mínimo"
+            >
+            <span>
+              -
+            </span>
+            <input
+              class="home-header__price-input"
+              v-model="maxPrice"
+              placeholder="precio máximo"
+            >
+            <button
+              @click="submitPriceFilter"
+            >
+              Filtrar
+            </button>
+          </div>
+          <div class="home-header__button-options">
+            <img
+              class="home-header__icon home-header__icon--option"
+              src="../assets/close-badge.svg"
+              @click="clearCookies"
+            >
+            <img
+              class="home-header__icon home-header__icon--option home-header__icon--just-mobile"
+              src="../assets/filter.svg"
+              @click="showPriceFilter"
+            >
+            <img
+              class="home-header__icon home-header__icon--option"
+              src="../assets/gift-badge.svg"
+            >
+          </div>
         </div>
       </div>
     </div>
@@ -152,16 +154,12 @@ export default {
   }
 
   .home-header {
-    display: flex;
     position: sticky;
     top: 0;
     background-color: #fff;
     transition: background-color 400ms linear;
     z-index: 100;
-    width: 100%;
-    padding: 3vh calc((100% - $m-width-grid) / 2);
     align-items: center;
-    font-size: 1em;
 
     &--shadow {
       box-shadow: 0 0 4px;
@@ -172,7 +170,6 @@ export default {
       margin: 0 auto;
       width: $m-width-grid;
       align-items: center;
-      font-size: 2.5em;
     }
 
     &__title {
