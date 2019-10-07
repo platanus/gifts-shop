@@ -62,7 +62,7 @@ export default {
     onLike: {
       type: Function,
       default: () => {},
-    }
+    },
   },
   methods: {
     ...mapActions([
@@ -158,7 +158,7 @@ export default {
     &__bottom-row-container {
       display: flex;
       align-items: center;
-      padding: .5em 0 0 0;
+      padding: .5em 0 0;
     }
 
     &__image {
@@ -173,7 +173,7 @@ export default {
     }
 
     &__title {
-      padding: 0 0 1em 0;
+      padding: 0 0 1em;
       height: fit-content;
       cursor: pointer;
     }

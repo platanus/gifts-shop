@@ -56,7 +56,7 @@
         v-for="(product, index) in products"
         :key="index"
         :product="product"
-        :onLike="likeProduct"
+        :on-like="likeProduct"
       />
     </div>
     <div class="loader-spinner">
@@ -117,7 +117,7 @@ export default {
       window.onresize = () => {
         this.mobile = window.innerWidth <= MOBILE_WIDTH;
         this.visiblePriceFilter = !this.mobile;
-      }
+      };
     },
     likeProduct(liked) {
       this.likes += liked ? 1 : -1;
@@ -169,7 +169,7 @@ export default {
 
     &--shadow {
       box-shadow: 0 0 4px;
-      background-color: #16A69E;
+      background-color: #16a69e;
     }
 
     &__content {
@@ -222,7 +222,7 @@ export default {
       &--option {
         width: 1em;
         height: 1em;
-        filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
+        filter: drop-shadow(2px 2px 2px $icon-shadow-color);
 
         &:hover {
           cursor: pointer;
@@ -232,16 +232,16 @@ export default {
 
     &__button-options {
       position: absolute;
-      top: 0em;
-      right: 0.5em;
+      top: 0;
+      right: .5em;
       flex-direction: column;
       display: flex;
 
       .home-header__icon {
         width: 1.8em;
         height: 1.8em;
-        margin-top: 0.5em;
-        background-color: white;
+        margin-top: .5em;
+        background-color: #fff;
         border-radius: 50%;
       }
     }
