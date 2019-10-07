@@ -2,7 +2,7 @@
   <div class="home-container">
     <div
       class="home-header"
-      v-bind:class="{ 'home-header--shadow': !onTop }"
+      :class="{ 'home-header--shadow': !onTop }"
     >
       <div class="home-header__content">
         <homeTitle
