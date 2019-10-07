@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import productsApi from '../api/products';
+import receiverApi from '../api/receiver';
 
 Vue.use(Vuex);
 const INITIAL_NUMBER_OF_PRODUCTS = 15;
@@ -13,6 +14,7 @@ const store = new Vuex.Store({
     loading: false,
     minPrice: 1000,
     maxPrice: 50000,
+    receiverName: '',
   },
   mutations: {
     setProducts: (state, payload) => {
@@ -27,8 +29,17 @@ const store = new Vuex.Store({
     setMaxPrice: (state, payload) => {
       state.maxPrice = payload;
     },
+    setReceiverName: (state, payload) => {
+      state.receiverName = payload;
+    },
   },
   actions: {
+    getReceiverName: (context, payload) => {
+      receiverApi.getReceiver(payload).then((response) => {
+        const receiverName = response.name;
+        context.commit('setReceiverName', receiverName);
+      });
+    },
     getProducts: context => {
       const params = [
         INITIAL_NUMBER_OF_PRODUCTS,
@@ -77,9 +88,6 @@ const store = new Vuex.Store({
       context.commit('setProducts', []);
       context.dispatch('getProducts');
     },
-  },
-  getters: {
-    productsList: state => state.products,
   },
 });
 
