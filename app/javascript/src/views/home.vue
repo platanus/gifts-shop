@@ -34,18 +34,18 @@
         </div>
         <div class="home-header__button-options">
           <img
-            class="home-header__icon home-header__icon--clear"
+            class="home-header__icon home-header__icon--option"
             src="../assets/close-badge.svg"
             @click="clearCookies"
           >
           <img
-            class="home-header__icon home-header__icon--clear"
+            class="home-header__icon home-header__icon--option"
             v-bind:class="{ 'home-header__icon--hidden': !mobile }"
             src="../assets/filter.svg"
             @click="showPriceFilter"
           >
           <img
-            class="home-header__icon"
+            class="home-header__icon home-header__icon--option"
             src="../assets/gift-badge.svg"
           >
         </div>
@@ -219,7 +219,7 @@ export default {
         display: none;
       }
 
-      &--clear {
+      &--option {
         width: 1em;
         height: 1em;
         filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
