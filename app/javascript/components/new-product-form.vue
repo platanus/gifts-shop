@@ -19,18 +19,10 @@
             NOMBRE DEL PRODUCTO
           </div>
           <input
-            v-if="!errors.name"
             type="text"
             v-model="name"
             class="product-input__box"
-            name="name"
-            placeholder="Ej: Cortinas Roller"
-          >
-          <input
-            v-else
-            type="text"
-            v-model="name"
-            class="product-input__box product-input__box--danger"
+            :class="{'product-input__box--danger': errors.name || ''}"
             name="name"
             placeholder="Ej: Cortinas Roller"
           >
@@ -47,17 +39,9 @@
           </div>
           <input
             type="text"
-            v-if="!errors.price"
             v-model="price"
             class="product-input__box"
-            name="price"
-            placeholder="$0"
-          >
-          <input
-            type="text"
-            v-else
-            v-model="price"
-            class="product-input__box product-input__box--danger"
+            :class="{'product-input__box--danger': errors.price || ''}"
             name="price"
             placeholder="$0"
           >
@@ -74,17 +58,9 @@
           </div>
           <input
             type="text"
-            v-if="!errors.link"
             v-model="link"
             class="product-input__box"
-            name="link"
-            placeholder="http://"
-          >
-          <input
-            type="text"
-            v-else
-            v-model="link"
-            class="product-input__box product-input__box--danger"
+            :class="{'product-input__box--danger': errors.link || ''}"
             name="link"
             placeholder="http://"
           >
@@ -102,7 +78,7 @@
         </div>
         <div
           class="file-container"
-          v-if="!errors.image"
+          :class="{'file-container--danger': errors.image || ''}"
         >
           <div
             class="image-preview"
@@ -113,45 +89,24 @@
               :src="imageData"
             >
           </div>
-          <div class="image-preview__value">
-            Seleccionar archivo...
-          </div>
-          <div class="file-input">
-            <input
-              class="image-preview__input"
-              type="file"
-              @change="previewImage"
-              accept="image/*"
-              name="image"
-            >
-          </div>
-        </div>
-        <div
-          class="file-container file-container--danger"
-          v-else
-        >
-          <div
-            class="image-preview"
-            v-if="imageData.length > 0"
-          >
-            <img
-              class="image-preview__preview"
-              :src="imageData"
-            >
-          </div>
-          <div class="image-input-container">
+          <div>
             <div>
-              <div class="image-preview__value image-preview__value--danger">
+              <div
+                class="image-preview__value"
+                :class="{'image-preview__value--danger': errors.image || ''}"
+              >
                 Seleccionar archivo...
               </div>
-              <div class="file-input">
-                <input
-                  class="image-preview__input"
-                  type="file"
-                  @change="previewImage"
-                  accept="image/*"
-                  name="image"
-                >
+              <div>
+                <div class="file-input">
+                  <input
+                    class="image-preview__input"
+                    type="file"
+                    @change="previewImage"
+                    accept="image/*"
+                    name="image"
+                  >
+                </div>
               </div>
             </div>
             <div>
