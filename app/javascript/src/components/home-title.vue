@@ -5,7 +5,7 @@
       <span class="home-title__user-name">{{ receiverName }}</span>
     </div>
     <div v-else>
-      {{ likes }} likes: {{ likes > 0 ? `${likes} idea(s)` : 'Guarda las buenas ideas con ' }}
+      {{ likes > 0 ? `${likes} idea(s)` : 'Guarda las buenas ideas con ' }}
       <img
         class="home-title__icon"
         src="../assets/gift-badge.svg"
