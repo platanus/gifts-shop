@@ -6,6 +6,21 @@ $icon-shadow-color: #979797;
 $product-image-background-color: #979797;
 $product-name-font-color: #353434;
 
+$primary-color: #35c6ad;
+$promoted-product-color: rgb(235, 214, 30);
+$product-color: #dc143c;
+$receiver-name-color: #dc143c;
+$white: #fff;
+$label-color: #949494;
+$danger-color: #cd5c5c;
+
+$danger-border-color: #f7a5a2f8;
+$danger-background-color: #fbe8e8;
+$danger-label-color: #771a17fd;
+
+$button-size: 10px;
+$main-font: 'Work Sans';
+
 $m-break: 450px; // mobile
 $p-break: 650px; // phablet
 $t-break: 1000px; // tablet
@@ -35,3 +50,9 @@ $p-font-size: 1.3em;
 $t-font-size: 1.5em;
 $d-font-size: 1.7em;
 $r-font-size: 1.7em;
+
+$m-size-filter: 100%;
+$p-size-filter: 300px;
+$t-size-filter: 400px;
+$d-size-filter: 400px;
+$r-size-filter: 500px;
