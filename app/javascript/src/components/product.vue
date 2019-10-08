@@ -59,6 +59,10 @@ export default {
       type: Object,
       default: null,
     },
+    onLike: {
+      type: Function,
+      default: () => {},
+    },
   },
   methods: {
     ...mapActions([
@@ -72,6 +76,7 @@ export default {
         this.liked = true;
         this.markLiked(this.product.id);
       }
+      this.onLike(this.liked);
     },
     openNewTab() {
       window.open(this.product.link, '_blank');
@@ -153,7 +158,7 @@ export default {
     &__bottom-row-container {
       display: flex;
       align-items: center;
-      padding: .5em 0 0 0;
+      padding: .5em 0 0;
     }
 
     &__image {
@@ -168,7 +173,7 @@ export default {
     }
 
     &__title {
-      padding: 0 0 1em 0;
+      padding: 0 0 1em;
       height: fit-content;
       cursor: pointer;
     }

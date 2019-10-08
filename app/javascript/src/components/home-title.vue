@@ -1,13 +1,16 @@
 <template>
   <div class="home-title">
-    <div class="home-title__title">
+    <div v-if="likes <= 0 && onTop">
       Busquemos un regalo para
       <span class="home-title__user-name">{{ receiverName }}</span>
+    </div>
+    <div v-else>
+      {{ likes > 0 ? `${likes} idea(s)` : 'Guarda las buenas ideas con ' }}
       <img
-        class="home-title_icon home-title__icon--clear"
-        src="../assets/close-badge.svg"
-        @click="clearCookies"
+        class="home-title__icon"
+        src="../assets/gift-badge.svg"
       >
+      {{ likes > 0 ? 'para Diego' : '' }}
     </div>
     <div class="home-title__subtitle">
       Con el
@@ -32,18 +35,20 @@ import { mapState } from 'vuex';
 
 export default {
   name: 'HomeTitle',
+  props: {
+    likes: {
+      type: Number,
+      default: 0,
+    },
+    onTop: {
+      type: Boolean,
+      default: true,
+    },
+  },
   computed: {
     ...mapState([
       'receiverName',
     ]),
-  },
-  methods: {
-    clearCookies() {
-      this.$cookies.keys().forEach(
-        cookie => this.$cookies.remove(cookie)
-      );
-      window.location.reload();
-    },
   },
 };
 </script>
@@ -84,15 +89,6 @@ export default {
     &__icon {
       align-self: flex-end;
       max-width: .75em;
-
-      &--clear {
-        min-width: .6em;
-        filter: drop-shadow( 2px 2px 2px $icon-shadow-color);
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
     }
   }
 </style>
