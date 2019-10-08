@@ -126,12 +126,6 @@ export default {
     }
   }
 
-  @media (min-width: $t-break) {
-    .price-filter {
-      width: $t-size-filter;
-    }
-  }
-
   @media (min-width: $d-break) {
     .price-filter {
       width: $d-size-filter;
