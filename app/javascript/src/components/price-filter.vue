@@ -1,24 +1,34 @@
 <template>
   <div class="price-filter">
-    $<input
-      class="price-filter__input"
-      v-model="minPrice"
-      placeholder="precio mínimo"
+    <div class="price-filter__form">
+      $<input
+        class="price-filter__input"
+        :class="{ 'price-filter__input--error': error }"
+        v-model="minPrice"
+        placeholder="precio mínimo"
+      >
+      <span class="price-filter__separator">
+        -
+      </span>
+      $<input
+        class="price-filter__input"
+        :class="{ 'price-filter__input--error': error }"
+        v-model="maxPrice"
+        placeholder="precio máximo"
+      >
+      <button
+        class="price-filter__button"
+        @click="submitPriceFilter"
+      >
+        Filtrar
+      </button>
+    </div>
+    <div
+      class="price-filter__error"
+      v-if="error"
     >
-    <span class="price-filter__separator">
-      -
-    </span>
-    $<input
-      class="price-filter__input"
-      v-model="maxPrice"
-      placeholder="precio máximo"
-    >
-    <button
-      class="price-filter__button"
-      @click="submitPriceFilter"
-    >
-      Filtrar
-    </button>
+      El precio mínimo debe ser menor al precio máximo
+    </div>
   </div>
 </template>
 
@@ -28,11 +38,17 @@ export default {
     return {
       minPrice: 1000,
       maxPrice: 50000,
+      error: false,
     };
   },
   methods: {
     submitPriceFilter() {
-      this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
+      if (parseInt(this.minPrice, 10) > parseInt(this.maxPrice, 10)) {
+        this.error = true;
+      } else {
+        this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
+        this.error = false;
+      }
     },
   },
 };
@@ -42,12 +58,21 @@ export default {
   @import '../../styles/variables';
 
   .price-filter {
-    display: flex;
-    margin-top: 1em;
-    align-items: center;
-    justify-content: center;
     width: $m-size-filter;
     color: $label-color;
+    margin-top: 1em;
+
+    &__form {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    &__error {
+      color: $danger-color;
+      font-size: .8em;
+      text-align: center;
+    }
 
     &__input {
       text-align: left;
@@ -60,6 +85,10 @@ export default {
       width: 30%;
       border-color: $primary-color;
       color: $label-color;
+
+      &--error {
+        border-color: $danger-border-color;
+      }
     }
 
     &__button {

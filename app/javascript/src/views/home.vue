@@ -149,7 +149,7 @@ export default {
     &__content {
       margin: 0 auto;
       width: $m-width-grid;
-      align-items: center;
+      align-items: baseline;
     }
 
     &__title {
