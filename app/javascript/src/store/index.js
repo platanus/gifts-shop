@@ -61,6 +61,9 @@ const store = new Vuex.Store({
     markLiked: (context, payload) => {
       productsApi.markLiked(payload);
     },
+    markClicked: (context, payload) => {
+      productsApi.markClicked(payload);
+    },
     moreProducts: context => new Promise((resolve, reject) => {
       const params = [
         NUMBER_OF_PRODUCTS,
