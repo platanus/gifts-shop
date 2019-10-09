@@ -21,7 +21,6 @@
 
 .catalog-body {
   margin-left: 5%;
-  overflow: auto;
 }
 
 .product-container {
@@ -217,4 +216,8 @@
       color: $regular-link-color;
     }
   }
+}
+
+.stores-app {
+  overflow: auto;
 }

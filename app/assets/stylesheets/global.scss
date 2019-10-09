@@ -21,9 +21,13 @@ body {
 }
 
 .header {
+  background-color: $white;
+  z-index: 100;
+  top: 0;
+  position: sticky;
   display: flex;
   margin: 1%;
-  height: 40px;
+  height: 60px;
 }
 
 .header__links {
