@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   belongs_to :store
   has_many :product_actions, dependent: :destroy
 
-  validates :name, presence: true, length: { minimum: 2 }
+  validates :name, presence: true, length: { minimum: 5 }
   validates :price, presence: true
   validates :link, presence: true
 

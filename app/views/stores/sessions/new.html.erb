@@ -6,14 +6,17 @@
     </h2>
   </div>
   <div class="session-form">
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="session-form__rectangle">
-          <%= f.email_field :email, autocomplete: "email", placeholder: "Correo", class: "session-form__field"%>
-        </div>
-        <div class="session-form__rectangle">
-          <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class: "session-form__field" %>
-        </div>
-        <div><%= submit_tag "Iniciar Sesión", class: "btn session-form__btn" %></div>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="session-form__rectangle">
+        <%= f.email_field :email, autocomplete: "email", placeholder: "Correo", class:html_error_class("session-form__field")%>
+      </div>
+      <div class="session-form__rectangle">
+        <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class:html_error_class("session-form__field")%>
+      </div>
+      <%- if error_msg = flash[:alert] %>
+        <div class="alert alert-danger" role="alert">Correo o contraseña inválidos</div>
       <% end %>
+      <div><%= submit_tag "Iniciar Sesión", class: "btn session-form__btn" %></div>
+    <% end %>
   </div>
 </div>
