@@ -1,4 +1,4 @@
 <h1 class="form-title">Editar producto</h1>
 <new-product-form
-  :product="<%= @product.to_json %>"
+  :product="<%= @product.attributes.merge(image_url: url_for(@product.image)).to_json %>"
 />
