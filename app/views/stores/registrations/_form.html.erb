@@ -6,14 +6,8 @@
     <div class="session-form__alert">
       <%= resource.errors.full_messages_for(:name).first %>
     </div>
-
-    <div class="session-form__rectangle">
-      <%= f.collection_select :region_id, Region.all, :id, :name, class:html_error_class('session-form__collection', 'region'), prompt: "País"%>
-    </div>
-    <div class="session-form__alert">
-      <%= resource.errors.full_messages_for(:region).first %>
-    </div>
     <% if !edit %>
+      <%= f.hidden_field :region_id, value: default_region %>
       <div class="session-form__rectangle">
         <%= f.email_field :email, autocomplete: "email", class:html_error_class('session-form__field', 'email'), placeholder: "Correo"%>
       </div>
