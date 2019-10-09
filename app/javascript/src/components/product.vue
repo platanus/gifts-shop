@@ -5,7 +5,7 @@
     <div class="home-product">
       <div
         class="home-product__image-wrapper"
-        @click="openNewTab"
+        @click="clickAction"
       >
         <div class="image-container">
           <img
@@ -33,7 +33,7 @@
       </div>
       <div
         class="home-product__title"
-        @click="openNewTab"
+        @click="clickAction"
       >
         {{ product.name }}
       </div>
@@ -68,6 +68,7 @@ export default {
     ...mapActions([
       'markLiked',
       'markDisplayed',
+      'markClicked',
     ]),
     setLikeStatus() {
       if (this.liked) {
@@ -78,7 +79,8 @@ export default {
       }
       this.onLike(this.liked);
     },
-    openNewTab() {
+    clickAction() {
+      this.markClicked(this.product.id);
       window.open(this.product.link, '_blank');
     },
   },
