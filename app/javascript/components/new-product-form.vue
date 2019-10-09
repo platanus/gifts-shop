@@ -189,7 +189,7 @@ export default {
       this.validateImage();
       this.validatePrice();
       this.validateLink();
-      if (this.errors.length === 0) {
+      if (Object.keys(this.errors).length === 0) {
         return true;
       }
       e.preventDefault();
