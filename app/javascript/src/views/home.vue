@@ -4,6 +4,14 @@
       class="home-header"
       :class="{ 'home-header--shadow': !onTop }"
     >
+      <div class="home-header__link">
+        <a
+          href="/stores/catalog"
+          class="login-link"
+        >
+          ¿Tienes una tienda?
+        </a>
+      </div>
       <div class="home-header__content">
         <homeTitle
           :likes="likes"
@@ -132,6 +140,20 @@ export default {
     width: 100%;
   }
 
+  .login-link {
+    color: $primary-color;
+    text-decoration: none;
+    margin-right: 50px;
+
+    &:visited {
+      color: $primary-color;
+    }
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .home-header {
     position: sticky;
     top: 0;
@@ -166,6 +188,11 @@ export default {
     &__options {
       display: flex;
       align-items: center;
+    }
+
+    &__link {
+      display: flex;
+      justify-content: flex-end;
     }
 
     &__icon {

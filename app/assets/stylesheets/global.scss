@@ -7,7 +7,7 @@ $white: #fff;
 $label-color: #949494;
 
 $danger-color: #cd5c5c;
-
+$regular-link-color: #000;
 
 $danger-border-color: #f7a5a2f8;
 $danger-background-color: #fbe8e8;
@@ -21,13 +21,21 @@ body {
 }
 
 .header {
+  background-color: $white;
+  z-index: 100;
+  top: 0;
+  position: sticky;
   display: flex;
-  justify-content: flex-end;
   margin: 1%;
+  height: 60px;
+}
 
-  &__link {
-    margin-top: 1%;
-  }
+.header__links {
+  display: flex;
+  margin-top: 1%;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
 }
 
 .btn {
