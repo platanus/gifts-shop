@@ -21,8 +21,7 @@
           <input
             type="text"
             v-model="name"
-            class="product-input__box"
-            :class="{'product-input__box--danger': errors.name || ''}"
+            :class="getHtmlClass('product-input__box', 'name')"
             name="name"
             placeholder="Ej: Cortinas Roller"
           >
@@ -40,8 +39,7 @@
           <input
             type="text"
             v-model="price"
-            class="product-input__box"
-            :class="{'product-input__box--danger': errors.price || ''}"
+            :class="getHtmlClass('product-input__box', 'price')"
             name="price"
             placeholder="$0"
           >
@@ -59,8 +57,7 @@
           <input
             type="text"
             v-model="link"
-            class="product-input__box"
-            :class="{'product-input__box--danger': errors.link || ''}"
+            :class="getHtmlClass('product-input__box', 'link')"
             name="link"
             placeholder="http://"
           >
@@ -77,8 +74,7 @@
           FOTO DEL PRODUCTO
         </div>
         <div
-          class="file-container"
-          :class="{'file-container--danger': errors.image || ''}"
+          :class="getHtmlClass('file-container', 'image')"
         >
           <div
             class="image-preview"
@@ -92,8 +88,7 @@
           <div>
             <div>
               <div
-                class="image-preview__value"
-                :class="{'image-preview__value--danger': errors.image || ''}"
+                :class="getHtmlClass('image-preview__value', 'image')"
               >
                 Seleccionar archivo...
               </div>
@@ -200,6 +195,13 @@ export default {
       if (!this.imageData) {
         this.errors.image = 'El producto debe tener una imagen';
       }
+    },
+    getHtmlClass(baseClass, errorName) {
+      if (this.errors[errorName]) {
+        return `${baseClass} ${baseClass}--danger`;
+      }
+
+      return `${baseClass}`;
     },
   },
 };
