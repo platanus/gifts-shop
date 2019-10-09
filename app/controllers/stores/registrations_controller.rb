@@ -11,6 +11,6 @@ class Stores::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :password, :region_id])
-    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :password, :region_id])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:name, :password])
   end
 end
