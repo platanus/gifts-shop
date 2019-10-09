@@ -1,7 +1,12 @@
 <div class="header">
-  <div class="header__link">
-    <%= link_to "Cerrar Sesión", sign_out_path %>
-    <%= link_to "Editar Información", edit_stores_path%>
+  <div class="header__links">
+    <div class="header__left">
+      <%= link_to "Ir a inicio", home_path, class: "home-link" %>
+    </div>
+    <div class="header__right">
+      <%= link_to "Cerrar Sesión", sign_out_path %>
+      <%= link_to "Editar Información", edit_stores_path%>
+    </div>
   </div>
 </div>
 <div class="catalog-body">

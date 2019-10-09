@@ -22,12 +22,15 @@ body {
 
 .header {
   display: flex;
-  justify-content: flex-end;
   margin: 1%;
+}
 
-  &__link {
-    margin-top: 1%;
-  }
+.header__links {
+  display: flex;
+  margin-top: 1%;
+  justify-content: space-between;
+  flex-direction: row;
+  width: 100%;
 }
 
 .btn {
