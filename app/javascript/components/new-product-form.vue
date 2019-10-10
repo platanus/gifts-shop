@@ -1,7 +1,7 @@
 <template>
   <div>
     <form
-      action="/create"
+      :action="product ? `/stores/catalog/${product.id}`: '/stores/catalog'"
       method="POST"
       class="new-product-form"
       enctype="multipart/form-data"
@@ -12,6 +12,13 @@
         name="authenticity_token"
         :value="csrfToken"
         autocomplete="off"
+      >
+      <input
+        type="hidden"
+        name="_method"
+        value="put"
+        autocomplete="off"
+        v-if="product"
       >
       <div class="new-product-form__info">
         <div class="product-input">
@@ -128,7 +135,7 @@
           type="submit"
           class="product-input__btn product-input__btn--accept"
         >
-          AGREGAR
+          {{ product ? 'GUARDAR' : 'AGREGAR' }}
         </button>
       </div>
     </form>
@@ -143,7 +150,14 @@ const MINIMUM_LINK_LENGTH = 5;
 
 export default {
   data() {
-    return {
+    return this.product ? {
+      csrfToken: getCsrfToken(),
+      imageData: this.product.image_url,
+      errors: {},
+      name: this.product.name,
+      link: this.product.link,
+      price: this.product.price,
+    } : {
       csrfToken: getCsrfToken(),
       imageData: '',
       errors: {},
@@ -151,6 +165,12 @@ export default {
       link: '',
       price: null,
     };
+  },
+  props: {
+    product: {
+      type: Object,
+      default: null,
+    },
   },
   methods: {
     previewImage(event) {
@@ -169,7 +189,7 @@ export default {
       this.validateImage();
       this.validatePrice();
       this.validateLink();
-      if (this.errors.length === 0) {
+      if (Object.keys(this.errors).length === 0) {
         return true;
       }
       e.preventDefault();

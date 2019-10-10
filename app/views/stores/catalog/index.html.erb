@@ -27,6 +27,7 @@
           <th class="catalog-header__label row-label row-label--medium">Nº VISITAS</th>
           <th class="catalog-header__label row-label row-label--medium">Nº ME GUSTA</th>
           <th class="catalog-header__label row-label row-label--medium">FOTO</th>
+          <th class="catalog-header__label row-label row-label--medium">EDITAR</th>
         </tr>
       </thead>
       <tbody class="product-container">
@@ -40,6 +41,7 @@
             <td class="product__label row-label row-label--medium"><%= product.product_actions.display.count %></td>
             <td class="product__label row-label row-label--medium"><%= product.product_actions.like.count %></td>
             <td class="product__image row-label row-label--medium"><%= image_tag(url_for(product.image), :size => '56x56' )%></td>
+            <td class="product__icon row-label--small"><%= link_to image_tag("edit.svg", class: "icon"), edit_stores_catalog_path(product), class: "link" %></td>
           </tr>
         <% end %>
       </tbody>

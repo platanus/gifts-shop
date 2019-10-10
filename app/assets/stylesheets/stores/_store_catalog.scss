@@ -147,6 +147,17 @@
     line-height: 24px;
   }
 
+  &__icon {
+    height: 50%;
+    width: 50%;
+    align-self: center;
+
+    .link .icon {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
   &__toggle {
     margin-top: 15px;
     display: flex;
