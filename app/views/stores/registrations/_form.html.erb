@@ -1,7 +1,7 @@
 <div class="session-form">
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
     <div class="session-form__rectangle">
-      <%= f.text_field :name, autofocus: true, class:html_error_class('session-form__field', 'name'), placeholder: "Nombre" %>
+      <%= f.text_field :name, autofocus: true, class:html_error_class('session-form__field', 'name'), placeholder: "Nombre tienda" %>
     </div>
     <div class="session-form__alert">
       <%= resource.errors.full_messages_for(:name).first %>
