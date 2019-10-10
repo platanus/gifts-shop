@@ -4,7 +4,7 @@ class Stores::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_params, if: :devise_controller?
 
   def after_sign_in_path_for(_resource)
-    stores_catalog_path
+    stores_catalog_index_path
   end
 
   private
