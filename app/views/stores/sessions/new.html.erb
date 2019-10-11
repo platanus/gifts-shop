@@ -13,7 +13,7 @@
       <div class="session-form__rectangle">
         <%= f.password_field :password, autocomplete: "current-password", placeholder: "Contraseña", class:html_error_class("session-form__field")%>
       </div>
-      <%- if error_msg = flash[:alert] %>
+      <%- if flash[:alert] %>
         <div class="alert alert-danger" role="alert">Correo o contraseña inválidos</div>
       <% end %>
       <div><%= submit_tag "Iniciar Sesión", class: "btn session-form__btn" %></div>
