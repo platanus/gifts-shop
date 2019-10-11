@@ -1,4 +1,7 @@
 class Organization < ApplicationRecord
+  include LedgerizerTenant
+  include LedgerizerAccountable
+
   has_many :deposits, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
