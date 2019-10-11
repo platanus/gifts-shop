@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_16_144238) do
+ActiveRecord::Schema.define(version: 2019_10_11_143551) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,17 @@ ActiveRecord::Schema.define(version: 2019_09_16_144238) do
     t.index ["category_id"], name: "index_category_values_on_category_id"
   end
 
+  create_table "deposits", force: :cascade do |t|
+    t.bigint "store_id"
+    t.bigint "amount"
+    t.string "amount_currency", default: "CLP", null: false
+    t.bigint "organization_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_deposits_on_organization_id"
+    t.index ["store_id"], name: "index_deposits_on_store_id"
+  end
+
   create_table "givers", force: :cascade do |t|
     t.string "email"
     t.bigint "region_id"
@@ -85,6 +96,12 @@ ActiveRecord::Schema.define(version: 2019_09_16_144238) do
   end
 
   create_table "occations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -187,6 +204,8 @@ ActiveRecord::Schema.define(version: 2019_09_16_144238) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "category_values", "categories"
+  add_foreign_key "deposits", "organizations"
+  add_foreign_key "deposits", "stores"
   add_foreign_key "product_actions", "products"
   add_foreign_key "product_actions", "receivers"
   add_foreign_key "product_tags", "category_values"
