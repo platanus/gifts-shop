@@ -54,7 +54,7 @@
   text-align: center;
 
   &__rectangle {
-    margin-bottom: 30px;
+    margin-bottom: 4px;
   }
 
   &__message {
@@ -84,8 +84,8 @@
   }
 
   &__alert {
-    margin-top: -26px;
-    margin-bottom: 11px;
+    height: 10px;
+    margin-bottom: 15px;
     color: $danger-label-color;
     font-size: 15px;
     font-family: $main-font;
@@ -141,7 +141,7 @@
 .alert {
   text-align: center;
   font-size: 15px;
-  margin-top: -18px;
+  margin-top: 15px;
   margin-bottom: -6px;
   font-family: $main-font;
 
