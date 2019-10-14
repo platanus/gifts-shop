@@ -23,7 +23,7 @@
       <div class="session-form__alert">
         <%= resource.errors.full_messages_for(:current_password).first %>
       </div>
-      <%= f.submit "Guardar", class: "session-form__btn" %>
+      <%= f.submit "Guardar", class: "btn session-form__btn" %>
     <% else %>
       <div class="session-form__rectangle">
         <%= f.password_field :password, autocomplete: "off", class:html_error_class('session-form__field', 'password'), placeholder: "Contraseña (mínimo 6 caracteres)" %>
@@ -37,7 +37,7 @@
       <div class="session-form__alert">
         <%= resource.errors.full_messages_for(:password_confirmation).first %>
       </div>
-      <div><%= f.submit "Registrarse", class: "session-form__btn" %></div>
+      <div><%= f.submit "Registrarse", class: "btn session-form__btn" %></div>
     <% end %>
   <% end %>
 </div>
