@@ -1,10 +1,10 @@
 <div class="header">
   <div class="header__links">
     <div class="header__left">
-      <%= link_to "Ir a inicio", home_path, class: "header__link header__link--home" %>
+      <%= link_to "Inicio", home_path, class: "header__link header__link--home" %>
     </div>
     <div class="header__right">
-      <%= link_to "Editar Información", edit_stores_path, class: "header__link header__link--edit" %>
+      <%= link_to current_store.name, edit_stores_path, class: "header__link header__link--edit" %>
       <%= link_to "Cerrar Sesión", sign_out_path, class: "header__link header__link--logout" %>
     </div>
   </div>
