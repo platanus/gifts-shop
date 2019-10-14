@@ -150,21 +150,23 @@
     line-height: 24px;
   }
 
-  &__icon {
-    height: 50%;
-    width: 50%;
-    align-self: center;
-
-    .link .icon {
-      height: 100%;
-      width: 100%;
-    }
-  }
-
   &__toggle {
     margin-top: 15px;
     display: flex;
     justify-content: center;
+  }
+}
+
+.label-link {
+  text-decoration: none;
+  color: rgb(65, 63, 63);
+
+  &:visited {
+    color: rgb(65, 63, 63);
+  }
+
+  &:hover {
+    text-decoration: underline;
   }
 }
 
