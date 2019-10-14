@@ -1,22 +1,22 @@
 <div class="header">
   <div class="header__links">
     <div class="header__left">
-      <%= link_to "Ir a inicio", home_path, class: "header__link header__link--home" %>
+      <%= link_to "Inicio", home_path, class: "header__link header__link--home" %>
     </div>
     <div class="header__right">
-      <%= link_to "Editar Información", edit_stores_path, class: "header__link header__link--edit" %>
+      <%= link_to current_store.name, edit_stores_path, class: "header__link header__link--edit" %>
       <%= link_to "Cerrar Sesión", sign_out_path, class: "header__link header__link--logout" %>
     </div>
   </div>
 </div>
-<div class="catalog-body">
-  <div class="info-container">
-    <div class="catalog-left">
-      <div class="catalog-title">Productos</div>
-      <%= button_to "Agregar producto",  new_stores_catalog_path, class: "new-product-btn", method: :get %>
-    </div>
-    <div class="store-balance">Créditos <%= @balance %></div>
+<div class="info-container">
+  <div class="catalog-left">
+    <div class="catalog-title">Productos</div>
+    <%= button_to "Agregar producto",  new_stores_catalog_path, class: "new-product-btn", method: :get %>
   </div>
+  <div class="store-balance">Créditos <%= @balance %></div>
+</div>
+<div class="catalog-body">
   <div class="catalog-container">
     <table class="catalog">
       <thead class="catalog-header-container">
@@ -27,7 +27,6 @@
           <th class="catalog-header__label row-label row-label--medium">Nº VISITAS</th>
           <th class="catalog-header__label row-label row-label--medium">Nº ME GUSTA</th>
           <th class="catalog-header__label row-label row-label--medium">FOTO</th>
-          <th class="catalog-header__label row-label row-label--medium">EDITAR</th>
         </tr>
       </thead>
       <tbody class="product-container">
@@ -36,12 +35,11 @@
             <td class="product__toggle row-label--small">
               <toggle-display v-bind:value=<%= product.display %>></toggle-display>
             </td>
-            <td class="product__label row-label row-label--big"><%= product.name %></td>
+            <td class="product__label row-label row-label--big"><%= link_to product.name, edit_stores_catalog_path(product), class: "label-link" %></td>
             <td class="product__label row-label row-label--medium">$<%= product.price %></td>
             <td class="product__label row-label row-label--medium"><%= product.product_actions.display.count %></td>
             <td class="product__label row-label row-label--medium"><%= product.product_actions.like.count %></td>
             <td class="product__image row-label row-label--medium"><%= image_tag(url_for(product.image), :size => '56x56' )%></td>
-            <td class="product__icon row-label--small"><%= link_to image_tag("edit.svg", class: "icon"), edit_stores_catalog_path(product), class: "link" %></td>
           </tr>
         <% end %>
       </tbody>

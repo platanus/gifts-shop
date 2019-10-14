@@ -6,7 +6,7 @@
     >
       <div class="home-header__link">
         <a
-          href="/stores/catalog"
+          href="/stores/sign_in"
           class="login-link"
         >
           ¿Tienes una tienda?
