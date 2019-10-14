@@ -81,17 +81,17 @@
           FOTO DEL PRODUCTO
         </div>
         <div
+          class="image-preview"
+          v-if="imageData.length > 0"
+        >
+          <img
+            class="image-preview__preview"
+            :src="imageData"
+          >
+        </div>
+        <div
           :class="getHtmlClass('file-container', 'image')"
         >
-          <div
-            class="image-preview"
-            v-if="imageData.length > 0"
-          >
-            <img
-              class="image-preview__preview"
-              :src="imageData"
-            >
-          </div>
           <div>
             <div>
               <div
