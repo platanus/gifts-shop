@@ -9,14 +9,14 @@
     </div>
   </div>
 </div>
-<div class="catalog-body">
-  <div class="info-container">
-    <div class="catalog-left">
-      <div class="catalog-title">Productos</div>
-      <%= button_to "Agregar producto",  new_stores_catalog_path, class: "new-product-btn", method: :get %>
-    </div>
-    <div class="store-balance">Créditos <%= @balance %></div>
+<div class="info-container">
+  <div class="catalog-left">
+    <div class="catalog-title">Productos</div>
+    <%= button_to "Agregar producto",  new_stores_catalog_path, class: "new-product-btn", method: :get %>
   </div>
+  <div class="store-balance">Créditos <%= @balance %></div>
+</div>
+<div class="catalog-body">
   <div class="catalog-container">
     <table class="catalog">
       <thead class="catalog-header-container">
