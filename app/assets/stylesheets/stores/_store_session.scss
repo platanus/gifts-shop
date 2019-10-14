@@ -55,6 +55,7 @@
 
   &__rectangle {
     margin-bottom: 4px;
+    -webkit-appearance: none;
   }
 
   &__message {
@@ -112,6 +113,7 @@
     margin-top: 30px;
     text-transform: uppercase;
     border: 0;
+    -webkit-appearance: none;
 
     &:hover {
       background-color: darken($color: $primary-color, $amount: 5%);

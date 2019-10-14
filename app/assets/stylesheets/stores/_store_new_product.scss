@@ -65,6 +65,7 @@ $title-font: #353434;
   }
 
   &__box {
+    -webkit-appearance: none;
     margin-top: 10px;
     margin-bottom: 3%;
     text-align: left;
