@@ -7,13 +7,14 @@ $title-font: #353434;
   font-size: 40px;
   letter-spacing: -.4px;
   line-height: 60px;
-  margin-left: 60px;
+  margin-left: 30px;
 }
 
 .new-product-form {
   display: flex;
   flex-direction: column;
   justify-content: initial;
+  margin-left: 30px;
 
   &__info {
     display: flex;
@@ -25,7 +26,6 @@ $title-font: #353434;
   &__image {
     position: relative;
     margin-top: 50px;
-    margin-left: 60px;
   }
 };
 
@@ -33,7 +33,6 @@ $title-font: #353434;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
-  margin-left: 60px;
 
   &__btn {
     width: 136px;
@@ -126,7 +125,6 @@ $title-font: #353434;
 .button-container {
   display: flex;
   flex-direction: row;
-  margin-left: 60px;
   margin-top: 100px;
 }
 
