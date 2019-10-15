@@ -68,14 +68,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "category_values", force: :cascade do |t|
-    t.string "name"
-    t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_category_values_on_category_id"
-  end
-
   create_table "deposits", force: :cascade do |t|
     t.bigint "store_id"
     t.bigint "amount", default: 0, null: false
@@ -245,7 +237,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "category_values", "categories"
   add_foreign_key "deposits", "organizations"
   add_foreign_key "deposits", "stores"
   add_foreign_key "ledgerizer_lines", "ledgerizer_accounts", column: "account_id"
