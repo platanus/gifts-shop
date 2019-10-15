@@ -8,15 +8,21 @@ ActiveAdmin.register Deposit do
     column :store
     column :organization
     column :amount
+    column(:deposit_time) { |d| d.deposit_time.to_datetime }
   end
 
   form do |f|
     f.object.organization ||= Organization.find_by(name: 'Platanus')
+    f.object.deposit_time = Date.current
 
     f.inputs do
       f.input :store
       f.input :organization
       f.input :amount
+      f.input(
+        :deposit_time,
+        as: :date_time_picker
+      )
     end
     f.actions
   end

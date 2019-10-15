@@ -16,3 +16,4 @@ es-CL:
         amount_currency: Divisa
         created_at: Creado en
         updated_at: Actualizado en
+        deposit_time: Fecha depósito
