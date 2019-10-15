@@ -168,15 +168,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
     t.index ["receiver_id"], name: "index_product_actions_on_receiver_id"
   end
 
-  create_table "product_tags", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "category_value_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_value_id"], name: "index_product_tags_on_category_value_id"
-    t.index ["product_id"], name: "index_product_tags_on_product_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name"
     t.float "price"
@@ -261,8 +252,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
   add_foreign_key "ledgerizer_lines", "ledgerizer_entries", column: "entry_id"
   add_foreign_key "product_actions", "products"
   add_foreign_key "product_actions", "receivers"
-  add_foreign_key "product_tags", "category_values"
-  add_foreign_key "product_tags", "products"
   add_foreign_key "products", "stores"
   add_foreign_key "receivers", "givers"
   add_foreign_key "receivers", "relations"
