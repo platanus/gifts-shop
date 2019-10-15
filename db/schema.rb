@@ -191,17 +191,6 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reminders", force: :cascade do |t|
-    t.string "name"
-    t.datetime "date"
-    t.bigint "occation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "receivers_id"
-    t.index ["occation_id"], name: "index_reminders_on_occation_id"
-    t.index ["receivers_id"], name: "index_reminders_on_receivers_id"
-  end
-
   create_table "stores", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
