@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
 
   create_table "deposits", force: :cascade do |t|
     t.bigint "store_id"
-    t.bigint "amount"
+    t.bigint "amount", default: 0, null: false
     t.string "amount_currency", default: "CLP", null: false
     t.bigint "organization_id"
     t.datetime "created_at", null: false
