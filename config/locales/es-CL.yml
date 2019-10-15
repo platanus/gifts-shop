@@ -1,2 +1,18 @@
 es-CL:
   hello: "Hola mundo"
+  activeadmin:
+    titles:
+      stores: Tiendas
+  activerecord:
+    models:
+      deposit:
+        one: Depósito
+        other: Depósitos
+    attributes:
+      deposit:
+        store: Tienda
+        organization: Organización
+        amount: Monto
+        amount_currency: Divisa
+        created_at: Creado en
+        updated_at: Actualizado en
