@@ -3,6 +3,5 @@ FactoryBot.define do
     name { "MyString" }
     email { "MyString" }
     giver
-    relation
   end
 end
