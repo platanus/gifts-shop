@@ -166,20 +166,12 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
     t.string "name"
     t.string "email"
     t.bigint "giver_id"
-    t.bigint "relation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["giver_id"], name: "index_receivers_on_giver_id"
-    t.index ["relation_id"], name: "index_receivers_on_relation_id"
   end
 
   create_table "regions", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "relations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -222,5 +214,4 @@ ActiveRecord::Schema.define(version: 2019_10_11_161035) do
   add_foreign_key "product_actions", "receivers"
   add_foreign_key "products", "stores"
   add_foreign_key "receivers", "givers"
-  add_foreign_key "receivers", "relations"
 end

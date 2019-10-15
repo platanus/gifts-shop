@@ -4,7 +4,6 @@ class CreateReceivers < ActiveRecord::Migration[5.2]
       t.string :name
       t.string :email
       t.references :giver, foreign_key: true
-      t.references :relation, foreign_key: true
 
       t.timestamps
     end
