@@ -5,7 +5,7 @@ class Deposit < ApplicationRecord
   belongs_to :organization
 
   validates :amount, presence: true
-  validates :amount, numericality: { greater_than: 0 }
+  validates :amount, numericality: { greater_than: 0}
 end
 
 # == Schema Information
