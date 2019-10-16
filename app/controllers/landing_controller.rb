@@ -1,6 +1,5 @@
 class LandingController < ApplicationController
   DEFAULT_REGION = ENV.fetch('DEFAULT_REGION', 1).to_i
-  DEFAULT_RELATION = ENV.fetch('DEFAULT_RELATION', 2).to_i
   def show; end
 
   def search
@@ -24,8 +23,7 @@ class LandingController < ApplicationController
     @giver = Giver.create!(region_id: DEFAULT_REGION)
     @receiver = Receiver.create!(
       name: params[:name],
-      giver_id: @giver.id,
-      relation_id: DEFAULT_RELATION
+      giver_id: @giver.id
     )
   end
 end

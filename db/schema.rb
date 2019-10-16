@@ -62,23 +62,9 @@ ActiveRecord::Schema.define(version: 2019_10_15_190844) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "category_values", force: :cascade do |t|
-    t.string "name"
-    t.bigint "category_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_id"], name: "index_category_values_on_category_id"
-  end
-
   create_table "deposits", force: :cascade do |t|
     t.bigint "store_id"
-    t.bigint "amount"
+    t.bigint "amount", default: 0, null: false
     t.string "amount_currency", default: "CLP", null: false
     t.bigint "organization_id"
     t.datetime "created_at", null: false
@@ -147,12 +133,6 @@ ActiveRecord::Schema.define(version: 2019_10_15_190844) do
     t.index ["tenant_type", "tenant_id"], name: "index_ledgerizer_lines_on_tenant_type_and_tenant_id"
   end
 
-  create_table "occations", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -167,15 +147,6 @@ ActiveRecord::Schema.define(version: 2019_10_15_190844) do
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_actions_on_product_id"
     t.index ["receiver_id"], name: "index_product_actions_on_receiver_id"
-  end
-
-  create_table "product_tags", force: :cascade do |t|
-    t.bigint "product_id"
-    t.bigint "category_value_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["category_value_id"], name: "index_product_tags_on_category_value_id"
-    t.index ["product_id"], name: "index_product_tags_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -196,34 +167,15 @@ ActiveRecord::Schema.define(version: 2019_10_15_190844) do
     t.string "name"
     t.string "email"
     t.bigint "giver_id"
-    t.bigint "relation_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["giver_id"], name: "index_receivers_on_giver_id"
-    t.index ["relation_id"], name: "index_receivers_on_relation_id"
   end
 
   create_table "regions", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "relations", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "reminders", force: :cascade do |t|
-    t.string "name"
-    t.datetime "date"
-    t.bigint "occation_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.bigint "receivers_id"
-    t.index ["occation_id"], name: "index_reminders_on_occation_id"
-    t.index ["receivers_id"], name: "index_reminders_on_receivers_id"
   end
 
   create_table "stores", force: :cascade do |t|
@@ -255,16 +207,12 @@ ActiveRecord::Schema.define(version: 2019_10_15_190844) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "category_values", "categories"
   add_foreign_key "deposits", "organizations"
   add_foreign_key "deposits", "stores"
   add_foreign_key "ledgerizer_lines", "ledgerizer_accounts", column: "account_id"
   add_foreign_key "ledgerizer_lines", "ledgerizer_entries", column: "entry_id"
   add_foreign_key "product_actions", "products"
   add_foreign_key "product_actions", "receivers"
-  add_foreign_key "product_tags", "category_values"
-  add_foreign_key "product_tags", "products"
   add_foreign_key "products", "stores"
   add_foreign_key "receivers", "givers"
-  add_foreign_key "receivers", "relations"
 end

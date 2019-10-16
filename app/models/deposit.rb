@@ -21,7 +21,7 @@ end
 #
 #  id              :bigint(8)        not null, primary key
 #  store_id        :bigint(8)
-#  amount          :bigint(8)
+#  amount          :bigint(8)        default(0), not null
 #  amount_currency :string           default("CLP"), not null
 #  organization_id :bigint(8)
 #  created_at      :datetime         not null
