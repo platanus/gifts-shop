@@ -9,6 +9,10 @@ class Store < ApplicationRecord
   belongs_to :region
 
   validates :name, presence: true, length: { minimum: 5, maximum: 20 }
+
+  def final_balance
+    accounts.first.ledger_balance.format
+  end
 end
 
 # == Schema Information
