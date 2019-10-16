@@ -1,7 +1,7 @@
 ActiveAdmin.register Deposit do
   menu parent: I18n.t('activeadmin.titles.stores')
 
-  permit_params :store_id, :amount, :organization_id
+  permit_params :store_id, :amount, :organization_id, :deposit_time
 
   index do
     id_column
