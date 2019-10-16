@@ -4,7 +4,15 @@ class Deposit < ApplicationRecord
   belongs_to :store
   belongs_to :organization
 
-  validates :amount, presence: true
+  validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
+
+  after_save :execute_store_deposit
+
+  private
+
+  def execute_store_deposit
+    DepositAccounter.for(deposit: self)
+  end
 end
 
 # == Schema Information
@@ -18,6 +26,7 @@ end
 #  organization_id :bigint(8)
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  deposit_time    :date             not null
 #
 # Indexes
 #
