@@ -133,7 +133,7 @@
         </a>
         <button
           type="submit"
-          class="product-input__btn product-input__btn--accept"
+          class="btn product-input__btn product-input__btn--accept"
         >
           {{ product ? 'GUARDAR' : 'AGREGAR' }}
         </button>
