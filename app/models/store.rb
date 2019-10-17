@@ -11,7 +11,7 @@ class Store < ApplicationRecord
   validates :name, presence: true, length: { minimum: 5, maximum: 20 }
 
   def final_balance
-    accounts.first.ledger_balance.format
+    accounts.first&.ledger_balance&.format || "$0"
   end
 
   def update_has_enough_balance

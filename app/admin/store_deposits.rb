@@ -1,6 +1,8 @@
 ActiveAdmin.register Deposit do
   menu parent: I18n.t('activeadmin.titles.stores')
 
+  actions :new, :create, :index, :show
+
   permit_params :store_id, :amount, :organization_id, :deposit_time
 
   index do
