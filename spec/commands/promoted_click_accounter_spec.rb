@@ -3,7 +3,7 @@ require 'rails_helper'
 describe PromotedClickAccounter do
   let(:store) { build(:store) }
   let(:organization) { build(:organization) }
-  let(:amount) { ENV.fetch('CPC').to_i }
+  let(:amount) { ProductAction::PROMOTED_CLICK_COST }
   let(:product_action) do
     product = build(:product, store: store)
     build(:product_action, product: product, created_at: Date.current)

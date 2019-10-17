@@ -9,6 +9,8 @@ class ProductAction < ApplicationRecord
   validates :action_type, presence: true
 
   delegate :store, to: :product
+
+  PROMOTED_CLICK_COST = ENV.fetch('CPC').to_i
 end
 
 # == Schema Information

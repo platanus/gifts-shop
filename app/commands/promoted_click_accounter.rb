@@ -2,7 +2,7 @@ class PromotedClickAccounter < PowerTypes::Command.new(:product_action, :organiz
   include Ledgerizer::Execution::Dsl
 
   def perform
-    amount = Money.from_amount(ENV.fetch('CPC').to_i)
+    amount = Money.from_amount(ProductAction::PROMOTED_CLICK_COST)
     store = @product_action.store
     execute_promoted_click_entry(
       tenant: @organization,

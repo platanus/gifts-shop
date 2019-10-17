@@ -15,7 +15,7 @@ class Store < ApplicationRecord
   end
 
   def update_has_enough_balance
-    cpc = ENV.fetch('CPC').to_i
+    cpc = ProductAction::PROMOTED_CLICK_COST
     update(has_enough_balance: accounts.first.ledger_balance.fractional >= cpc)
   end
 end
