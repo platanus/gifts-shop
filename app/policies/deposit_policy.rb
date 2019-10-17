@@ -1,4 +1,4 @@
-class BankPolicy < ApplicationPolicy
+class DepositPolicy < ApplicationPolicy
   def update?
     false
   end
