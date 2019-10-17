@@ -30,6 +30,7 @@ end
 #  region_id              :bigint(8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  has_enough_balance     :boolean          default(FALSE)
 #
 # Indexes
 #
