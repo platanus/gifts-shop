@@ -11,7 +11,6 @@ describe PromotedClickAccounter do
 
   def perform
     described_class.new(
-      store: store,
       organization: organization,
       product_action: product_action
     ).perform
