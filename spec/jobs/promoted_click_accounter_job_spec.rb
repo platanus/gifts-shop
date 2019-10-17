@@ -11,8 +11,7 @@ describe PromotedClickAccounterJob do
     expect(PromotedClickAccounter).to(
       have_received(:for).with(
         product_action: product_action,
-        organization: organization,
-        store: product_action.store
+        organization: organization
       )
     )
   end

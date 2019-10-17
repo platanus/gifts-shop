@@ -6,5 +6,6 @@ FactoryBot.define do
     password { '123456' }
     region
     name { 'SuperStore' }
+    has_enough_balance { false }
   end
 end

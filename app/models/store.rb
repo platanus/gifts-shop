@@ -13,6 +13,11 @@ class Store < ApplicationRecord
   def final_balance
     accounts.first.ledger_balance.format
   end
+
+  def update_has_enough_balance
+    cpc = ProductAction::PROMOTED_CLICK_COST
+    update(has_enough_balance: accounts.first.ledger_balance.fractional >= cpc)
+  end
 end
 
 # == Schema Information
@@ -30,6 +35,7 @@ end
 #  region_id              :bigint(8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  has_enough_balance     :boolean          default(FALSE)
 #
 # Indexes
 #

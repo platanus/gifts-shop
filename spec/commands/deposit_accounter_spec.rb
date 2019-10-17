@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe DepositAccounter do
-  let(:deposit) { build(:deposit, :without_execute_store_deposit, created_at: Date.current) }
+  let(:deposit) { build(:deposit) }
 
   def perform
     described_class.new(deposit: deposit).perform
@@ -43,4 +43,15 @@ describe DepositAccounter do
     )
   end
   # rubocop:enable RSpec/ExampleLength
+
+  context "with store with has_enough_balance false" do
+    let(:store) { build(:store, has_enough_balance: false) }
+    let(:deposit) { build(:deposit, store: store) }
+
+    it "updates store has_enough_balance to true" do
+      perform
+
+      expect(deposit.store.has_enough_balance).to be(true)
+    end
+  end
 end
