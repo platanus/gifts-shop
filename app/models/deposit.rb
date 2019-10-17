@@ -1,18 +1,11 @@
 class Deposit < ApplicationRecord
+  include PowerTypes::Observable
   include LedgerizerDocument
 
   belongs_to :store
   belongs_to :organization
 
   validates :amount, presence: true, numericality: { greater_than_or_equal_to: 0 }
-
-  after_save :execute_store_deposit
-
-  private
-
-  def execute_store_deposit
-    DepositAccounter.for(deposit: self)
-  end
 end
 
 # == Schema Information
