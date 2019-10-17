@@ -12,7 +12,7 @@ ActiveAdmin.register Deposit do
   end
 
   form do |f|
-    f.object.organization ||= Organization.find_by(name: 'Platanus')
+    f.object.organization ||= Organization.platanus
     f.object.deposit_time = Date.current
 
     f.inputs do

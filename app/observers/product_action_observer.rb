@@ -3,7 +3,7 @@ class ProductActionObserver < PowerTypes::Observer
 
   def execute_promoted_click_accounter
     if object&.promoted_click?
-      organization = Organization.find_by(name: 'Platanus')
+      organization = Organization.platanus
       PromotedClickAccounterJob.perform_later(object, organization)
     end
   end
