@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   end
   devise_scope :store do
     get '/sign_out', to: 'devise/sessions#destroy', as: :sign_out
+    get 'stores/ledger', to: 'stores/sessions#ledger'
   end
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
