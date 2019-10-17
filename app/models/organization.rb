@@ -5,6 +5,10 @@ class Organization < ApplicationRecord
   has_many :deposits, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
+
+  def self.platanus
+    find_by(name: 'Platanus')
+  end
 end
 
 # == Schema Information

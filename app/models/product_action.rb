@@ -1,11 +1,14 @@
 class ProductAction < ApplicationRecord
+  include PowerTypes::Observable
   include LedgerizerDocument
 
   belongs_to :product
   belongs_to :receiver
-  enum action_type: { display: 0, like: 1, dislike: 2, click: 3 }
+  enum action_type: { display: 0, like: 1, dislike: 2, click: 3, promoted_click: 4 }
 
   validates :action_type, presence: true
+
+  delegate :store, to: :product
 end
 
 # == Schema Information
