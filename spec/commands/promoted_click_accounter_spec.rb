@@ -6,7 +6,12 @@ describe PromotedClickAccounter do
   let(:amount) { ProductAction::PROMOTED_CLICK_COST }
   let(:product_action) do
     product = build(:product, store: store)
-    build(:product_action, product: product, created_at: Date.current)
+    build(
+      :product_action,
+      action_type: 'promoted_click',
+      product: product,
+      created_at: Date.current
+    )
   end
 
   def perform
@@ -48,5 +53,21 @@ describe PromotedClickAccounter do
       accountable: store,
       amount: Money.from_amount(amount * -1)
     )
+  end
+
+  context "with store with balance enough for one click" do
+    let(:product_action) do
+      build(
+        :product_action,
+        created_at: Date.current,
+        action_type: 'promoted_click'
+      )
+    end
+
+    it "updates store has_enough_balance to false" do
+      perform
+
+      expect(product_action.store.has_enough_balance).to be(false)
+    end
   end
 end
