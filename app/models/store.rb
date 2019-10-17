@@ -13,6 +13,11 @@ class Store < ApplicationRecord
   def final_balance
     accounts.first.ledger_balance.format
   end
+
+  def update_has_enough_balance
+    cpc = ENV.fetch('CPC').to_i
+    update(has_enough_balance: accounts.first.ledger_balance.fractional >= cpc)
+  end
 end
 
 # == Schema Information

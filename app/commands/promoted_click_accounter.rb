@@ -11,5 +11,6 @@ class PromotedClickAccounter < PowerTypes::Command.new(:product_action, :store, 
       credit(account: :clicks_service, accountable: @organization, amount: amount)
       debit(account: :available_store_funds, accountable: @store, amount: amount)
     end
+    @store.update_has_enough_balance
   end
 end
