@@ -21,7 +21,6 @@ class Stores::CatalogController < ApplicationController
   end
 
   def index
-    @balance = current_store.balance
     @products = current_store.products
   end
 
