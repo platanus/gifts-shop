@@ -10,8 +10,7 @@ class Stores::SessionsController < Devise::SessionsController
   end
 
   def ledger
-    account = current_store.accounts.first
-    @ledger_lines = account&.ledger_lines(entry_code: :store_deposit) || []
+    @ledger_lines = current_store.ledger_lines
   end
 
   private

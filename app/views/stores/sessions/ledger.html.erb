@@ -9,15 +9,19 @@
     <table class="catalog">
       <thead class="catalog-header-container">
         <tr class="catalog-header">
-          <th class="catalog-header__label row-label row-label--big">FECHA</th>
+          <th class="catalog-header__label row-label row-label--medium">FECHA</th>
+          <th class="catalog-header__label row-label row-label--big">DESCRIPCIÓN</th>
           <th class="catalog-header__label row-label row-label--medium">MONTO</th>
+          <th class="catalog-header__label row-label row-label--medium">SALDO</th>
         </tr>
       </thead>
       <tbody class="product-container">
         <% @ledger_lines.each do |ledger_line| %>
           <tr class="product">
-            <td class="product__label row-label row-label--big"><%= ledger_line.entry_date.to_time(:local) %></td>
-            <td class="product__label row-label row-label--medium"><%= ledger_line.amount.format %></td>
+            <td class="product__label row-label row-label--medium"><%= ledger_line[:entry_date] %></td>
+            <td class="product__label row-label row-label--big"><%= ledger_line[:description]  %></td>
+            <td class="product__label row-label row-label--medium"><%= ledger_line[:amount].format %></td>
+            <td class="product__label row-label row-label--medium"><%= ledger_line[:balance].format %></td>
           </tr>
         <% end %>
       </tbody>
