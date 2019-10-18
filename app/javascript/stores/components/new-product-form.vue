@@ -137,6 +137,30 @@
         >
           {{ product ? 'GUARDAR' : 'AGREGAR' }}
         </button>
+        <form
+          method="post"
+          :action="`/stores/catalog/${product.id}`"
+          v-if="product"
+          @submit="confirmDelete"
+        >
+          <input
+            type="hidden"
+            name="_method"
+            value="delete"
+          >
+          <input
+            type="hidden"
+            name="authenticity_token"
+            :value="csrfToken"
+            autocomplete="off"
+          >
+          <button
+            type="submit"
+            class="btn product-input__btn product-input__btn--danger"
+          >
+            ELIMINAR
+          </button>
+        </form>
       </div>
     </form>
   </div>
@@ -182,6 +206,12 @@ export default {
         };
         reader.readAsDataURL(input.files[0]);
       }
+    },
+    confirmDelete(e) {
+      const destroy = confirm('Seguro que deseas eliminar este producto?'); // eslint-disable-line no-alert
+      if (!destroy) e.preventDefault();
+
+      return destroy;
     },
     checkForm(e) {
       this.errors = {};
