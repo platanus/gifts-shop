@@ -1,7 +1,7 @@
 class Stores::CatalogController < ApplicationController
   layout 'stores'
   before_action :authenticate_store!
-  before_action :fill_product, only: [:edit, :update]
+  before_action :fill_product, only: [:edit, :update, :destroy]
   protect_from_forgery with: :exception
 
   def create
@@ -25,6 +25,11 @@ class Stores::CatalogController < ApplicationController
   end
 
   def new; end
+
+  def destroy
+    @product.update(deleted: true)
+    redirect_to stores_catalog_index_path
+  end
 
   private
 

@@ -30,6 +30,7 @@ end
 #  updated_at  :datetime         not null
 #  display     :boolean          default(FALSE)
 #  promoted    :boolean          default(FALSE)
+#  deleted     :boolean          default(FALSE)
 #
 # Indexes
 #
