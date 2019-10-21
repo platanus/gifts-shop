@@ -143,7 +143,7 @@
 </template>
 
 <script>
-import getCsrfToken from '../utils/csrf_token.js';
+import getCsrfToken from '../../utils/csrf_token.js';
 
 const MINIMUM_NAME_LENGTH = 5;
 const MINIMUM_LINK_LENGTH = 5;

@@ -35,10 +35,22 @@
         class="home-product__title"
         @click="clickAction"
       >
-        {{ product.name }}
+        {{ product.name | truncate(38, '...') }}
       </div>
-      <div class="home-product__store-name">
-        {{ product.storeName | toUpper }}
+      <div class="store-info-container">
+        <div
+          class="star-container"
+          v-if="product.promoted"
+        >
+          <img
+            src="../assets/pro-store.svg"
+          >
+        </div>
+        <div class="name-container">
+          <div class="home-product__store-name">
+            {{ product.storeName | toUpper }}
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -92,6 +104,13 @@ export default {
     },
     toUpper(value) {
       return value.toUpperCase();
+    },
+    truncate(text, length, suffix) {
+      if (text.length > length) {
+        return text.substring(0, length) + suffix;
+      }
+
+      return text;
     },
   },
   mounted() {
@@ -176,7 +195,7 @@ export default {
 
     &__title {
       padding: 0 0 1em;
-      height: fit-content;
+      height: 3.5em;
       cursor: pointer;
     }
 
@@ -185,8 +204,7 @@ export default {
       letter-spacing: .05em;
       font-size: .7em;
       font-weight: 600;
-      position: absolute;
-      bottom: 0;
+      padding-top: 4px;
     }
 
     &__price {
@@ -208,6 +226,22 @@ export default {
         }
       }
     }
+  }
+
+  .store-info-container {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+  }
+
+  .star-container {
+    height: 24px;
+    width: 24px;
+    opacity: .7;
+  }
+
+  .name-container {
+    height: 24px;
   }
 
   .image-container {
