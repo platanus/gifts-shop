@@ -21,7 +21,7 @@ class Stores::CatalogController < ApplicationController
   end
 
   def index
-    @products = current_store.products
+    @products = current_store.products.where(deleted: false)
   end
 
   def new; end
