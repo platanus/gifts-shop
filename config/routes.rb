@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
       resources :product_actions, only: [:create]
       resources :receivers, only: [:show]
+      resources :catalogs, only: [:update]
     end
   end
   devise_scope :store do
