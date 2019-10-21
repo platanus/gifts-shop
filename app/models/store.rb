@@ -11,12 +11,40 @@ class Store < ApplicationRecord
   validates :name, presence: true, length: { minimum: 5, maximum: 20 }
 
   def final_balance
-    accounts.first&.ledger_balance&.format || "$0"
+    account&.ledger_balance&.format || "$0"
   end
 
   def update_has_enough_balance
     cpc = ProductAction::PROMOTED_CLICK_COST
-    update(has_enough_balance: accounts.first.ledger_balance.fractional >= cpc)
+    update(has_enough_balance: account.ledger_balance.fractional >= cpc)
+  end
+
+  def ledger_lines
+    lines = account&.ledger_lines || []
+    lines.map do |line|
+      {
+        entry_date: line.entry_date,
+        amount: line.amount,
+        description: get_description(line),
+        balance: get_balance_from(line.created_at)
+      }
+    end
+  end
+
+  def get_balance_from(date)
+    sum = account.ledger_lines.where('created_at <= ?', date).sum(:amount_cents)
+    Money.from_amount(sum)
+  end
+
+  def get_description(line)
+    return "Abono" if line.entry_code == "store_deposit"
+
+    product_name = ProductAction.find(line.document_id).product.name
+    "Click en #{product_name}"
+  end
+
+  def account
+    accounts.first
   end
 end
 
