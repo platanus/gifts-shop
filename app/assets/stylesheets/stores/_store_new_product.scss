@@ -60,6 +60,14 @@ $title-font: #353434;
         background-color: darken($color: $label-color, $amount: 10%);
       }
     }
+
+    &--danger {
+      background-color: $danger-color;
+
+      &:hover {
+        background-color: darken($color: $danger-color, $amount: 10%);
+      }
+    }
   }
 
   &__box {
@@ -121,8 +129,10 @@ $title-font: #353434;
 }
 
 .button-container {
-  display: flex;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 20px;
+  width: fit-content;
   margin-top: 100px;
 }
 
