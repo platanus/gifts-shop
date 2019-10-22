@@ -5,8 +5,7 @@ import productsApi from '../api/products';
 import receiverApi from '../api/receiver';
 
 Vue.use(Vuex);
-const INITIAL_NUMBER_OF_PRODUCTS = 15;
-const NUMBER_OF_PRODUCTS = 15;
+
 // eslint-disable-next-line new-cap
 const store = new Vuex.Store({
   state: {
@@ -15,6 +14,8 @@ const store = new Vuex.Store({
     minPrice: 1000,
     maxPrice: 50000,
     receiverName: '',
+    numberOfProducts: 8,
+    promoted: 4,
   },
   mutations: {
     setProducts: (state, payload) => {
@@ -32,6 +33,12 @@ const store = new Vuex.Store({
     setReceiverName: (state, payload) => {
       state.receiverName = payload;
     },
+    setPromoted: (state, payload) => {
+      state.promoted = payload;
+    },
+    setNumberOfProducts: (state, payload) => {
+      state.numberOfProducts = payload;
+    },
   },
   actions: {
     getReceiverName: (context, payload) => {
@@ -42,9 +49,10 @@ const store = new Vuex.Store({
     },
     getProducts: context => {
       const params = [
-        INITIAL_NUMBER_OF_PRODUCTS,
+        context.state.numberOfProducts,
         context.state.minPrice,
         context.state.maxPrice,
+        context.state.promoted,
       ];
       productsApi.products(...params).then((response) => {
         const products = response.products.reduce((acc, product) => {
@@ -66,9 +74,10 @@ const store = new Vuex.Store({
     },
     moreProducts: context => new Promise((resolve, reject) => {
       const params = [
-        NUMBER_OF_PRODUCTS,
+        context.state.numberOfProducts,
         context.state.minPrice,
         context.state.maxPrice,
+        context.state.promoted,
       ];
       productsApi.products(...params).then((response) => {
         const products = response.products.reduce((acc, product) => {
