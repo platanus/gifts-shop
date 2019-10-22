@@ -1,5 +1,5 @@
 class GetProductsRecommendation < PowerTypes::Command.new(
-  :receiver, :number_of_products, min_price: false, max_price: false
+  :receiver, :number_of_products, :promoted, min_price: false, max_price: false
 )
   URL = ENV.fetch('RECOMMENDER_URL')
   def perform
@@ -16,6 +16,7 @@ class GetProductsRecommendation < PowerTypes::Command.new(
     params = []
     params.push("min_price=#{@min_price}") if @min_price
     params.push("max_price=#{@max_price}") if @max_price
+    params.push("min_promoted=#{@promoted}") if @promoted
     URI("#{URL}/recommend/#{@receiver.id}/#{@number_of_products}?#{params.join('&')}")
   end
 

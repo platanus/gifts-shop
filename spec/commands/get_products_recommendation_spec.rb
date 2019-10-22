@@ -4,11 +4,18 @@ describe GetProductsRecommendation do
   let(:recommender_url) { "http://rec.com" }
   let(:receiver) { create(:receiver) }
   let(:number_of_products) { 3 }
-  let(:request_url) { "#{recommender_url}/recommend/#{receiver.id}/#{number_of_products}" }
+  let(:promoted) { 1 }
+  let(:request_url) do
+    "#{recommender_url}/recommend/#{receiver.id}/#{number_of_products}?min_promoted=#{promoted}"
+  end
   let(:products) { [] }
 
   def perform
-    described_class.for(receiver: receiver, number_of_products: number_of_products)
+    described_class.for(
+      receiver: receiver,
+      number_of_products: number_of_products,
+      promoted: promoted
+    )
   end
 
   before do
