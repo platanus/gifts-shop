@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   resource :stores do
     resources :catalog, controller: 'stores/catalog'
   end
+  get 'stores/payments/about'
   get 'landing/show'
   match '/search', to: 'landing#search', via: 'post'
   root to: 'home#show'

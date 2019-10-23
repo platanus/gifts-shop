@@ -82,6 +82,22 @@
     font-weight: 500;
     line-height: 16px;
   }
+
+  &__icon {
+    height: 14px;
+    width: 14px;
+    margin-left: 2px;
+    opacity: .7;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #949494;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .row-label {
@@ -264,9 +280,14 @@
   &__image {
     width: 100%;
     height: 100%;
+    margin-left: -10px;
   }
 }
 
 .stores-app {
   height: 100%;
+}
+
+.links-container {
+  display: flex;
 }
