@@ -86,7 +86,6 @@ export default {
     margin: 3vh auto;
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax($m-size-image, 1fr));
-    grid-column-gap: $m-grid-column-gap;
     grid-row-gap: 40px;
   }
 
@@ -103,7 +102,6 @@ export default {
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
-        grid-column-gap: $p-grid-column-gap;
         width: $p-width-grid;
         padding: 0;
       }
@@ -116,7 +114,6 @@ export default {
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
-        grid-column-gap: $t-grid-column-gap;
         width: $t-width-grid;
       }
     }
@@ -128,7 +125,6 @@ export default {
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
-        grid-column-gap: $d-grid-column-gap;
         width: $d-width-grid;
       }
     }
@@ -140,7 +136,6 @@ export default {
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));
-        grid-column-gap: $r-grid-column-gap;
         width: $r-width-grid;
       }
     }
