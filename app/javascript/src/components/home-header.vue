@@ -15,26 +15,30 @@
       <div class="home-header__options">
         <div class="home-header__link">
           <img
-            class="home-header__home-icon"
+            class="home-header__icon"
             src="../assets/store.svg"
             @click="goToStore"
           >
         </div>
         <price-filter
           v-if="!mobile"
+          :mobile="false"
         />
         <img
-          class="home-header__icon home-header__icon--option"
-          src="../assets/filter.svg"
+          class="home-header__icon"
+          src="../assets/currency.svg"
           @click="showPriceFilter"
           v-if="mobile"
         >
       </div>
       <div
         class="home-header__mobile-price-filter"
-        v-if="visiblePriceFilter"
+        :class="{ 'home-header__mobile-price-filter--zero-height': !visiblePriceFilter }"
+        v-if="mobile"
       >
-        <price-filter/>
+        <price-filter
+          :mobile="true"
+        />
       </div>
     </div>
   </div>
@@ -112,23 +116,26 @@ export default {
     }
 
     &__icon {
-      align-self: flex-end;
       flex: 1;
-      width: .45em;
-      height: .45em;
+      margin-left: .5em;
+      width: 1.5em;
+      height: 1.5em;
 
-      &--option {
-        width: 1.5em;
-        height: 1.5em;
-        border-radius: 50%;
-        margin-left: 1em;
-        box-shadow: 2px 2px 3px $icon-shadow-color;
+      &:hover {
+        cursor: pointer;
       }
     }
 
     &__mobile-price-filter {
       width: 100%;
       padding-top: 1em;
+      height: 3em;
+      transition: all .3s;
+      overflow: hidden;
+
+      &--zero-height {
+        height: 0;
+      }
     }
   }
 

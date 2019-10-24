@@ -27,6 +27,13 @@
     >
       El precio mínimo debe ser menor al precio máximo
     </div>
+    <button
+      class="price-filter__button"
+      v-if="mobile"
+      @click="submitPriceFilter"
+    >
+      Filtrar
+    </button>
   </div>
 </template>
 
@@ -38,6 +45,12 @@ export default {
       maxPrice: 50000,
       error: false,
     };
+  },
+  props: {
+    mobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     submitPriceFilter() {
@@ -58,18 +71,21 @@ export default {
   .price-filter {
     width: fit-content;
     color: $label-color;
-    border: 1px solid $label-color;
-    border-radius: 6px;
     background-color: rgba(67, 225, 198, .02);
     box-sizing: border-box;
     margin: auto;
-    padding: 6px 8px;
     font-size: .8em;
+    display: flex;
 
     &__form {
       display: flex;
+      width: fit-content;
+      margin: auto;
       align-items: center;
       justify-content: center;
+      border: 1px solid $label-color;
+      border-radius: 6px;
+      padding: 6px 8px;
     }
 
     &__error {
@@ -92,25 +108,15 @@ export default {
     }
 
     &__button {
-      height: fit-content;
-      padding: 10px 15px;
-      max-width: 40%;
-      min-width: fit-content;
-      border-radius: 8px;
-      font-size: .7em;
-      line-height: .7em;
-      margin-left: 10px;
-      background-color: $primary-color;
+      margin-left: .5em;
+      font-size: 1em;
+      border: 1px solid $label-color;
+      border-radius: 6px;
+      background-color: $label-color;
       color: $white;
-      font-weight: bold;
-      letter-spacing: .4px;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      border: 0;
 
       &:hover {
-        background-color: darken($color: $primary-color, $amount: 5%);
+        background-color: darken($color: $label-color, $amount: 5%);
       }
     }
   }
