@@ -20,14 +20,14 @@ class Api::V1::ProductsController < Api::V1::BaseController
   end
 
   def receiver
-    receiver_id = cookies[:receiver_id]
+    receiver_id = session[:receiver_id]
     return if receiver_id.blank?
 
     Receiver.find_by(id: receiver_id)
   end
 
   def giver_id
-    giver_id = cookies[:giver_id]
+    giver_id = session[:giver_id]
     return if giver_id.blank?
 
     giver_id.to_i

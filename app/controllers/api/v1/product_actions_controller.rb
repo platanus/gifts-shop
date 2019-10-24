@@ -27,6 +27,6 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
   end
 
   def receiver_id
-    cookies[:receiver_id]
+    session[:receiver_id]
   end
 end

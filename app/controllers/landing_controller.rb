@@ -7,17 +7,17 @@ class LandingController < ApplicationController
 
   def search
     create_giver_and_receiver
-    save_giver_cookies(@giver.id)
-    save_receiver_cookies(@receiver.id)
+    save_giver_session(@giver.id)
+    save_receiver_session(@receiver.id)
     redirect_to home_path
   end
 
-  def save_giver_cookies(giver_id)
-    cookies[:giver_id] = giver_id
+  def save_giver_session(giver_id)
+    session[:giver_id] = giver_id
   end
 
-  def save_receiver_cookies(receiver_id)
-    cookies[:receiver_id] = receiver_id
+  def save_receiver_session(receiver_id)
+    session[:receiver_id] = receiver_id
   end
 
   private
@@ -27,7 +27,7 @@ class LandingController < ApplicationController
   end
 
   def set_giver
-    @giver = Giver.find_by(id: cookies[:giver_id])
+    @giver = Giver.find_by(id: session[:giver_id])
   end
 
   def create_giver_and_receiver
