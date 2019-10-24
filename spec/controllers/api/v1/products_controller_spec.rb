@@ -7,8 +7,8 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
     context 'with proper session' do
       before do
-        request.cookies['receiver_id'] = receiver.id
-        request.cookies['giver_id'] = giver.id
+        session['receiver_id'] = receiver.id
+        session['giver_id'] = giver.id
         get :index, params: { number_of_products: "5", format: :json }
       end
 
@@ -19,7 +19,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
     context 'without giver_id' do
       before do
-        request.cookies['receiver_id'] = receiver.id
+        session['receiver_id'] = receiver.id
         get :index, params: { number_of_products: "5", format: :json }
       end
 
@@ -30,7 +30,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
 
     context 'without receiver_id' do
       before do
-        request.cookies['giver_id'] = giver.id
+        session['giver_id'] = giver.id
         get :index, params: { number_of_products: "5", format: :json }
       end
 
