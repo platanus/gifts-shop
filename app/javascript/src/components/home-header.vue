@@ -95,9 +95,7 @@ export default {
     &__content {
       margin: 0 auto;
       width: $m-width-grid;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
+      position: relative;
     }
 
     &__link {
@@ -108,6 +106,15 @@ export default {
     &__home-icon {
       width: 3em;
       height: 3em;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    &__options {
+      position: absolute;
+      right: 0;
+      top: 0;
     }
 
     &__icon {

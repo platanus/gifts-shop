@@ -62,6 +62,8 @@ export default {
   @import '../../styles/variables';
 
   .header-center {
+    margin: auto;
+
     &__title {
       flex-direction: row;
       align-items: center;
