@@ -86,14 +86,11 @@ export default {
   .home-header {
     position: sticky;
     top: 0;
-    background-color: #fff;
+    background-color: $c-header-background;
+    box-shadow: $box-shadow-header;
     padding: 2vh 0;
     z-index: 100;
     align-items: center;
-
-    &--shadow {
-      box-shadow: 0 0 4px;
-    }
 
     &__content {
       margin: 0 auto;
