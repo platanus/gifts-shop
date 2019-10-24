@@ -37,7 +37,7 @@
           class="home-product__title"
           @click="clickAction"
         >
-          {{ product.name | truncate(38, '...') }}
+          {{ product.name }}
         </div>
         <div class="store-info-container">
           <div
@@ -107,13 +107,6 @@ export default {
     },
     toUpper(value) {
       return value.toUpperCase();
-    },
-    truncate(text, length, suffix) {
-      if (text.length > length) {
-        return text.substring(0, length) + suffix;
-      }
-
-      return text;
     },
   },
   mounted() {
@@ -221,8 +214,15 @@ export default {
     }
 
     &__title {
-      padding: 0 0 1em;
-      height: 3.5em;
+      font-size: .8em;
+      margin: 8px auto;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box; //stylelint-disable value-no-vendor-prefix
+      line-height: 1.2em;
+      max-height: 2.5em;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; //stylelint-disable property-no-vendor-prefix
       cursor: pointer;
     }
 
