@@ -7,7 +7,8 @@ Rails.application.routes.draw do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
       resources :products, only: [:index]
       resources :product_actions, only: [:create]
-      resources :receivers, only: [:show]
+      get 'receivers/get', to: 'receivers#show'
+      delete 'receivers/delete_session', to: 'receivers#delete_session'
       resources :catalogs, only: [:update]
     end
   end
