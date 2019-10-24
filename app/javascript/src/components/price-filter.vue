@@ -62,6 +62,7 @@ export default {
     border-radius: 6px;
     background-color: rgba(67, 225, 198, .02);
     box-sizing: border-box;
+    margin: auto;
     padding: 6px 8px;
     font-size: .8em;
 

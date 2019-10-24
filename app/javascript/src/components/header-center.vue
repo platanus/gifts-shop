@@ -124,7 +124,7 @@ export default {
 
       &--title {
         border-radius: 50%;
-        box-shadow: 2px 2px 3px #bbb;
+        box-shadow: 2px 2px 3px $icon-shadow-color;
 
         &:hover {
           cursor: pointer;

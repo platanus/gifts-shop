@@ -101,12 +101,6 @@ export default {
     .home-container {
       font-size: $p-font-size;
 
-      .home-header__content {
-        width: $p-width-grid;
-        display: flex;
-        justify-content: space-between;
-      }
-
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
         grid-column-gap: $p-grid-column-gap;
@@ -120,10 +114,6 @@ export default {
     .home-container {
       font-size: $t-font-size;
 
-      .home-header__content {
-        width: $t-width-grid;
-      }
-
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
         grid-column-gap: $t-grid-column-gap;
@@ -136,10 +126,6 @@ export default {
     .home-container {
       font-size: $d-font-size;
 
-      .home-header__content {
-        width: $d-width-grid;
-      }
-
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
         grid-column-gap: $d-grid-column-gap;
@@ -151,10 +137,6 @@ export default {
   @media (min-width: $r-break) {
     .home-container {
       font-size: $r-font-size;
-
-      .home-header__content {
-        width: $r-width-grid;
-      }
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));

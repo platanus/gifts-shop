@@ -13,9 +13,6 @@
         :on-top="onTop"
       />
       <div class="home-header__options">
-        <price-filter
-          v-if="visiblePriceFilter"
-        />
         <div class="home-header__link">
           <img
             class="home-header__home-icon"
@@ -23,11 +20,21 @@
             @click="goToStore"
           >
         </div>
+        <price-filter
+          v-if="!mobile"
+        />
         <img
-          class="home-header__icon home-header__icon--option home-header__icon--just-mobile"
+          class="home-header__icon home-header__icon--option"
           src="../assets/filter.svg"
           @click="showPriceFilter"
+          v-if="mobile"
         >
+      </div>
+      <div
+        class="home-header__mobile-price-filter"
+        v-if="visiblePriceFilter"
+      >
+        <price-filter/>
       </div>
     </div>
   </div>
@@ -42,7 +49,8 @@ export default {
   name: 'HomeHeader',
   data() {
     return {
-      visiblePriceFilter: window.innerWidth > MOBILE_WIDTH,
+      mobile: window.innerWidth <= MOBILE_WIDTH,
+      visiblePriceFilter: false,
       minPrice: 1000,
       maxPrice: 50000,
     };
@@ -62,20 +70,12 @@ export default {
     PriceFilter,
   },
   methods: {
-    setOnResize() {
-      window.onresize = () => {
-        this.visiblePriceFilter = window.innerWidth > MOBILE_WIDTH;
-      };
-    },
     showPriceFilter() {
       this.visiblePriceFilter = !this.visiblePriceFilter;
     },
     goToStore() {
       window.location = '/stores/sign_in';
     },
-  },
-  mounted() {
-    this.setOnResize();
   },
 };
 </script>
@@ -91,6 +91,7 @@ export default {
     padding: 2vh 0;
     z-index: 100;
     align-items: center;
+    border-radius: 0 0 16px 16px;
 
     &__content {
       margin: 0 auto;
@@ -98,21 +99,14 @@ export default {
       position: relative;
     }
 
-    &__link {
-      display: flex;
-      justify-content: flex-end;
-    }
-
     &__home-icon {
-      width: 3em;
-      height: 3em;
-      position: absolute;
-      left: 0;
-      top: 0;
+      height: 2em;
+      width: 2em;
     }
 
     &__options {
       position: absolute;
+      display: flex;
       right: 0;
       top: 0;
     }
@@ -123,23 +117,64 @@ export default {
       width: .45em;
       height: .45em;
 
-      &--just-mobile {
+      &--option {
+        width: 1.5em;
+        height: 1.5em;
+        border-radius: 50%;
+        margin-left: 1em;
+        box-shadow: 2px 2px 3px $icon-shadow-color;
+      }
+    }
+
+    &__mobile-price-filter {
+      width: 100%;
+      padding-top: 1em;
+    }
+  }
+
+  @media (min-width: $p-break) {
+    .home-header {
+      border-radius: 0;
+
+      &__content {
+        width: $p-width-grid;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      &__home-icon {
+        width: 3em;
+        height: 3em;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      &__options {
         display: block;
 
-        @media (min-width: $p-break) {
-          display: none;
+        .price-filter {
+          margin-top: .5em;
         }
       }
+    }
+  }
 
-      &--option {
-        width: 1em;
-        height: 1em;
-        filter: drop-shadow(2px 2px 2px $icon-shadow-color);
+  @media (min-width: $t-break) {
+    .home-header__content {
+      width: $t-width-grid;
+    }
+  }
 
-        &:hover {
-          cursor: pointer;
-        }
-      }
+  @media (min-width: $d-break) {
+    .home-header__content {
+      width: $d-width-grid;
+    }
+  }
+
+  @media (min-width: $r-break) {
+    .home-header__content {
+      width: $r-width-grid;
     }
   }
 </style>
