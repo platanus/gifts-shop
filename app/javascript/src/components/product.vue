@@ -4,6 +4,21 @@
   >
     <div class="home-product">
       <div
+        class="home-product__icon-container"
+        @click="setLikeStatus"
+      >
+        <img
+          v-if="liked"
+          class="home-product__icon"
+          src="../assets/gift-color-badge.svg"
+        >
+        <img
+          v-else
+          class="home-product__icon"
+          src="../assets/gift-badge.svg"
+        >
+      </div>
+      <div
         class="home-product__image-wrapper"
         @click="clickAction"
       >
@@ -14,41 +29,29 @@
           >
         </div>
       </div>
-      <div class="home-product__bottom-row-container">
-        <span class="home-product__price"> {{ product.price | Price }} </span>
-        <div
-          @click="setLikeStatus"
-        >
-          <img
-            v-if="liked"
-            class="home-product__icon"
-            src="../assets/gift-color-badge.svg"
-          >
-          <img
-            v-else
-            class="home-product__icon"
-            src="../assets/gift-badge.svg"
-          >
+      <div class="home-product__information">
+        <div class="home-product__bottom-row-container">
+          <span class="home-product__price"> {{ product.price | Price }} </span>
         </div>
-      </div>
-      <div
-        class="home-product__title"
-        @click="clickAction"
-      >
-        {{ product.name | truncate(38, '...') }}
-      </div>
-      <div class="store-info-container">
         <div
-          class="star-container"
-          v-if="product.promoted"
+          class="home-product__title"
+          @click="clickAction"
         >
-          <img
-            src="../assets/pro-store.svg"
-          >
+          {{ product.name | truncate(38, '...') }}
         </div>
-        <div class="name-container">
-          <div class="home-product__store-name">
-            {{ product.storeName | toUpper }}
+        <div class="store-info-container">
+          <div
+            class="star-container"
+            v-if="product.promoted"
+          >
+            <img
+              src="../assets/pro-store.svg"
+            >
+          </div>
+          <div class="name-container">
+            <div class="home-product__store-name">
+              {{ product.storeName | toUpper }}
+            </div>
           </div>
         </div>
       </div>
@@ -131,6 +134,9 @@ export default {
     font-size: 1.2em;
     color: $product-name-font-color;
     width: $m-size-image;
+    border: 1px solid rgba(148, 148, 148, .16);
+    border-radius: 4px;
+    background-color: #fff;
 
     @media (min-width: $p-break) {
       width: $p-size-image;
@@ -148,12 +154,33 @@ export default {
       width: $r-size-image;
     }
 
+    &__information {
+      padding: 8px 12px;
+    }
+
+    &__icon-container {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      border-radius: 50%;
+      padding: 5px 8px;
+      background-color: #fff;
+      box-shadow: 0 4px 6px 0 rgba(43, 43, 43, .13);
+      z-index: 20;
+    }
+
     &__image-wrapper {
       display: flex;
       justify-content: center;
       width: $m-size-image;
       height: $m-size-image;
+      border-radius: 4px 4px 0 0;
       cursor: pointer;
+
+      .image-container {
+        border-radius: 4px 4px 0 0;
+        width: 100%;
+      }
 
       @media (min-width: $p-break) {
         height: $p-size-image;
@@ -179,17 +206,17 @@ export default {
     &__bottom-row-container {
       display: flex;
       align-items: center;
-      padding: .5em 0 0;
     }
 
     &__image {
       max-width: 100%;
       max-height: 100%;
+      border-radius: 4px 4px 0 0;
       object-fit: contain;
     }
 
     &__icon {
-      width: 1.3em;
+      width: 1em;
       cursor: pointer;
     }
 
@@ -230,7 +257,6 @@ export default {
 
   .store-info-container {
     display: flex;
-    position: absolute;
     bottom: 0;
   }
 
