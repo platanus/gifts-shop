@@ -8,10 +8,11 @@
         @click="clearCookies"
       >
     </div>
-    <div class="header-center__powerbar">
+    <div class="header-center__powerbar-container">
       <img
         class="header-center__icon header-center__icon--powerbar"
         src="../assets/bot.svg"
+        v-if="mobile"
       >
       <div class="powerbar__background">
         <div class="powerbar__foreground" />
@@ -65,6 +66,7 @@ export default {
   @import '../../styles/variables';
 
   .header-center {
+    font-size: .9em;
     margin: auto;
 
     &__title {
@@ -77,8 +79,8 @@ export default {
       color: $title-font-color;
 
       &--emphasis-word {
-        font-style: italic;
         color: $emphasis-word-font-color;
+        text-transform: capitalize;
       }
     }
 
@@ -132,6 +134,38 @@ export default {
       &--subtitle {
         width: 1em;
         height: 1em;
+      }
+    }
+
+    &__powerbar-container {
+      display: flex;
+      align-items: center;
+
+      .powerbar {
+        &__background {
+          height: 5px;
+          width: 100%;
+          border-radius: 4px;
+          background-color: rgba(148, 148, 148, .24);
+          position: relative;
+        }
+
+        &__foreground {
+          border-radius: 4px;
+          height: 100%;
+          z-index: 105;
+          position: absolute;
+          background-image: linear-gradient(to right, #ff5a5a 0, #ffc563 140px, #16a69e 280px);
+          background-size: 100%;
+          width: 100%;
+        }
+      }
+
+      @media (min-width: $p-break) {
+        .powerbar__background {
+          margin: 1em auto;
+          width: 90%;
+        }
       }
     }
   }
