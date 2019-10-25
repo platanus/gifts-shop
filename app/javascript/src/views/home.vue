@@ -48,7 +48,7 @@ export default {
   },
   methods: {
     scroll() {
-      window.onscroll = () => {
+      window.addEventListener('scroll', () => {
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
         this.onTop = document.documentElement.scrollTop < SCROLL_OFFSET;
@@ -58,7 +58,7 @@ export default {
             this.$store.loading = false;
           }, () => {});
         }
-      };
+      });
     },
     likeProduct(liked) {
       this.likes += liked ? 1 : -1;
