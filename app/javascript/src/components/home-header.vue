@@ -55,8 +55,6 @@ export default {
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
       visiblePriceFilter: false,
-      minPrice: 1000,
-      maxPrice: 50000,
     };
   },
   props: {
