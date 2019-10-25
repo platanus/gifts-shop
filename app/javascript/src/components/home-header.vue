@@ -48,6 +48,7 @@ import HeaderCenter from './header-center';
 import PriceFilter from './price-filter';
 
 const MOBILE_WIDTH = 650;
+const SCROLL_OFFSET = 60;
 
 export default {
   name: 'HomeHeader',
@@ -55,6 +56,8 @@ export default {
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
       visiblePriceFilter: false,
+      lastScrollTop: 0,
+      scrollingDown: false,
     };
   },
   props: {
@@ -74,10 +77,24 @@ export default {
   methods: {
     showPriceFilter() {
       this.visiblePriceFilter = !this.visiblePriceFilter;
+      this.lastScrollTop = document.documentElement.scrollTop;
     },
     goToStore() {
       window.location = '/stores/sign_in';
     },
+    onWindowScroll() {
+      const curr = document.documentElement.scrollTop;
+      if (curr - this.lastScrollTop > SCROLL_OFFSET) {
+        this.visiblePriceFilter = false;
+        this.lastScrollTop = curr;
+      } else if (this.lastScrollTop - curr > SCROLL_OFFSET) {
+        if (this.visiblePriceFilter) this.visiblePriceFilter = true;
+        this.lastScrollTop = curr;
+      }
+    },
+  },
+  mounted() {
+    window.addEventListener('scroll', () => this.onWindowScroll());
   },
 };
 </script>
@@ -126,13 +143,14 @@ export default {
 
     &__mobile-price-filter {
       width: 100%;
-      padding-top: 1em;
+      margin-top: 1em;
       height: 3em;
       transition: all .3s;
       overflow: hidden;
 
       &--zero-height {
         height: 0;
+        margin: 0;
       }
     }
   }
