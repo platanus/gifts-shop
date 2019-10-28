@@ -9,10 +9,4 @@ class Api::V1::ReceiversController < Api::V1::BaseController
       format.json { head :ok }
     end
   end
-
-  private
-
-  def receiver
-    @receiver ||= Receiver.find_by(id: session[:receiver_id])
-  end
 end

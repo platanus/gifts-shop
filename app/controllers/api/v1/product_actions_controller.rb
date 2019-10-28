@@ -9,7 +9,7 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
 
   def save_action(action_type)
     ProductAction.create!(
-      receiver_id: receiver_id,
+      receiver_id: receiver.id,
       product_id: permitted_params[:product_id],
       action_type: action_type
     )
@@ -24,9 +24,5 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
     if product&.promoted && product&.store&.has_enough_balance?
       save_action('promoted_click')
     end
-  end
-
-  def receiver_id
-    session[:receiver_id]
   end
 end
