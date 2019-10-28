@@ -20,7 +20,7 @@
         >
         <price-filter
           v-if="visiblePriceFilter && !mobile"
-          :mobile="false"
+          :mobile="mobile"
         />
         <img
           class="home-header__icon"
@@ -34,7 +34,7 @@
         v-if="mobile"
       >
         <price-filter
-          :mobile="true"
+          :mobile="mobile"
         />
       </div>
     </div>
@@ -89,9 +89,17 @@ export default {
         this.lastScrollTop = curr;
       }
     },
+    onResize() {
+      this.mobile = window.innerWidth <= MOBILE_WIDTH;
+    },
   },
   mounted() {
-    window.addEventListener('scroll', () => this.onWindowScroll());
+    window.addEventListener('scroll', this.onWindowScroll);
+    window.addEventListener('resize', this.onResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('scroll', this.onWindowScroll);
+    window.removeEventListener('resize', this.onResize);
   },
 };
 </script>
