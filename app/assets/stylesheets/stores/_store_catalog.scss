@@ -58,6 +58,10 @@
   letter-spacing: -.4px;
   line-height: 60px;
   margin-right: 20px;
+
+  &--small {
+    width: 150px;
+  }
 }
 
 .catalog-header-container {

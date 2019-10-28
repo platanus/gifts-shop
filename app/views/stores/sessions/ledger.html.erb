@@ -1,7 +1,8 @@
 <%= render "stores/shared/store_header" %>
 <div class="info-container">
   <div class="catalog-left">
-    <div class="catalog-title">Cartola</div>
+    <div class="catalog-title catalog-title--small">Cartola</div>
+    <%= button_to "Abonar", stores_payments_about_path, class: "btn new-product-btn", method: :get%>
   </div>
 </div>
 <div class="catalog-body">
