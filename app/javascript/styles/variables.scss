@@ -30,7 +30,7 @@ $t-break: 1000px; // tablet
 $d-break: 1500px; // desktop
 $r-break: 2000px; // retina
 
-$m-width-grid: calc(100vw - 50px);
+$m-width-grid: calc(100vw - 30px);
 $p-width-grid: 600px;
 $t-width-grid: 900px;
 $d-width-grid: 1400px;
@@ -42,7 +42,7 @@ $t-grid-column-gap: 70px;
 $d-grid-column-gap: 80px;
 $r-grid-column-gap: 100px;
 
-$m-size-image: $m-width-grid;
+$m-size-image: calc(100vw - 50px);
 $p-size-image: 250px;
 $t-size-image: 250px;
 $d-size-image: 250px;
