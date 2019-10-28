@@ -1,8 +1,8 @@
 <template>
   <div
-    class="toggle-display"
+    class="toggle-button"
     :class="stateClass"
-    @click.self="onClick"
+    @click.self="toggleAction"
   >
     <div
       class="draggable"
@@ -13,6 +13,7 @@
 </template>
 
 <script>
+import catalogApi from '../api/catalog';
 
 const fullSize = 100;
 const halfSize = 50;
@@ -20,7 +21,15 @@ const emptySize = 30;
 
 export default {
   props: {
-    value: { type: Boolean, required: true },
+    value: {
+      type: Boolean, required: true,
+    },
+    productId: {
+      type: String, required: true,
+    },
+    attribute: {
+      type: String, required: true,
+    },
   },
   data() {
     return {
@@ -31,7 +40,7 @@ export default {
     };
   },
   mounted() {
-    this.toggleDisplay(this.value);
+    this.toggleSwitch(this.value);
   },
   computed: {
     style() {
@@ -56,11 +65,12 @@ export default {
     },
   },
   methods: {
-    onClick() {
-      this.toggleDisplay(!this.state);
+    toggleAction() {
+      this.toggleSwitch(!this.state);
+      catalogApi.setValue(this.productId, this.attribute);
       this.emit();
     },
-    toggleDisplay(state) {
+    toggleSwitch(state) {
       this.state = state;
       this.position = state ?
         fullSize :
@@ -90,7 +100,7 @@ export default {
       this.resolvePosition();
       clearInterval(this.$options.interval);
       if (this.pressed < emptySize) {
-        this.toggleDisplay(!this.state);
+        this.toggleSwitch(!this.state);
       }
       this.pressed = 0;
       this.emit();

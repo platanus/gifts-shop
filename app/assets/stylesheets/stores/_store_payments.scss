@@ -1,0 +1,59 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.action-container {
+  text-align: center;
+}
+
+.call-to-action {
+  &__subtitle {
+    margin-top: -10px;
+    padding-right: 5%;
+    padding-left: 5%;
+  }
+}
+
+.payment-description-container {
+  margin-right: 10%;
+  margin-left: 10%;
+  padding-bottom: 5%;
+}
+
+.instruction-number {
+  font-weight: bold;
+}
+
+.bank-details {
+  text-align: center;
+}
+
+.question-container {
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.description {
+  &__title {
+    color: $primary-color;
+    font-size: 30px;
+    margin-bottom: 20px;
+  }
+}
+
+.star-icon {
+  vertical-align: middle;
+}
+
+.ready-msg {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+  padding-top: 20px;
+}
+
+.highlight-msg {
+  font-weight: bolder;
+  color: $primary-color;
+}

@@ -58,6 +58,10 @@
   letter-spacing: -.4px;
   line-height: 60px;
   margin-right: 20px;
+
+  &--small {
+    width: 150px;
+  }
 }
 
 .catalog-header-container {
@@ -81,6 +85,22 @@
     font-size: 14px;
     font-weight: 500;
     line-height: 16px;
+  }
+
+  &__icon {
+    height: 14px;
+    width: 14px;
+    margin-left: 2px;
+    opacity: .7;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: #949494;
+
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
@@ -147,7 +167,7 @@
   }
 
   &__toggle {
-    margin-top: 15px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
   }
@@ -183,7 +203,7 @@
   }
 }
 
-.toggle-display {
+.toggle-button {
   width: 30px;
   height: $button-size;
   background: #949494;
@@ -264,9 +284,14 @@
   &__image {
     width: 100%;
     height: 100%;
+    margin-left: -10px;
   }
 }
 
 .stores-app {
   height: 100%;
+}
+
+.links-container {
+  display: flex;
 }

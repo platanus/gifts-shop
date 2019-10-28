@@ -1,8 +1,7 @@
 import Vue from 'vue';
 
 import NewProductForm from '../stores/components/new-product-form.vue';
-import ToggleDisplay from '../stores/components/toggle-display.vue';
-import TogglePromoted from '../stores/components/toggle-promoted.vue';
+import ToggleButton from '../stores/components/toggle-button.vue';
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('stores-app')) {
@@ -10,8 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
       el: '#stores-app',
       components: {
         NewProductForm,
-        ToggleDisplay,
-        TogglePromoted,
+        ToggleButton,
       },
     });
   }
