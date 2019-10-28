@@ -1,20 +1,13 @@
 class HomeController < ApplicationController
-  before_action :set_receiver_id, :set_giver_id, only: :show
-  before_action :redirect_to_landing_if_no_cookies, only: :show
+  before_action :check_redirect_to_landing, only: :show
 
   def show; end
 
   private
 
-  def redirect_to_landing_if_no_cookies
-    redirect_to landing_show_path if !@giver_id
-  end
-
-  def set_receiver_id
-    @receiver_id = cookies[:receiver_id]
-  end
-
-  def set_giver_id
-    @giver_id = cookies[:giver_id]
+  def check_redirect_to_landing
+    if !giver || !receiver || receiver.giver_id != giver.id
+      redirect_to landing_show_path
+    end
   end
 end

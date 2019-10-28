@@ -114,14 +114,11 @@ export default {
       this.visiblePriceFilter = !this.visiblePriceFilter;
     },
     clearCookies() {
-      this.$cookies.keys().forEach(
-        cookie => this.$cookies.remove(cookie)
-      );
-      window.location.reload();
+      this.$store.dispatch('deleteSessionReceiver');
     },
   },
   created() {
-    this.$store.dispatch('getReceiverName', this.$cookies.get('receiver_id'));
+    this.$store.dispatch('getReceiverName');
   },
   mounted() {
     this.$store.dispatch('getProducts');

@@ -6,17 +6,17 @@ class LandingController < ApplicationController
 
   def search
     create_giver_and_receiver
-    save_giver_cookies(@giver.id)
-    save_receiver_cookies(@receiver.id)
+    save_giver_session
+    save_receiver_session
     redirect_to home_path
   end
 
-  def save_giver_cookies(giver_id)
-    cookies[:giver_id] = giver_id
+  def save_giver_session
+    session[:giver_id] = giver.id
   end
 
-  def save_receiver_cookies(receiver_id)
-    cookies[:receiver_id] = receiver_id
+  def save_receiver_session
+    session[:receiver_id] = receiver.id
   end
 
   private
@@ -26,10 +26,10 @@ class LandingController < ApplicationController
   end
 
   def create_giver_and_receiver
-    @giver = Giver.create!(region_id: DEFAULT_REGION)
+    @giver = Giver.create!(region_id: DEFAULT_REGION) if giver.blank?
     @receiver = Receiver.create!(
       name: params[:name],
-      giver_id: @giver.id
+      giver_id: giver.id
     )
   end
 end

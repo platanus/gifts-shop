@@ -41,8 +41,8 @@ const store = new Vuex.Store({
     },
   },
   actions: {
-    getReceiverName: (context, payload) => {
-      receiverApi.getReceiver(payload).then((response) => {
+    getReceiverName: (context) => {
+      receiverApi.getReceiver().then((response) => {
         const receiverName = response.name;
         context.commit('setReceiverName', receiverName);
       });
@@ -71,6 +71,11 @@ const store = new Vuex.Store({
     },
     markClicked: (context, payload) => {
       productsApi.markClicked(payload);
+    },
+    deleteSessionReceiver: () => {
+      receiverApi.deleteSession()
+        .then(() => window.location.reload())
+        .catch(() => {});
     },
     moreProducts: context => new Promise((resolve, reject) => {
       const params = [

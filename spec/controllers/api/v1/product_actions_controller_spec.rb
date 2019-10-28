@@ -12,7 +12,7 @@ RSpec.describe Api::V1::ProductActionsController, type: :controller do
     end
 
     before do
-      request.cookies['receiver_id'] = receiver.id
+      session['receiver_id'] = receiver.id
     end
 
     it 'returns http success' do
