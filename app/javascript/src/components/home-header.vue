@@ -6,29 +6,26 @@
     <div class="home-header__content">
       <img
         class="home-header__home-icon"
-        src="../assets/amigosecreto.png"
+        src="../assets/buenas-ideas.svg"
       >
       <header-center
         :likes="likes"
         :on-top="onTop"
       />
       <div class="home-header__options">
-        <div class="home-header__link">
-          <img
-            class="home-header__icon"
-            src="../assets/store.svg"
-            @click="goToStore"
-          >
-        </div>
+        <img
+          class="home-header__icon home-header__icon--first"
+          src="../assets/store.svg"
+          @click="goToStore"
+        >
         <price-filter
-          v-if="!mobile"
+          v-if="visiblePriceFilter && !mobile"
           :mobile="false"
         />
         <img
           class="home-header__icon"
           src="../assets/currency.svg"
           @click="showPriceFilter"
-          v-if="mobile"
         >
       </div>
       <div
@@ -119,22 +116,26 @@ export default {
     }
 
     &__home-icon {
-      height: 2em;
-      width: 2em;
+      height: 3em;
+      margin-left: -.5em;
     }
 
     &__options {
       position: absolute;
       display: flex;
       right: 0;
-      top: 0;
+      top: .5em;
     }
 
     &__icon {
       flex: 1;
       margin-left: .5em;
-      width: 1.5em;
-      height: 1.5em;
+      width: 1.3em;
+      height: 1.3em;
+
+      &--first {
+        margin-right: 1em;
+      }
 
       &:hover {
         cursor: pointer;
@@ -166,18 +167,24 @@ export default {
       }
 
       &__home-icon {
-        width: 3em;
-        height: 3em;
+        height: 4em;
         position: absolute;
         left: 0;
         top: 0;
       }
 
+      &__icon {
+        &--first {
+          margin-right: 3em;
+        }
+      }
+
       &__options {
-        display: block;
+        height: 100%;
+        align-items: center;
 
         .price-filter {
-          margin-top: .5em;
+          margin-right: 1em;
         }
       }
     }
