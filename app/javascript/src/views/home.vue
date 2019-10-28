@@ -1,45 +1,9 @@
 <template>
   <div class="home-container">
-    <div
-      class="home-header"
-      :class="{ 'home-header--shadow': !onTop }"
-    >
-      <div class="home-header__link">
-        <a
-          href="/stores/sign_in"
-          class="login-link"
-        >
-          ¿Tienes una tienda?
-        </a>
-      </div>
-      <div class="home-header__content">
-        <homeTitle
-          :likes="likes"
-          :on-top="onTop"
-        />
-        <div class="home-header__options">
-          <price-filter
-            v-if="visiblePriceFilter"
-          />
-          <div class="home-header__button-options">
-            <img
-              class="home-header__icon home-header__icon--option"
-              src="../assets/close-badge.svg"
-              @click="clearCookies"
-            >
-            <img
-              class="home-header__icon home-header__icon--option home-header__icon--just-mobile"
-              src="../assets/filter.svg"
-              @click="showPriceFilter"
-            >
-            <img
-              class="home-header__icon home-header__icon--option"
-              src="../assets/gift-badge.svg"
-            >
-          </div>
-        </div>
-      </div>
-    </div>
+    <home-header
+      :likes="likes"
+      :on-top="onTop"
+    />
     <div class="home-products-container">
       <product
         v-for="(product, index) in products"
@@ -60,28 +24,22 @@
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
-import HomeTitle from '../components/home-title';
-import PriceFilter from '../components/price-filter';
+import HomeHeader from '../components/home-header';
 
 const SCROLL_OFFSET = 30;
-const MOBILE_WIDTH = 650;
 
 export default {
   name: 'HomeView',
   data() {
     return {
-      minPrice: 1000,
-      maxPrice: 50000,
       likes: 0,
       onTop: true,
-      visiblePriceFilter: window.innerWidth > MOBILE_WIDTH,
     };
   },
   components: {
     product,
     ClipLoader,
-    HomeTitle,
-    PriceFilter,
+    HomeHeader,
   },
   computed: {
     ...mapState([
@@ -90,7 +48,7 @@ export default {
   },
   methods: {
     scroll() {
-      window.onscroll = () => {
+      window.addEventListener('scroll', () => {
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
         this.onTop = document.documentElement.scrollTop < SCROLL_OFFSET;
@@ -100,30 +58,15 @@ export default {
             this.$store.loading = false;
           }, () => {});
         }
-      };
-    },
-    setOnResize() {
-      window.onresize = () => {
-        this.visiblePriceFilter = window.innerWidth > MOBILE_WIDTH;
-      };
+      });
     },
     likeProduct(liked) {
       this.likes += liked ? 1 : -1;
     },
-    showPriceFilter() {
-      this.visiblePriceFilter = !this.visiblePriceFilter;
-    },
-    clearCookies() {
-      this.$store.dispatch('deleteSessionReceiver');
-    },
-  },
-  created() {
-    this.$store.dispatch('getReceiverName');
   },
   mounted() {
     this.$store.dispatch('getProducts');
     this.scroll();
-    this.setOnResize();
   },
 };
 </script>
@@ -135,103 +78,6 @@ export default {
     display: block;
     font-size: $m-font-size;
     width: 100%;
-  }
-
-  .login-link {
-    color: $primary-color;
-    text-decoration: none;
-    margin-right: 50px;
-
-    &:visited {
-      color: $primary-color;
-    }
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .home-header {
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    transition: background-color 400ms linear;
-    padding: 2vh 0;
-    z-index: 100;
-    align-items: center;
-
-    &--shadow {
-      box-shadow: 0 0 4px;
-      background-color: #dbe8ff;
-    }
-
-    &__content {
-      margin: 0 auto;
-      width: $m-width-grid;
-      align-items: baseline;
-    }
-
-    &__title {
-      padding: .15em 1em 0 .15em;
-      display: flex;
-      color: $title-font-color;
-    }
-
-    &__user-name {
-      border-bottom: 2px solid currentColor;
-      color: $user-name-font-color;
-    }
-
-    &__options {
-      display: flex;
-      align-items: center;
-    }
-
-    &__link {
-      display: flex;
-      justify-content: flex-end;
-    }
-
-    &__icon {
-      align-self: flex-end;
-      flex: 1;
-      width: .45em;
-      height: .45em;
-
-      &--just-mobile {
-        display: block;
-
-        @media (min-width: $p-break) {
-          display: none;
-        }
-      }
-
-      &--option {
-        width: 1em;
-        height: 1em;
-        filter: drop-shadow(2px 2px 2px $icon-shadow-color);
-
-        &:hover {
-          cursor: pointer;
-        }
-      }
-    }
-
-    &__button-options {
-      position: absolute;
-      top: 0;
-      right: .5em;
-      flex-direction: column;
-      display: flex;
-
-      .home-header__icon {
-        width: 1.8em;
-        height: 1.8em;
-        margin-top: .5em;
-        background-color: #fff;
-        border-radius: 50%;
-      }
-    }
   }
 
   .home-products-container {
@@ -255,12 +101,6 @@ export default {
     .home-container {
       font-size: $p-font-size;
 
-      .home-header__content {
-        width: $p-width-grid;
-        display: flex;
-        justify-content: space-between;
-      }
-
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
         grid-column-gap: $p-grid-column-gap;
@@ -274,10 +114,6 @@ export default {
     .home-container {
       font-size: $t-font-size;
 
-      .home-header__content {
-        width: $t-width-grid;
-      }
-
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
         grid-column-gap: $t-grid-column-gap;
@@ -290,10 +126,6 @@ export default {
     .home-container {
       font-size: $d-font-size;
 
-      .home-header__content {
-        width: $d-width-grid;
-      }
-
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
         grid-column-gap: $d-grid-column-gap;
@@ -305,10 +137,6 @@ export default {
   @media (min-width: $r-break) {
     .home-container {
       font-size: $r-font-size;
-
-      .home-header__content {
-        width: $r-width-grid;
-      }
 
       .home-products-container {
         grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));

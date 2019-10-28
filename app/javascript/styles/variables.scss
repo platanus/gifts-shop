@@ -1,6 +1,6 @@
 $user-name-font-color: #16a69e;
 $title-font-color:	#363535;
-$subtitle-font-color:	#727272;
+$subtitle-font-color:	#000;
 $emphasis-word-font-color: #4eb3ad;
 $icon-shadow-color: #979797;
 $product-image-background-color: #979797;
@@ -11,12 +11,15 @@ $promoted-product-color: rgb(235, 214, 30);
 $product-color: #dc143c;
 $receiver-name-color: #dc143c;
 $white: #fff;
-$label-color: #949494;
+$label-color: #16a69e;
 $danger-color: #cd5c5c;
 
 $danger-border-color: #f7a5a2f8;
 $danger-background-color: #fbe8e8;
 $danger-label-color: #771a17fd;
+
+$c-header-background: #fdfcff;
+$box-shadow-header: 0 3px 11px 0 #f5f1fd;
 
 $button-size: 10px;
 $main-font: 'Work Sans';
@@ -27,7 +30,7 @@ $t-break: 1000px; // tablet
 $d-break: 1500px; // desktop
 $r-break: 2000px; // retina
 
-$m-width-grid: calc(100vw - 50px);
+$m-width-grid: calc(100vw - 30px);
 $p-width-grid: 600px;
 $t-width-grid: 900px;
 $d-width-grid: 1400px;
@@ -39,7 +42,7 @@ $t-grid-column-gap: 70px;
 $d-grid-column-gap: 80px;
 $r-grid-column-gap: 100px;
 
-$m-size-image: $m-width-grid;
+$m-size-image: calc(100vw - 50px);
 $p-size-image: 250px;
 $t-size-image: 250px;
 $d-size-image: 250px;

@@ -1,27 +1,25 @@
 <template>
   <div class="price-filter">
     <div class="price-filter__form">
-      $<input
+      <img
+        class="price-filter__icon"
+        src="../assets/currency.svg"
+      >
+      <input
         class="price-filter__input"
         :class="{ 'price-filter__input--error': error }"
         v-model="minPrice"
         placeholder="precio mínimo"
+        @keyup.enter="submitPriceFilter"
       >
-      <span class="price-filter__separator">
-        -
-      </span>
-      $<input
+      a
+      <input
         class="price-filter__input"
         :class="{ 'price-filter__input--error': error }"
         v-model="maxPrice"
         placeholder="precio máximo"
+        @keyup.enter="submitPriceFilter"
       >
-      <button
-        class="price-filter__button"
-        @click="submitPriceFilter"
-      >
-        Filtrar
-      </button>
     </div>
     <div
       class="price-filter__error"
@@ -29,6 +27,13 @@
     >
       El precio mínimo debe ser menor al precio máximo
     </div>
+    <button
+      class="price-filter__button"
+      v-if="mobile"
+      @click="submitPriceFilter"
+    >
+      Filtrar
+    </button>
   </div>
 </template>
 
@@ -40,6 +45,12 @@ export default {
       maxPrice: 50000,
       error: false,
     };
+  },
+  props: {
+    mobile: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     submitPriceFilter() {
@@ -58,14 +69,23 @@ export default {
   @import '../../styles/variables';
 
   .price-filter {
-    width: $m-size-filter;
+    width: fit-content;
     color: $label-color;
-    margin-top: 1em;
+    background-color: rgba(67, 225, 198, .02);
+    box-sizing: border-box;
+    margin: auto;
+    font-size: .8em;
+    display: flex;
 
     &__form {
       display: flex;
+      width: fit-content;
+      margin: auto;
       align-items: center;
       justify-content: center;
+      border: 1px solid $label-color;
+      border-radius: 6px;
+      padding: 6px 8px;
     }
 
     &__error {
@@ -75,16 +95,12 @@ export default {
     }
 
     &__input {
-      text-align: left;
+      text-align: center;
       background: transparent;
-      font-size: .9em;
-      border: 0;
-      border-bottom: 2px solid $primary-color;
-      height: calc(.9em + 2px);
-      margin-bottom: -2px;
-      width: 30%;
-      border-color: $primary-color;
       color: $label-color;
+      border: 0;
+      font-size: 1em;
+      width: 4em;
 
       &--error {
         border-color: $danger-border-color;
@@ -92,49 +108,16 @@ export default {
     }
 
     &__button {
-      height: fit-content;
-      padding: 10px 15px;
-      max-width: 40%;
-      min-width: fit-content;
-      border-radius: 8px;
-      font-size: .7em;
-      line-height: .7em;
-      margin-left: 10px;
-      background-color: $primary-color;
+      margin-left: .5em;
+      font-size: 1em;
+      border: 1px solid $label-color;
+      border-radius: 6px;
+      background-color: $label-color;
       color: $white;
-      font-weight: bold;
-      letter-spacing: .4px;
-      text-align: center;
-      text-decoration: none;
-      text-transform: uppercase;
-      border: 0;
 
       &:hover {
-        background-color: darken($color: $primary-color, $amount: 5%);
+        background-color: darken($color: $label-color, $amount: 5%);
       }
-    }
-
-    &__separator {
-      margin: 0 10px;
-    }
-  }
-
-  @media (min-width: $p-break) {
-    .price-filter {
-      width: $p-size-filter;
-      margin-top: 0;
-    }
-  }
-
-  @media (min-width: $d-break) {
-    .price-filter {
-      width: $d-size-filter;
-    }
-  }
-
-  @media (min-width: $r-break) {
-    .price-filter {
-      width: $r-size-filter;
     }
   }
 </style>
