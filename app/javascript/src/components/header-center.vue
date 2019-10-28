@@ -20,7 +20,7 @@
     </div>
     <div
       class="header-center__subtitle"
-      :class="{ 'header-center__subtitle--zero-height': !onTop}"
+      v-if="!mobile"
     >
       Aumenta el poder con
       <img
@@ -89,22 +89,7 @@ export default {
       opacity: .56;
       font-size: .9em;
       text-align: center;
-      transition: all .5s;
       height: 1em;
-      overflow: hidden;
-
-      &--zero-height {
-        height: 0;
-      }
-
-      @media (min-width: $p-break) {
-        text-align: right;
-        height: fit-content;
-
-        &--zero-height {
-          height: fit-content;
-        }
-      }
     }
 
     &__user-name {
