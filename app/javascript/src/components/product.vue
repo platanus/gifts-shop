@@ -10,12 +10,12 @@
         <img
           v-if="liked"
           class="home-product__icon"
-          src="../assets/gift-color-badge.svg"
+          src="../assets/like-color-badge.svg"
         >
         <img
           v-else
           class="home-product__icon"
-          src="../assets/gift-badge.svg"
+          src="../assets/like-badge.svg"
         >
       </div>
       <div
@@ -155,11 +155,17 @@ export default {
       position: absolute;
       top: 8px;
       right: 8px;
+      height: 1.5em;
+      width: 1.5em;
       border-radius: 50%;
-      padding: 5px 8px;
+      padding: .1em;
       background-color: #fff;
       box-shadow: 0 4px 6px 0 rgba(43, 43, 43, .13);
       z-index: 20;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &__image-wrapper {
@@ -209,7 +215,8 @@ export default {
     }
 
     &__icon {
-      width: 1em;
+      height: 1.2em;
+      margin: .1em .3em;
       cursor: pointer;
     }
 
