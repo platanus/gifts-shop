@@ -10,7 +10,7 @@
       >
       <header-center
         :likes="likes"
-        :on-top="onTop"
+        :mobile="mobile"
       />
       <div class="home-header__options">
         <img
