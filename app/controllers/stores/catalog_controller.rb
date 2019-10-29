@@ -33,6 +33,13 @@ class Stores::CatalogController < ApplicationController
 
   private
 
+  def valid_url(url)
+    unless url[%r'Ahttp://'] || url[%r'Ahttps://']
+      url = "http://#{url}"
+    end
+    url
+  end
+
   def add_product
     @product = Product.create!(product_params)
     @product.image.attach(params[:image])
@@ -47,6 +54,6 @@ class Stores::CatalogController < ApplicationController
   end
 
   def product_params
-    params.permit(:name, :link, :price).merge(store_id: current_store.id)
+    params.permit(:name, :price).merge(store_id: current_store.id, link: valid_url(params[:link]))
   end
 end
