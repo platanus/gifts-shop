@@ -74,7 +74,8 @@ const store = new Vuex.Store({
       productsApi.markLiked(payload);
       context.commit('setLikes', context.state.likes + 1);
     },
-    unmarkLiked: context => {
+    unmarkLiked: (context, payload) => {
+      productsApi.unmarkLiked(payload);
       context.commit('setLikes', context.state.likes - 1);
     },
     markClicked: (context, payload) => {

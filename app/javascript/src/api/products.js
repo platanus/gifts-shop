@@ -47,4 +47,13 @@ export default {
       },
     });
   },
+  unmarkLiked(payload) {
+    const path = '/api/v1/product_actions/destroy_like';
+
+    return api({
+      method: 'delete',
+      url: path,
+      data: { product_id: payload },
+    });
+  },
 };
