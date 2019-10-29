@@ -46,9 +46,9 @@ const store = new Vuex.Store({
   },
   actions: {
     getReceiverName: (context) => {
-      receiverApi.getReceiver().then((response) => {
-        const receiverName = response.name;
-        context.commit('setReceiverName', receiverName);
+      receiverApi.getReceiver().then(({ receiver, likes }) => {
+        context.commit('setReceiverName', receiver.name);
+        context.commit('setLikes', likes);
       });
     },
     getProducts: context => {
