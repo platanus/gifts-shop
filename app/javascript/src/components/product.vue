@@ -146,6 +146,7 @@ export default {
 
     &__information {
       padding: 8px 12px;
+      height: 100%;
     }
 
     &__icon-container {
@@ -236,6 +237,8 @@ export default {
       font-size: .7em;
       font-weight: 600;
       padding-top: 4px;
+      position: absolute;
+      bottom: 11px;
     }
 
     &__price {
@@ -261,7 +264,6 @@ export default {
 
   .store-info-container {
     display: flex;
-    bottom: 0;
   }
 
   .star-container {
