@@ -157,6 +157,7 @@ export default {
           position: absolute;
           background-image: linear-gradient(to right, #ff5a5a 0, #ffc563 140px, #16a69e 280px);
           background-size: 100%;
+          transition: width .6s;
           width: 10%;
         }
       }
