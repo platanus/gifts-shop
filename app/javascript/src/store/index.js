@@ -10,6 +10,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     products: [],
+    likes: 0,
     loading: false,
     minPrice: 1000,
     maxPrice: 50000,
@@ -39,12 +40,15 @@ const store = new Vuex.Store({
     setNumberOfProducts: (state, payload) => {
       state.numberOfProducts = payload;
     },
+    setLikes: (state, payload) => {
+      state.likes = payload;
+    },
   },
   actions: {
     getReceiverName: (context) => {
-      receiverApi.getReceiver().then((response) => {
-        const receiverName = response.name;
-        context.commit('setReceiverName', receiverName);
+      receiverApi.getReceiver().then(({ receiver, likes }) => {
+        context.commit('setReceiverName', receiver.name);
+        context.commit('setLikes', likes);
       });
     },
     getProducts: context => {
@@ -68,6 +72,10 @@ const store = new Vuex.Store({
     },
     markLiked: (context, payload) => {
       productsApi.markLiked(payload);
+      context.commit('setLikes', context.state.likes + 1);
+    },
+    unmarkLiked: context => {
+      context.commit('setLikes', context.state.likes - 1);
     },
     markClicked: (context, payload) => {
       productsApi.markClicked(payload);

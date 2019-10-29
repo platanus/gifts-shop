@@ -15,7 +15,10 @@
         v-if="mobile"
       >
       <div class="powerbar__background">
-        <div class="powerbar__foreground" />
+        <div
+          class="powerbar__foreground"
+          :style="style"
+        />
       </div>
     </div>
     <div
@@ -34,6 +37,10 @@
 <script>
 import { mapState } from 'vuex';
 
+const LIKES_TO_TOTAL_POWER = 6;
+const INITIAL_POWER = 10;
+const TOTAL_POWER = 100;
+
 export default {
   name: 'HomeTitle',
   props: {
@@ -50,6 +57,14 @@ export default {
     ...mapState([
       'receiverName',
     ]),
+    style() {
+      let power = TOTAL_POWER;
+      if (this.likes < LIKES_TO_TOTAL_POWER) {
+        power = (this.likes * (TOTAL_POWER - INITIAL_POWER) / LIKES_TO_TOTAL_POWER) + INITIAL_POWER;
+      }
+
+      return { width: `${power}%` };
+    },
   },
   methods: {
     clearCookies() {
@@ -142,7 +157,8 @@ export default {
           position: absolute;
           background-image: linear-gradient(to right, #ff5a5a 0, #ffc563 140px, #16a69e 280px);
           background-size: 100%;
-          width: 100%;
+          transition: width .6s;
+          width: 10%;
         }
       }
 
