@@ -74,10 +74,6 @@ export default {
       type: Object,
       default: null,
     },
-    onLike: {
-      type: Function,
-      default: () => {},
-    },
   },
   methods: {
     ...mapActions([
@@ -92,7 +88,6 @@ export default {
         this.liked = true;
         this.markLiked(this.product.id);
       }
-      this.onLike(this.liked);
     },
     clickAction() {
       this.markClicked(this.product.id);

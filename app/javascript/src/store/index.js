@@ -10,6 +10,7 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     products: [],
+    likes: 0,
     loading: false,
     minPrice: 1000,
     maxPrice: 50000,
@@ -38,6 +39,9 @@ const store = new Vuex.Store({
     },
     setNumberOfProducts: (state, payload) => {
       state.numberOfProducts = payload;
+    },
+    setLikes: (state, payload) => {
+      state.likes = payload;
     },
   },
   actions: {
@@ -68,6 +72,7 @@ const store = new Vuex.Store({
     },
     markLiked: (context, payload) => {
       productsApi.markLiked(payload);
+      context.commit('setLikes', context.state.likes + 1);
     },
     markClicked: (context, payload) => {
       productsApi.markClicked(payload);

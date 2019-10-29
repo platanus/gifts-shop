@@ -9,7 +9,6 @@
         v-for="(product, index) in products"
         :key="index"
         :product="product"
-        :on-like="likeProduct"
       />
     </div>
     <div class="loader-spinner">
@@ -32,7 +31,6 @@ export default {
   name: 'HomeView',
   data() {
     return {
-      likes: 0,
       onTop: true,
     };
   },
@@ -44,6 +42,7 @@ export default {
   computed: {
     ...mapState([
       'products',
+      'likes',
     ]),
   },
   methods: {
@@ -59,9 +58,6 @@ export default {
           }, () => {});
         }
       });
-    },
-    likeProduct(liked) {
-      this.likes += liked ? 1 : -1;
     },
   },
   mounted() {
