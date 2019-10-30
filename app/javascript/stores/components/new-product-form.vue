@@ -48,7 +48,7 @@
             v-model="price"
             :class="getHtmlClass('product-input__box', 'price')"
             name="price"
-            placeholder="$0"
+            placeholder="Ej: 5500"
           >
           <div
             class="product-input__label product-input__label--danger"
@@ -59,14 +59,14 @@
         </div>
         <div class="product-input">
           <div class="product-input__label">
-            LINK A TIENDA
+            LINK AL PRODUCTO
           </div>
           <input
             type="text"
             v-model="link"
             :class="getHtmlClass('product-input__box', 'link')"
             name="link"
-            placeholder="http://"
+            placeholder="http://tienda.com/calcetines"
           >
           <div
             class="product-input__label product-input__label--danger"

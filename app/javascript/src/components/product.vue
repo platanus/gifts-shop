@@ -46,6 +46,7 @@
           >
             <img
               src="../assets/pro-store.svg"
+              class="star-image"
             >
           </div>
           <div class="name-container">
@@ -146,6 +147,7 @@ export default {
 
     &__information {
       padding: 8px 12px;
+      height: 100%;
     }
 
     &__icon-container {
@@ -176,6 +178,7 @@ export default {
       .image-container {
         border-radius: 4px 4px 0 0;
         width: 100%;
+        height: 100%;
       }
 
       @media (min-width: $p-break) {
@@ -205,10 +208,10 @@ export default {
     }
 
     &__image {
-      max-width: 100%;
-      max-height: 100%;
+      width: 100%;
+      height: 100%;
       border-radius: 4px 4px 0 0;
-      object-fit: contain;
+      object-fit: cover;
     }
 
     &__icon {
@@ -236,6 +239,9 @@ export default {
       font-size: .7em;
       font-weight: 600;
       padding-top: 4px;
+      position: absolute;
+      bottom: .4em;
+      padding-bottom: 6px;
     }
 
     &__price {
@@ -261,7 +267,6 @@ export default {
 
   .store-info-container {
     display: flex;
-    bottom: 0;
   }
 
   .star-container {
@@ -276,5 +281,10 @@ export default {
 
   .image-container {
     background: #000;
+  }
+
+  .star-image {
+    position: absolute;
+    bottom: .4em;
   }
 </style>
