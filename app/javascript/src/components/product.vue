@@ -178,6 +178,7 @@ export default {
       .image-container {
         border-radius: 4px 4px 0 0;
         width: 100%;
+        height: 100%;
       }
 
       @media (min-width: $p-break) {
