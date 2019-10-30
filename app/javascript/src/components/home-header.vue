@@ -26,6 +26,13 @@
           class="home-header__icon"
           src="../assets/currency.svg"
           @click="showPriceFilter"
+          v-if="!visiblePriceFilter"
+        >
+        <img
+          class="home-header__icon home-header__icon--small"
+          src="../assets/close-badge.svg"
+          @click="showPriceFilter"
+          v-if="visiblePriceFilter"
         >
       </div>
       <div
@@ -140,6 +147,11 @@ export default {
       margin-left: .5em;
       width: 1.3em;
       height: 1.3em;
+
+      &--small {
+        width: .8em;
+        height: .8em;
+      }
 
       &--first {
         margin-right: 1em;
