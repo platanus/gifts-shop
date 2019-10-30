@@ -10,7 +10,6 @@
         :class="{ 'price-filter__input--error': error }"
         v-model="minPrice"
         placeholder="precio mínimo"
-        @keyup.enter="submitPriceFilter"
       >
       a
       <input
@@ -18,7 +17,6 @@
         :class="{ 'price-filter__input--error': error }"
         v-model="maxPrice"
         placeholder="precio máximo"
-        @keyup.enter="submitPriceFilter"
       >
     </div>
     <div
@@ -29,7 +27,6 @@
     </div>
     <button
       class="price-filter__button"
-      v-if="mobile"
       @click="submitPriceFilter"
     >
       Filtrar
@@ -70,7 +67,7 @@ export default {
 
   .price-filter {
     width: fit-content;
-    color: $label-color;
+    color: $c-header-foreground;
     background-color: rgba(67, 225, 198, .02);
     box-sizing: border-box;
     margin: auto;
@@ -83,8 +80,8 @@ export default {
       margin: auto;
       align-items: center;
       justify-content: center;
-      border: 1px solid $label-color;
-      border-radius: 6px;
+      border: 1px solid $c-header-highlight;
+      border-radius: 6px 0 0 6px;
       padding: 6px 8px;
     }
 
@@ -97,7 +94,7 @@ export default {
     &__input {
       text-align: center;
       background: transparent;
-      color: $label-color;
+      color: $c-header-foreground;
       border: 0;
       font-size: 1em;
       width: 4em;
@@ -108,15 +105,14 @@ export default {
     }
 
     &__button {
-      margin-left: .5em;
       font-size: 1em;
-      border: 1px solid $label-color;
-      border-radius: 6px;
-      background-color: $label-color;
+      border: 1px solid $c-header-highlight;
+      border-radius: 0 6px 6px 0;
+      background-color: $c-header-highlight;
       color: $white;
 
       &:hover {
-        background-color: darken($color: $label-color, $amount: 5%);
+        background-color: darken($color: $c-header-highlight, $amount: 5%);
       }
     }
   }
