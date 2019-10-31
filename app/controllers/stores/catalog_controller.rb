@@ -13,7 +13,7 @@ class Stores::CatalogController < ApplicationController
 
   def update
     if @product.update(product_update_params)
-      @product.image.attach(params[:image]) if params[:image]
+      @product.update_image(params[:image]) if params[:image]
       redirect_to stores_catalog_index_path
     else
       render :show
@@ -42,7 +42,7 @@ class Stores::CatalogController < ApplicationController
 
   def add_product
     @product = Product.create!(product_params)
-    @product.image.attach(params[:image])
+    @product.update_image(params[:image])
   end
 
   def fill_product

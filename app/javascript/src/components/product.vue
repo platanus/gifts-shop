@@ -22,7 +22,10 @@
         class="home-product__image-wrapper"
         @click="clickAction"
       >
-        <div class="image-container">
+        <div
+          class="image-container"
+          :style="{ 'background': product.averageColor }"
+        >
           <img
             class="home-product__image"
             :src="product.imageUrl"
@@ -277,10 +280,6 @@ export default {
 
   .name-container {
     height: 24px;
-  }
-
-  .image-container {
-    background: #000;
   }
 
   .star-image {
