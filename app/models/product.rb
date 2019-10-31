@@ -19,18 +19,19 @@ end
 #
 # Table name: products
 #
-#  id          :bigint(8)        not null, primary key
-#  name        :string
-#  price       :float
-#  clicks      :integer          default(0)
-#  link        :string
-#  clicks_cost :float
-#  store_id    :bigint(8)
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
-#  display     :boolean          default(FALSE)
-#  promoted    :boolean          default(FALSE)
-#  deleted     :boolean          default(FALSE)
+#  id            :bigint(8)        not null, primary key
+#  name          :string
+#  price         :float
+#  clicks        :integer          default(0)
+#  link          :string
+#  clicks_cost   :float
+#  store_id      :bigint(8)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  display       :boolean          default(FALSE)
+#  promoted      :boolean          default(FALSE)
+#  deleted       :boolean          default(FALSE)
+#  average_color :text             default("#000000")
 #
 # Indexes
 #
