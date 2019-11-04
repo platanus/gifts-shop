@@ -66,7 +66,7 @@
             v-model="link"
             :class="getHtmlClass('product-input__box', 'link')"
             name="link"
-            placeholder="http://tienda.com/calcetines"
+            placeholder="www.tienda.com/calcetines"
           >
           <div
             class="product-input__label product-input__label--danger"
