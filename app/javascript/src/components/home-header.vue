@@ -1,7 +1,6 @@
 <template>
   <div
     class="home-header"
-    :class="{ 'home-header--shadow': !onTop }"
   >
     <div class="home-header__content">
       <img
@@ -52,18 +51,12 @@ export default {
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
       visiblePriceFilter: false,
-      lastScrollTop: 0,
-      scrollingDown: false,
     };
   },
   props: {
     likes: {
       type: Number,
       default: 0,
-    },
-    onTop: {
-      type: Boolean,
-      default: true,
     },
   },
   components: {
@@ -73,31 +66,18 @@ export default {
   methods: {
     showPriceFilter() {
       this.visiblePriceFilter = !this.visiblePriceFilter;
-      this.lastScrollTop = document.documentElement.scrollTop;
     },
     goToStore() {
       window.location = '/stores/sign_in';
-    },
-    onWindowScroll() {
-      const curr = document.documentElement.scrollTop;
-      if (curr - this.lastScrollTop > SCROLL_OFFSET) {
-        this.visiblePriceFilter = false;
-        this.lastScrollTop = curr;
-      } else if (this.lastScrollTop - curr > SCROLL_OFFSET) {
-        if (this.visiblePriceFilter) this.visiblePriceFilter = true;
-        this.lastScrollTop = curr;
-      }
     },
     onResize() {
       this.mobile = window.innerWidth <= MOBILE_WIDTH;
     },
   },
   mounted() {
-    window.addEventListener('scroll', this.onWindowScroll);
     window.addEventListener('resize', this.onResize);
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onWindowScroll);
     window.removeEventListener('resize', this.onResize);
   },
 };
