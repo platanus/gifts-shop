@@ -187,21 +187,41 @@ export default {
       @media (min-width: $p-break) {
         height: $p-size-image;
         width: $p-size-image;
+
+        .image-container {
+          height: $p-size-image;
+          width: $p-size-image;
+        }
       }
 
       @media (min-width: $t-break) {
         height: $t-size-image;
         width: $t-size-image;
+
+        .image-container {
+          height: $t-size-image;
+          width: $t-size-image;
+        }
       }
 
       @media (min-width: $d-break) {
         height: $d-size-image;
         width: $d-size-image;
+
+        .image-container {
+          height: $d-size-image;
+          width: $d-size-image;
+        }
       }
 
       @media (min-width: $r-break) {
         height: $r-size-image;
         width: $r-size-image;
+
+        .image-container {
+          height: $r-size-image;
+          width: $r-size-image;
+        }
       }
     }
 
@@ -219,6 +239,7 @@ export default {
 
     &__icon {
       height: 1.2em;
+      width: .9em;
       margin: .1em .3em;
       cursor: pointer;
     }
