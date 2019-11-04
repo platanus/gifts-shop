@@ -56,6 +56,7 @@ export default {
       } else {
         this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
         this.error = false;
+        this.$emit('filtered');
       }
     },
   },
@@ -66,20 +67,24 @@ export default {
   @import '../../styles/variables';
 
   .price-filter {
-    width: fit-content;
     color: $c-header-foreground;
-    background-color: rgba(67, 225, 198, .02);
+    background-color: $c-filter-background;
     box-sizing: border-box;
     margin: auto;
     font-size: .8em;
     display: flex;
+    position: absolute;
+    z-index: 105;
+    width: 100%;
+    top: 3em;
+    padding: 2em;
 
     &__form {
       display: flex;
-      width: fit-content;
-      margin: auto;
+      width: 100%;
       align-items: center;
       justify-content: center;
+      background-color: $c-header-background;
       border: 1px solid $c-header-highlight;
       border-radius: 6px 0 0 6px;
       padding: 6px 8px;
@@ -110,10 +115,23 @@ export default {
       border-radius: 0 6px 6px 0;
       background-color: $c-header-highlight;
       color: $white;
+      width: 50%;
 
       &:hover {
         background-color: darken($color: $c-header-highlight, $amount: 5%);
       }
+    }
+
+    @media (min-width: $p-break) {
+      right: 3em;
+      top: 0;
+      width: fit-content;
+      padding: 1.5em 0 2em 21em;
+    }
+
+    @media (min-width: $t-break) {
+      position: initial;
+      padding: 0;
     }
   }
 </style>

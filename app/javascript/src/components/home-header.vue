@@ -21,6 +21,7 @@
         <price-filter
           v-if="visiblePriceFilter && !mobile"
           :mobile="mobile"
+          @filtered="togglePriceFilter"
         />
         <img
           class="home-header__icon"
