@@ -23,7 +23,7 @@ class Product < ApplicationRecord
     image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
   end
 
-  def update_image(image)
+  def update_image(image_param)
     image.attach(image_param)
     set_average_color
   end
