@@ -26,10 +26,16 @@
           class="image-container"
           :style="{ 'background': product.averageColor }"
         >
-          <img
-            class="home-product__image"
-            :src="product.imageUrl"
+          <transition
+            name="fade"
           >
+            <img
+              class="home-product__image"
+              :src="product.imageUrl"
+              @load="loaded = true;"
+              v-show="loaded"
+            >
+          </transition>
         </div>
       </div>
       <div class="home-product__information">
@@ -71,6 +77,7 @@ export default {
   data() {
     return {
       liked: false,
+      loaded: false,
     };
   },
   props: {
@@ -118,6 +125,18 @@ export default {
 
 <style lang="scss">
   @import '../../styles/variables';
+
+  .fade-enter-active {
+    transition: opacity .5s ease-in-out;
+  }
+
+  .fade-enter-to {
+    opacity: 1;
+  }
+
+  .fade-enter {
+    opacity: 0;
+  }
 
   .home-product {
     display: flex;
