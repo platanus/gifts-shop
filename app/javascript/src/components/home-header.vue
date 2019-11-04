@@ -19,7 +19,7 @@
           @click="goToStore"
         >
         <price-filter
-          v-if="visiblePriceFilter && !mobile"
+          v-if="visiblePriceFilter"
           :mobile="mobile"
           @filtered="togglePriceFilter"
         />
@@ -35,15 +35,6 @@
           @click="showPriceFilter"
           v-if="visiblePriceFilter"
         >
-      </div>
-      <div
-        class="home-header__mobile-price-filter"
-        :class="{ 'home-header__mobile-price-filter--zero-height': !visiblePriceFilter }"
-        v-if="mobile"
-      >
-        <price-filter
-          :mobile="mobile"
-        />
       </div>
     </div>
   </div>
@@ -133,19 +124,21 @@ export default {
 
     &__home-icon {
       height: 3em;
-      margin-left: -.5em;
+      width: 100%;
     }
 
     &__options {
       position: absolute;
-      display: flex;
+      width: 100%;
       right: 0;
-      top: .5em;
+      top: 0;
     }
 
     &__icon {
       flex: 1;
-      margin-left: .5em;
+      position: absolute;
+      right: 0;
+      top: .7em;
       width: 1.3em;
       height: 1.3em;
 
@@ -155,24 +148,12 @@ export default {
       }
 
       &--first {
+        left: 0;
         margin-right: 1em;
       }
 
       &:hover {
         cursor: pointer;
-      }
-    }
-
-    &__mobile-price-filter {
-      width: 100%;
-      margin-top: 1em;
-      height: 3em;
-      transition: all .3s;
-      overflow: hidden;
-
-      &--zero-height {
-        height: 0;
-        margin: 0;
       }
     }
   }
@@ -189,12 +170,16 @@ export default {
 
       &__home-icon {
         height: 4em;
+        width: auto;
         position: absolute;
         left: 0;
         top: 0;
       }
 
       &__icon {
+        position: initial;
+        margin-left: .5em;
+
         &--first {
           margin-right: 3em;
         }
@@ -202,11 +187,9 @@ export default {
 
       &__options {
         height: 100%;
+        display: flex;
         align-items: center;
-
-        .price-filter {
-          margin-right: 1em;
-        }
+        width: fit-content;
       }
     }
   }
