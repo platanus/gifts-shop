@@ -34,7 +34,7 @@ class Stores::CatalogController < ApplicationController
   private
 
   def valid_url(url)
-    unless url[%r'Ahttp://'] || url[%r'Ahttps://']
+    unless url[%r[\Ahttp://]] || url[%r[\Ahttps://]]
       url = "http://#{url}"
     end
     url
