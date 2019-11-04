@@ -4,8 +4,12 @@
   >
     <div class="home-header__content">
       <img
-        class="home-header__home-icon"
+        class="home-header__home-icon home-icon"
         src="../assets/buenas-ideas.svg"
+      >
+      <img
+        class="home-header__home-icon home-icon-tablet"
+        src="../assets/buenas-ideas-mini.svg"
       >
       <header-center
         :likes="likes"
@@ -138,6 +142,14 @@ export default {
     }
   }
 
+  .home-icon-tablet {
+    display: none;
+  }
+
+  .home-icon {
+    display: initial;
+  }
+
   @media (min-width: $p-break) {
     .home-header {
       &__content {
@@ -170,11 +182,27 @@ export default {
         width: fit-content;
       }
     }
+
+    .home-icon-tablet {
+      display: initial;
+    }
+
+    .home-icon {
+      display: none;
+    }
   }
 
   @media (min-width: $t-break) {
     .home-header__content {
       width: $t-width-grid;
+    }
+
+    .home-icon-tablet {
+      display: none;
+    }
+
+    .home-icon {
+      display: initial;
     }
   }
 
