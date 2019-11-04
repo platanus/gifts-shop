@@ -140,8 +140,6 @@ export default {
 
   @media (min-width: $p-break) {
     .home-header {
-      border-radius: 0;
-
       &__content {
         width: $p-width-grid;
         display: flex;
