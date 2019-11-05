@@ -8,12 +8,11 @@ class Product < ApplicationRecord
   validates :link, presence: true
 
   def set_average_color
-    variant = image.variant(resize: "1x1").processed
-    image = MiniMagick::Image.open(
-      variant.service.send(:path_for, variant.key)
-    )
-    red, blue, green = image.get_pixels[0][0]
-    update(average_color: hex_value(red, blue, green))
+    ActiveStorage::Current.set(host: ENV.fetch('APPLICATION_HOST')) do
+      image = MiniMagick::Image.open(self.image.service_url)
+      red, blue, green = image.resize("1x1").get_pixels[0][0]
+      update(average_color: hex_value(red, blue, green))
+    end
   end
 
   def attach_image_from_url(url)
