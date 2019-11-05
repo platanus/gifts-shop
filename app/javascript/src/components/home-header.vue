@@ -29,13 +29,13 @@
         <img
           class="home-header__icon"
           src="../assets/currency.svg"
-          @click="showPriceFilter"
+          @click="togglePriceFilter"
           v-if="!visiblePriceFilter"
         >
         <img
           class="home-header__icon home-header__icon--small"
           src="../assets/close-badge.svg"
-          @click="showPriceFilter"
+          @click="togglePriceFilter"
           v-if="visiblePriceFilter"
         >
       </div>
@@ -68,7 +68,7 @@ export default {
     PriceFilter,
   },
   methods: {
-    showPriceFilter() {
+    togglePriceFilter() {
       this.visiblePriceFilter = !this.visiblePriceFilter;
     },
     goToStore() {
