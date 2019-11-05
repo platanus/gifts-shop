@@ -2,7 +2,6 @@
   <div class="home-container">
     <home-header
       :likes="likes"
-      :on-top="onTop"
     />
     <div class="home-products-container">
       <product
@@ -29,11 +28,6 @@ const SCROLL_OFFSET = 30;
 
 export default {
   name: 'HomeView',
-  data() {
-    return {
-      onTop: true,
-    };
-  },
   components: {
     product,
     ClipLoader,
@@ -50,7 +44,6 @@ export default {
       window.addEventListener('scroll', () => {
         const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
           document.getElementById('home').offsetHeight - SCROLL_OFFSET;
-        this.onTop = document.documentElement.scrollTop < SCROLL_OFFSET;
         if (bottomOfWindow && !this.$store.loading) {
           this.$store.loading = true;
           this.$store.dispatch('moreProducts').then(() => {

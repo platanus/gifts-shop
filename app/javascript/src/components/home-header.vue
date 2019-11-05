@@ -1,12 +1,15 @@
 <template>
   <div
     class="home-header"
-    :class="{ 'home-header--shadow': !onTop }"
   >
     <div class="home-header__content">
       <img
-        class="home-header__home-icon"
+        class="home-header__home-icon home-icon"
         src="../assets/buenas-ideas.svg"
+      >
+      <img
+        class="home-header__home-icon home-icon-tablet"
+        src="../assets/buenas-ideas-mini.svg"
       >
       <header-center
         :likes="likes"
@@ -19,23 +22,22 @@
           @click="goToStore"
         >
         <price-filter
-          v-if="visiblePriceFilter && !mobile"
+          v-if="visiblePriceFilter"
           :mobile="mobile"
+          @filtered="togglePriceFilter"
         />
         <img
           class="home-header__icon"
           src="../assets/currency.svg"
-          @click="showPriceFilter"
+          @click="togglePriceFilter"
+          v-if="!visiblePriceFilter"
         >
-      </div>
-      <div
-        class="home-header__mobile-price-filter"
-        :class="{ 'home-header__mobile-price-filter--zero-height': !visiblePriceFilter }"
-        v-if="mobile"
-      >
-        <price-filter
-          :mobile="mobile"
-        />
+        <img
+          class="home-header__icon home-header__icon--small"
+          src="../assets/close-badge.svg"
+          @click="togglePriceFilter"
+          v-if="visiblePriceFilter"
+        >
       </div>
     </div>
   </div>
@@ -53,8 +55,6 @@ export default {
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
       visiblePriceFilter: false,
-      lastScrollTop: 0,
-      scrollingDown: false,
     };
   },
   props: {
@@ -62,43 +62,26 @@ export default {
       type: Number,
       default: 0,
     },
-    onTop: {
-      type: Boolean,
-      default: true,
-    },
   },
   components: {
     HeaderCenter,
     PriceFilter,
   },
   methods: {
-    showPriceFilter() {
+    togglePriceFilter() {
       this.visiblePriceFilter = !this.visiblePriceFilter;
-      this.lastScrollTop = document.documentElement.scrollTop;
     },
     goToStore() {
       window.location = '/stores/sign_in';
-    },
-    onWindowScroll() {
-      const curr = document.documentElement.scrollTop;
-      if (curr - this.lastScrollTop > SCROLL_OFFSET) {
-        this.visiblePriceFilter = false;
-        this.lastScrollTop = curr;
-      } else if (this.lastScrollTop - curr > SCROLL_OFFSET) {
-        if (this.visiblePriceFilter) this.visiblePriceFilter = true;
-        this.lastScrollTop = curr;
-      }
     },
     onResize() {
       this.mobile = window.innerWidth <= MOBILE_WIDTH;
     },
   },
   mounted() {
-    window.addEventListener('scroll', this.onWindowScroll);
     window.addEventListener('resize', this.onResize);
   },
   beforeDestroy() {
-    window.removeEventListener('scroll', this.onWindowScroll);
     window.removeEventListener('resize', this.onResize);
   },
 };
@@ -125,23 +108,31 @@ export default {
 
     &__home-icon {
       height: 3em;
-      margin-left: -.5em;
+      width: 100%;
     }
 
     &__options {
       position: absolute;
-      display: flex;
+      width: 100%;
       right: 0;
-      top: .5em;
+      top: 0;
     }
 
     &__icon {
       flex: 1;
-      margin-left: .5em;
+      position: absolute;
+      right: 0;
+      top: .7em;
       width: 1.3em;
       height: 1.3em;
 
+      &--small {
+        width: .8em;
+        height: .8em;
+      }
+
       &--first {
+        left: 0;
         margin-right: 1em;
       }
 
@@ -149,25 +140,18 @@ export default {
         cursor: pointer;
       }
     }
+  }
 
-    &__mobile-price-filter {
-      width: 100%;
-      margin-top: 1em;
-      height: 3em;
-      transition: all .3s;
-      overflow: hidden;
+  .home-icon-tablet {
+    display: none;
+  }
 
-      &--zero-height {
-        height: 0;
-        margin: 0;
-      }
-    }
+  .home-icon {
+    display: initial;
   }
 
   @media (min-width: $p-break) {
     .home-header {
-      border-radius: 0;
-
       &__content {
         width: $p-width-grid;
         display: flex;
@@ -176,12 +160,16 @@ export default {
 
       &__home-icon {
         height: 4em;
+        width: auto;
         position: absolute;
         left: 0;
         top: 0;
       }
 
       &__icon {
+        position: initial;
+        margin-left: .5em;
+
         &--first {
           margin-right: 3em;
         }
@@ -189,18 +177,32 @@ export default {
 
       &__options {
         height: 100%;
+        display: flex;
         align-items: center;
-
-        .price-filter {
-          margin-right: 1em;
-        }
+        width: fit-content;
       }
+    }
+
+    .home-icon-tablet {
+      display: initial;
+    }
+
+    .home-icon {
+      display: none;
     }
   }
 
   @media (min-width: $t-break) {
     .home-header__content {
       width: $t-width-grid;
+    }
+
+    .home-icon-tablet {
+      display: none;
+    }
+
+    .home-icon {
+      display: initial;
     }
   }
 
