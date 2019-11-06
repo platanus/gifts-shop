@@ -78,6 +78,10 @@ If you need to generate data with **development purposes**, you can customize th
 
 ## Internal dependencies
 
+### Error Reporting
+
+To report our errors we use [Sentry](https://github.com/getsentry/raven-ruby)
+
 ### Authentication
 
 We are using the great [Devise](https://github.com/plataformatec/devise) library by [PlataformaTec](http://plataformatec.com.br/)
