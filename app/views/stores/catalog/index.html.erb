@@ -29,9 +29,7 @@
           <tr class="product">
             <td class="product__image row-label row-label--medium">
               <div class="black-container">
-                <div class="product__image__square">
-                  <%= link_to image_tag(url_for(product.image), :size => '56x56' ), edit_stores_catalog_path(product) %>
-                </div>
+                <%= link_to image_tag(product.image.variant(resize: "128x128").processed, class: 'product__image__square'), edit_stores_catalog_path(product) %>
               </div>
             </td>
             <td class="product__label row-label row-label--big"><%= link_to product.name, edit_stores_catalog_path(product), class: "label-link" %></td>

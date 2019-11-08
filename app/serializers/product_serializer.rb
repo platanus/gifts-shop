@@ -12,6 +12,6 @@ class ProductSerializer < ActiveModel::Serializer
   end
 
   def image_url
-    rails_blob_path(object.image, only_path: true)
+    url_for(object.image.variant(resize: "650x650").processed)
   end
 end
