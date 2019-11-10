@@ -2,6 +2,7 @@ class Product < ApplicationRecord
   include Rails.application.routes.url_helpers
 
   has_one_attached :image
+  has_one_attached :recommender_image
   belongs_to :store
   has_many :product_actions, dependent: :destroy
 
@@ -24,6 +25,7 @@ class Product < ApplicationRecord
 
   def update_image(image_param)
     image.attach(image_param)
+    recommender_image.attach(image.variant(resize: "224x224"))
     set_average_color
   end
 
