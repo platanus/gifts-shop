@@ -1,5 +1,8 @@
 class Product < ApplicationRecord
+  include Rails.application.routes.url_helpers
+
   has_one_attached :image
+  has_one_attached :recommender_image
   belongs_to :store
   has_many :product_actions, dependent: :destroy
 
@@ -8,11 +11,9 @@ class Product < ApplicationRecord
   validates :link, presence: true
 
   def set_average_color
-    ActiveStorage::Current.set(host: ENV.fetch('APPLICATION_HOST')) do
-      image = MiniMagick::Image.open(self.image.service_url)
-      red, blue, green = image.resize("1x1").get_pixels[0][0]
-      update(average_color: hex_value(red, blue, green))
-    end
+    image = MiniMagick::Image.open(url_for(self.image))
+    red, blue, green = image.resize("1x1").get_pixels[0][0]
+    update(average_color: hex_value(red, blue, green))
   end
 
   def attach_image_from_url(url)
@@ -20,11 +21,22 @@ class Product < ApplicationRecord
     downloaded_image = open(url)
     filename = File.basename(URI.parse(url).path)
     image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
+    update_recommender_image
+    set_average_color
   end
 
   def update_image(image_param)
     image.attach(image_param)
+    update_recommender_image
     set_average_color
+  end
+
+  def update_recommender_image
+    require 'open-uri'
+    url = url_for(image.variant(resize: "224x224"))
+    downloaded_image = open(url)
+    filename = File.basename(URI.parse(url).path)
+    recommender_image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
   end
 
   private

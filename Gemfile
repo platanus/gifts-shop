@@ -11,6 +11,7 @@ gem 'devise'
 gem 'devise-i18n'
 gem 'enumerize'
 gem 'find_with_order'
+gem "image_processing"
 gem 'jbuilder', '~> 2.5'
 gem 'ledgerizer', git: 'https://github.com/platanus/ledgerizer'
 gem "mini_magick"

@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  default_url_options host: ENV.fetch("APPLICATION_HOST")
+
   devise_for :stores, controllers: {
     sessions: 'stores/sessions',
     registrations: 'stores/registrations'
