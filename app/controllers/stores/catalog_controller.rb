@@ -41,8 +41,11 @@ class Stores::CatalogController < ApplicationController
   end
 
   def add_product
-    @product = Product.create!(product_params)
-    @product.update_image(params[:image])
+    if params[:image]
+      @product = Product.create!(product_params)
+      @product.update_image(params[:image])
+      @product.update(display: true)
+    end
   end
 
   def fill_product
