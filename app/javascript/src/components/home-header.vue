@@ -171,7 +171,7 @@ export default {
         margin-left: .5em;
 
         &--first {
-          margin-right: 3em;
+          margin-right: 1.5em;
         }
       }
 
