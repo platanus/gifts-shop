@@ -38,8 +38,8 @@
 export default {
   data() {
     return {
-      minPrice: 1000,
-      maxPrice: 50000,
+      minPrice: this.$store.state.minPrice,
+      maxPrice: this.$store.state.maxPrice,
       error: false,
     };
   },
