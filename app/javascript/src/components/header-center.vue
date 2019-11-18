@@ -9,11 +9,6 @@
       >
     </div>
     <div class="header-center__powerbar-container">
-      <img
-        class="header-center__icon header-center__icon--powerbar"
-        src="../assets/bot.svg"
-        v-if="mobile"
-      >
       <div class="powerbar__background">
         <div
           class="powerbar__foreground"
@@ -148,6 +143,7 @@ export default {
           border-radius: 4px;
           background-color: rgba(255, 255, 255, .24);
           position: relative;
+          margin: 1em auto;
         }
 
         &__foreground {
@@ -164,7 +160,6 @@ export default {
 
       @media (min-width: $p-break) {
         .powerbar__background {
-          margin: 1em auto;
           width: 90%;
         }
       }
