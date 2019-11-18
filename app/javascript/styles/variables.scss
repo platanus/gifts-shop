@@ -18,11 +18,13 @@ $danger-background-color: #fbe8e8;
 $danger-label-color: #771a17fd;
 
 $c-header-background: #4a90e2;
+$c-header-background-transparent: rgba(74, 145, 226, .9);
 $c-header-foreground: #fff;
-$c-header-highlight: #fff;
+$c-header-highlight: #1b5dab;
 $box-shadow-header: 0 3px 11px 0 #f5f1fd;
 
-$c-filter-background: rgba(253, 252, 255, .88);
+$c-filter-background: #fff;
+$c-filter-foreground: #4a90e2;
 
 $button-size: 10px;
 $main-font: 'Work Sans';

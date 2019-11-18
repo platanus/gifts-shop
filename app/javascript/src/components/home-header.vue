@@ -34,7 +34,7 @@
         >
         <img
           class="home-header__icon home-header__icon--small"
-          src="../assets/close-badge.svg"
+          src="../assets/close-badge-blue.svg"
           @click="togglePriceFilter"
           v-if="visiblePriceFilter"
         >

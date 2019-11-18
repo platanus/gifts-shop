@@ -3,7 +3,7 @@
     <div class="price-filter__form">
       <img
         class="price-filter__icon"
-        src="../assets/currency.svg"
+        src="../assets/currency-blue.svg"
       >
       <input
         class="price-filter__input"
@@ -67,8 +67,8 @@ export default {
   @import '../../styles/variables';
 
   .price-filter {
-    color: $c-header-foreground;
-    background-color: $c-filter-background;
+    color: $c-filter-foreground;
+    background-color: $c-header-background-transparent;
     box-sizing: border-box;
     margin: auto;
     font-size: .8em;
@@ -84,7 +84,7 @@ export default {
       width: 100%;
       align-items: center;
       justify-content: center;
-      background-color: $c-header-background;
+      background-color: $c-filter-background;
       border: 1px solid $c-header-highlight;
       border-radius: 6px 0 0 6px;
       padding: 6px 8px;
@@ -99,7 +99,7 @@ export default {
     &__input {
       text-align: center;
       background: transparent;
-      color: $c-header-foreground;
+      color: $c-filter-foreground;
       border: 0;
       font-size: 1em;
       width: 4em;
@@ -115,6 +115,7 @@ export default {
       border-radius: 0 6px 6px 0;
       background-color: $c-header-highlight;
       color: $white;
+      padding: 0 1em;
       width: 50%;
 
       &:hover {
