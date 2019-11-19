@@ -1,7 +1,7 @@
 <template>
   <div class="header-center">
     <div class="header-center__title">
-      Poder recomendador de ideas para <span class="header-center__title--emphasis-word"> {{receiverName}} </span>
+      Poder recomendador de ideas para <span class="header-center__title--emphasis-word"> {{ receiverName }}</span>
       <img
         class="header-center__icon header-center__icon--title"
         src="../assets/close-badge.svg"
@@ -9,11 +9,6 @@
       >
     </div>
     <div class="header-center__powerbar-container">
-      <img
-        class="header-center__icon header-center__icon--powerbar"
-        src="../assets/bot.svg"
-        v-if="mobile"
-      >
       <div class="powerbar__background">
         <div
           class="powerbar__foreground"
@@ -28,7 +23,7 @@
       Aumenta el poder con
       <img
         class="header-center__icon header-center__icon--subtitle"
-        src="../assets/like-badge.svg"
+        src="../assets/like-badge-white.svg"
       >
     </div>
   </div>
@@ -95,13 +90,13 @@ export default {
 
       &--emphasis-word {
         color: $emphasis-word-font-color;
+        text-decoration: underline;
         text-transform: capitalize;
       }
     }
 
     &__subtitle {
       color: $subtitle-font-color;
-      opacity: .56;
       font-size: .9em;
       text-align: center;
       height: 1em;
@@ -124,7 +119,7 @@ export default {
 
       &--title {
         border-radius: 50%;
-        box-shadow: 2px 2px 3px $icon-shadow-color;
+        margin-left: .5em;
 
         &:hover {
           cursor: pointer;
@@ -146,8 +141,9 @@ export default {
           height: 5px;
           width: 100%;
           border-radius: 4px;
-          background-color: rgba(148, 148, 148, .24);
+          background-color: rgba(255, 255, 255, .24);
           position: relative;
+          margin: 1em auto;
         }
 
         &__foreground {
@@ -155,8 +151,8 @@ export default {
           height: 100%;
           z-index: 105;
           position: absolute;
-          background-image: linear-gradient(to right, #ff5a5a 0, #ffc563 140px, #16a69e 280px);
           background-size: 100%;
+          background-color: #fff;
           transition: width .6s;
           width: 10%;
         }
@@ -164,7 +160,6 @@ export default {
 
       @media (min-width: $p-break) {
         .powerbar__background {
-          margin: 1em auto;
           width: 90%;
         }
       }

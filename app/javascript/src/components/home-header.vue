@@ -34,7 +34,7 @@
         >
         <img
           class="home-header__icon home-header__icon--small"
-          src="../assets/close-badge.svg"
+          src="../assets/close-badge-blue.svg"
           @click="togglePriceFilter"
           v-if="visiblePriceFilter"
         >
@@ -171,7 +171,7 @@ export default {
         margin-left: .5em;
 
         &--first {
-          margin-right: 3em;
+          margin-right: 1.5em;
         }
       }
 

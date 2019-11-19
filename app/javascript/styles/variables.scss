@@ -1,8 +1,7 @@
-$user-name-font-color: #16a69e;
-$title-font-color:	#363535;
-$subtitle-font-color:	#000;
-$emphasis-word-font-color: #4eb3ad;
-$icon-shadow-color: #979797;
+$user-name-font-color: #fff;
+$title-font-color:	#fff;
+$subtitle-font-color:	#fff;
+$emphasis-word-font-color: #fff;
 $product-image-background-color: #979797;
 $product-name-font-color: #353434;
 
@@ -18,12 +17,14 @@ $danger-border-color: #f7a5a2f8;
 $danger-background-color: #fbe8e8;
 $danger-label-color: #771a17fd;
 
-$c-header-background: #fdfcff;
-$c-header-foreground: #353434;
-$c-header-highlight: #16a69e;
+$c-header-background: #4a90e2;
+$c-header-background-transparent: rgba(74, 145, 226, .9);
+$c-header-foreground: #fff;
+$c-header-highlight: #1b5dab;
 $box-shadow-header: 0 3px 11px 0 #f5f1fd;
 
-$c-filter-background: rgba(253, 252, 255, .88);
+$c-filter-background: #fff;
+$c-filter-foreground: #4a90e2;
 
 $button-size: 10px;
 $main-font: 'Work Sans';
