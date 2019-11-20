@@ -253,7 +253,7 @@
     transition: all .2s;
   }
 
-  &.inactive {
+  &.disabled {
     border: 2px solid $danger-background-color;
     background: $danger-background-color;
     transition: all .2s;

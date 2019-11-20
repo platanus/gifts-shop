@@ -45,7 +45,7 @@
                 :value=<%= product.display %>
                 product-id=<%= product.id %>
                 attribute='display'
-                :active=<%= product.image.attached? %>
+                :enabled=<%= product.image.attached? %>
               >
               </toggle-button>
             </td>
@@ -54,7 +54,7 @@
                 :value=<%= product.promoted %>
                 product-id=<%= product.id %>
                 attribute='promoted'
-                :active=<%= product.image.attached? %>
+                :enabled=<%= product.image.attached? %>
               >
               </toggle-button>
             </td>

@@ -30,6 +30,9 @@ export default {
     attribute: {
       type: String, required: true,
     },
+    enabled: {
+      type: Boolean, required: true,
+    },
   },
   data() {
     return {
@@ -52,7 +55,9 @@ export default {
       return `${this.position / this.width * fullSize}%`;
     },
     stateClass() {
-      if (this.state) {
+      if (!this.enabled) {
+        return 'disabled';
+      } else if (this.state) {
         return 'active';
       }
 
@@ -66,9 +71,11 @@ export default {
   },
   methods: {
     toggleAction() {
-      this.toggleSwitch(!this.state);
-      catalogApi.setValue(this.productId, this.attribute);
-      this.emit();
+      if (this.enabled) {
+        this.toggleSwitch(!this.state);
+        catalogApi.setValue(this.productId, this.attribute);
+        this.emit();
+      }
     },
     toggleSwitch(state) {
       this.state = state;
@@ -90,9 +97,11 @@ export default {
       }
     },
     dragStart() {
-      this.startTimer();
-      window.addEventListener('mousemove', this.dragging);
-      window.addEventListener('mouseup', this.dragStop);
+      if (this.enabled) {
+        this.startTimer();
+        window.addEventListener('mousemove', this.dragging);
+        window.addEventListener('mouseup', this.dragStop);
+      }
     },
     dragStop() {
       window.removeEventListener('mousemove', this.dragging);
