@@ -28,19 +28,24 @@
         <% @products.each do |product| %>
           <tr class="product">
             <td class="product__image row-label row-label--medium">
-              <div class="black-container">
-                <%= link_to image_tag(product.image.variant(resize: "128x128").processed, class: 'product__image__square'), edit_stores_catalog_path(product) %>
+              <div class="<%= catalog_error_class("black-container", product) %>">
+                <% if product.image.attached? %>
+                  <%= link_to image_tag(product.image.variant(resize: "128x128").processed, class: 'product__image__square'), edit_stores_catalog_path(product) %>
+                <% else %>
+                  <%= link_to image_tag("default-gift.png", class: 'product__image__square product__image__square--error'), edit_stores_catalog_path(product) %>
+                <% end %>
               </div>
             </td>
-            <td class="product__label row-label row-label--big"><%= link_to product.name, edit_stores_catalog_path(product), class: "label-link" %></td>
-            <td class="product__label row-label row-label--medium">$<%= product.price.round(0) %></td>
-            <td class="product__label row-label row-label--medium"><%= product.product_actions.display.count %></td>
-            <td class="product__label row-label row-label--medium"><%= product.product_actions.like.count %></td>
+            <td class="product__label row-label row-label--big"><%= link_to product.name, edit_stores_catalog_path(product), class: catalog_error_class("label-link", product) %></td>
+            <td class="<%= catalog_error_class("product__label", product) %> row-label row-label--medium">$<%= product.price.round(0) %></td>
+            <td class="<%= catalog_error_class("product__label", product) %> row-label row-label--medium"><%= product.product_actions.display.count %></td>
+            <td class="<%= catalog_error_class("product__label", product) %> row-label row-label--medium"><%= product.product_actions.like.count %></td>
             <td class="product__toggle row-label--small">
               <toggle-button 
                 :value=<%= product.display %>
                 product-id=<%= product.id %>
                 attribute='display'
+                :enabled=<%= product.image.attached? %>
               >
               </toggle-button>
             </td>
@@ -49,6 +54,7 @@
                 :value=<%= product.promoted %>
                 product-id=<%= product.id %>
                 attribute='promoted'
+                :enabled=<%= product.image.attached? %>
               >
               </toggle-button>
             </td>

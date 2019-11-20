@@ -164,6 +164,10 @@
     flex-direction: column;
     font-size: 19px;
     line-height: 24px;
+
+    &--danger {
+      color: $danger-color;
+    }
   }
 
   &__toggle {
@@ -181,8 +185,12 @@
       height: 100%;
       object-fit: cover;
 
-      &:hover {
+      &--error {
         opacity: .9;
+      }
+
+      &:hover {
+        opacity: .8;
       }
     }
   }
@@ -192,6 +200,10 @@
   width: 56px;
   height: 56px;
   background-color: #000;
+
+  &--danger {
+    background-color: $danger-color;
+  }
 }
 
 .label-link {
@@ -200,6 +212,14 @@
 
   &:visited {
     color: rgb(65, 63, 63);
+  }
+
+  &--danger {
+    color: $danger-color;
+
+    &:visited {
+      color: $danger-color;
+    }
   }
 
   &:hover {
@@ -230,6 +250,12 @@
   &.active {
     border: 2px solid $primary-color;
     background: $primary-color;
+    transition: all .2s;
+  }
+
+  &.disabled {
+    border: 2px solid $danger-background-color;
+    background: $danger-background-color;
     transition: all .2s;
   }
 }

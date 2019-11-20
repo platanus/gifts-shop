@@ -39,6 +39,10 @@ class Product < ApplicationRecord
     recommender_image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
   end
 
+  def validate_image
+    update(display: false) if !image.attached?
+  end
+
   private
 
   def hex_value(red, green, blue)

@@ -176,7 +176,7 @@ export default {
   data() {
     return this.product ? {
       csrfToken: getCsrfToken(),
-      imageData: this.product.image_url,
+      imageData: this.product.image_url || '',
       errors: {},
       name: this.product.name,
       link: this.product.link,
