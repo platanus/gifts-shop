@@ -2,11 +2,10 @@
   <div
     class="toggle-button"
     :class="stateClass"
-    @click.self="toggleAction"
+    @click="toggleAction"
   >
     <div
       class="draggable"
-      @mousedown.prevent="dragStart"
       :style="style"
     />
   </div>
@@ -17,7 +16,6 @@ import catalogApi from '../api/catalog';
 
 const fullSize = 100;
 const halfSize = 50;
-const emptySize = 30;
 
 export default {
   props: {
@@ -57,7 +55,8 @@ export default {
     stateClass() {
       if (!this.enabled) {
         return 'disabled';
-      } else if (this.state) {
+      }
+      if (this.state) {
         return 'active';
       }
 
@@ -80,47 +79,6 @@ export default {
     toggleSwitch(state) {
       this.state = state;
       this.position = state ?
-        fullSize :
-        0;
-    },
-    dragging(e) {
-      const pos = e.clientX - this.$el.offsetLeft;
-      const percent = pos / this.width * fullSize;
-      if (percent <= 0) {
-        this.position = 0;
-      } else {
-        if (percent >= fullSize) {
-          this.position = fullSize;
-        } else {
-          this.position = percent;
-        }
-      }
-    },
-    dragStart() {
-      if (this.enabled) {
-        this.startTimer();
-        window.addEventListener('mousemove', this.dragging);
-        window.addEventListener('mouseup', this.dragStop);
-      }
-    },
-    dragStop() {
-      window.removeEventListener('mousemove', this.dragging);
-      window.removeEventListener('mouseup', this.dragStop);
-      this.resolvePosition();
-      clearInterval(this.$options.interval);
-      if (this.pressed < emptySize) {
-        this.toggleSwitch(!this.state);
-      }
-      this.pressed = 0;
-      this.emit();
-    },
-    startTimer() {
-      this.$options.interval = setInterval(() => {
-        this.pressed++;
-      }, 1);
-    },
-    resolvePosition() {
-      this.position = this.state ?
         fullSize :
         0;
     },
