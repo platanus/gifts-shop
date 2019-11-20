@@ -36,15 +36,16 @@
                 <% end %>
               </div>
             </td>
-            <td class="product__label row-label row-label--big"><%= link_to product.name, edit_stores_catalog_path(product), class: "label-link" %></td>
-            <td class="product__label row-label row-label--medium">$<%= product.price.round(0) %></td>
-            <td class="product__label row-label row-label--medium"><%= product.product_actions.display.count %></td>
-            <td class="product__label row-label row-label--medium"><%= product.product_actions.like.count %></td>
+            <td class="product__label row-label row-label--big"><%= link_to product.name, edit_stores_catalog_path(product), class: catalog_error_class("label-link", product) %></td>
+            <td class="<%= catalog_error_class("product__label", product) %> row-label row-label--medium">$<%= product.price.round(0) %></td>
+            <td class="<%= catalog_error_class("product__label", product) %> row-label row-label--medium"><%= product.product_actions.display.count %></td>
+            <td class="<%= catalog_error_class("product__label", product) %> row-label row-label--medium"><%= product.product_actions.like.count %></td>
             <td class="product__toggle row-label--small">
               <toggle-button 
                 :value=<%= product.display %>
                 product-id=<%= product.id %>
                 attribute='display'
+                :active=<%= product.image.attached? %>
               >
               </toggle-button>
             </td>
@@ -53,6 +54,7 @@
                 :value=<%= product.promoted %>
                 product-id=<%= product.id %>
                 attribute='promoted'
+                :active=<%= product.image.attached? %>
               >
               </toggle-button>
             </td>
