@@ -232,8 +232,13 @@ export default {
       }
     },
     validatePrice() {
-      if (!this.price) {
-        this.errors.price = 'El precio no puede estar estar en blanco';
+      if (this.price) {
+        this.price = this.cleanPrice(this.price);
+        if (parseInt(this.price, 10) <= 0) {
+          this.errors.price = '¡No regales tus productos!';
+        }
+      } else {
+        this.errors.price = 'Debes ponerle un precio a tu producto';
       }
     },
     validateLink() {
@@ -252,6 +257,9 @@ export default {
       }
 
       return `${baseClass}`;
+    },
+    cleanPrice(price) {
+      return price.replace(/[.,\s]/g, '');
     },
   },
 };
