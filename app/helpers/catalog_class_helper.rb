@@ -1,6 +1,6 @@
 module CatalogClassHelper
-  def catalog_error_class(base_class, product)
-    if !product.image.attached?
+  def catalog_error_class(base_class, has_attachment)
+    if !has_attachment
       return "#{base_class} #{base_class}--danger"
     end
 
