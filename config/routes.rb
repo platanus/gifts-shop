@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   }
   scope path: '/api' do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
-      resources :products, only: [:index]
+      resources :products, only: [:index, :update]
       resources :product_actions, only: [:create]
       get 'receivers/get', to: 'receivers#show'
       delete 'receivers/delete_session', to: 'receivers#delete_session'
       delete 'product_actions/destroy_like', to: 'product_actions#destroy_like'
-      resources :catalogs, only: [:update]
+      resources :stores, only: [:show]
     end
   end
   devise_scope :store do
