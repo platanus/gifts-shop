@@ -1,15 +1,38 @@
 
 .info-container {
   display: flex;
-  flex-direction: column;
   margin-bottom: 10px;
   padding-left: 20px;
   margin-left: 5%;
+  flex-wrap: wrap;
 }
 
 .catalog-left {
   display: flex;
   flex-wrap: wrap;
+}
+
+.catalog-right {
+  display: flex;
+  width: 630px;
+  padding-top: 5px;
+  margin-left: 5%;
+}
+
+.balance-warning {
+  width: 100%;
+  font-size: 1.1em;
+  color: $danger-color;
+
+  &__action {
+    font-weight: bold;
+    text-decoration: underline;
+  }
+}
+
+.warning-container {
+  width: 100%;
+  text-align: center;
 }
 
 .catalog-container {
