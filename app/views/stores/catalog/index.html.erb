@@ -4,12 +4,6 @@
     <div class="catalog-title">Productos</div>
     <%= button_to "Agregar producto",  new_stores_catalog_path, class: "btn new-product-btn", method: :get %>
   </div>
-  <div class="catalog-right">
-    <balance-warning
-      :store-id=<%= current_store.id %>
-    >
-    </balance-warning>
-  </div>
 </div>
 <div class="catalog-body">
   <div class="catalog-container">
@@ -61,7 +55,6 @@
                 product-id=<%= product.id %>
                 attribute='promoted'
                 :enabled=<%= product.image.attached? %>
-                :store-id=<%= current_store.id %>
               >
               </toggle-button>
             </td>

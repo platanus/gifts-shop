@@ -2,21 +2,22 @@
   <div
     class="toggle-button"
     :class="stateClass"
-    @click="toggleAction"
+    @click.self="toggleAction"
   >
     <div
       class="draggable"
+      @mousedown.prevent="dragStart"
       :style="style"
     />
   </div>
 </template>
 
 <script>
-
-import productApi from '../api/product';
+import catalogApi from '../api/catalog';
 
 const fullSize = 100;
 const halfSize = 50;
+const emptySize = 30;
 
 export default {
   props: {
@@ -31,9 +32,6 @@ export default {
     },
     enabled: {
       type: Boolean, required: true,
-    },
-    storeId: {
-      type: Number, required: false, default: null,
     },
   },
   data() {
@@ -59,8 +57,7 @@ export default {
     stateClass() {
       if (!this.enabled) {
         return 'disabled';
-      }
-      if (this.state) {
+      } else if (this.state) {
         return 'active';
       }
 
@@ -76,9 +73,7 @@ export default {
     toggleAction() {
       if (this.enabled) {
         this.toggleSwitch(!this.state);
-        productApi.setValue(this.productId, this.attribute).then(() => {
-          this.updateBalance();
-        });
+        catalogApi.setValue(this.productId, this.attribute);
         this.emit();
       }
     },
@@ -88,10 +83,46 @@ export default {
         fullSize :
         0;
     },
-    updateBalance() {
-      if (this.storeId) {
-        this.$store.dispatch('updateBalance', this.storeId);
+    dragging(e) {
+      const pos = e.clientX - this.$el.offsetLeft;
+      const percent = pos / this.width * fullSize;
+      if (percent <= 0) {
+        this.position = 0;
+      } else {
+        if (percent >= fullSize) {
+          this.position = fullSize;
+        } else {
+          this.position = percent;
+        }
       }
+    },
+    dragStart() {
+      if (this.enabled) {
+        this.startTimer();
+        window.addEventListener('mousemove', this.dragging);
+        window.addEventListener('mouseup', this.dragStop);
+      }
+    },
+    dragStop() {
+      window.removeEventListener('mousemove', this.dragging);
+      window.removeEventListener('mouseup', this.dragStop);
+      this.resolvePosition();
+      clearInterval(this.$options.interval);
+      if (this.pressed < emptySize) {
+        this.toggleSwitch(!this.state);
+      }
+      this.pressed = 0;
+      this.emit();
+    },
+    startTimer() {
+      this.$options.interval = setInterval(() => {
+        this.pressed++;
+      }, 1);
+    },
+    resolvePosition() {
+      this.position = this.state ?
+        fullSize :
+        0;
     },
     emit() {
       this.$emit('input', this.state);

@@ -1,9 +1,8 @@
 import api from './index';
 
 export default {
-
   setValue(productId, type) {
-    const path = `/api/v1/products/${productId}`;
+    const path = `/api/v1/catalogs/${productId}`;
 
     return api({
       method: 'put',

@@ -39,20 +39,4 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       end
     end
   end
-
-  describe "PATCH #update" do
-    let(:product) { create(:product) }
-    let!(:promoted_value) { product.promoted }
-
-    context 'with promoted toggle' do
-      before do
-        patch :update, params: { type: 'promoted', id: product.id, format: :json }
-      end
-
-      it 'changes product promoted attribute' do
-        expect(response).to have_http_status(:success)
-        expect(product.reload.promoted).not_to eq(promoted_value)
-      end
-    end
-  end
 end
