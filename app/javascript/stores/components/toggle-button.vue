@@ -12,7 +12,8 @@
 </template>
 
 <script>
-import catalogApi from '../api/catalog';
+
+import productApi from '../api/product';
 
 const fullSize = 100;
 const halfSize = 50;
@@ -30,6 +31,9 @@ export default {
     },
     enabled: {
       type: Boolean, required: true,
+    },
+    storeId: {
+      type: Number, required: false, default: null,
     },
   },
   data() {
@@ -72,7 +76,9 @@ export default {
     toggleAction() {
       if (this.enabled) {
         this.toggleSwitch(!this.state);
-        catalogApi.setValue(this.productId, this.attribute);
+        productApi.setValue(this.productId, this.attribute).then(() => {
+          this.updateBalance();
+        });
         this.emit();
       }
     },
@@ -81,6 +87,11 @@ export default {
       this.position = state ?
         fullSize :
         0;
+    },
+    updateBalance() {
+      if (this.storeId) {
+        this.$store.dispatch('updateBalance', this.storeId);
+      }
     },
     emit() {
       this.$emit('input', this.state);
