@@ -15,6 +15,7 @@ end
 #  giver_id   :bigint(8)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  gift_limit :integer
 #
 # Indexes
 #
