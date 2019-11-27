@@ -77,7 +77,7 @@ export default {
     z-index: 105;
     width: 100%;
     top: 3em;
-    padding: 2em;
+    padding: 1.8em;
 
     &__form {
       display: flex;
