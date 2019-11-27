@@ -75,8 +75,8 @@ end
 #  promoted      :boolean          default(FALSE)
 #  deleted       :boolean          default(FALSE)
 #  average_color :text             default("#000000")
-#  gender        :integer          default(0)
-#  age           :integer          default(0)
+#  gender        :integer          default("either")
+#  age           :integer          default("any")
 #  novelty       :integer
 #
 # Indexes
