@@ -6,5 +6,6 @@ FactoryBot.define do
     link { "MyString" }
     clicks_cost { 1.5 }
     store
+    novelty { 3 }
   end
 end
