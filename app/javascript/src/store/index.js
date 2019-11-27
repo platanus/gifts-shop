@@ -6,6 +6,8 @@ import receiverApi from '../api/receiver';
 
 Vue.use(Vuex);
 
+const LIMIT_PRICE_OFFSET_PERCENTAGE = 0.4;
+
 // eslint-disable-next-line new-cap
 const store = new Vuex.Store({
   state: {
@@ -49,6 +51,11 @@ const store = new Vuex.Store({
       receiverApi.getReceiver().then(({ receiver, likes }) => {
         context.commit('setReceiverName', receiver.name);
         context.commit('setLikes', likes);
+        const limit = parseInt(receiver.giftLimit, 10);
+        if (limit) {
+          const limitOffset = limit * LIMIT_PRICE_OFFSET_PERCENTAGE;
+          context.dispatch('applyPriceFilter', [limit - limitOffset, limit + limitOffset]);
+        }
       });
     },
     getProducts: context => {
