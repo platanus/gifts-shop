@@ -24,6 +24,9 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :price
       f.input :link
+      f.input :gender
+      f.input :age
+      f.input :novelty
     end
     f.actions
   end
