@@ -16,6 +16,9 @@ ActiveAdmin.register Product do
     column :link
     column :promoted
     column :display
+    column :gender
+    column :age
+    column :novelty
   end
 
   form do |f|
@@ -24,6 +27,9 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :price
       f.input :link
+      f.input :gender
+      f.input :age
+      f.input :novelty
     end
     f.actions
   end

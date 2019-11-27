@@ -9,6 +9,10 @@ class Product < ApplicationRecord
   validates :name, presence: true, length: { minimum: 5 }
   validates :price, presence: true
   validates :link, presence: true
+  validates :novelty, numericality: { greater_than: 0, less_than_or_equal_to: 5 }
+
+  enum gender: { either: 0, male: 1, female: 2 }
+  enum age: { any: 0, kid: 1, teen: 2, adult: 3 }
 
   def set_average_color
     image = MiniMagick::Image.open(url_for(self.image))
@@ -71,6 +75,9 @@ end
 #  promoted      :boolean          default(FALSE)
 #  deleted       :boolean          default(FALSE)
 #  average_color :text             default("#000000")
+#  gender        :integer          default("either")
+#  age           :integer          default("any")
+#  novelty       :integer
 #
 # Indexes
 #
