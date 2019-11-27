@@ -22,7 +22,7 @@
           @click="goToStore"
         >
         <price-filter
-          v-if="visiblePriceFilter"
+          v-if="visiblePriceFilter || desktop"
           :mobile="mobile"
           @filtered="togglePriceFilter"
         />
@@ -30,13 +30,13 @@
           class="home-header__icon"
           src="../assets/currency.svg"
           @click="togglePriceFilter"
-          v-if="!visiblePriceFilter"
+          v-if="!visiblePriceFilter && !desktop"
         >
         <img
           class="home-header__icon home-header__icon--small"
           src="../assets/close-badge-blue.svg"
           @click="togglePriceFilter"
-          v-if="visiblePriceFilter"
+          v-if="visiblePriceFilter && !desktop"
         >
       </div>
     </div>
@@ -47,14 +47,17 @@ import HeaderCenter from './header-center';
 import PriceFilter from './price-filter';
 
 const MOBILE_WIDTH = 650;
+const TABLET_WIDTH = 1000;
 const SCROLL_OFFSET = 60;
 
 export default {
   name: 'HomeHeader',
   data() {
+    const desktop = window.innerWidth > TABLET_WIDTH;
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
-      visiblePriceFilter: false,
+      desktop,
+      visiblePriceFilter: desktop,
     };
   },
   props: {
@@ -76,6 +79,7 @@ export default {
     },
     onResize() {
       this.mobile = window.innerWidth <= MOBILE_WIDTH;
+      this.desktop = window.innerWidth > TABLET_WIDTH;
     },
   },
   mounted() {
