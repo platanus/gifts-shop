@@ -16,6 +16,9 @@ ActiveAdmin.register Product do
     column :link
     column :promoted
     column :display
+    column :gender
+    column :age
+    column :novelty
   end
 
   form do |f|
