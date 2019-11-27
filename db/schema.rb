@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_30_155912) do
+ActiveRecord::Schema.define(version: 2019_11_27_175454) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -171,6 +171,7 @@ ActiveRecord::Schema.define(version: 2019_10_30_155912) do
     t.bigint "giver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "gift_limit"
     t.index ["giver_id"], name: "index_receivers_on_giver_id"
   end
 
