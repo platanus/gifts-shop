@@ -26,12 +26,13 @@
           :mobile="mobile"
           @filtered="togglePriceFilter"
         />
-        <img
+        <div
           class="home-header__icon"
-          src="../assets/currency.svg"
           @click="togglePriceFilter"
           v-if="!visiblePriceFilter && !desktop"
         >
+          Filtrar
+        </div>
         <img
           class="home-header__icon home-header__icon--small"
           src="../assets/close-badge-blue.svg"
@@ -127,8 +128,8 @@ export default {
       position: absolute;
       right: 0;
       top: .7em;
-      width: 1.3em;
       height: 1.3em;
+      color: $c-header-foreground;
 
       &--small {
         width: .8em;
