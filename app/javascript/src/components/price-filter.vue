@@ -107,7 +107,9 @@ export default {
     }
 
     &__error {
-      color: $danger-color;
+      position: absolute;
+      bottom: -.8em;
+      color: $c-filter-background;
       font-size: .8em;
       text-align: center;
     }
