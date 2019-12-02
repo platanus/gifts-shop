@@ -1,7 +1,7 @@
 <template>
   <div class="header-center">
     <div class="header-center__title">
-      Poder recomendador de ideas para <span class="header-center__title--emphasis-word"> {{ receiverName }}</span>
+      Busquemos regalo para <span class="header-center__title--emphasis-word"> {{ receiverName }}</span>
       <img
         class="header-center__icon header-center__icon--title"
         src="../assets/close-badge.svg"
@@ -9,6 +9,12 @@
       >
     </div>
     <div class="header-center__powerbar-container">
+      <img
+        src="../assets/like-color-badge.svg"
+        :key="likes"
+        class="powerbar__icon"
+        :class="{ 'powerbar__icon--pumping': pumping }"
+      >
       <div class="powerbar__background">
         <div
           class="powerbar__foreground"
@@ -20,7 +26,7 @@
       class="header-center__subtitle"
       v-if="!mobile"
     >
-      Aumenta el poder con
+      Mejora las sugerencias con más
       <img
         class="header-center__icon header-center__icon--subtitle"
         src="../assets/like-badge-white.svg"
@@ -32,17 +38,20 @@
 <script>
 import { mapState } from 'vuex';
 
-const LIKES_TO_TOTAL_POWER = 6;
-const INITIAL_POWER = 10;
-const TOTAL_POWER = 100;
+const LIKES_TO_TOTAL_POWER = 5;
+const INITIAL_POWER = 15;
+const TOTAL_POWER = 95;
+const PUMP_TIMEOUT = 1000;
 
 export default {
   name: 'HomeTitle',
+  data() {
+    return {
+      pumping: false,
+      pumpingTimeOut: null,
+    };
+  },
   props: {
-    likes: {
-      type: Number,
-      default: 0,
-    },
     mobile: {
       type: Boolean,
       default: true,
@@ -51,6 +60,7 @@ export default {
   computed: {
     ...mapState([
       'receiverName',
+      'likes',
     ]),
     style() {
       let power = TOTAL_POWER;
@@ -59,6 +69,19 @@ export default {
       }
 
       return { width: `${power}%` };
+    },
+  },
+  watch: {
+    likes(newValue, oldValue) {
+      if (newValue > oldValue) {
+        if (this.pumpingTimeOut) {
+          clearTimeout(this.pumpingTimeOut);
+        }
+        this.pumping = true;
+        this.pumpingTimeOut = setTimeout(() => {
+          this.pumping = false;
+        }, PUMP_TIMEOUT);
+      }
     },
   },
   methods: {
@@ -74,6 +97,20 @@ export default {
 
 <style lang="scss">
   @import '../../styles/variables';
+
+  @keyframes main-pump {
+    0% {
+      transform: scale(1);
+    }
+
+    30% {
+      transform: scale(1.3);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
 
   .header-center {
     font-size: .9em;
@@ -138,12 +175,21 @@ export default {
 
       .powerbar {
         &__background {
-          height: 5px;
+          height: 6px;
           width: 100%;
           border-radius: 4px;
           background-color: rgba(255, 255, 255, .24);
           position: relative;
           margin: 1em auto;
+        }
+
+        &__icon {
+          margin-right: .5em;
+          width: 24px;
+
+          &--pumping {
+            animation: main-pump 1s;
+          }
         }
 
         &__foreground {
@@ -152,8 +198,8 @@ export default {
           z-index: 105;
           position: absolute;
           background-size: 100%;
-          background-color: #fff;
-          transition: width .6s;
+          background-color: rgb(247, 161, 34);
+          transition: width 1.5s;
           width: 10%;
         }
       }
