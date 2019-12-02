@@ -1,6 +1,5 @@
 class UpdateStoreProducts < PowerTypes::Command.new(:store, :csv_url)
   def perform
-    @store.products.destroy_all
     products.each do |params|
       if product = Product.create(
         name: params.name,
