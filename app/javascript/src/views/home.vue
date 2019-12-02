@@ -1,8 +1,6 @@
 <template>
   <div class="home-container">
-    <home-header
-      :likes="likes"
-    />
+    <home-header />
     <div class="home-products-container">
       <product
         v-for="(product, index) in products"

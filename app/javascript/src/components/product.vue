@@ -15,6 +15,7 @@
         <img
           v-else
           class="home-product__icon"
+          :class="activeClass"
           src="../assets/like-badge.svg"
         >
       </div>
@@ -70,7 +71,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 
 export default {
@@ -84,6 +85,18 @@ export default {
     product: {
       type: Object,
       default: null,
+    },
+  },
+  computed: {
+    ...mapState([
+      'likes',
+    ]),
+    activeClass() {
+      if (this.likes === 0) {
+        return 'home-product__icon--active';
+      }
+
+      return '';
     },
   },
   methods: {
@@ -138,6 +151,28 @@ export default {
     opacity: 0;
   }
 
+  @keyframes pump {
+    50% {
+      transform: scale(1);
+    }
+
+    55% {
+      transform: scale(1.2);
+    }
+
+    60% {
+      transform: scale(1);
+    }
+
+    65% {
+      transform: scale(1.2);
+    }
+
+    70% {
+      transform: scale(1);
+    }
+  }
+
   .home-product {
     display: flex;
     flex-direction: column;
@@ -183,6 +218,8 @@ export default {
       background-color: #fff;
       box-shadow: 0 4px 6px 0 rgba(43, 43, 43, .13);
       z-index: 20;
+      display: flex;
+      justify-content: center;
 
       &:hover {
         cursor: pointer;
@@ -257,10 +294,15 @@ export default {
     }
 
     &__icon {
-      height: 1.2em;
-      width: .9em;
-      margin: .1em .3em;
+      width: 80%;
+      height: 80%;
+      margin: .17em;
       cursor: pointer;
+
+      &--active {
+        animation: pump 6s;
+        animation-iteration-count: infinite;
+      }
     }
 
     &__title {
@@ -326,4 +368,5 @@ export default {
     position: absolute;
     bottom: .4em;
   }
+
 </style>
