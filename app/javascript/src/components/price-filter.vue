@@ -38,8 +38,6 @@
 export default {
   data() {
     return {
-      minPrice: this.$store.state.minPrice,
-      maxPrice: this.$store.state.maxPrice,
       error: false,
     };
   },
@@ -47,6 +45,24 @@ export default {
     mobile: {
       type: Boolean,
       default: false,
+    },
+  },
+  computed: {
+    minPrice: {
+      get() {
+        return this.$store.state.minPrice;
+      },
+      set(value) {
+        this.$store.commit('setMinPrice', value);
+      },
+    },
+    maxPrice: {
+      get() {
+        return this.$store.state.maxPrice;
+      },
+      set(value) {
+        this.$store.commit('setMaxPrice', value);
+      },
     },
   },
   methods: {
