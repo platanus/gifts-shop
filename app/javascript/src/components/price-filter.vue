@@ -70,7 +70,7 @@ export default {
       if (parseInt(this.minPrice, 10) > parseInt(this.maxPrice, 10)) {
         this.error = true;
       } else {
-        this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
+        this.$store.dispatch('applyPriceFilter');
         this.error = false;
         this.$emit('filtered');
       }
