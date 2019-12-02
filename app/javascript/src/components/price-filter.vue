@@ -38,8 +38,6 @@
 export default {
   data() {
     return {
-      minPrice: this.$store.state.minPrice,
-      maxPrice: this.$store.state.maxPrice,
       error: false,
     };
   },
@@ -49,12 +47,30 @@ export default {
       default: false,
     },
   },
+  computed: {
+    minPrice: {
+      get() {
+        return this.$store.state.minPrice;
+      },
+      set(value) {
+        this.$store.commit('setMinPrice', value);
+      },
+    },
+    maxPrice: {
+      get() {
+        return this.$store.state.maxPrice;
+      },
+      set(value) {
+        this.$store.commit('setMaxPrice', value);
+      },
+    },
+  },
   methods: {
     submitPriceFilter() {
       if (parseInt(this.minPrice, 10) > parseInt(this.maxPrice, 10)) {
         this.error = true;
       } else {
-        this.$store.dispatch('applyPriceFilter', [this.minPrice, this.maxPrice]);
+        this.$store.dispatch('applyPriceFilter');
         this.error = false;
         this.$emit('filtered');
       }
@@ -91,7 +107,9 @@ export default {
     }
 
     &__error {
-      color: $danger-color;
+      position: absolute;
+      bottom: -.8em;
+      color: $c-filter-background;
       font-size: .8em;
       text-align: center;
     }
