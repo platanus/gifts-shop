@@ -54,7 +54,9 @@ const store = new Vuex.Store({
         const limit = parseInt(receiver.giftLimit, 10);
         if (limit) {
           const limitOffset = limit * LIMIT_PRICE_OFFSET_PERCENTAGE;
-          context.dispatch('applyPriceFilter', [limit - limitOffset, limit + limitOffset]);
+          context.commit('setMinPrice', limit - limitOffset);
+          context.commit('setMaxPrice', limit + limitOffset);
+          context.dispatch('applyPriceFilter');
         }
       });
     },
