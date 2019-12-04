@@ -1,25 +1,30 @@
 <template>
   <div class="home-card-container">
     <div class="home-card">
-      <div class="home-card__title">
-        Mejora las recomendaciones
-      </div>
       <div class="home-card__image-wrapper">
         <div class="image-container">
           <img
             class="home-card__image"
-            src="../assets/like-color-badge.svg"
+            src="../assets/like-badge.svg"
           >
         </div>
       </div>
-      <div class="home-card__information">
-        <span class="home-card__action-text">Marca</span>
-        <img
-          src="../assets/like-badge.svg"
-          class="homer-card__icon"
-          align="top"
-        >
-        <br>las ideas que te gusten para <span class="home-card__receiverName">{{ receiverName }}</span><br>
+      <div class="home-information">
+        <div class="home-information home-information__title">
+          ¡Mejora las recomendaciones!
+        </div>
+        <div class="home-information home-information__subtitle">
+          <br>Entre más <img
+            src="../assets/like-badge.svg"
+            class="text-icon"
+            align="top"
+          >
+          aprietes, tendremos una mejor idea de lo que le podría gustar a <span
+            class="home-card__receiverName"
+          >
+            {{ receiverName }}
+          </span><br>
+        </div>
       </div>
     </div>
   </div>
@@ -69,21 +74,8 @@ export default {
       width: $r-size-image;
     }
 
-    &__action-text {
-      font-weight: bolder;
-    }
-
-    &__information {
-      text-align: center;
-      padding: 8px 12px;
-      height: 100%;
-      line-height: 28px;
-      margin-top: -3em;
-    }
-
     &__receiverName {
       color: $label-color;
-      text-decoration: underline;
     }
 
     &__icon-container {
@@ -112,6 +104,7 @@ export default {
       cursor: pointer;
 
       .image-container {
+        background: $card-background;
         border-radius: 4px 4px 0 0;
         width: 100%;
         height: 100%;
@@ -160,13 +153,14 @@ export default {
     }
 
     &__image {
-      padding-top: 2em;
-      width: 50%;
-      height: 50%;
+      padding-top: 30%;
+      width: 40%;
+      height: 40%;
       border-radius: 4px 4px 0 0;
     }
 
     &__icon {
+      vertical-align: middle;
       height: 80%;
       width: 80%;
       margin: .17em;
@@ -184,6 +178,27 @@ export default {
       -webkit-box-orient: vertical; //stylelint-disable property-no-vendor-prefix
       cursor: pointer;
     }
+  }
+
+  .home-information {
+    text-align: center;
+    margin: 5px;
+
+    &__title {
+      font-size: 1em;
+      font-weight: bolder;
+    }
+
+    &__subtitle {
+      font-size: .7em;
+      text-align: center;
+      opacity: .7;
+    }
+  }
+
+  .text-icon {
+    vertical-align: middle;
+    height: 1.3em;
   }
 
 </style>
