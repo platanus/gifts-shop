@@ -1,7 +1,7 @@
 ActiveAdmin.register Product do
   menu parent: I18n.t('activeadmin.titles.stores')
 
-  permit_params :store, :name, :price, :link, :promoted, :display, :gender, :age, :novelty, :image
+  permit_params :store_id, :name, :price, :link, :promoted, :display, :gender, :age, :novelty
 
   filter :name
   filter :store
@@ -22,6 +22,24 @@ ActiveAdmin.register Product do
     column :novelty
     column :created_at
     actions
+  end
+
+  controller do
+    def create
+      super
+      update_image
+    end
+
+    def update
+      super
+      update_image
+    end
+
+    private
+
+    def update_image
+      @product.update_image(params[:product][:image]) if params[:product][:image].present?
+    end
   end
 
   show do
