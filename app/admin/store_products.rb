@@ -24,6 +24,29 @@ ActiveAdmin.register Product do
     actions
   end
 
+  show do
+    attributes_table do
+      row :name
+      row :price
+      row :clicks
+      row :link
+      row :image do |product|
+        image_tag(url_for(product.image)) if product.image.attached?
+      end
+      row :clicks_cost
+      row :store
+      row :created_at
+      row :updated_at
+      row :display
+      row :promoted
+      row :deleted
+      row :average_color
+      row :gender
+      row :age
+      row :novelty
+    end
+  end
+
   form do |f|
     f.inputs do
       f.input :store
