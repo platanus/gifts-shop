@@ -65,6 +65,7 @@ export default {
     display: block;
     font-size: $m-font-size;
     width: 100%;
+    background: $home-background;
   }
 
   .home-products-container {
