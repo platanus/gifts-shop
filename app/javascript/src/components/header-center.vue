@@ -1,12 +1,11 @@
 <template>
   <div class="header-center">
     <div class="header-center__title">
-      Busquemos regalo para <span class="header-center__title--emphasis-word"> {{ receiverName }}</span>
-      <img
-        class="header-center__icon header-center__icon--title"
-        src="../assets/close-badge.svg"
+      Busquemos regalo para <span
+        class="header-center__title--emphasis-word"
         @click="clearCookies"
       >
+        {{ receiverName }}</span>
     </div>
     <div class="header-center__powerbar-container">
       <img
@@ -29,7 +28,7 @@
       Mejora las sugerencias con más
       <img
         class="header-center__icon header-center__icon--subtitle"
-        src="../assets/like-badge-white.svg"
+        src="../assets/like-badge.svg"
       >
     </div>
   </div>
@@ -38,15 +37,16 @@
 <script>
 import { mapState } from 'vuex';
 
-const LIKES_TO_TOTAL_POWER = 5;
+const LIKES_TO_TOTAL_POWER = 6;
 const INITIAL_POWER = 15;
-const TOTAL_POWER = 95;
+const TOTAL_POWER = 75;
 const PUMP_TIMEOUT = 1000;
 
 export default {
   name: 'HomeTitle',
   data() {
     return {
+      resetButton: false,
       pumping: false,
       pumpingTimeOut: null,
     };
@@ -104,7 +104,7 @@ export default {
     }
 
     30% {
-      transform: scale(1.3);
+      transform: scale(1.4);
     }
 
     100% {
@@ -129,6 +129,10 @@ export default {
         color: $emphasis-word-font-color;
         text-decoration: underline;
         text-transform: capitalize;
+
+        &:hover {
+          color: darken($color: $emphasis-word-font-color, $amount: 15%);
+        }
       }
     }
 
@@ -156,7 +160,7 @@ export default {
 
       &--title {
         border-radius: 50%;
-        margin-left: .5em;
+        height: 17px;
 
         &:hover {
           cursor: pointer;
@@ -178,7 +182,7 @@ export default {
           height: 6px;
           width: 100%;
           border-radius: 4px;
-          background-color: rgba(255, 255, 255, .24);
+          background-color: $home-background;
           position: relative;
           margin: 1em auto;
         }
@@ -198,7 +202,7 @@ export default {
           z-index: 105;
           position: absolute;
           background-size: 100%;
-          background-color: rgb(247, 161, 34);
+          background-color: #f5525b;
           transition: width 1.5s;
           width: 10%;
         }
