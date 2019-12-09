@@ -1,30 +1,32 @@
-$user-name-font-color: #fff;
-$title-font-color:	#fff;
-$subtitle-font-color:	#fff;
-$emphasis-word-font-color: #fff;
-$product-image-background-color: #979797;
-$product-name-font-color: #353434;
-
-$primary-color: #35c6ad;
+$primary-color: #16a69e;
 $promoted-product-color: rgb(235, 214, 30);
 $product-color: #dc143c;
 $receiver-name-color: #dc143c;
 $white: #fff;
-$label-color: #16a69e;
+$label-color: $primary-color;
 $danger-color: #cd5c5c;
+
+$user-name-font-color: $primary-color;
+$title-font-color:	#000;
+$subtitle-font-color:	#000;
+$emphasis-word-font-color: $primary-color;
+$product-image-background-color: #979797;
+$product-name-font-color: #353434;
 
 $danger-border-color: #f7a5a2f8;
 $danger-background-color: #fbe8e8;
 $danger-label-color: #771a17fd;
 
-$c-header-background: #4a90e2;
-$c-header-background-transparent: rgba(74, 145, 226, .9);
-$c-header-foreground: #fff;
-$c-header-highlight: #1b5dab;
-$box-shadow-header: 0 3px 11px 0 #f5f1fd;
+$c-header-background: #fff;
+$c-header-background-transparent: $primary-color;
+$c-header-foreground: $primary-color;
+$c-header-highlight: $primary-color;
+$box-shadow-header: 0 3px 11px 0 #f4f8f8;
 
-$c-filter-background: #fff;
-$c-filter-foreground: #4a90e2;
+$c-filter-background: #f4f8f8;
+$c-filter-foreground: $primary-color;
+
+$home-background: #f4f8f8;
 
 $button-size: 10px;
 $main-font: 'Work Sans';

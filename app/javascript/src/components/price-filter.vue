@@ -3,7 +3,7 @@
     <div class="price-filter__form">
       <img
         class="price-filter__icon"
-        src="../assets/currency-blue.svg"
+        src="../assets/currency.svg"
       >
       <input
         class="price-filter__input"
@@ -13,7 +13,7 @@
       >
       a
       <input
-        class="price-filter__input"
+        class="price-filter__input price-filter__input--last"
         :class="{ 'price-filter__input--error': error }"
         v-model="maxPrice"
         placeholder="precio máximo"
@@ -84,7 +84,6 @@ export default {
 
   .price-filter {
     color: $c-filter-foreground;
-    background-color: $c-header-background-transparent;
     box-sizing: border-box;
     margin: auto;
     font-size: .8em;
@@ -92,18 +91,15 @@ export default {
     position: absolute;
     z-index: 105;
     width: 100%;
-    top: 3em;
-    padding: 1.8em;
+    border-radius: 8px;
+    justify-content: flex-end;
+    top: -22px;
 
     &__form {
       display: flex;
-      width: 100%;
       align-items: center;
       justify-content: center;
-      background-color: $c-filter-background;
-      border: 1px solid $c-header-highlight;
       border-radius: 6px 0 0 6px;
-      padding: 6px 8px;
     }
 
     &__error {
@@ -115,12 +111,18 @@ export default {
     }
 
     &__input {
-      text-align: center;
+      text-align: start;
       background: transparent;
-      color: $c-filter-foreground;
+      color: #000;
       border: 0;
+      border-bottom: solid 1px $label-color;
       font-size: 1em;
-      width: 4em;
+      width: 3em;
+      margin-right: 4px;
+
+      &--last {
+        margin-left: 4px;
+      }
 
       &--error {
         border-color: $danger-border-color;
@@ -130,11 +132,10 @@ export default {
     &__button {
       font-size: 1em;
       border: 1px solid $c-header-highlight;
-      border-radius: 0 6px 6px 0;
+      border-radius: 6px;
       background-color: $c-header-highlight;
       color: $white;
       padding: 0 1em;
-      width: 50%;
 
       &:hover {
         background-color: darken($color: $c-header-highlight, $amount: 5%);
@@ -142,10 +143,9 @@ export default {
     }
 
     @media (min-width: $p-break) {
-      right: 3em;
-      top: 0;
+      right: -2.5em;
+      top: 23px;
       width: fit-content;
-      padding: 1.5em 0 2em 21em;
     }
 
     @media (min-width: $t-break) {

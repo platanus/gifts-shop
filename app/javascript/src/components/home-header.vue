@@ -2,6 +2,19 @@
   <div
     class="home-header"
   >
+    <div class="store-elements-container">
+      <img
+        class="home-header__icon home-header__icon--first"
+        src="../assets/store.svg"
+        @click="goToStore"
+      >
+      <div
+        class="home-header__store-text"
+        @click="goToStore"
+      >
+        Tiendas
+      </div>
+    </div>
     <div class="home-header__content">
       <img
         class="home-header__home-icon home-icon"
@@ -16,29 +29,10 @@
         :mobile="mobile"
       />
       <div class="home-header__options">
-        <img
-          class="home-header__icon home-header__icon--first"
-          src="../assets/store.svg"
-          @click="goToStore"
-        >
-        <price-filter
-          v-if="visiblePriceFilter || desktop"
+        <PriceFilter
           :mobile="mobile"
           @filtered="togglePriceFilter"
         />
-        <div
-          class="home-header__icon"
-          @click="togglePriceFilter"
-          v-if="!visiblePriceFilter && !desktop"
-        >
-          Filtrar
-        </div>
-        <img
-          class="home-header__icon home-header__icon--small"
-          src="../assets/close-badge-blue.svg"
-          @click="togglePriceFilter"
-          v-if="visiblePriceFilter && !desktop"
-        >
       </div>
     </div>
   </div>
@@ -105,6 +99,17 @@ export default {
     align-items: center;
     border-radius: 0 0 16px 16px;
 
+    &__store-text {
+      font-size: .9em;
+      align-self: center;
+      color: $label-color;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
     &__content {
       margin: 0 auto;
       width: $m-width-grid;
@@ -125,7 +130,6 @@ export default {
 
     &__icon {
       flex: 1;
-      position: absolute;
       right: 0;
       top: .7em;
       height: 1.3em;
@@ -138,7 +142,6 @@ export default {
 
       &--first {
         left: 0;
-        margin-right: 1em;
       }
 
       &:hover {
@@ -174,10 +177,6 @@ export default {
       &__icon {
         position: initial;
         margin-left: .5em;
-
-        &--first {
-          margin-right: 1.5em;
-        }
       }
 
       &__options {
@@ -222,4 +221,11 @@ export default {
       width: $r-width-grid;
     }
   }
+
+  .store-elements-container {
+    display: flex;
+    width: 20px;
+    margin-left: 15px;
+  }
+
 </style>
