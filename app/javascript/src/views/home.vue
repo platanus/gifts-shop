@@ -1,11 +1,7 @@
 <template>
   <div class="home-container">
     <home-header />
-    <div
-      class="home-products-container"
-      v-if="products.length > 0"
-    >
-      <card />
+    <div class="home-products-container">
       <product
         v-for="(product, index) in products"
         :key="index"
@@ -24,7 +20,6 @@
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
-import card from '../components/card';
 import HomeHeader from '../components/home-header';
 
 const SCROLL_OFFSET = 30;
@@ -35,7 +30,6 @@ export default {
     product,
     ClipLoader,
     HomeHeader,
-    card,
   },
   computed: {
     ...mapState([
