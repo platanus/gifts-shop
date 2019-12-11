@@ -73,13 +73,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :price
       f.input :link
-      image = f.object.image
-      hint = if image_attached?
-               image_tag(url_for(image), size: 250, class: "aa-product__image")
-             else
-               content_tag(:span, 'Sin imagen')
-             end
-      f.input :image, as: :file, hint: hint
+      f.input :image, as: :file, hint: image_hint(f.object.image)
       f.input :promoted
       f.input :display
       f.input :gender
