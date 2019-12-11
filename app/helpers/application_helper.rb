@@ -9,4 +9,10 @@ module ApplicationHelper
   def default_display
     DEFAULT_DISPLAY
   end
+
+  def image_hint(image)
+    return image_tag(url_for(image), size: 250, class: 'aa-product__image') if image.attached?
+
+    content_tag(:span, 'Sin imagen')
+  end
 end

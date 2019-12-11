@@ -49,7 +49,9 @@ ActiveAdmin.register Product do
       row :clicks
       row :link
       row :image do |product|
-        image_tag(url_for(product.image)) if product.image.attached?
+        if product.image.attached?
+          image_tag(url_for(product.image), size: 250, class: "aa-product__image")
+        end
       end
       row :clicks_cost
       row :store
@@ -71,9 +73,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :price
       f.input :link
-      image = f.object.image
-      hint = image.attached? ? image_tag(url_for(image)) : content_tag(:span, "Sin imagen")
-      f.input :image, as: :file, hint: hint
+      f.input :image, as: :file, hint: image_hint(f.object.image)
       f.input :promoted
       f.input :display
       f.input :gender
