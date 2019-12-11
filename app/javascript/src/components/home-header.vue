@@ -43,12 +43,12 @@ import PriceFilter from './price-filter';
 
 const MOBILE_WIDTH = 650;
 const TABLET_WIDTH = 1000;
-const SCROLL_OFFSET = 60;
 
 export default {
   name: 'HomeHeader',
   data() {
     const desktop = window.innerWidth > TABLET_WIDTH;
+
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
       desktop,
