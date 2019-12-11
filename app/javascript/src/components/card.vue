@@ -55,6 +55,7 @@ export default {
     color: $product-name-font-color;
     width: $m-size-image;
     border: 1px solid rgba(148, 148, 148, .16);
+    box-shadow: 0 2px 6px rgba(148, 148, 148, .24);
     border-radius: 4px;
     background-color: #fff;
 
