@@ -205,7 +205,6 @@ export default {
 
     &__information {
       padding: 8px 12px;
-      height: 100%;
     }
 
     &__icon-container {
