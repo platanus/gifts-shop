@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 
 import productsApi from '../api/products';
 import receiverApi from '../api/receiver';
+import numberOfProducts from '../utils/numberOfProducts';
 
 Vue.use(Vuex);
 
@@ -17,7 +18,6 @@ const store = new Vuex.Store({
     minPrice: 5000,
     maxPrice: 30000,
     receiverName: '',
-    numberOfProducts: 8,
     promoted: 4,
   },
   mutations: {
@@ -39,9 +39,6 @@ const store = new Vuex.Store({
     setPromoted: (state, payload) => {
       state.promoted = payload;
     },
-    setNumberOfProducts: (state, payload) => {
-      state.numberOfProducts = payload;
-    },
     setLikes: (state, payload) => {
       state.likes = payload;
     },
@@ -62,7 +59,7 @@ const store = new Vuex.Store({
     },
     getProducts: context => {
       const params = [
-        context.state.numberOfProducts,
+        numberOfProducts(),
         context.state.minPrice,
         context.state.maxPrice,
         context.state.promoted,
@@ -96,8 +93,9 @@ const store = new Vuex.Store({
         .catch(() => {});
     },
     moreProducts: context => new Promise((resolve, reject) => {
+
       const params = [
-        context.state.numberOfProducts,
+        numberOfProducts(),
         context.state.minPrice,
         context.state.maxPrice,
         context.state.promoted,
