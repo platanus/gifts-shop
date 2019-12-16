@@ -244,7 +244,13 @@ export default {
       }
     },
     validateLink() {
-      if (this.link.length < MINIMUM_LINK_LENGTH) {
+      const pattern = new RegExp(
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+        '((\\d{1,3}\\.){3}\\d{1,3}))' +
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+        '(\\?[;&a-z\\d%_.~+=-]*)?' +
+        '(\\#[-a-z\\d_]*)?$', 'i');
+      if (!pattern.test(this.link)) {
         this.errors.link = 'El link debe ser válido';
       }
     },
