@@ -59,7 +59,7 @@
         </div>
         <div class="product-input">
           <div class="product-input__label">
-            LINK AL PRODUCTO
+            LINK AL PRODUCTO <span class="product-input__subtitle">(Instagram o sitio web)</span>
           </div>
           <input
             type="text"
@@ -234,7 +234,9 @@ export default {
     validatePrice() {
       if (this.price) {
         this.price = this.cleanPrice(this.price);
-        if (parseInt(this.price, 10) <= 0) {
+        if (!this.isNumber(this.price)) {
+          this.errors.price = 'Solo se aceptan números (0-9)';
+        } else if (parseInt(this.price, 10) <= 0) {
           this.errors.price = '¡No regales tus productos!';
         }
       } else {
@@ -260,6 +262,9 @@ export default {
     },
     cleanPrice(price) {
       return price.replace(/[.,\s]/g, '');
+    },
+    isNumber(value) {
+      return /^\d+$/.test(value);
     },
   },
 };
