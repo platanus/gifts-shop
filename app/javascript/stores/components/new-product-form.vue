@@ -59,7 +59,7 @@
         </div>
         <div class="product-input">
           <div class="product-input__label">
-            LINK AL PRODUCTO
+            LINK AL PRODUCTO <span class="product-input__subtitle">(Instagram o sitio web)</span>
           </div>
           <input
             type="text"
