@@ -76,6 +76,7 @@ export default {
     }
 
     &__receiverName {
+      text-transform: capitalize;
       color: $label-color;
     }
 
