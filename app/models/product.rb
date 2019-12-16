@@ -7,7 +7,7 @@ class Product < ApplicationRecord
   has_many :product_actions, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 5 }
-  validates :price, presence: true
+  validates :price, presence: true, numericality: { greater_than: 0 }
   validates :link, presence: true
   validates :novelty,
     numericality: { greater_than: 0, less_than_or_equal_to: 5 },
