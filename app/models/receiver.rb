@@ -1,6 +1,7 @@
 class Receiver < ApplicationRecord
   belongs_to :giver
   has_many :product_actions, dependent: :destroy
+  has_many :feedbacks, dependent: :destroy
 
   validates :giver, presence: true
 end
