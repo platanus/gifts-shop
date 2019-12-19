@@ -1,7 +1,7 @@
 class Feedback < ApplicationRecord
   belongs_to :receiver
 
-  enum response: { positive: 0, negative: 1, closed: 2 }
+  enum response: { gift_found: 0, gift_not_found: 1, closed: 2 }
 
   validates :response, presence: true
 end
