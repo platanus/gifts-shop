@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       delete 'receivers/delete_session', to: 'receivers#delete_session'
       delete 'product_actions/destroy_like', to: 'product_actions#destroy_like'
       resources :stores, only: [:show]
+      resources :feedbacks, only: [:create]
     end
   end
   devise_scope :store do
