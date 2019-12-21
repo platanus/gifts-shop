@@ -19,6 +19,7 @@ const store = new Vuex.Store({
     maxPrice: 30000,
     receiverName: '',
     promoted: 4,
+    feedbackActive: true,
   },
   mutations: {
     setProducts: (state, payload) => {
@@ -41,6 +42,9 @@ const store = new Vuex.Store({
     },
     setLikes: (state, payload) => {
       state.likes = payload;
+    },
+    setFeedback: (state, payload) => {
+      state.feedbackActive = payload;
     },
   },
   actions: {
@@ -72,6 +76,9 @@ const store = new Vuex.Store({
         }, {});
         context.commit('setProducts', products);
       });
+    },
+    toggleFeedback: (context) => {
+      context.commit('setFeedback', !context.state.feedbackActive);
     },
     markDisplayed: (context, payload) => {
       productsApi.markDisplayed(payload);
