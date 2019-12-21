@@ -17,6 +17,9 @@
         :loading="this.$store.loading"
       />
     </div>
+    <feedbackWindow
+      v-show="showHelper"
+    />
   </div>
 </template>
 
@@ -26,8 +29,12 @@ import { mapState } from 'vuex';
 import product from '../components/product';
 import card from '../components/card';
 import HomeHeader from '../components/home-header';
+import feedbackWindow from '../components/feedback';
+import numberOfProducts from '../utils/numberOfProducts';
 
 const SCROLL_OFFSET = 30;
+const REQUESTS_BEFORE_FEEDBACK = 2;
+const PRODUCTS_BEFORE_FEEDBACK = numberOfProducts() * REQUESTS_BEFORE_FEEDBACK;
 
 export default {
   name: 'HomeView',
@@ -36,12 +43,17 @@ export default {
     ClipLoader,
     HomeHeader,
     card,
+    feedbackWindow,
   },
   computed: {
     ...mapState([
       'products',
       'likes',
+      'feedbackActive',
     ]),
+    showHelper() {
+      return (this.products.length > PRODUCTS_BEFORE_FEEDBACK && this.feedbackActive);
+    },
   },
   methods: {
     scroll() {
