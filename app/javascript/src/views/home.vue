@@ -30,9 +30,10 @@ import product from '../components/product';
 import card from '../components/card';
 import HomeHeader from '../components/home-header';
 import feedbackWindow from '../components/feedback';
+import numberOfProducts from '../utils/numberOfProducts';
 
 const SCROLL_OFFSET = 30;
-const PRODUCTS_BEFORE_FEEDBACK = 1;
+const PRODUCTS_BEFORE_FEEDBACK = numberOfProducts() * 2;
 
 export default {
   name: 'HomeView',
