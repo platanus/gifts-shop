@@ -119,6 +119,7 @@ export default {
       font-size: 1em;
       width: 3em;
       margin-right: 4px;
+      outline: none;
 
       &--last {
         margin-left: 4px;
