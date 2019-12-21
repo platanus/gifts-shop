@@ -33,7 +33,8 @@ import feedbackWindow from '../components/feedback';
 import numberOfProducts from '../utils/numberOfProducts';
 
 const SCROLL_OFFSET = 30;
-const PRODUCTS_BEFORE_FEEDBACK = numberOfProducts() * 2;
+const REQUESTS_BEFORE_FEEDBACK = 2;
+const PRODUCTS_BEFORE_FEEDBACK = numberOfProducts() * REQUESTS_BEFORE_FEEDBACK;
 
 export default {
   name: 'HomeView',
