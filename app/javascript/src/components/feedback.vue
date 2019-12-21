@@ -102,6 +102,7 @@ export default {
     },
     submitRequest() {
       feedbackApi.postFeedback(false, this.contact);
+      this.closeFeedback();
     },
     validateContact() {
       if (this.contact.length >= PHONE_NUMBER_LENGTH) {
