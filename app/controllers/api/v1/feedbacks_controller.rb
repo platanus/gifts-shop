@@ -1,7 +1,7 @@
 class Api::V1::FeedbacksController < Api::V1::BaseController
   def create
     feedback = save_feedback
-    update_contact_info if feedback_params[:response] == 'gift_not_found'
+    update_contact_info if !feedback_params[:fulfilled]
     respond_with feedback
   end
 
@@ -14,13 +14,13 @@ class Api::V1::FeedbacksController < Api::V1::BaseController
   def save_feedback
     Feedback.create!(
       receiver_id: receiver.id,
-      response: feedback_params[:response],
+      fulfilled: feedback_params[:fulfilled],
       additional_info: feedback_params[:additional_info]
     )
   end
 
   def feedback_params
-    params.require(:feedback).permit(:response, :additional_info)
+    params.require(:feedback).permit(:fulfilled, :additional_info)
   end
 
   def contact_params
