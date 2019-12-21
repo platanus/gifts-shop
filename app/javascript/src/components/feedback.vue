@@ -54,7 +54,7 @@
             type="text"
             class="user-contact"
             name="phoneNumber"
-            :v-model="contact"
+            v-model="contact"
             placeholder="+569..."
             autocomplete="off"
           >
@@ -78,9 +78,9 @@
 
 <script>
 import { mapActions } from 'vuex';
-import postFeedback from '../api/feedback';
+import feedbackApi from '../api/feedback';
 
-const PHONE_NUMBER_LENGTH = 12;
+const PHONE_NUMBER_LENGTH = 11;
 
 export default {
   data() {
@@ -101,18 +101,18 @@ export default {
       this.toggleFeedback();
     },
     submitRequest() {
-      postFeedback(false, this.contact);
+      feedbackApi.postFeedback(false, this.contact);
+      this.closeFeedback();
     },
     validateContact() {
-      console.log(this.contact);
-      if (this.contact.length > PHONE_NUMBER_LENGTH) {
+      if (this.contact.length >= PHONE_NUMBER_LENGTH) {
         this.submitRequest();
       } else {
         this.contactError = true;
       }
     },
     fulfillment() {
-      postFeedback(true, '');
+      feedbackApi.postFeedback(true, '');
       this.closeFeedback();
     },
   },

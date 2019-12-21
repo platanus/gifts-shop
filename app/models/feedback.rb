@@ -1,9 +1,7 @@
 class Feedback < ApplicationRecord
   belongs_to :receiver
 
-  enum response: { gift_found: 0, gift_not_found: 1, closed: 2 }
-
-  validates :response, presence: true
+  validates :fulfilled, inclusion: [true, false]
 end
 
 # == Schema Information
@@ -12,10 +10,10 @@ end
 #
 #  id              :bigint(8)        not null, primary key
 #  receiver_id     :bigint(8)
-#  response        :integer
 #  additional_info :text
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
+#  fulfilled       :boolean
 #
 # Indexes
 #
