@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :feedback do
     receiver
-    response { 1 }
+    fulfilled { false }
     additional_info { "MyText" }
   end
 end

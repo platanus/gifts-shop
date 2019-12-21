@@ -1,7 +1,7 @@
 class Feedback < ApplicationRecord
   belongs_to :receiver
 
-  validates :fulfilled, presence: true
+  validates :fulfilled, inclusion: [true, false]
 end
 
 # == Schema Information
