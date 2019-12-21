@@ -6,14 +6,14 @@ RSpec.describe Api::V1::FeedbacksController, type: :controller do
     let(:giver) { receiver.giver }
     let(:gift_found_feedback_params) do
       { feedback: {
-        response: 'gift_found'
+        fulfilled: true
       } }
     end
     let(:phone_number) { '+5691234567' }
     let(:email) { 'example_email@example.com' }
     let(:gift_not_found_feedback_params) do
       { feedback: {
-        response: 'gift_not_found',
+        fulfilled: false,
         additional_info: 'This is additional information regarding my gift.',
         phone_number: phone_number,
         email: email
@@ -24,14 +24,14 @@ RSpec.describe Api::V1::FeedbacksController, type: :controller do
       session['receiver_id'] = receiver.id
     end
 
-    context 'when response is gift_found' do
+    context 'when fulfilled' do
       it 'returns http success' do
         post :create, params: gift_found_feedback_params, as: :json
         expect(response).to have_http_status(:success)
       end
     end
 
-    context 'when response is gift_not_found' do
+    context 'when not fulfilled' do
       it 'returns http success' do
         post :create, params: gift_not_found_feedback_params, as: :json
         expect(response).to have_http_status(:success)
