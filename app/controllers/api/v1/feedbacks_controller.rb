@@ -1,7 +1,10 @@
 class Api::V1::FeedbacksController < Api::V1::BaseController
   def create
     feedback = save_feedback
-    update_contact_info if !feedback_params[:fulfilled]
+    if !feedback_params[:fulfilled]
+      update_contact_info
+      NotifyFeedback.for(feedback: feedback)
+    end
     respond_with feedback
   end
 
