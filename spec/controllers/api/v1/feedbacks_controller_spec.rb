@@ -2,6 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::FeedbacksController, type: :controller do
   describe 'POST #create' do
+    let(:fake_telegram_token) { '1234:5678' }
     let(:receiver) { create(:receiver) }
     let(:giver) { receiver.giver }
     let(:gift_found_feedback_params) do
@@ -22,6 +23,9 @@ RSpec.describe Api::V1::FeedbacksController, type: :controller do
 
     before do
       session['receiver_id'] = receiver.id
+      ENV['BOT_TOKEN'] = fake_telegram_token
+      ENV['TELEGRAM_GROUP_ID'] = '-1234'
+      stub_request(:post, "https://api.telegram.org/bot#{fake_telegram_token}/sendMessage")
     end
 
     context 'when fulfilled' do
