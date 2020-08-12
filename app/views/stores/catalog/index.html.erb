@@ -21,6 +21,7 @@
           <th class="catalog-header__label row-label row-label--medium">PRECIO</th>
           <th class="catalog-header__label row-label row-label--medium">CLICKS</th>
           <th class="catalog-header__label row-label row-label--medium">LIKES</th>
+          <th class="catalog-header__label row-label row-label--medium">STATUS</th>
         </tr>
       </thead>
       <tbody class="product-container">
@@ -39,6 +40,7 @@
             <td class="<%= catalog_error_class("product__label", product.image.attached?) %> row-label row-label--medium">$<%= product.price.round(0) %></td>
             <td class="<%= catalog_error_class("product__label", product.image.attached?) %> row-label row-label--medium"><%= product.product_actions.display.count %></td>
             <td class="<%= catalog_error_class("product__label", product.image.attached?) %> row-label row-label--medium"><%= product.product_actions.like.count %></td>
+            <td class="<%= catalog_error_class("product__label", product.image.attached?) %> row-label row-label--medium"><%= I18n.t("activerecord.attributes.product.status.#{product.status}") %></td>
           </tr>
         <% end %>
       </tbody>
