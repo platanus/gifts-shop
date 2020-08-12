@@ -168,7 +168,6 @@ ActiveRecord::Schema.define(version: 2019_12_21_170336) do
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "display", default: false
     t.boolean "promoted", default: false
     t.boolean "deleted", default: false
     t.text "average_color", default: "#000000"
