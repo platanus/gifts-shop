@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'aasm/rspec'
 
 RSpec.describe Product, type: :model do
   it 'has a valid factory' do
@@ -9,5 +10,21 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_numericality_of(:price).is_greater_than_or_equal_to(1) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:link) }
+  end
+
+  describe 'product states' do
+    let(:product) { create(:product) }
+
+    context 'when created' do
+      it { expect(product).to have_state(:awaiting_approval) }
+    end
+
+    context 'when approving' do
+      it { expect(product).to transition_from(:awaiting_approval).to(:approved).on_event(:approve) }
+    end
+
+    context 'when rejecting' do
+      it { expect(product).to transition_from(:awaiting_approval).to(:rejected).on_event(:reject) }
+    end
   end
 end

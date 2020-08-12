@@ -17,3 +17,8 @@ es-CL:
         created_at: Creado en
         updated_at: Actualizado en
         deposit_time: Fecha depósito
+      product:
+        status:
+          awaiting_approval: Esperando aprobación
+          approved: Aprobado
+          rejected: Rechazado
