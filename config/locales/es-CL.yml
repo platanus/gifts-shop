@@ -19,6 +19,7 @@ es-CL:
         deposit_time: Fecha depósito
       product:
         status:
+          one: Estado
           awaiting_approval: Esperando aprobación
           approved: Aprobado
           rejected: Rechazado
