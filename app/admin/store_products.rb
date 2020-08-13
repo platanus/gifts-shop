@@ -8,6 +8,7 @@ ActiveAdmin.register Product do
   filter :price
   filter :link
   filter :created_at
+  filter :status, as: :select
 
   index do
     id_column
@@ -32,12 +33,18 @@ ActiveAdmin.register Product do
     def update
       super
       update_image
+      update_status
     end
 
     private
 
     def update_image
       @product.update_image(params[:product][:image]) if params[:product][:image].present?
+    end
+
+    def update_status
+      @product.approve! if :status == 'approved'
+      @product.reject! if :status == 'rejected'
     end
   end
 
@@ -75,6 +82,9 @@ ActiveAdmin.register Product do
       f.input :gender
       f.input :age
       f.input :novelty
+      f.input :status, as: :select, collection: { 'Awaiting Approval' => 'awaiting_approval',
+                                                  'Approved' => 'approved',
+                                                  'Rejected' => 'rejected' }
     end
     f.actions
   end
