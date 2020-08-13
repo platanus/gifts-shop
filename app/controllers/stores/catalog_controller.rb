@@ -44,7 +44,6 @@ class Stores::CatalogController < ApplicationController
     if params[:image]
       @product = Product.create!(product_params)
       @product.update_image(params[:image])
-      @product.update(display: true)
     end
   end
 
