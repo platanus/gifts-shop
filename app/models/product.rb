@@ -31,6 +31,11 @@ class Product < ApplicationRecord
     set_average_color
   end
 
+  def self.randomized(seed = 0.0)
+    connection.execute(Arel.sql("SELECT SETSEED(#{seed})"))
+    order(Arel.sql('RANDOM()'))
+  end
+
   def update_image(image_param)
     image.attach(image_param)
     update_recommender_image

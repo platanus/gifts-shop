@@ -9,6 +9,7 @@ RSpec.describe Api::V1::ProductsController, type: :controller do
       before do
         session['receiver_id'] = receiver.id
         session['giver_id'] = giver.id
+        session['seed'] = 0.0
         get :index, params: { number_of_products: "5", format: :json }
       end
 

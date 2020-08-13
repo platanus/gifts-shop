@@ -44,7 +44,7 @@ describe GetProductsRecommendation do
     end
 
     it 'returns some products' do
-      expect(perform).to eq(Product.first(3))
+      expect(perform).to eq(Product.randomized(0).page(0).per(3))
     end
   end
 end

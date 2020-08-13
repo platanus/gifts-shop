@@ -1,12 +1,12 @@
 class GetProductsRecommendation < PowerTypes::Command.new(
-  :receiver, :number_of_products, :promoted, min_price: false, max_price: false
+  :receiver, :number_of_products, :promoted, min_price: false, max_price: false, page: 0, seed: 0
 )
   URL = ENV.fetch('RECOMMENDER_URL')
   def perform
     if product_ids = perform_recommendation_request
       Product.find_with_order(product_ids)
     else
-      Product.first(@number_of_products.to_i)
+      Product.randomized(@seed).page(@page).per(@number_of_products)
     end
   end
 
