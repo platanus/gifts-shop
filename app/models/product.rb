@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  include PowerTypes::Observable
   include Rails.application.routes.url_helpers
   include AASM
 
