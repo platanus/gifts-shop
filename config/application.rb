@@ -19,5 +19,6 @@ module GiftsShop
     config.i18n.default_locale = 'es-CL'
     config.assets.paths << Rails.root.join('node_modules')
     config.load_defaults 5.2
+    config.active_job.queue_adapter = :sidekiq
   end
 end
