@@ -5,7 +5,6 @@
       class="home-products-container"
       v-if="products.length > 0"
     >
-      <card />
       <product
         v-for="(product, index) in products"
         :key="index"
@@ -27,7 +26,6 @@
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
-import card from '../components/card';
 import HomeHeader from '../components/home-header';
 import feedbackWindow from '../components/feedback';
 import numberOfProducts from '../utils/numberOfProducts';
@@ -42,7 +40,6 @@ export default {
     product,
     ClipLoader,
     HomeHeader,
-    card,
     feedbackWindow,
   },
   computed: {

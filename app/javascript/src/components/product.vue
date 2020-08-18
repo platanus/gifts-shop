@@ -4,22 +4,6 @@
   >
     <div class="home-product">
       <div
-        class="home-product__icon-container"
-        @click="setLikeStatus"
-      >
-        <img
-          v-if="liked"
-          class="home-product__icon"
-          src="../assets/like-color-badge.svg"
-        >
-        <img
-          v-else
-          class="home-product__icon"
-          :class="activeClass"
-          src="../assets/like-badge.svg"
-        >
-      </div>
-      <div
         class="home-product__image-wrapper"
         @click="clickAction"
       >
@@ -101,20 +85,9 @@ export default {
   },
   methods: {
     ...mapActions([
-      'markLiked',
-      'unmarkLiked',
       'markDisplayed',
       'markClicked',
     ]),
-    setLikeStatus() {
-      if (this.liked) {
-        this.liked = false;
-        this.unmarkLiked(this.product.id);
-      } else {
-        this.liked = true;
-        this.markLiked(this.product.id);
-      }
-    },
     clickAction() {
       this.markClicked(this.product.id);
       window.open(this.product.link, '_blank');

@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       resources :product_actions, only: [:create]
       get 'receivers/get', to: 'receivers#show'
       delete 'receivers/delete_session', to: 'receivers#delete_session'
-      delete 'product_actions/destroy_like', to: 'product_actions#destroy_like'
       resources :stores, only: [:show]
       resources :feedbacks, only: [:create]
     end
