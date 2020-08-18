@@ -12,7 +12,6 @@ Rails.application.routes.draw do
       get 'receivers/get', to: 'receivers#show'
       delete 'receivers/delete_session', to: 'receivers#delete_session'
       resources :stores, only: [:show]
-      resources :feedbacks, only: [:create]
     end
   end
   devise_scope :store do
