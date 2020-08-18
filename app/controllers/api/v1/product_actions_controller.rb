@@ -9,7 +9,6 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
 
   def save_action(action_type)
     ProductAction.create!(
-      receiver_id: receiver.id,
       product_id: permitted_params[:product_id],
       action_type: action_type
     )

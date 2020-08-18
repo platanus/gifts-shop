@@ -2,7 +2,6 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 
 import productsApi from '../api/products';
-import receiverApi from '../api/receiver';
 import numberOfProducts from '../utils/numberOfProducts';
 
 Vue.use(Vuex);
@@ -17,7 +16,6 @@ const store = new Vuex.Store({
     loading: false,
     minPrice: 5000,
     maxPrice: 30000,
-    receiverName: '',
     promoted: 4,
   },
   mutations: {
@@ -33,26 +31,11 @@ const store = new Vuex.Store({
     setMaxPrice: (state, payload) => {
       state.maxPrice = payload;
     },
-    setReceiverName: (state, payload) => {
-      state.receiverName = payload;
-    },
     setPromoted: (state, payload) => {
       state.promoted = payload;
     },
   },
   actions: {
-    getReceiverName: (context) => {
-      receiverApi.getReceiver().then(({ receiver, likes }) => {
-        context.commit('setReceiverName', receiver.name);
-        const limit = parseInt(receiver.giftLimit, 10);
-        if (limit) {
-          const limitOffset = limit * LIMIT_PRICE_OFFSET_PERCENTAGE;
-          context.commit('setMinPrice', limit - limitOffset);
-          context.commit('setMaxPrice', limit + limitOffset);
-          context.dispatch('applyPriceFilter');
-        }
-      });
-    },
     getProducts: context => {
       const params = [
         numberOfProducts(),
@@ -74,11 +57,6 @@ const store = new Vuex.Store({
     },
     markClicked: (context, payload) => {
       productsApi.markClicked(payload);
-    },
-    deleteSessionReceiver: () => {
-      receiverApi.deleteSession()
-        .then(() => window.location.reload())
-        .catch(() => {});
     },
     moreProducts: context => new Promise((resolve, reject) => {
 

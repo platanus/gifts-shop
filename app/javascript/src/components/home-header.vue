@@ -24,18 +24,10 @@
         class="home-header__home-icon home-icon-tablet"
         src="../assets/buenas-ideas-mini.svg"
       >
-      <div class="home-header__options">
-        <PriceFilter
-          :mobile="mobile"
-          @filtered="togglePriceFilter"
-        />
-      </div>
     </div>
   </div>
 </template>
 <script>
-import PriceFilter from './price-filter';
-
 const MOBILE_WIDTH = 650;
 const TABLET_WIDTH = 1000;
 
@@ -47,22 +39,9 @@ export default {
     return {
       mobile: window.innerWidth <= MOBILE_WIDTH,
       desktop,
-      visiblePriceFilter: desktop,
     };
   },
-  props: {
-    likes: {
-      type: Number,
-      default: 0,
-    },
-  },
-  components: {
-    PriceFilter,
-  },
   methods: {
-    togglePriceFilter() {
-      this.visiblePriceFilter = !this.visiblePriceFilter;
-    },
     goToStore() {
       window.location = '/stores/sign_in';
     },

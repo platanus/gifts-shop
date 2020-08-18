@@ -10,6 +10,8 @@ class ProductAction < ApplicationRecord
   delegate :store, to: :product
 
   PROMOTED_CLICK_COST = ENV.fetch('CPC').to_i
+
+  self.ignored_columns = ['receiver_id']
 end
 
 # == Schema Information
@@ -18,18 +20,15 @@ end
 #
 #  id          :bigint(8)        not null, primary key
 #  product_id  :bigint(8)
-#  receiver_id :bigint(8)
 #  action_type :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
 # Indexes
 #
-#  index_product_actions_on_product_id   (product_id)
-#  index_product_actions_on_receiver_id  (receiver_id)
+#  index_product_actions_on_product_id  (product_id)
 #
 # Foreign Keys
 #
 #  fk_rails_...  (product_id => products.id)
-#  fk_rails_...  (receiver_id => receivers.id)
 #
