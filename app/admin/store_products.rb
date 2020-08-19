@@ -1,13 +1,14 @@
 ActiveAdmin.register Product do
   menu parent: I18n.t('activeadmin.titles.stores')
 
-  permit_params :store_id, :name, :price, :link, :promoted, :display, :gender, :age, :novelty
+  permit_params :store_id, :name, :price, :link, :gender, :age, :novelty, :status
 
   filter :name
   filter :store
   filter :price
   filter :link
   filter :created_at
+  filter :status, as: :select
 
   index do
     id_column
@@ -15,12 +16,11 @@ ActiveAdmin.register Product do
     column :name
     column :price
     column :link
-    column :promoted
-    column :display
     column :gender
     column :age
     column :novelty
     column :created_at
+    column :status
     actions
   end
 
@@ -33,12 +33,18 @@ ActiveAdmin.register Product do
     def update
       super
       update_image
+      update_status
     end
 
     private
 
     def update_image
       @product.update_image(params[:product][:image]) if params[:product][:image].present?
+    end
+
+    def update_status
+      @product.approve! if :status == 'approved'
+      @product.reject! if :status == 'rejected'
     end
   end
 
@@ -57,13 +63,12 @@ ActiveAdmin.register Product do
       row :store
       row :created_at
       row :updated_at
-      row :display
-      row :promoted
       row :deleted
       row :average_color
       row :gender
       row :age
       row :novelty
+      row :status
     end
   end
 
@@ -74,11 +79,12 @@ ActiveAdmin.register Product do
       f.input :price
       f.input :link
       f.input :image, as: :file, hint: image_hint(f.object.image)
-      f.input :promoted
-      f.input :display
       f.input :gender
       f.input :age
       f.input :novelty
+      f.input :status, as: :select, collection: { 'Awaiting Approval' => 'awaiting_approval',
+                                                  'Approved' => 'approved',
+                                                  'Rejected' => 'rejected' }
     end
     f.actions
   end

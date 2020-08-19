@@ -1,5 +1,7 @@
 class Product < ApplicationRecord
+  include PowerTypes::Observable
   include Rails.application.routes.url_helpers
+  include AASM
 
   has_one_attached :image
   has_one_attached :recommender_image
@@ -15,6 +17,19 @@ class Product < ApplicationRecord
 
   enum gender: { either: 0, male: 1, female: 2 }
   enum age: { any: 0, kid: 1, teen: 2, adult: 3 }
+
+  aasm column: :status do
+    state :awaiting_approval, initial: true
+    state :approved, :rejected
+
+    event :approve do
+      transitions from: [:awaiting_approval, :rejected], to: :approved
+    end
+
+    event :reject do
+      transitions from: [:awaiting_approval, :approved], to: :rejected
+    end
+  end
 
   def set_average_color
     image = MiniMagick::Image.open(url_for(self.image))
@@ -73,13 +88,13 @@ end
 #  store_id      :bigint(8)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  display       :boolean          default(FALSE)
 #  promoted      :boolean          default(FALSE)
 #  deleted       :boolean          default(FALSE)
 #  average_color :text             default("#000000")
 #  gender        :integer          default("either")
 #  age           :integer          default("any")
 #  novelty       :integer
+#  status        :string
 #
 # Indexes
 #
