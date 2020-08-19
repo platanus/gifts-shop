@@ -24,22 +24,10 @@
         class="home-header__home-icon home-icon-tablet"
         src="../assets/buenas-ideas-mini.svg"
       >
-      <header-center
-        :likes="likes"
-        :mobile="mobile"
-      />
-      <div class="home-header__options">
-        <PriceFilter
-          :mobile="mobile"
-          @filtered="togglePriceFilter"
-        />
-      </div>
     </div>
   </div>
 </template>
 <script>
-import HeaderCenter from './header-center';
-import PriceFilter from './price-filter';
 
 const MOBILE_WIDTH = 650;
 const TABLET_WIDTH = 1000;
@@ -60,10 +48,6 @@ export default {
       type: Number,
       default: 0,
     },
-  },
-  components: {
-    HeaderCenter,
-    PriceFilter,
   },
   methods: {
     togglePriceFilter() {
@@ -169,7 +153,7 @@ export default {
       &__home-icon {
         height: 4em;
         width: auto;
-        position: absolute;
+        position: relative;
         left: 0;
         top: 0;
       }

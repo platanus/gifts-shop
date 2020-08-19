@@ -5,21 +5,20 @@
       class="home-products-container"
       v-if="products.length > 0"
     >
-      <card />
       <product
         v-for="(product, index) in products"
         :key="index"
         :product="product"
       />
     </div>
-    <div class="loader-spinner">
+    <div
+      class="loader-spinner"
+      v-if="this.$store.loading"
+    >
       <clip-loader
         :loading="this.$store.loading"
       />
     </div>
-    <feedbackWindow
-      v-show="showHelper"
-    />
   </div>
 </template>
 
@@ -27,14 +26,9 @@
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
 import product from '../components/product';
-import card from '../components/card';
 import HomeHeader from '../components/home-header';
-import feedbackWindow from '../components/feedback';
-import numberOfProducts from '../utils/numberOfProducts';
 
 const SCROLL_OFFSET = 30;
-const REQUESTS_BEFORE_FEEDBACK = 2;
-const PRODUCTS_BEFORE_FEEDBACK = numberOfProducts() * REQUESTS_BEFORE_FEEDBACK;
 
 export default {
   name: 'HomeView',
@@ -42,8 +36,6 @@ export default {
     product,
     ClipLoader,
     HomeHeader,
-    card,
-    feedbackWindow,
   },
   computed: {
     ...mapState([
@@ -51,27 +43,9 @@ export default {
       'likes',
       'feedbackActive',
     ]),
-    showHelper() {
-      return (this.products.length > PRODUCTS_BEFORE_FEEDBACK && this.feedbackActive);
-    },
-  },
-  methods: {
-    scroll() {
-      window.addEventListener('scroll', () => {
-        const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
-          document.getElementById('home').offsetHeight - SCROLL_OFFSET;
-        if (bottomOfWindow && !this.$store.loading) {
-          this.$store.loading = true;
-          this.$store.dispatch('moreProducts').then(() => {
-            this.$store.loading = false;
-          }, () => {});
-        }
-      });
-    },
   },
   mounted() {
     this.$store.dispatch('getProducts');
-    this.scroll();
   },
 };
 </script>
@@ -90,9 +64,6 @@ export default {
     justify-content: flex-start;
     width: $m-width-grid;
     margin: 3vh auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax($m-size-image, 1fr));
-    grid-row-gap: 40px;
   }
 
   .loader-spinner {
@@ -107,7 +78,6 @@ export default {
       font-size: $p-font-size;
 
       .home-products-container {
-        grid-template-columns: repeat(auto-fill, minmax($p-size-image, 1fr));
         width: $p-width-grid;
         padding: 0;
       }
@@ -119,7 +89,6 @@ export default {
       font-size: $t-font-size;
 
       .home-products-container {
-        grid-template-columns: repeat(auto-fill, minmax($t-size-image, 1fr));
         width: $t-width-grid;
       }
     }
@@ -130,7 +99,6 @@ export default {
       font-size: $d-font-size;
 
       .home-products-container {
-        grid-template-columns: repeat(auto-fill, minmax($d-size-image, 1fr));
         width: $d-width-grid;
       }
     }
@@ -141,7 +109,6 @@ export default {
       font-size: $r-font-size;
 
       .home-products-container {
-        grid-template-columns: repeat(auto-fill, minmax($r-size-image, 1fr));
         width: $r-width-grid;
       }
     }

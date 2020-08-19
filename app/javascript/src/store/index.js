@@ -3,7 +3,6 @@ import Vuex from 'vuex';
 
 import productsApi from '../api/products';
 import receiverApi from '../api/receiver';
-import numberOfProducts from '../utils/numberOfProducts';
 
 Vue.use(Vuex);
 
@@ -13,13 +12,9 @@ const LIMIT_PRICE_OFFSET_PERCENTAGE = 0.4;
 const store = new Vuex.Store({
   state: {
     products: [],
-    likes: 0,
     loading: false,
-    minPrice: 5000,
-    maxPrice: 30000,
     receiverName: '',
     promoted: 4,
-    feedbackActive: true,
   },
   mutations: {
     setProducts: (state, payload) => {
@@ -63,9 +58,7 @@ const store = new Vuex.Store({
     },
     getProducts: context => {
       const params = [
-        numberOfProducts(),
-        context.state.minPrice,
-        context.state.maxPrice,
+        1,
         context.state.promoted,
       ];
       productsApi.products(...params).then((response) => {
@@ -102,9 +95,7 @@ const store = new Vuex.Store({
     moreProducts: context => new Promise((resolve, reject) => {
 
       const params = [
-        numberOfProducts(),
-        context.state.minPrice,
-        context.state.maxPrice,
+        1,
         context.state.promoted,
       ];
       productsApi.products(...params).then((response) => {

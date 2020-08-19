@@ -15,5 +15,6 @@
     align-self: center;
     justify-content: center;
     font-size: 11px;
+    min-height: 100vh;
   }
 </style>

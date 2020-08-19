@@ -2,9 +2,8 @@
 import api from './index';
 
 export default {
-  products(numberOfProducts, minPrice, maxPrice, numberOfPromoted) {
-    const path = `/api/v1/products?number_of_products=${numberOfProducts}&min_price=${minPrice}` +
-      `&max_price=${maxPrice}&promoted=${numberOfPromoted}`;
+  products(numberOfPromoted) {
+    const path = `/api/v1/products?number_of_products=1&promoted=${numberOfPromoted}`;
 
     return api({
       method: 'get',

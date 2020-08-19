@@ -46,10 +46,10 @@ $d-width-grid: 1200px;
 $r-width-grid: 1700px;
 
 $m-size-image: calc(100vw - 40px);
-$p-size-image: 250px;
-$t-size-image: 250px;
-$d-size-image: 250px;
-$r-size-image: 250px;
+$p-size-image: calc(100vmin - 350px);
+$t-size-image: calc(100vmin - 350px);
+$d-size-image: calc(100vmin - 350px);
+$r-size-image: calc(100vmin - 350px);
 
 $m-font-size: 1.6em;
 $p-font-size: 1.3em;

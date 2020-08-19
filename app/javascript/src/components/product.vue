@@ -4,22 +4,6 @@
   >
     <div class="home-product">
       <div
-        class="home-product__icon-container"
-        @click="setLikeStatus"
-      >
-        <img
-          v-if="liked"
-          class="home-product__icon"
-          src="../assets/like-color-badge.svg"
-        >
-        <img
-          v-else
-          class="home-product__icon"
-          :class="activeClass"
-          src="../assets/like-badge.svg"
-        >
-      </div>
-      <div
         class="home-product__image-wrapper"
         @click="clickAction"
       >
@@ -173,6 +157,10 @@ export default {
     }
   }
 
+  .home-product-container {
+    display: flex;
+  }
+
   .home-product {
     display: flex;
     flex-direction: column;
@@ -181,27 +169,10 @@ export default {
     margin: auto;
     font-size: 1.2em;
     color: $product-name-font-color;
-    width: $m-size-image;
     border: 1px solid rgba(148, 148, 148, .16);
     box-shadow: 0 2px 6px rgba(148, 148, 148, .24);
     border-radius: 6px;
     background-color: #fff;
-
-    @media (min-width: $p-break) {
-      width: $p-size-image;
-    }
-
-    @media (min-width: $t-break) {
-      width: $t-size-image;
-    }
-
-    @media (min-width: $d-break) {
-      width: $d-size-image;
-    }
-
-    @media (min-width: $r-break) {
-      width: $r-size-image;
-    }
 
     &__information {
       padding: 8px 12px;
@@ -306,7 +277,7 @@ export default {
     }
 
     &__title {
-      font-size: .8em;
+      font-size: 1.3em;
       margin: 8px auto;
       overflow: hidden;
       text-overflow: ellipsis;
