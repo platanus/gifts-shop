@@ -5,20 +5,10 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
     respond_with product_action
   end
 
-  def destroy_like
-    action = ProductAction.find_by(
-      action_type: 'like',
-      product_id: permitted_params[:product_id],
-      receiver: receiver
-    )
-    action&.destroy
-  end
-
   private
 
   def save_action(action_type)
     ProductAction.create!(
-      receiver_id: receiver.id,
       product_id: permitted_params[:product_id],
       action_type: action_type
     )
