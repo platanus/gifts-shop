@@ -1,10 +1,11 @@
 ActiveAdmin.register Product do
   menu parent: I18n.t('activeadmin.titles.stores')
 
-  permit_params :store_id, :name, :price, :link, :gender, :age, :novelty, :status
+  permit_params :store_id, :name, :category, :price, :link, :gender, :age, :novelty, :status
 
   filter :name
   filter :store
+  filter :category
   filter :price
   filter :link
   filter :created_at
@@ -14,6 +15,7 @@ ActiveAdmin.register Product do
     id_column
     column :store
     column :name
+    column :category
     column :price
     column :link
     column :gender
@@ -69,6 +71,7 @@ ActiveAdmin.register Product do
       row :age
       row :novelty
       row :status
+      row :category
     end
   end
 
@@ -76,6 +79,7 @@ ActiveAdmin.register Product do
     f.inputs do
       f.input :store
       f.input :name
+      f.input :category
       f.input :price
       f.input :link
       f.input :image, as: :file, hint: image_hint(f.object.image)
