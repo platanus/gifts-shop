@@ -32,7 +32,7 @@ class Product < ApplicationRecord
   end
 
   def set_average_color
-    image = MiniMagick::Image.open(url_for(self.image))
+    image = MiniMagick::Image.open(ActiveStorage::Blob.service.path_for(self.image.key))
     red, blue, green = image.resize("1x1").get_pixels[0][0]
     update(average_color: hex_value(red, blue, green))
   end
