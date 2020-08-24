@@ -12,6 +12,10 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_presence_of(:link) }
   end
 
+  describe 'associations' do 
+    it { is_expected.to belong_to(:category) }
+  end
+
   describe 'product states' do
     let(:product) { create(:product) }
 

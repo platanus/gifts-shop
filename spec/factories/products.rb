@@ -7,5 +7,6 @@ FactoryBot.define do
     clicks_cost { 1.5 }
     store
     novelty { 3 }
+    category
   end
 end
