@@ -10,6 +10,7 @@ class Product < ApplicationRecord
   validates :name, presence: true, length: { minimum: 5 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :link, presence: true
+  validates :email, presence: true
   validates :novelty,
     numericality: { greater_than: 0, less_than_or_equal_to: 5 },
     allow_blank: true
@@ -84,6 +85,7 @@ end
 #  age           :integer          default("any")
 #  novelty       :integer
 #  status        :string
+#  email         :string
 #
 # Indexes
 #
