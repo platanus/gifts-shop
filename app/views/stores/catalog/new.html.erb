@@ -1,3 +1,5 @@
 
 <h1 class="form-title">Agregar producto</h1>
-<new-product-form></new-product-form>
+<new-product-form
+  :categories="<%= Category.all.to_json %>"
+/>

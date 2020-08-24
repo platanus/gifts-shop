@@ -42,6 +42,7 @@ class Stores::CatalogController < ApplicationController
 
   def add_product
     if params[:image]
+      debugger
       @product = Product.create!(product_params)
       @product.update_image(params[:image])
       @product.update(display: true)
@@ -57,6 +58,6 @@ class Stores::CatalogController < ApplicationController
   end
 
   def product_params
-    params.permit(:name, :price).merge(store_id: current_store.id, link: valid_url(params[:link]))
+    params.permit(:name, :price, :category_id).merge(store_id: current_store.id, link: valid_url(params[:link]))
   end
 end
