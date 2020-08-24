@@ -160,7 +160,6 @@ $title-font: #353434;
   pointer-events: all;
   cursor: pointer;
   margin-bottom: 20px;
-  margin-top: 10px;
   background-color: rgba(67, 225, 198, .12);
   position: absolute;
 
@@ -184,6 +183,8 @@ $title-font: #353434;
 }
 
 .image-preview {
+  margin-bottom: 10px;
+
   &__preview {
     width: 250px;
     z-index: 1;
