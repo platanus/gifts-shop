@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_12_133529) do
+ActiveRecord::Schema.define(version: 2020_08_17_213636) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,15 +83,6 @@ ActiveRecord::Schema.define(version: 2020_08_12_133529) do
     t.index ["receiver_id"], name: "index_feedbacks_on_receiver_id"
   end
 
-  create_table "givers", force: :cascade do |t|
-    t.string "email"
-    t.bigint "region_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "phone_number"
-    t.index ["region_id"], name: "index_givers_on_region_id"
-  end
-
   create_table "ledgerizer_accounts", force: :cascade do |t|
     t.string "tenant_type"
     t.bigint "tenant_id"
@@ -151,12 +142,10 @@ ActiveRecord::Schema.define(version: 2020_08_12_133529) do
 
   create_table "product_actions", force: :cascade do |t|
     t.bigint "product_id"
-    t.bigint "receiver_id"
     t.integer "action_type", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_actions_on_product_id"
-    t.index ["receiver_id"], name: "index_product_actions_on_receiver_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -176,16 +165,6 @@ ActiveRecord::Schema.define(version: 2020_08_12_133529) do
     t.integer "novelty"
     t.string "status"
     t.index ["store_id"], name: "index_products_on_store_id"
-  end
-
-  create_table "receivers", force: :cascade do |t|
-    t.string "name"
-    t.string "email"
-    t.bigint "giver_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "gift_limit"
-    t.index ["giver_id"], name: "index_receivers_on_giver_id"
   end
 
   create_table "regions", force: :cascade do |t|
@@ -226,11 +205,8 @@ ActiveRecord::Schema.define(version: 2020_08_12_133529) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "deposits", "organizations"
   add_foreign_key "deposits", "stores"
-  add_foreign_key "feedbacks", "receivers"
   add_foreign_key "ledgerizer_lines", "ledgerizer_accounts", column: "account_id"
   add_foreign_key "ledgerizer_lines", "ledgerizer_entries", column: "entry_id"
   add_foreign_key "product_actions", "products"
-  add_foreign_key "product_actions", "receivers"
   add_foreign_key "products", "stores"
-  add_foreign_key "receivers", "givers"
 end

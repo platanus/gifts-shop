@@ -9,11 +9,7 @@ Rails.application.routes.draw do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
       resources :products, only: [:index, :update]
       resources :product_actions, only: [:create]
-      get 'receivers/get', to: 'receivers#show'
-      delete 'receivers/delete_session', to: 'receivers#delete_session'
-      delete 'product_actions/destroy_like', to: 'product_actions#destroy_like'
       resources :stores, only: [:show]
-      resources :feedbacks, only: [:create]
     end
   end
   devise_scope :store do

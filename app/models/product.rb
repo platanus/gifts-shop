@@ -4,7 +4,6 @@ class Product < ApplicationRecord
   include AASM
 
   has_one_attached :image
-  has_one_attached :recommender_image
   belongs_to :store
   has_many :product_actions, dependent: :destroy
 
@@ -42,22 +41,12 @@ class Product < ApplicationRecord
     downloaded_image = open(url)
     filename = File.basename(URI.parse(url).path)
     image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
-    update_recommender_image
     set_average_color
   end
 
   def update_image(image_param)
     image.attach(image_param)
-    update_recommender_image
     set_average_color
-  end
-
-  def update_recommender_image
-    require 'open-uri'
-    url = url_for(image.variant(resize: "224x224"))
-    downloaded_image = open(url)
-    filename = File.basename(URI.parse(url).path)
-    recommender_image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
   end
 
   def validate_image
