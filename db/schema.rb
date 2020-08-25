@@ -62,6 +62,9 @@ ActiveRecord::Schema.define(version: 2020_08_24_200750) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
   create_table "deposits", force: :cascade do |t|
     t.bigint "store_id"
     t.bigint "amount", default: 0, null: false
