@@ -1,12 +1,12 @@
 class Stores::CatalogController < ApplicationController
   layout 'stores'
-  before_action :authenticate_store!
+  #before_action :authenticate_store!
   before_action :fill_product, only: [:edit, :update, :destroy]
   protect_from_forgery with: :exception
 
   def create
     add_product
-    redirect_to stores_catalog_index_path
+    redirect_to new_stores_catalog_path
   end
 
   def edit; end
@@ -41,8 +41,8 @@ class Stores::CatalogController < ApplicationController
   end
 
   def add_product
-    if params[:image]
       @product = Product.create!(product_params)
+    if params[:image]
       @product.update_image(params[:image])
     end
   end
@@ -52,10 +52,10 @@ class Stores::CatalogController < ApplicationController
   end
 
   def product_update_params
-    params.permit(:name, :link, :price)
+    params.permit(:name, :link, :price, :email)
   end
 
   def product_params
-    params.permit(:name, :price).merge(store_id: current_store.id, link: valid_url(params[:link]))
+    params.permit(:name, :price, :email).merge(store_id: current_store.id, link: valid_url(params[:link]))
   end
 end
