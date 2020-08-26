@@ -21,9 +21,6 @@ const store = new Vuex.Store({
     nextPage: 1,
   },
   mutations: {
-    setProducts: (state, payload) => {
-      state.products = Object.values(payload);
-    },
     setCategory: (state, payload) => {
       state.category = payload;
     },
@@ -31,21 +28,14 @@ const store = new Vuex.Store({
       state.promoted = payload;
     },
     setNextPage: (state, payload) => {
-      console.log(payload)
       state.nextPage = payload;
     },
   },
   actions: {
     getProducts: context => {
       productsApi.category(context.state.nextPage).then((response) => {
-        const products = response.categories[0].products.reduce((acc, product) => {
-          acc[product.id] = { ...product };
-
-          return acc;
-        }, {});
         context.commit('setNextPage', response.meta.nextPage);
-        context.commit('setProducts', products);
-        context.commit('setCategory', response.categories[0])
+        context.commit('setCategory', response.categories[0]);
       });
     },
     markClicked: (context, payload) => {

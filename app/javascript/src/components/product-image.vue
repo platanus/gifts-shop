@@ -1,8 +1,5 @@
 <template>
-  <div
-    class="image-wrapper"
-    @click="clickAction"
-  >
+  <div class="image-wrapper">
     <div
       class="image-container"
       :style="{ 'background': product.averageColor }"
@@ -52,8 +49,5 @@ export default {
       default: null,
     },
   },
-  methods: {
-    clickAction: function() {},
-  },
-}
+};
 </script>

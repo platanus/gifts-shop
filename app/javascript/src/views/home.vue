@@ -3,7 +3,7 @@
     <home-header />
     <div v-if="category">
       <p class="call-text">
-        Regala una de estas&nbsp;<span class="category-name">{{category.name}}</span>
+        Regala una de estas&nbsp;<span class="category-name">{{ category.name }}</span>
       </p>
       <div class="button-container">
         <button
@@ -29,7 +29,6 @@
 <script>
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
-import product from '../components/product';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 import numberOfProducts from '../utils/numberOfProducts';
@@ -39,7 +38,6 @@ const SCROLL_OFFSET = 30;
 export default {
   name: 'HomeView',
   components: {
-    product,
     category,
     ClipLoader,
     HomeHeader,

@@ -17,7 +17,8 @@
           class="category-product-selector"
         >
           <div
-            v-for="(product, index) in category.products" :key="index"
+            v-for="(product, index) in category.products"
+            :key="index"
             class="category-product"
             :class="{'category-product-selected': index === selectedProductIndex }"
             @click="changeProduct(index)"
@@ -25,12 +26,12 @@
             <product-image :product="product"/>
           </div>
         </div>
-        <div class="home-product__information">
-          <div class="home-product__bottom-row-container">
-            <span class="home-product__price"> {{ selectedProduct.price | Price }} </span>
+        <div class="product-card__information">
+          <div class="product-card__bottom-row-container">
+            <span class="product-card__price"> {{ selectedProduct.price | Price }} </span>
           </div>
           <div
-            class="home-product__title"
+            class="product-card__title"
             @click="clickAction"
           >
             {{ selectedProduct.name }}
@@ -46,7 +47,7 @@
               >
             </div>
             <div class="name-container">
-              <div class="home-product__store-name">
+              <div class="product-card__store-name">
                 {{ selectedProduct.storeName | toUpper }}
               </div>
             </div>
@@ -71,7 +72,7 @@ export default {
     return {
       selectedProductIndex: 0,
       products: [],
-    }
+    };
   },
   methods: {
     ...mapActions([
@@ -81,9 +82,9 @@ export default {
       this.markClicked(this.selectedProduct.id);
       window.open(this.selectedProduct.link, '_blank');
     },
-    changeProduct: function(index) {
+    changeProduct(index) {
       this.selectedProductIndex = index;
-    }
+    },
   },
   props: {
     category: {
@@ -94,7 +95,7 @@ export default {
   computed: {
     selectedProduct() {
       return this.category.products[this.selectedProductIndex];
-    }
+    },
   },
   filters: {
     Price(value) {
@@ -106,7 +107,7 @@ export default {
       return value.toUpperCase();
     },
   },
-}
+};
 </script>
 
 <style lang="scss">
@@ -116,7 +117,7 @@ export default {
     display: flex;
     flex-direction: column;
     width: calc(min(90%, 700px));
-    margin: 20px auto;
+    margin: auto;
   }
 
   .choose-option-text {
@@ -206,6 +207,10 @@ export default {
         }
       }
     }
+  }
+
+  .name-container {
+    height: 24px;
   }
 
 </style>
