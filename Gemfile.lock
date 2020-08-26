@@ -1227,6 +1227,7 @@ DEPENDENCIES
   heroku-stage
   image_processing
   jbuilder (~> 2.5)
+  kaminari (~> 1.1.1)
   ledgerizer!
   listen
   mini_magick
