@@ -8,7 +8,10 @@ $title-font: #353434;
   line-height: 60px;
   margin-left: 30px;
 }
-
+.form-description {
+  margin-left: 30px;
+  margin-right: 30px;
+}
 .new-product-form {
   display: flex;
   flex-direction: column;
@@ -235,4 +238,13 @@ $title-font: #353434;
 
 .link-button-text {
   padding-top: 7px;
+}
+
+.alert {
+  margin: 0 auto;
+  background-color: green
+  &__message {
+
+  }
+
 }
