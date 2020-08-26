@@ -56,6 +56,7 @@ class Stores::CatalogController < ApplicationController
   end
 
   def product_params
-    params.permit(:name, :price, :email).merge(store_id: current_store.id, link: valid_url(params[:link]))
+    default_store = Store.find_by(email: ENV.fetch('DEFAULT_STORE_EMAIL'))
+    params.permit(:name, :price, :email).merge(store_id: default_store.id, link: valid_url(params[:link]))
   end
 end
