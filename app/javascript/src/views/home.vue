@@ -29,17 +29,12 @@
 <script>
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
-import product from '../components/product';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
-import numberOfProducts from '../utils/numberOfProducts';
-
-const SCROLL_OFFSET = 30;
 
 export default {
   name: 'HomeView',
   components: {
-    product,
     category,
     ClipLoader,
     HomeHeader,

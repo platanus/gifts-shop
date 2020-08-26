@@ -50,8 +50,5 @@ export default {
       default: null,
     },
   },
-  methods: {
-    clickAction: function() {},
-  },
-}
+};
 </script>

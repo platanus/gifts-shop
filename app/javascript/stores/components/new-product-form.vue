@@ -45,7 +45,7 @@
           </div>
           <select
             type="select"
-            v-model="category_id"
+            v-model="categoryId"
             :class="getHtmlClass('product-input__box', 'name')"
             name="category_id"
           >
@@ -206,7 +206,7 @@ export default {
       name: this.product.name,
       link: this.product.link,
       price: this.product.price,
-      category_id: this.product.category_id,
+      categoryId: this.product.category_id,
     } : {
       csrfToken: getCsrfToken(),
       imageData: '',
@@ -214,7 +214,7 @@ export default {
       name: '',
       link: '',
       price: null,
-      category_id: null,
+      categoryId: null,
     };
   },
   props: {
@@ -224,8 +224,8 @@ export default {
     },
     categories: {
       type: Array,
-      default: [],
-    }
+      default: () => [],
+    },
   },
   methods: {
     previewImage(event) {
