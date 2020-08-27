@@ -1,6 +1,5 @@
 class Stores::CatalogController < ApplicationController
   layout 'stores'
-  #before_action :authenticate_store!
   before_action :fill_product, only: [:edit, :update, :destroy]
   protect_from_forgery with: :exception
 
@@ -41,10 +40,8 @@ class Stores::CatalogController < ApplicationController
   end
 
   def add_product
-      @product = Product.create!(product_params)
-    if params[:image]
-      @product.update_image(params[:image])
-    end
+    @product = Product.create!(product_params)
+    @product.update_image(params[:image]) if params[:image]
   end
 
   def fill_product

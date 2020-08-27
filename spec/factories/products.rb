@@ -9,7 +9,8 @@ FactoryBot.define do
     store
     novelty { 3 }
     trait :with_image do
-      image { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'files','example.jpg'), 'image/jpg') }
+      path = Rails.root.join('spec', 'fixtures', 'files', 'example.jpg')
+      image { fixture_file_upload(path, 'image/jpg') }
     end
   end
 end

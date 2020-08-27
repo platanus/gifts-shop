@@ -159,7 +159,7 @@ export default {
       name: '',
       link: '',
       price: null,
-      email:'',
+      email: '',
     };
   },
   props: {

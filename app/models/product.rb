@@ -55,7 +55,7 @@ class Product < ApplicationRecord
   end
 
   def image_attached?
-    self.image.attached?
+    image.attached?
   end
 
   private
