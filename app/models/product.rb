@@ -23,7 +23,7 @@ class Product < ApplicationRecord
     state :approved, :rejected
 
     event :approve do
-      transitions from: [:awaiting_approval, :rejected], to: :approved
+      transitions from: [:awaiting_approval, :rejected], to: :approved, guard: :image_attached?
     end
 
     event :reject do
@@ -52,6 +52,10 @@ class Product < ApplicationRecord
 
   def validate_image
     update(display: false) if !image.attached?
+  end
+
+  def image_attached?
+    self.image.attached?
   end
 
   private
