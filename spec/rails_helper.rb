@@ -60,7 +60,3 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
-
-FactoryBot::SyntaxRunner.class_eval do
-  include ActionDispatch::TestProcess
-end
