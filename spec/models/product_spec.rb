@@ -14,7 +14,7 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'product states with image' do
-    let(:product) { create(:product, :with_image) }
+    let(:product) { build(:product, :with_image) }
 
     context 'when created' do
       it { expect(product).to have_state(:awaiting_approval) }
