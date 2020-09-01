@@ -2,6 +2,7 @@ class Stores::CatalogController < ApplicationController
   layout 'stores'
   before_action :fill_product, only: [:edit, :update, :destroy]
   protect_from_forgery with: :exception
+  DEFAULT_MAIL = 'contacto@platan.us'
 
   def create
     add_product
@@ -53,7 +54,8 @@ class Stores::CatalogController < ApplicationController
   end
 
   def product_params
-    store = Store.find_by(email: ENV.fetch('DEFAULT_STORE_EMAIL'))
-    params.permit(:name, :price, :email).merge(store_id: store.id, link: valid_url(params[:link]))
+    store = Store.find_by(email: DEFAULT_MAIL)
+    params.permit(:name, :price, :email)
+          .merge(store_id: store.id, link: valid_url(params[:link]))
   end
 end
