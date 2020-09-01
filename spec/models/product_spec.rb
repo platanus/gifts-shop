@@ -10,10 +10,11 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_numericality_of(:price).is_greater_than_or_equal_to(1) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:link) }
+    it { is_expected.to validate_presence_of(:email) }
   end
 
-  describe 'product states' do
-    let(:product) { create(:product) }
+  describe 'product states with image' do
+    let(:product) { build(:product, :with_image) }
 
     context 'when created' do
       it { expect(product).to have_state(:awaiting_approval) }

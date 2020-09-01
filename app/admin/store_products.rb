@@ -1,7 +1,7 @@
 ActiveAdmin.register Product do
   menu parent: I18n.t('activeadmin.titles.stores')
 
-  permit_params :store_id, :name, :price, :link, :gender, :age, :novelty, :status
+  permit_params :store_id, :name, :price, :link, :email, :gender, :age, :novelty, :status
 
   filter :name
   filter :store
@@ -16,6 +16,7 @@ ActiveAdmin.register Product do
     column :name
     column :price
     column :link
+    column :email
     column :gender
     column :age
     column :novelty
@@ -54,6 +55,7 @@ ActiveAdmin.register Product do
       row :price
       row :clicks
       row :link
+      row :email
       row :image do |product|
         if product.image.attached?
           image_tag(url_for(product.image), size: 250, class: "aa-product__image")
@@ -82,9 +84,7 @@ ActiveAdmin.register Product do
       f.input :gender
       f.input :age
       f.input :novelty
-      f.input :status, as: :select, collection: { 'Awaiting Approval' => 'awaiting_approval',
-                                                  'Approved' => 'approved',
-                                                  'Rejected' => 'rejected' }
+      f.input :status, as: :select, collection: product.aasm.states(permitted: true).map(&:name)
     end
     f.actions
   end

@@ -8,6 +8,7 @@ gem 'activeadmin_addons'
 gem 'aws-sdk', '~> 3'
 gem 'bootsnap', require: false
 gem 'coffee-rails', '~> 4.2'
+gem 'data_migrate'
 gem 'devise'
 gem 'devise-i18n'
 gem 'enumerize'
