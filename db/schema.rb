@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_20_191324) do
+ActiveRecord::Schema.define(version: 2020_08_24_200750) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,9 @@ ActiveRecord::Schema.define(version: 2020_08_20_191324) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
+  end
+
   create_table "deposits", force: :cascade do |t|
     t.bigint "store_id"
     t.bigint "amount", default: 0, null: false
@@ -79,15 +82,6 @@ ActiveRecord::Schema.define(version: 2020_08_20_191324) do
     t.date "deposit_time", null: false
     t.index ["organization_id"], name: "index_deposits_on_organization_id"
     t.index ["store_id"], name: "index_deposits_on_store_id"
-  end
-
-  create_table "feedbacks", force: :cascade do |t|
-    t.bigint "receiver_id"
-    t.text "additional_info"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.boolean "fulfilled"
-    t.index ["receiver_id"], name: "index_feedbacks_on_receiver_id"
   end
 
   create_table "ledgerizer_accounts", force: :cascade do |t|
@@ -173,6 +167,7 @@ ActiveRecord::Schema.define(version: 2020_08_20_191324) do
     t.string "status"
     t.bigint "category_id"
     t.index ["category_id"], name: "index_products_on_category_id"
+    t.string "email"
     t.index ["store_id"], name: "index_products_on_store_id"
   end
 

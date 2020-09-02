@@ -11,6 +11,7 @@ class Product < ApplicationRecord
   validates :name, presence: true, length: { minimum: 5 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :link, presence: true
+  validates :email, presence: true
   validates :novelty,
     numericality: { greater_than: 0, less_than_or_equal_to: 5 },
     allow_blank: true
@@ -23,7 +24,7 @@ class Product < ApplicationRecord
     state :approved, :rejected
 
     event :approve do
-      transitions from: [:awaiting_approval, :rejected], to: :approved
+      transitions from: [:awaiting_approval, :rejected], to: :approved, guard: :image_attached?
     end
 
     event :reject do
@@ -32,7 +33,7 @@ class Product < ApplicationRecord
   end
 
   def set_average_color
-    image = MiniMagick::Image.open(url_for(self.image))
+    image = MiniMagick::Image.open(ActiveStorage::Blob.service.path_for(self.image.key))
     red, blue, green = image.resize("1x1").get_pixels[0][0]
     update(average_color: hex_value(red, blue, green))
   end
@@ -52,6 +53,10 @@ class Product < ApplicationRecord
 
   def validate_image
     update(display: false) if !image.attached?
+  end
+
+  def image_attached?
+    image.attached?
   end
 
   private
@@ -86,6 +91,7 @@ end
 #  novelty       :integer
 #  status        :string
 #  category_id   :bigint(8)
+#  email         :string
 #
 # Indexes
 #

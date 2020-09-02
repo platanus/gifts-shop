@@ -8,6 +8,7 @@ gem 'activeadmin_addons'
 gem 'aws-sdk', '~> 3'
 gem 'bootsnap', require: false
 gem 'coffee-rails', '~> 4.2'
+gem 'data_migrate'
 gem 'devise'
 gem 'devise-i18n'
 gem 'enumerize'
@@ -65,6 +66,10 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-nc', require: false
   gem 'rspec-rails'
+  gem 'rubocop', '~> 0.87'
+  gem 'rubocop-performance', '~> 1.7.1'
+  gem 'rubocop-rails', '~> 2.7.1'
+  gem 'rubocop-rspec', '~> 1.43.2'
   gem 'webmock'
 end
 

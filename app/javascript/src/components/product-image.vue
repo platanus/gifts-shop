@@ -31,7 +31,7 @@
       width: 100%;
 
       &:hover {
-        opacity: 0.9;
+        opacity: .9;
       }
     }
   }

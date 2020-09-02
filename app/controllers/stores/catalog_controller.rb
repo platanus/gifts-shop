@@ -1,12 +1,12 @@
 class Stores::CatalogController < ApplicationController
   layout 'stores'
-  before_action :authenticate_store!
   before_action :fill_product, only: [:edit, :update, :destroy]
   protect_from_forgery with: :exception
+  DEFAULT_MAIL = 'contacto@platan.us'
 
   def create
     add_product
-    redirect_to stores_catalog_index_path
+    redirect_to new_stores_catalog_path
   end
 
   def edit; end
@@ -46,11 +46,8 @@ class Stores::CatalogController < ApplicationController
   end
 
   def add_product
-    if params[:image]
-      @product = Product.create!(product_params)
-      @product.update_image(params[:image])
-      @product.update(display: true)
-    end
+    @product = Product.create!(product_params)
+    @product.update_image(params[:image]) if params[:image]
   end
 
   def fill_product
@@ -58,14 +55,12 @@ class Stores::CatalogController < ApplicationController
   end
 
   def product_update_params
-    params.permit(:name, :link, :price)
+    params.permit(:name, :link, :price, :email)
   end
 
   def product_params
-    params.permit(
-      :name,
-      :price,
-      :category_id
-    ).merge(store_id: current_store.id, link: valid_url(params[:link]))
+    store = Store.find_by(email: DEFAULT_MAIL)
+    params.permit(:name, :price, :email)
+          .merge(store_id: store.id, link: valid_url(params[:link]))
   end
 end

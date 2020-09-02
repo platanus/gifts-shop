@@ -12,7 +12,7 @@
         class="home-header__store-text"
         @click="goToStore"
       >
-        Tiendas
+        Vende tus productos
       </div>
     </div>
     <div class="home-header__content">
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     goToStore() {
-      window.location = '/stores/sign_in';
+      window.location = '/stores/catalog/new';
     },
     onResize() {
       this.mobile = window.innerWidth <= MOBILE_WIDTH;
@@ -197,7 +197,7 @@ export default {
 
   .store-elements-container {
     display: flex;
-    width: 20px;
+    width: 180px;
     margin-left: 15px;
   }
 

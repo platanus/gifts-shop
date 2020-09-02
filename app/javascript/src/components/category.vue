@@ -23,7 +23,7 @@
             :class="{'category__product--selected': index === selectedProductIndex }"
             @click="changeProduct(index)"
           >
-            <product-image :product="product"/>
+            <product-image :product="product" />
           </div>
         </div>
         <div class="product-card__information">
@@ -111,10 +111,10 @@ export default {
     &__product {
       display: flex;
       flex-basis: calc(33% - 1em);
-      border-color: black;
+      border-color: #000;
       border-style: dashed;
       border-width: 1px;
-      margin: 0 0.25em;
+      margin: 0 .25em;
 
       &:hover {
         cursor: pointer;
@@ -137,7 +137,7 @@ export default {
   }
 
   .choose-option-text {
-    margin: 1em auto 0.5em auto;
+    margin: 1em auto .5em;
   }
 
   .product-card {
@@ -175,14 +175,14 @@ export default {
     }
 
     &__store-name-text {
-        opacity: .48;
-        letter-spacing: .05em;
-        font-size: .7em;
-        font-weight: 600;
-        padding-top: 4px;
-        position: absolute;
-        bottom: .4em;
-        padding-bottom: 6px;
+      opacity: .48;
+      letter-spacing: .05em;
+      font-size: .7em;
+      font-weight: 600;
+      padding-top: 4px;
+      position: absolute;
+      bottom: .4em;
+      padding-bottom: 6px;
     }
 
     &__price {
