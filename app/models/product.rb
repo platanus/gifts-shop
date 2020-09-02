@@ -5,6 +5,7 @@ class Product < ApplicationRecord
 
   has_one_attached :image
   belongs_to :store
+  belongs_to :category
   has_many :product_actions, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 5 }
@@ -89,11 +90,13 @@ end
 #  age           :integer          default("any")
 #  novelty       :integer
 #  status        :string
+#  category_id   :bigint(8)
 #  email         :string
 #
 # Indexes
 #
-#  index_products_on_store_id  (store_id)
+#  index_products_on_category_id  (category_id)
+#  index_products_on_store_id     (store_id)
 #
 # Foreign Keys
 #

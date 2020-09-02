@@ -41,6 +41,31 @@
         </div>
         <div class="product-input">
           <div class="product-input__label">
+            Categoría
+          </div>
+          <select
+            type="select"
+            v-model="categoryId"
+            :class="getHtmlClass('product-input__box', 'name')"
+            name="category_id"
+          >
+            <option
+              v-for="category in categories"
+              :value="category.id"
+              :key="category.id"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+          <div
+            class="product-input__label product-input__label--danger"
+            v-if="errors.category"
+          >
+            {{ errors.category }}
+          </div>
+        </div>
+        <div class="product-input">
+          <div class="product-input__label">
             PRECIO
           </div>
           <input
@@ -75,48 +100,48 @@
             {{ errors.link }}
           </div>
         </div>
-      </div>
-      <div class="new-product-form__image">
-        <div class="image-preview__label">
-          FOTO DEL PRODUCTO
-        </div>
-        <div
-          class="image-preview"
-          v-if="imageData.length > 0"
-        >
-          <img
-            class="image-preview__preview"
-            :src="imageData"
+        <div class="new-product-form__image">
+          <div class="image-preview__label">
+            FOTO DEL PRODUCTO
+          </div>
+          <div
+            class="image-preview"
+            v-if="imageData.length > 0"
           >
-        </div>
-        <div
-          :class="getHtmlClass('file-container', 'image')"
-        >
-          <div>
+            <img
+              class="image-preview__preview"
+              :src="imageData"
+            >
+          </div>
+          <div
+            :class="getHtmlClass('file-container', 'image')"
+          >
             <div>
-              <div
-                :class="getHtmlClass('image-preview__value', 'image')"
-              >
-                Seleccionar archivo...
-              </div>
               <div>
-                <div class="file-input">
-                  <input
-                    class="image-preview__input"
-                    type="file"
-                    @change="previewImage"
-                    accept="image/*"
-                    name="image"
-                  >
+                <div
+                  :class="getHtmlClass('image-preview__value', 'image')"
+                >
+                  Seleccionar archivo...
+                </div>
+                <div>
+                  <div class="file-input">
+                    <input
+                      class="image-preview__input"
+                      type="file"
+                      @change="previewImage"
+                      accept="image/*"
+                      name="image"
+                    >
+                  </div>
                 </div>
               </div>
-            </div>
-            <div>
-              <div
-                class="image-preview__label image-preview__label--danger"
-                v-if="errors.image"
-              >
-                {{ errors.image }}
+              <div>
+                <div
+                  class="image-preview__label image-preview__label--danger"
+                  v-if="errors.image"
+                >
+                  {{ errors.image }}
+                </div>
               </div>
             </div>
           </div>
@@ -181,6 +206,7 @@ export default {
       name: this.product.name,
       link: this.product.link,
       price: this.product.price,
+      categoryId: this.product.category_id,
     } : {
       csrfToken: getCsrfToken(),
       imageData: '',
@@ -188,12 +214,17 @@ export default {
       name: '',
       link: '',
       price: null,
+      categoryId: null,
     };
   },
   props: {
     product: {
       type: Object,
       default: null,
+    },
+    categories: {
+      type: Array,
+      default: () => [],
     },
   },
   methods: {
@@ -216,6 +247,7 @@ export default {
     checkForm(e) {
       this.errors = {};
       this.validateName();
+      this.validateCategory();
       this.validateImage();
       this.validatePrice();
       this.validateLink();
@@ -229,6 +261,11 @@ export default {
     validateName() {
       if (this.name.length < MINIMUM_NAME_LENGTH) {
         this.errors.name = 'El nombre debe tener al menos 5 caracteres';
+      }
+    },
+    validateCategory() {
+      if (!this.category_id) {
+        this.errors.category = 'Debes seleccionar una categoría para tu producto';
       }
     },
     validatePrice() {

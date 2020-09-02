@@ -62,6 +62,13 @@ ActiveRecord::Schema.define(version: 2020_08_24_200750) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
@@ -158,6 +165,8 @@ ActiveRecord::Schema.define(version: 2020_08_24_200750) do
     t.integer "age", default: 0
     t.integer "novelty"
     t.string "status"
+    t.bigint "category_id"
+    t.index ["category_id"], name: "index_products_on_category_id"
     t.string "email"
     t.index ["store_id"], name: "index_products_on_store_id"
   end

@@ -24,7 +24,12 @@ class Stores::CatalogController < ApplicationController
     @products = current_store.products.where(deleted: false)
   end
 
-  def new; end
+  def new
+    @categories = ActiveModel::ArraySerializer.new(
+      Category.all,
+      each_serializer: CategorySerializer
+    ).to_json
+  end
 
   def destroy
     @product.update(deleted: true)

@@ -8,6 +8,7 @@ FactoryBot.define do
     clicks_cost { 1.5 }
     store
     novelty { 3 }
+    category
     trait :with_image do
       image { fixture_file_upload(Rails.root.join('spec/fixtures/files/example.jpg'), 'image/jpg') }
     end

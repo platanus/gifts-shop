@@ -15,6 +15,7 @@ gem 'enumerize'
 gem 'find_with_order'
 gem "image_processing"
 gem 'jbuilder', '~> 2.5'
+gem 'kaminari', '~> 1.1.1'
 gem 'ledgerizer', git: 'https://github.com/platanus/ledgerizer'
 gem "mini_magick"
 gem 'money-rails', '~>1.12'

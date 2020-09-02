@@ -13,6 +13,10 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_presence_of(:email) }
   end
 
+  describe 'associations' do
+    it { is_expected.to belong_to(:category) }
+  end
+
   describe 'product states with image' do
     let(:product) { build(:product, :with_image) }
 

@@ -1,14 +1,21 @@
 <template>
   <div class="home-container">
     <home-header />
-    <div
-      class="home-products-container"
-      v-if="products.length > 0"
-    >
-      <product
-        v-for="(product, index) in products"
-        :key="index"
-        :product="product"
+    <div v-if="category">
+      <p class="call-text">
+        Regala una de estas&nbsp;<span class="call-text__category-name">{{ category.name }}</span>
+      </p>
+      <div class="button-container">
+        <button
+          class="change-option-button"
+          @click="$store.dispatch('getProducts')"
+        >
+          O revisa otra opción
+        </button>
+      </div>
+      <category
+        :category="category"
+        v-if="category"
       />
     </div>
     <div class="loader-spinner">
@@ -22,48 +29,65 @@
 <script>
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState } from 'vuex';
-import product from '../components/product';
+import category from '../components/category';
 import HomeHeader from '../components/home-header';
-import numberOfProducts from '../utils/numberOfProducts';
-
-const SCROLL_OFFSET = 30;
 
 export default {
   name: 'HomeView',
   components: {
-    product,
+    category,
     ClipLoader,
     HomeHeader,
   },
   computed: {
     ...mapState([
       'products',
+      'category',
       'likes',
     ]),
   },
-  methods: {
-    scroll() {
-      window.addEventListener('scroll', () => {
-        const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >=
-          document.getElementById('home').offsetHeight - SCROLL_OFFSET;
-        if (bottomOfWindow && !this.$store.loading) {
-          this.$store.loading = true;
-          this.$store.dispatch('moreProducts').then(() => {
-            this.$store.loading = false;
-          }, () => {});
-        }
-      });
-    },
-  },
   mounted() {
-    this.$store.dispatch('getProducts');
-    this.scroll();
+    this.$store.dispatch('getProducts').then(() => {
+      this.$store.loading = false;
+    });
   },
 };
 </script>
 
 <style lang="scss">
   @import '../../styles/variables';
+
+  .call-text {
+    display: flex;
+    justify-content: center;
+
+    &__category-name {
+      color: $primary-color;
+    }
+  }
+
+  .button-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .change-option-button {
+    text-align: center;
+    background-color: $primary_color;
+    text-decoration: none;
+    -webkit-appearance: none;
+    height: 2.5em;
+    padding: 5px;
+    color: $white;
+    font-size: 15px;
+    margin-bottom: 3%;
+    border: 0;
+    border-radius: 30.5px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
 
   .home-container {
     display: block;
