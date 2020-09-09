@@ -6,6 +6,8 @@ import ToggleButton from '../stores/components/toggle-button.vue';
 import BalanceWarning from '../stores/components/balance-warning.vue';
 import store from '../stores/store/index';
 
+import '../styles/application.css';
+
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('stores-app')) {
     return new Vue({
