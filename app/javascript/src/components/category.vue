@@ -7,6 +7,7 @@
     >
       <div class="product-card">
         <div
+          v-if="!hideFavoriteButton"
           class="product-card__icon-container"
           @click="setLikeStatus"
         >
@@ -101,6 +102,10 @@ export default {
     category: {
       type: Object,
       default: null,
+    },
+    hideFavoriteButton: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {

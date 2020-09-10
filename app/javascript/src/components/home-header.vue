@@ -16,14 +16,23 @@
       </div>
     </div>
     <div class="home-header__content">
-      <img
-        class="home-header__home-icon home-icon"
-        src="../assets/buenas-ideas.svg"
-      >
-      <img
-        class="home-header__home-icon home-icon-tablet"
-        src="../assets/buenas-ideas-mini.svg"
-      >
+      <router-link to="/">
+        <img
+          class="home-header__home-icon home-icon"
+          src="../assets/buenas-ideas.svg"
+        >
+        <img
+          class="home-header__home-icon home-icon-tablet"
+          src="../assets/buenas-ideas-mini.svg"
+        >
+      </router-link>
+    </div>
+    <div class="home-header__button-container">
+      <router-link to="/favorites">
+        <button class="home-header__button">
+          Ver mis favoritas
+        </button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -94,11 +103,26 @@ export default {
       width: 100%;
     }
 
-    &__options {
+    &__button-container {
       position: absolute;
-      width: 100%;
-      right: 0;
-      top: 0;
+      right: 15px;
+      top: 15px;
+    }
+
+    &__button {
+      text-align: center;
+      background-color: $primary_color;
+      text-decoration: none;
+      height: 2.5em;
+      padding: 5px;
+      color: $white;
+      font-size: 15px;
+      margin-bottom: 3%;
+      border: 0;
+
+      &:hover {
+        cursor: pointer;
+      }
     }
 
     &__icon {
