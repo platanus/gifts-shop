@@ -47,6 +47,7 @@ export default {
     ]),
   },
   mounted() {
+    this.$store.commit('setNextPage', 0);
     this.$store.dispatch('getProducts').then(() => {
       this.$store.loading = false;
     });
@@ -94,6 +95,7 @@ export default {
     font-size: $m-font-size;
     width: 100%;
     background: $home-background;
+    min-height: 100vh;
   }
 
   .home-products-container {

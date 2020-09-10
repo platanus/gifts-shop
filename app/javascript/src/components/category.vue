@@ -6,6 +6,22 @@
       class="category__main-product"
     >
       <div class="product-card">
+        <div
+          v-if="!hideFavoriteButton"
+          class="product-card__icon-container"
+          @click="setLikeStatus"
+        >
+          <img
+            v-if="isLiked"
+            class="product-card__icon product-card__icon--active"
+            src="../assets/like-color-badge.svg"
+          >
+          <img
+            v-else
+            class="product-card__icon"
+            src="../assets/like-badge.svg"
+          >
+        </div>
         <product-image
           :product="selectedProduct"
           @click.native="clickAction"
@@ -48,7 +64,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 
 import productImage from './product-image';
@@ -74,14 +90,31 @@ export default {
     changeProduct(index) {
       this.selectedProductIndex = index;
     },
+    setLikeStatus() {
+      if (this.isLiked) {
+        this.$store.commit('removeFavoriteCategory', this.category.id);
+      } else {
+        this.$store.commit('addFavoriteCategory', this.category);
+      }
+    },
   },
   props: {
     category: {
       type: Object,
       default: null,
     },
+    hideFavoriteButton: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
+    ...mapState([
+      'favoriteCategories',
+    ]),
+    isLiked() {
+      return this.category.id in this.favoriteCategories;
+    },
     selectedProduct() {
       return this.category.products[this.selectedProductIndex];
     },
@@ -101,6 +134,28 @@ export default {
 
 <style lang="scss">
   @import '../../styles/variables';
+
+  @keyframes pump {
+    50% {
+      transform: scale(1);
+    }
+
+    55% {
+      transform: scale(1.2);
+    }
+
+    60% {
+      transform: scale(1);
+    }
+
+    65% {
+      transform: scale(1.2);
+    }
+
+    70% {
+      transform: scale(1);
+    }
+  }
 
   .category {
     display: flex;
@@ -152,6 +207,37 @@ export default {
     box-shadow: 0 2px 6px rgba(148, 148, 148, .24);
     border-radius: 6px;
     background-color: #fff;
+
+    &__icon {
+      width: 80%;
+      height: 80%;
+      margin: .17em;
+      cursor: pointer;
+
+      &--active {
+        animation: pump 6s;
+        animation-iteration-count: infinite;
+      }
+    }
+
+    &__icon-container {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      height: 1.5em;
+      width: 1.5em;
+      border-radius: 50%;
+      padding: .1em;
+      background-color: #fff;
+      box-shadow: 0 4px 6px 0 rgba(43, 43, 43, .13);
+      z-index: 20;
+      display: flex;
+      justify-content: center;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
 
     &__information {
       padding: 8px 12px;
