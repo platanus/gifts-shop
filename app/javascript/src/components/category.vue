@@ -1,62 +1,69 @@
 <template>
   <div
-    class="category"
+    class="flex flex-col m-auto category"
   >
     <div
-      class="category__main-product"
+      class="relative"
     >
-      <div class="product-card">
-        <div
-          v-if="!hideFavoriteButton"
-          class="product-card__icon-container"
-          @click="setLikeStatus"
+      <div
+        v-if="!hideFavoriteButton"
+        class="product-card__icon-container"
+        @click="setLikeStatus"
+      >
+        <img
+          v-if="isLiked"
+          class="product-card__icon product-card__icon--active"
+          src="../assets/like-color-badge.svg"
         >
-          <img
-            v-if="isLiked"
-            class="product-card__icon product-card__icon--active"
-            src="../assets/like-color-badge.svg"
-          >
-          <img
-            v-else
-            class="product-card__icon"
-            src="../assets/like-badge.svg"
-          >
-        </div>
-        <product-image
-          :product="selectedProduct"
-          @click.native="clickAction"
-        />
-        <div class="choose-option-text">
-          Elige tu opción
-        </div>
-        <div
-          class="category__product-selector"
+        <img
+          v-else
+          class="product-card__icon"
+          src="../assets/like-badge.svg"
         >
-          <div
-            v-for="(product, index) in category.products"
-            :key="index"
-            class="category__product"
-            :class="{'category__product--selected': index === selectedProductIndex }"
-            @click="changeProduct(index)"
-          >
-            <product-image :product="product" />
-          </div>
-        </div>
-        <div class="product-card__information">
-          <div class="product-card__bottom-row-container">
-            <span class="product-card__price"> {{ selectedProduct.price | Price }} </span>
-          </div>
-          <div
-            class="product-card__title"
-            @click="clickAction"
-          >
-            {{ selectedProduct.name }}
-          </div>
-          <div class="product-card__store-name">
-            <div class="product-card__store-name-text">
-              {{ selectedProduct.storeName | toUpper }}
-            </div>
-          </div>
+      </div>
+      <img
+        class="flex object-cover w-full h-56"
+        :src="selectedProduct.imageUrl"
+      >
+      <div
+        class="absolute top-0 block w-full h-full selected-product__gradient"
+      >
+        <p
+          class="absolute bottom-0 px-3 py-2 text-xl font-bold text-white"
+        >
+          {{ selectedProduct.name }}
+        </p>
+      </div>
+    </div>
+    <div class="choose-option-text">
+      Elige tu opción
+    </div>
+    <div
+      class="category__product-selector"
+    >
+      <div
+        v-for="(product, index) in category.products"
+        :key="index"
+        class="category__product"
+        :class="{'category__product--selected': index === selectedProductIndex }"
+        @click="changeProduct(index)"
+      >
+        <product-image :product="product" />
+      </div>
+    </div>
+    <div class="product-card__information">
+      <div class="product-card__bottom-row-container">
+        <span class="product-card__price"> {{ selectedProduct.price | Price }} </span>
+      </div>
+      <div
+        class="product-card__title"
+        @click="clickAction"
+      >
+        {{ selectedProduct.name }}
+      </div>
+      <div class="product-card__store-name">
+        <div class="product-card__store-name-text">
+          {{ selectedProduct.storeName | toUpper }}
         </div>
       </div>
     </div>
@@ -158,10 +165,7 @@ export default {
   }
 
   .category {
-    display: flex;
-    flex-direction: column;
-    width: calc(min(90%, 700px));
-    margin: auto;
+    width: calc(min(100%, 700px));
 
     &__product {
       display: flex;
@@ -285,6 +289,12 @@ export default {
           text-decoration: underline;
         }
       }
+    }
+  }
+
+  .selected-product {
+    &__gradient {
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 61%, rgba(0, 0, 0, .45) 100%);
     }
   }
 </style>
