@@ -77,7 +77,7 @@ export default {
     background-color: $c-header-background;
     box-shadow: $box-shadow-header;
     padding: 2vh 0;
-    z-index: 100;
+    z-index: 20;
     align-items: center;
     border-radius: 0 0 16px 16px;
 

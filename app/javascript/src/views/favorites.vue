@@ -1,6 +1,21 @@
 <template>
   <div class="home-container">
     <home-header />
+    <modal
+      v-if="modalIsOpen"
+      @accept="removeCategory"
+      @close="closeModal"
+    >
+      <template #body>
+        ¿De verdad quieres borrar esta categoría de tus favoritas?
+      </template>
+      <template #accept-button-text>
+        ¡Sí!
+      </template>
+      <template #cancel-button-text>
+        Mejor no
+      </template>
+    </modal>
     <div class="favorite-categories">
       <div v-if="Object.keys(favoriteCategories).length === 0">
         No tienes ninguna categoría favorita 😢
@@ -44,7 +59,7 @@
             </button>
             <button
               class="favorite-category__button favorite-category__button--red"
-              @click="$store.commit('removeFavoriteCategory', category.id);"
+              @click="openModal(category.id)"
             >
               Sacar de favoritos
             </button>
@@ -70,17 +85,21 @@
 import { mapState } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
+import modal from '../components/modal';
 
 export default {
   name: 'Favorites',
   data() {
     return {
       openCategory: -1,
+      modalCategory: -1,
+      modalIsOpen: false,
     };
   },
   components: {
     category,
     HomeHeader,
+    modal,
   },
   computed: {
     ...mapState([
@@ -90,6 +109,19 @@ export default {
   filters: {
     toUpper(value) {
       return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+  },
+  methods: {
+    closeModal() {
+      this.modalIsOpen = false;
+    },
+    openModal(categoryIndex) {
+      this.modalCategory = categoryIndex;
+      this.modalIsOpen = true;
+    },
+    removeCategory() {
+      this.modalIsOpen = false;
+      this.$store.commit('removeFavoriteCategory', this.modalCategory);
     },
   },
 };
@@ -103,7 +135,6 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 30px;
-    position: relative;
     margin: 10px auto;
     font-size: 1.2em;
     color: $product-name-font-color;
