@@ -46,19 +46,19 @@
             <button
               v-if="openCategory !== index"
               @click="openCategory = index"
-              class="favorite-category__button"
+              class="favorite-category__button favorite-category__button--left"
             >
               Ver categoría
             </button>
             <button
               v-else
               @click="openCategory = -1"
-              class="favorite-category__button"
+              class="favorite-category__button favorite-category__button--left"
             >
               Ocultar
             </button>
             <button
-              class="favorite-category__button favorite-category__button--red"
+              class="favorite-category__button favorite-category__button--red favorite-category__button--right"
               @click="openModal(category.id)"
             >
               Sacar de favoritos
@@ -197,7 +197,6 @@ export default {
       text-align: center;
       background-color: $primary_color;
       text-decoration: none;
-      height: 2.5em;
       padding: 5px;
       color: $white;
       font-size: 15px;
@@ -213,7 +212,13 @@ export default {
       }
 
       @media(max-width: 640px) {
-        margin-right: 20px;
+        &--left {
+          margin-right: 10px;
+        }
+
+        &--right {
+          margin-left: 10px;
+        }
       }
     }
 
