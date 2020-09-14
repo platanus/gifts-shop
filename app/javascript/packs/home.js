@@ -3,7 +3,7 @@ import router from '../src/router';
 import store from '../src/store/index';
 import app from '../src/app';
 
-import '..styles/application.css';
+import '../styles/application.css';
 
 document.addEventListener('DOMContentLoaded', () => {
   if (document.getElementById('home') !== null) {
