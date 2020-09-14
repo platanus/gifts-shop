@@ -2,7 +2,7 @@
   <div class="home-container">
     <home-header />
     <modal
-      v-if="modalIsOpen"
+      :show-modal="modalIsOpen"
       @accept="removeCategory"
       @close="closeModal"
     >
