@@ -209,7 +209,7 @@ export default {
       padding: .1em;
       background-color: #fff;
       box-shadow: 0 4px 6px 0 rgba(43, 43, 43, .13);
-      z-index: 20;
+      z-index: 10;
       display: flex;
       justify-content: center;
 
