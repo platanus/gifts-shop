@@ -2,9 +2,13 @@
   <div class="home-container">
     <home-header />
     <div v-if="category">
-      <p class="call-text">
-        Regala una de estas&nbsp;<span class="call-text__category-name">{{ category.name }}</span>
+      <p class="flex justify-center py-2">
+        Encontramos esto para ti:
       </p>
+      <category
+        :category="category"
+        v-if="category"
+      />
       <div class="button-container">
         <button
           class="change-option-button"
@@ -13,10 +17,6 @@
           O revisa otra opción
         </button>
       </div>
-      <category
-        :category="category"
-        v-if="category"
-      />
     </div>
     <div class="loader-spinner">
       <clip-loader
