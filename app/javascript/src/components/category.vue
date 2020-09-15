@@ -35,36 +35,20 @@
         </p>
       </div>
     </div>
-    <div class="choose-option-text">
-      Elige tu opción
-    </div>
     <div
-      class="category__product-selector"
+      class="flex flex-wrap justify-center my-6"
     >
       <div
         v-for="(product, index) in category.products"
         :key="index"
-        class="category__product"
+        class="flex category__product"
         :class="{'category__product--selected': index === selectedProductIndex }"
         @click="changeProduct(index)"
       >
-        <product-image :product="product" />
-      </div>
-    </div>
-    <div class="product-card__information">
-      <div class="product-card__bottom-row-container">
-        <span class="product-card__price"> {{ selectedProduct.price | Price }} </span>
-      </div>
-      <div
-        class="product-card__title"
-        @click="clickAction"
-      >
-        {{ selectedProduct.name }}
-      </div>
-      <div class="product-card__store-name">
-        <div class="product-card__store-name-text">
-          {{ selectedProduct.storeName | toUpper }}
-        </div>
+        <product-card
+          :product="product"
+          v-bind="{ highlight : index === 1 }"
+        />
       </div>
     </div>
   </div>
@@ -74,11 +58,11 @@
 import { mapActions, mapState } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 
-import productImage from './product-image';
+import productCard from './product-card';
 
 export default {
   components: {
-    productImage,
+    productCard,
   },
   data() {
     return {
@@ -168,12 +152,7 @@ export default {
     width: calc(min(100%, 700px));
 
     &__product {
-      display: flex;
-      flex-basis: calc(33% - 1em);
-      border-color: #000;
-      border-style: dashed;
-      border-width: 1px;
-      margin: 0 .25em;
+      flex-basis: calc(33%);
 
       &:hover {
         cursor: pointer;
@@ -193,10 +172,6 @@ export default {
       max-width: 300px;
       margin: auto;
     }
-  }
-
-  .choose-option-text {
-    margin: 1em auto .5em;
   }
 
   .product-card {
@@ -240,54 +215,6 @@ export default {
 
       &:hover {
         cursor: pointer;
-      }
-    }
-
-    &__information {
-      padding: 8px 12px;
-    }
-
-    &__title {
-      font-size: .8em;
-      margin: 8px auto;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box; //stylelint-disable value-no-vendor-prefix
-      line-height: 1.2em;
-      max-height: 2.5em;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical; //stylelint-disable property-no-vendor-prefix
-      cursor: pointer;
-    }
-
-    &__store-name {
-      height: 24px;
-    }
-
-    &__store-name-text {
-      opacity: .48;
-      letter-spacing: .05em;
-      font-size: .7em;
-      font-weight: 600;
-      padding-top: 4px;
-      position: absolute;
-      bottom: .4em;
-      padding-bottom: 6px;
-    }
-
-    &__price {
-      flex: 1;
-      height: fit-content;
-      font-size: 1em;
-      letter-spacing: .05em;
-      font-weight: 600;
-    }
-
-    &:hover {
-      .category-product {
-        &__title {
-          text-decoration: underline;
-        }
       }
     }
   }
