@@ -3,6 +3,11 @@ class Category < ApplicationRecord
 
   validates :name, presence: true
   validates :description, presence: true
+
+  def self.randomized(seed = 0.0)
+    connection.execute(Arel.sql("SELECT SETSEED(#{seed})"))
+    order(Arel.sql('RANDOM()'))
+  end
 end
 
 # == Schema Information
