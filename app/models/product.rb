@@ -5,7 +5,7 @@ class Product < ApplicationRecord
 
   has_one_attached :image
   belongs_to :store
-  belongs_to :category
+  belongs_to :category, optional: true
   has_many :product_actions, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 5 }
