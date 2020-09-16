@@ -6,6 +6,7 @@ class Stores::CatalogController < ApplicationController
 
   def create
     add_product
+    flash[:success] = true
     redirect_to new_stores_catalog_path
   end
 

@@ -1,3 +1,9 @@
 <h1 class="form-title">Agregar producto</h1>
-<p class="form-description">Sube tus productos gratis. Una vez aprobados serán mostrados a nuestros miles de usuarios.</p>
+<p class="form-text">Sube tus productos gratis. Una vez aprobados serán mostrados a nuestros miles de usuarios.</p>
+<% if flash[:success] %>
+  <p class="text-teal-500 font-bold form-text">
+    ¡Producto agregado correctamente! Recuerda que debe ser aprobado para que aparezca en la página
+  </p>
+<% end %>
+
 <easy-product-form />
