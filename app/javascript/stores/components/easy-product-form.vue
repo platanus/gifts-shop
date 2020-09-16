@@ -97,11 +97,9 @@
       <div class="button-container">
         <a
           href="/#"
-          class="btn product-input__link product-input__link--cancel"
+          class="flex items-center justify-center btn product-input__link product-input__link--cancel"
         >
-          <div class="link-button-text">
-            VOLVER
-          </div>
+          VOLVER
         </a>
         <button
           type="submit"
