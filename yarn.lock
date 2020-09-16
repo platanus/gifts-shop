@@ -8997,6 +8997,11 @@ vue@^2.6.10:
   resolved "https://registry.yarnpkg.com/vue/-/vue-2.6.11.tgz#76594d877d4b12234406e84e35275c6d514125c5"
   integrity sha512-VfPwgcGABbGAue9+sfrD4PuwFar7gPb1yl1UK1MwXoQPAw0BKSqWfoYCT/ThFrdEVWoI51dBuyCoiNU9bZDZxQ==
 
+vueperslides@^2.10.8:
+  version "2.10.8"
+  resolved "https://registry.yarnpkg.com/vueperslides/-/vueperslides-2.10.8.tgz#7ceae734252320e74e5f112cdcd6ba45e0e8d438"
+  integrity sha512-hMNO3zeG8AuK/yp+DKgeCbjqTLLePOm+PlCBjoVk0vtEWuxKRTcptEdNxF7J4qncefLpZHEGj1v7t/Or7TSPbw==
+
 vuex-persist@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/vuex-persist/-/vuex-persist-2.2.0.tgz#4acec75562896b045c43d319690b93d6bc1b2bbc"
