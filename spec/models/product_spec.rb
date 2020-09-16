@@ -14,7 +14,7 @@ RSpec.describe Product, type: :model do
   end
 
   describe 'associations' do
-    it { is_expected.to belong_to(:category) }
+    it { is_expected.to belong_to(:category).optional }
   end
 
   describe 'product states with image' do

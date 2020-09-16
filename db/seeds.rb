@@ -12,7 +12,7 @@ Region.find_or_create_by(name: 'Chile')
 Region.find_or_create_by(name: 'Brasil')
 Region.find_or_create_by(name: 'Argentina')
 
-Store.create(region_id: 1, name: 'TestStore', email: 'test@gmail.com', password: '12345678', password_confirmation: '12345678')
+Store.create(region_id: 1, name: 'TestStore', email: 'contacto@platan.us', password: '12345678', password_confirmation: '12345678')
 
 coffee_makers = Category.find_or_create_by(name: 'cafeteras', description: 'máquinas para hacer café')
 coffee = Product.find_or_create_by(name: 'Cafetera Francesa', store_id: 1, price: 4990, link:'https://www.facebook.com/', clicks_cost: 20, category: coffee_makers, email: 'dummy@example.com', status: :approved)
