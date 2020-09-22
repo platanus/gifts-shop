@@ -35,20 +35,36 @@
         </p>
       </div>
     </div>
-    <div
-      class="flex flex-wrap justify-center my-6"
+    <div>
+      <vueper-slides
+        ref="productSlider"
+        class="my-6 no-shadow"
+        fixed-height="230px"
+        prevent-yscroll
+        :arrows="false"
+        :bullets="false"
+        :dragging-distance="70"
+        :infinite="false"
+        :init-slide="2"
+        :visible-slides="3"
+        @next="changeProduct(selectedProductIndex + 1)"
+        @previous="changeProduct(selectedProductIndex - 1)"
     >
-      <div
+        <vueper-slide
         v-for="(product, index) in category.products"
         :key="index"
         class="flex category__product"
         :class="{'category__product--selected': index === selectedProductIndex }"
-        @click="changeProduct(index)"
+          @click.native="changeProduct(index); $refs.productSlider.goToSlide(index);"
       >
+          <template v-slot:content>
         <product-card
           :product="product"
           v-bind="{ highlight : index === 1 }"
         />
+          </template>
+        </vueper-slide>
+      </vueper-slides>
       </div>
     </div>
   </div>
@@ -56,6 +72,9 @@
 
 <script>
 import { mapActions, mapState } from 'vuex';
+import { VueperSlides, VueperSlide } from 'vueperslides';
+import 'vueperslides/dist/vueperslides.css';
+
 import convertToClp from '../utils/convert-to-clp';
 
 import productCard from './product-card';
@@ -63,6 +82,8 @@ import productCard from './product-card';
 export default {
   components: {
     productCard,
+    VueperSlides,
+    VueperSlide,
   },
   data() {
     return {
@@ -224,4 +245,16 @@ export default {
       background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 61%, rgba(0, 0, 0, .45) 100%);
     }
   }
+
+  .vueperslide {
+    &--visible {
+      opacity: .6;
+    }
+
+    &--active {
+      opacity: 1;
+      transition: opacity .2s ease-in-out;
+    }
+  }
+
 </style>

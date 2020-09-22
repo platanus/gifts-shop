@@ -1,10 +1,10 @@
 <template>
   <div
-    class="flex flex-col w-full mx-1 bg-white border border-gray-100 border-solid rounded-sm shadow-md"
-    :class="{ 'border-primary' : highlight, 'mt-4' : !highlight }"
+    class="flex flex-col w-full mx-1 mb-4 bg-white border border-gray-100 border-solid rounded-sm shadow-md"
+    :class="{ 'border-primary' : highlight, 'mt-5' : !highlight }"
   >
     <div
-      class="w-full text-xs text-left text-white bg-primary"
+      class="w-full h-5 text-xs text-left text-white bg-primary"
       v-if="highlight"
     >
       <span class="ml-2">Regalo popular</span>
