@@ -12,6 +12,7 @@ class Product < ApplicationRecord
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
   validates :link, presence: true
   validates :email, presence: true
+  validates :description, presence: true
   validates :novelty,
     numericality: { greater_than: 0, less_than_or_equal_to: 5 },
     allow_blank: true
@@ -92,6 +93,7 @@ end
 #  status        :string
 #  category_id   :bigint(8)
 #  email         :string
+#  description   :text
 #
 # Indexes
 #

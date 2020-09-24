@@ -5,6 +5,7 @@ FactoryBot.define do
     clicks { "" }
     link { "MyString" }
     email { "MyString" }
+    description { "MyText" }
     clicks_cost { 1.5 }
     store
     novelty { 3 }

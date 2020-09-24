@@ -1,8 +1,8 @@
 ActiveAdmin.register Product do
   menu parent: I18n.t('activeadmin.titles.stores')
 
-  permit_params :store_id, :name, :category_id, :price, :link,
-                :email, :gender, :age, :novelty, :status
+  permit_params :store_id, :name, :category_id, :price, :description,
+                :link, :email, :gender, :age, :novelty, :status
 
   filter :name
   filter :store
@@ -54,8 +54,11 @@ ActiveAdmin.register Product do
 
   show do
     attributes_table do
+      row :store
       row :name
+      row :category
       row :price
+      row :description
       row :clicks
       row :link
       row :email
@@ -65,7 +68,6 @@ ActiveAdmin.register Product do
         end
       end
       row :clicks_cost
-      row :store
       row :created_at
       row :updated_at
       row :deleted
@@ -74,7 +76,6 @@ ActiveAdmin.register Product do
       row :age
       row :novelty
       row :status
-      row :category
     end
   end
 
@@ -84,6 +85,7 @@ ActiveAdmin.register Product do
       f.input :name
       f.input :category
       f.input :price
+      f.input :description
       f.input :link
       f.input :email
       f.input :image, as: :file, hint: image_hint(f.object.image)
