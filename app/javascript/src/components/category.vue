@@ -49,23 +49,22 @@
         :visible-slides="3"
         @next="changeProduct(selectedProductIndex + 1)"
         @previous="changeProduct(selectedProductIndex - 1)"
-    >
-        <vueper-slide
-        v-for="(product, index) in category.products"
-        :key="index"
-        class="flex category__product"
-        :class="{'category__product--selected': index === selectedProductIndex }"
-          @click.native="changeProduct(index); $refs.productSlider.goToSlide(index);"
       >
+        <vueper-slide
+          v-for="(product, index) in category.products"
+          :key="index"
+          class="flex category__product"
+          :class="{'category__product--selected': index === selectedProductIndex }"
+          @click.native="changeProduct(index); $refs.productSlider.goToSlide(index);"
+        >
           <template v-slot:content>
-        <product-card
-          :product="product"
-          v-bind="{ highlight : index === 1 }"
-        />
+            <product-card
+              :product="product"
+              v-bind="{ highlight : index === 1 }"
+            />
           </template>
         </vueper-slide>
       </vueper-slides>
-      </div>
     </div>
   </div>
 </template>
