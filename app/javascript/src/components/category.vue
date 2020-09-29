@@ -92,8 +92,8 @@ export default {
       this.markClicked(this.selectedProduct.id);
       window.open(this.selectedProduct.link, '_blank');
     },
-    changeProduct(index) {
-      this.selectedProductIndex = index;
+    changeProduct(oldSlideIndex, newSlideIndex) {
+      this.selectedProductIndex = newSlideIndex;
     },
     setLikeStatus() {
       if (this.isLiked) {
