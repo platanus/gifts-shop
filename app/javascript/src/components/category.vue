@@ -36,43 +36,38 @@
       </div>
     </div>
     <div>
-      <vueper-slides
-        ref="productSlider"
-        class="my-6 no-shadow"
-        fixed-height="230px"
-        prevent-yscroll
+      <vueSlickCarousel
+        class="mt-3"
         :arrows="false"
-        :bullets="false"
-        :dragging-distance="70"
-        :infinite="false"
-        :init-slide="2"
-        :visible-slides="3"
-        @next="changeProduct(selectedProductIndex + 1)"
-        @previous="changeProduct(selectedProductIndex - 1)"
+        :center-mode="true"
+        :center-padding="0"
+        :focus-on-select="true"
+        :initial-slide="1"
+        :slides-to-show="3"
+        :swipe-to-slide="true"
+        @beforeChange="changeProduct"
       >
-        <vueper-slide
+        <div
           v-for="(product, index) in category.products"
           :key="index"
           class="flex category__product"
           :class="{'category__product--selected': index === selectedProductIndex }"
-          @click.native="changeProduct(index); $refs.productSlider.goToSlide(index);"
         >
-          <template v-slot:content>
-            <product-card
-              :product="product"
-              v-bind="{ highlight : index === 1 }"
-            />
-          </template>
-        </vueper-slide>
-      </vueper-slides>
+          <product-card
+            :product="product"
+            v-bind="{ highlight : index === 1 }"
+          />
+        </div>
+      </vueSlickCarousel>
     </div>
   </div>
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
-import { VueperSlides, VueperSlide } from 'vueperslides';
-import 'vueperslides/dist/vueperslides.css';
+
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 
 import convertToClp from '../utils/convert-to-clp';
 
@@ -81,8 +76,7 @@ import productCard from './product-card';
 export default {
   components: {
     productCard,
-    VueperSlides,
-    VueperSlide,
+    VueSlickCarousel,
   },
   data() {
     return {
@@ -245,15 +239,16 @@ export default {
     }
   }
 
-  .vueperslide {
-    &--visible {
-      opacity: .6;
+  .slick {
+    &-slide {
+      opacity: .65;
+      transform: scale(.9);
+      transition: transform .2s ease-in-out, opacity .2s ease-in-out;
     }
 
-    &--active {
+    &-current {
       opacity: 1;
-      transition: opacity .2s ease-in-out;
+      transform: scale(1);
     }
   }
-
 </style>
