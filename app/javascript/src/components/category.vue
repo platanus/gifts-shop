@@ -80,7 +80,7 @@ export default {
   },
   data() {
     return {
-      selectedProductIndex: 0,
+      selectedProductIndex: 1,
       products: [],
     };
   },
