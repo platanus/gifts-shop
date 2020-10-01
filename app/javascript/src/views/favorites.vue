@@ -3,11 +3,11 @@
     <home-header />
     <modal
       :show-modal="modalIsOpen"
-      @accept="removeCategory"
+      @accept="removeProduct"
       @close="closeModal"
     >
       <template #body>
-        ¿De verdad quieres borrar esta categoría de tus favoritas?
+        ¿De verdad quieres borrar este producto de tus favoritos?
       </template>
       <template #accept-button-text>
         ¡Sí!
@@ -17,28 +17,28 @@
       </template>
     </modal>
     <div class="favorite-categories">
-      <div v-if="Object.keys(favoriteCategories).length === 0">
-        No tienes ninguna categoría favorita 😢
+      <div v-if="Object.keys(favoriteProducts).length === 0">
+        No tienes ningún producto favorito 😢
       </div>
       <div
-        v-for="(category, index) in favoriteCategories"
+        v-for="(product, index) in favoriteProducts"
         :key="index"
       >
         <div
           class="favorite-category"
-          :class="{'favorite-category-container--last': index === favoriteCategories.length - 1}"
+          :class="{'favorite-category-container--last': index === favoriteProducts.length - 1}"
         >
           <div class="favorite-category__image-name-container">
             <div class="favorite-category__image-container">
               <img
                 class="favorite-category__image"
-                :src="category.products[1].imageUrl"
+                :src="product.imageUrl"
               >
             </div>
             <div>
-              <div>{{ category.name | toUpper }}</div>
+              <div>{{ product.name | toUpper }}</div>
               <div class="favorite-category__price">
-                ${{ category.products[0].price }} - ${{ category.products[category.products.length - 1].price }}
+                ${{ product.price }}
               </div>
             </div>
           </div>
@@ -59,7 +59,7 @@
             </button>
             <button
               class="favorite-category__button favorite-category__button--red favorite-category__button--right"
-              @click="openModal(category.id)"
+              @click="openModal(product.id)"
             >
               Sacar de favoritos
             </button>
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       openCategory: -1,
-      modalCategory: -1,
+      modalProduct: -1,
       modalIsOpen: false,
     };
   },
@@ -103,7 +103,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'favoriteCategories',
+      'favoriteProducts',
     ]),
   },
   filters: {
@@ -115,13 +115,13 @@ export default {
     closeModal() {
       this.modalIsOpen = false;
     },
-    openModal(categoryIndex) {
-      this.modalCategory = categoryIndex;
+    openModal(productIndex) {
+      this.modalProduct = productIndex;
       this.modalIsOpen = true;
     },
-    removeCategory() {
+    removeProduct() {
       this.modalIsOpen = false;
-      this.$store.commit('removeFavoriteCategory', this.modalCategory);
+      this.$store.commit('removeFavoriteProduct', this.modalProduct);
     },
   },
 };
