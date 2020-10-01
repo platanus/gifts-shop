@@ -14,12 +14,15 @@
         :category="category"
         v-if="category"
       />
-      <div class="button-container">
+      <div class="flex flex-col w-48 pt-10 mx-auto text-gray-700 align-items-center">
+        <p class="pb-3 text-center">
+          No te convence?🤔
+        </p>
         <button
-          class="change-option-button"
+          class="px-1 py-2 text-sm font-bold text-white rounded-sm bg-primary"
           @click="$store.dispatch('getProducts')"
         >
-          O revisa otra opción
+          SIGAMOS BUSCANDO
         </button>
       </div>
     </div>
