@@ -8,7 +8,7 @@ Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  reducer: (state) => ({ favoriteCategories: state.favoriteCategories }),
+  reducer: (state) => ({ favoriteProducts: state.favoriteProducts }),
 });
 
 // eslint-disable-next-line new-cap
@@ -22,7 +22,7 @@ const store = new Vuex.Store({
     maxPrice: 30000,
     promoted: 4,
     nextPage: 1,
-    favoriteCategories: {},
+    favoriteProducts: {},
   },
   mutations: {
     setCategory: (state, payload) => {
@@ -34,13 +34,13 @@ const store = new Vuex.Store({
     setNextPage: (state, payload) => {
       state.nextPage = payload;
     },
-    addFavoriteCategory: (state, payload) => {
-      Vue.set(state.favoriteCategories, payload.id, payload);
+    addFavoriteProduct: (state, payload) => {
+      Vue.set(state.favoriteProducts, payload.id, payload);
     },
-    removeFavoriteCategory: (state, payload) => {
-      const { ...favoriteCategoriesCopy } = state.favoriteCategories;
-      delete favoriteCategoriesCopy[payload];
-      Vue.set(state, 'favoriteCategories', favoriteCategoriesCopy);
+    removeFavoriteProduct: (state, payload) => {
+      const { ...favoriteProductsCopy } = state.favoriteProducts;
+      delete favoriteProductsCopy[payload];
+      Vue.set(state, 'favoriteProducts', favoriteProductsCopy);
     },
   },
   actions: {

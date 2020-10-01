@@ -97,9 +97,9 @@ export default {
     },
     setLikeStatus() {
       if (this.isLiked) {
-        this.$store.commit('removeFavoriteCategory', this.category.id);
+        this.$store.commit('removeFavoriteProduct', this.selectedProduct.id);
       } else {
-        this.$store.commit('addFavoriteCategory', this.category);
+        this.$store.commit('addFavoriteProduct', this.selectedProduct);
       }
     },
   },
@@ -115,10 +115,10 @@ export default {
   },
   computed: {
     ...mapState([
-      'favoriteCategories',
+      'favoriteProducts',
     ]),
     isLiked() {
-      return this.category.id in this.favoriteCategories;
+      return this.selectedProduct.id in this.favoriteProducts;
     },
     selectedProduct() {
       return this.category.products[this.selectedProductIndex];
