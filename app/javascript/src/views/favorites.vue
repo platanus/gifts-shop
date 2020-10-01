@@ -3,11 +3,11 @@
     <home-header />
     <modal
       :show-modal="modalIsOpen"
-      @accept="removeCategory"
+      @accept="removeProduct"
       @close="closeModal"
     >
       <template #body>
-        ¿De verdad quieres borrar esta categoría de tus favoritas?
+        ¿De verdad quieres borrar este producto de tus favoritos?
       </template>
       <template #accept-button-text>
         ¡Sí!
@@ -16,59 +16,59 @@
         Mejor no
       </template>
     </modal>
-    <div class="favorite-categories">
-      <div v-if="Object.keys(favoriteCategories).length === 0">
-        No tienes ninguna categoría favorita 😢
+    <div class="favorite-products">
+      <div v-if="Object.keys(favoriteProducts).length === 0">
+        No tienes ningún producto favorito 😢
       </div>
       <div
-        v-for="(category, index) in favoriteCategories"
+        v-for="(product, index) in favoriteProducts"
         :key="index"
       >
         <div
-          class="favorite-category"
-          :class="{'favorite-category-container--last': index === favoriteCategories.length - 1}"
+          class="favorite-product"
+          :class="{'favorite-product-container--last': index === favoriteProducts.length - 1}"
         >
-          <div class="favorite-category__image-name-container">
-            <div class="favorite-category__image-container">
+          <div class="favorite-product__image-name-container">
+            <div class="favorite-product__image-container">
               <img
-                class="favorite-category__image"
-                :src="category.products[1].imageUrl"
+                class="favorite-product__image"
+                :src="product.imageUrl"
               >
             </div>
             <div>
-              <div>{{ category.name | toUpper }}</div>
-              <div class="favorite-category__price">
-                ${{ category.products[0].price }} - ${{ category.products[category.products.length - 1].price }}
+              <div>{{ product.name | toUpper }}</div>
+              <div class="favorite-product__price">
+                ${{ product.price }}
               </div>
             </div>
           </div>
-          <div class="favorite-category__buttons-container">
+          <div class="favorite-product__buttons-container">
             <button
               v-if="openCategory !== index"
               @click="openCategory = index"
-              class="favorite-category__button favorite-category__button--left"
+              class="favorite-product__button favorite-product__button--left"
             >
               Ver categoría
             </button>
             <button
               v-else
               @click="openCategory = -1"
-              class="favorite-category__button favorite-category__button--left"
+              class="favorite-product__button favorite-product__button--left"
             >
               Ocultar
             </button>
             <button
-              class="favorite-category__button favorite-category__button--red favorite-category__button--right"
-              @click="openModal(category.id)"
+              class="favorite-product__button favorite-product__button--red favorite-product__button--right"
+              @click="openModal(product.id)"
             >
               Sacar de favoritos
             </button>
           </div>
         </div>
-        <div class="favorite-category__preview">
+        <div class="favorite-product__preview">
           <div
-            class="favorite-category__preview-card"
-            :class="{'favorite-category__preview-card--expanded': openCategory === index}"
+            class="favorite-product__preview-card"
+            :class="{'favorite-product__preview-card--expanded': openCategory === index}"
           >
             <category
               :category="category"
@@ -92,7 +92,7 @@ export default {
   data() {
     return {
       openCategory: -1,
-      modalCategory: -1,
+      modalProduct: -1,
       modalIsOpen: false,
     };
   },
@@ -103,7 +103,7 @@ export default {
   },
   computed: {
     ...mapState([
-      'favoriteCategories',
+      'favoriteProducts',
     ]),
   },
   filters: {
@@ -115,13 +115,13 @@ export default {
     closeModal() {
       this.modalIsOpen = false;
     },
-    openModal(categoryIndex) {
-      this.modalCategory = categoryIndex;
+    openModal(productIndex) {
+      this.modalProduct = productIndex;
       this.modalIsOpen = true;
     },
-    removeCategory() {
+    removeProduct() {
       this.modalIsOpen = false;
-      this.$store.commit('removeFavoriteCategory', this.modalCategory);
+      this.$store.commit('removeFavoriteProduct', this.modalProduct);
     },
   },
 };
@@ -130,7 +130,7 @@ export default {
 <style lang="scss" scoped>
   @import '../../styles/variables';
 
-  .favorite-categories {
+  .favorite-products {
     width: calc(min(90%, 700px));
     display: flex;
     flex-direction: column;
@@ -145,7 +145,7 @@ export default {
     padding-bottom: 40px;
   }
 
-  .favorite-category {
+  .favorite-product {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
