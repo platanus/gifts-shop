@@ -2,9 +2,14 @@
   <div class="home-container">
     <home-header />
     <div v-if="category">
-      <p class="flex justify-center py-2">
-        Encontramos esto para ti:
-      </p>
+      <div class="py-4 bg-secondary">
+        <p class="flex justify-center text-white">
+          Encontramos:&nbsp; <span class="font-bold">{{ category.name }}</span>
+        </p>
+        <p class="flex justify-center text-sm text-white">
+          {{ category.description }}
+        </p>
+      </div>
       <category
         :category="category"
         v-if="category"
