@@ -16,7 +16,7 @@
         Mejor no
       </template>
     </modal>
-    <div class="favorite-categories">
+    <div class="favorite-products">
       <div v-if="Object.keys(favoriteProducts).length === 0">
         No tienes ningún producto favorito 😢
       </div>
@@ -25,50 +25,50 @@
         :key="index"
       >
         <div
-          class="favorite-category"
-          :class="{'favorite-category-container--last': index === favoriteProducts.length - 1}"
+          class="favorite-product"
+          :class="{'favorite-product-container--last': index === favoriteProducts.length - 1}"
         >
-          <div class="favorite-category__image-name-container">
-            <div class="favorite-category__image-container">
+          <div class="favorite-product__image-name-container">
+            <div class="favorite-product__image-container">
               <img
-                class="favorite-category__image"
+                class="favorite-product__image"
                 :src="product.imageUrl"
               >
             </div>
             <div>
               <div>{{ product.name | toUpper }}</div>
-              <div class="favorite-category__price">
+              <div class="favorite-product__price">
                 ${{ product.price }}
               </div>
             </div>
           </div>
-          <div class="favorite-category__buttons-container">
+          <div class="favorite-product__buttons-container">
             <button
               v-if="openCategory !== index"
               @click="openCategory = index"
-              class="favorite-category__button favorite-category__button--left"
+              class="favorite-product__button favorite-product__button--left"
             >
               Ver categoría
             </button>
             <button
               v-else
               @click="openCategory = -1"
-              class="favorite-category__button favorite-category__button--left"
+              class="favorite-product__button favorite-product__button--left"
             >
               Ocultar
             </button>
             <button
-              class="favorite-category__button favorite-category__button--red favorite-category__button--right"
+              class="favorite-product__button favorite-product__button--red favorite-product__button--right"
               @click="openModal(product.id)"
             >
               Sacar de favoritos
             </button>
           </div>
         </div>
-        <div class="favorite-category__preview">
+        <div class="favorite-product__preview">
           <div
-            class="favorite-category__preview-card"
-            :class="{'favorite-category__preview-card--expanded': openCategory === index}"
+            class="favorite-product__preview-card"
+            :class="{'favorite-product__preview-card--expanded': openCategory === index}"
           >
             <category
               :category="category"
@@ -130,7 +130,7 @@ export default {
 <style lang="scss" scoped>
   @import '../../styles/variables';
 
-  .favorite-categories {
+  .favorite-products {
     width: calc(min(90%, 700px));
     display: flex;
     flex-direction: column;
@@ -145,7 +145,7 @@ export default {
     padding-bottom: 40px;
   }
 
-  .favorite-category {
+  .favorite-product {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
