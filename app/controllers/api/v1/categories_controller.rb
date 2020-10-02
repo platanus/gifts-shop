@@ -9,6 +9,17 @@ class Api::V1::CategoriesController < Api::V1::BaseController
     }
   end
 
+  def show
+    category = Category.find(permitted_params[:id])
+    respond_with category, root: false
+  end
+
+  private
+
+  def permitted_params
+    params.permit(:id)
+  end
+
   def query_params
     params.permit(:page)
   end

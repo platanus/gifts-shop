@@ -86,6 +86,7 @@ import { mapState } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 import modal from '../components/modal';
+import categoriesApi from '../api/category.js';
 
 export default {
   name: 'Favorites',
