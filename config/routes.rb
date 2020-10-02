@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index, :update]
       resources :product_actions, only: [:create]
       resources :stores, only: [:show]
-      resources :categories, only: [:index]
+      resources :categories, only: [:index, :show]
     end
   end
   devise_scope :store do
