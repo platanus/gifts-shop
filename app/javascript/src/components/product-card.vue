@@ -1,32 +1,38 @@
 <template>
   <div
-    class="flex flex-col w-full mx-1 mb-4 bg-white border border-gray-100 border-solid rounded-sm shadow-md"
-    :class="{ 'border-primary' : highlight, 'mt-5' : !highlight }"
+    class="flex flex-row w-full bg-white border border-gray-100 border-solid rounded-md shadow-md product"
   >
     <div
-      class="w-full h-5 text-xs text-left text-white bg-primary"
-      v-if="highlight"
-    >
-      <span class="ml-2">Regalo popular</span>
-    </div>
-    <transition
-      name="fade"
+      class="product__image"
     >
       <img
-        class="object-cover h-20 m-2"
+        class="object-cover w-full h-full"
         :src="product.imageUrl"
         @load="loaded = true;"
         v-show="loaded"
       >
-    </transition>
-    <span class="m-auto text-xl"> {{ product.price | Price }} </span>
-
-    <button
-      class="px-2 py-1 mx-auto my-3 text-xs text-center text-white rounded-sm cursor-pointer bg-primary"
-      @click="goToProduct"
+    </div>
+    <div
+      class="relative flex flex-col w-7/12 mt-3 ml-3 mr-8 product__info"
     >
-      <span class="inline text-center">Ver producto</span>
-    </button>
+      <span class="text-xl font-bold">{{ product.name }}</span>
+      <span
+        class="text-xs text-red-700"
+        :class="{ 'invisible' : !highlight }"
+      >
+        🛍️ Top choice
+      </span>
+
+      <p class="mt-5 text-justify text-md">
+        {{ product.description }}
+      </p>
+      <button
+        class="absolute bottom-0 right-0 px-5 py-2 mb-5 text-sm font-bold text-white rounded-sm bg-primary"
+        @click="goToProduct"
+      >
+        <span class="inline text-center">VER PRODUCTO</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -63,3 +69,16 @@ export default {
   },
 };
 </script>
+<style lang="scss">
+  .product {
+    height: 20rem;
+
+    &__image {
+      width: 45%;
+    }
+
+    &__info {
+      width: 55%;
+    }
+  }
+</style>
