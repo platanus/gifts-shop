@@ -4,21 +4,20 @@
   >
     <div>
       <vueSlickCarousel
-        class="mt-3"
+        class="w-full mt-8"
         :arrows="false"
         :center-mode="true"
         :center-padding="0"
-        :focus-on-select="true"
+        :fade="true"
         :initial-slide="1"
-        :slides-to-show="3"
+        :slides-to-show="1"
         :swipe-to-slide="true"
         @beforeChange="changeProduct"
       >
         <div
           v-for="(product, index) in category.products"
           :key="index"
-          class="flex category__product"
-          :class="{'category__product--selected': index === selectedProductIndex }"
+          class="flex"
         >
           <product-card
             :product="product"
@@ -108,92 +107,6 @@ export default {
   }
 
   .category {
-    width: calc(min(100%, 700px));
-
-    &__product {
-      flex-basis: calc(33%);
-
-      &:hover {
-        cursor: pointer;
-        filter: brightness(90%);
-      }
-
-      &--selected {
-        border-color: $primary-color;
-        filter: brightness(90%);
-      }
-    }
-
-    &__product-selector {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      max-width: 300px;
-      margin: auto;
-    }
-  }
-
-  .product-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    position: relative;
-    margin: auto;
-    font-size: 1.2em;
-    color: $product-name-font-color;
-    border: 1px solid rgba(148, 148, 148, .16);
-    box-shadow: 0 2px 6px rgba(148, 148, 148, .24);
-    border-radius: 6px;
-    background-color: #fff;
-
-    &__icon {
-      width: 80%;
-      height: 80%;
-      margin: .17em;
-      cursor: pointer;
-
-      &--active {
-        animation: pump 6s;
-        animation-iteration-count: infinite;
-      }
-    }
-
-    &__icon-container {
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      height: 1.5em;
-      width: 1.5em;
-      border-radius: 50%;
-      padding: .1em;
-      background-color: #fff;
-      box-shadow: 0 4px 6px 0 rgba(43, 43, 43, .13);
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .selected-product {
-    &__gradient {
-      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0) 61%, rgba(0, 0, 0, .45) 100%);
-    }
-  }
-
-  .slick {
-    &-slide {
-      opacity: .65;
-      transform: scale(.9);
-      transition: transform .2s ease-in-out, opacity .2s ease-in-out;
-    }
-
-    &-current {
-      opacity: 1;
-      transform: scale(1);
-    }
+    width: calc(min(100%, 900px));
   }
 </style>
