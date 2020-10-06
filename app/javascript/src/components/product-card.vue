@@ -3,8 +3,24 @@
     class="flex flex-row w-full bg-white border border-gray-100 border-solid rounded-md shadow-md product"
   >
     <div
-      class="product__image"
+      class="relative product__image"
     >
+      <div
+        v-if="!hideFavoriteButton"
+        class="absolute top-0 right-0 z-10 flex justify-center p-1 mt-5 mr-5 bg-white rounded-full shadow hover:cursor-pointer"
+        @click="setLikeStatus"
+      >
+        <img
+          v-if="isLiked"
+          class="cursor-pointer"
+          src="../assets/like-color-badge.svg"
+        >
+        <img
+          v-else
+          class="cursor-pointer"
+          src="../assets/like-badge.svg"
+        >
+      </div>
       <img
         class="object-cover w-full h-full"
         :src="product.imageUrl"
@@ -28,7 +44,7 @@
       </p>
       <button
         class="absolute bottom-0 right-0 px-5 py-2 mb-5 text-sm font-bold text-white rounded-sm bg-primary"
-        @click="goToProduct"
+        @click="clickAction"
       >
         <span class="inline text-center">VER PRODUCTO</span>
       </button>
@@ -37,6 +53,7 @@
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 
 export default {
@@ -46,8 +63,19 @@ export default {
     };
   },
   methods: {
-    goToProduct() {
+    ...mapActions([
+      'markClicked',
+    ]),
+    clickAction() {
+      this.markClicked(this.product.id);
       window.open(this.product.link, '_blank');
+    },
+    setLikeStatus() {
+      if (this.isLiked) {
+        this.$store.commit('removeFavoriteProduct', this.product.id);
+      } else {
+        this.$store.commit('addFavoriteProduct', this.product);
+      }
     },
   },
   props: {
@@ -58,6 +86,18 @@ export default {
     highlight: {
       type: Boolean,
       default: false,
+    },
+    hideFavoriteButton: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    ...mapState([
+      'favoriteProducts',
+    ]),
+    isLiked() {
+      return this.product.id in this.favoriteProducts;
     },
   },
   filters: {

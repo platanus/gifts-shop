@@ -2,39 +2,6 @@
   <div
     class="flex flex-col m-auto category"
   >
-    <div
-      class="relative"
-    >
-      <div
-        v-if="!hideFavoriteButton"
-        class="product-card__icon-container"
-        @click="setLikeStatus"
-      >
-        <img
-          v-if="isLiked"
-          class="product-card__icon product-card__icon--active"
-          src="../assets/like-color-badge.svg"
-        >
-        <img
-          v-else
-          class="product-card__icon"
-          src="../assets/like-badge.svg"
-        >
-      </div>
-      <img
-        class="flex object-cover w-full h-56"
-        :src="selectedProduct.imageUrl"
-      >
-      <div
-        class="absolute top-0 block w-full h-full selected-product__gradient"
-      >
-        <p
-          class="absolute bottom-0 px-3 py-2 text-xl font-bold text-white"
-        >
-          {{ selectedProduct.name }}
-        </p>
-      </div>
-    </div>
     <div>
       <vueSlickCarousel
         class="mt-3"
@@ -64,8 +31,6 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
-
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 
@@ -85,22 +50,8 @@ export default {
     };
   },
   methods: {
-    ...mapActions([
-      'markClicked',
-    ]),
-    clickAction() {
-      this.markClicked(this.selectedProduct.id);
-      window.open(this.selectedProduct.link, '_blank');
-    },
     changeProduct(oldSlideIndex, newSlideIndex) {
       this.selectedProductIndex = newSlideIndex;
-    },
-    setLikeStatus() {
-      if (this.isLiked) {
-        this.$store.commit('removeFavoriteProduct', this.selectedProduct.id);
-      } else {
-        this.$store.commit('addFavoriteProduct', this.selectedProduct);
-      }
     },
   },
   props: {
@@ -114,12 +65,6 @@ export default {
     },
   },
   computed: {
-    ...mapState([
-      'favoriteProducts',
-    ]),
-    isLiked() {
-      return this.selectedProduct.id in this.favoriteProducts;
-    },
     selectedProduct() {
       return this.category.products[this.selectedProductIndex];
     },
