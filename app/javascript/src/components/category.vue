@@ -4,6 +4,7 @@
   >
     <div>
       <vueSlickCarousel
+        ref="slider"
         class="w-full mt-8"
         :arrows="false"
         :center-mode="true"
@@ -23,6 +24,7 @@
             :product="product"
             v-bind="{ highlight : index === 1 }"
             :category="category"
+            @change-slide="changeSlide"
           />
         </div>
       </vueSlickCarousel>
@@ -52,6 +54,9 @@ export default {
   methods: {
     changeProduct(oldSlideIndex, newSlideIndex) {
       this.selectedProductIndex = newSlideIndex;
+    },
+    changeSlide(index) {
+      this.$refs.slider.goTo(index);
     },
   },
   props: {

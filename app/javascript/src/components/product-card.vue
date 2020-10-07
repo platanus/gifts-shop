@@ -42,6 +42,29 @@
       <p class="mt-5 text-justify text-md">
         {{ product.description }}
       </p>
+      <div class="absolute bottom-0 mb-5">
+        <p class="pb-2 text-xs font-bold uppercase">
+          Escoge tu opción
+        </p>
+        <div
+          class="inline"
+          v-for="(categoryProduct, index) in category.products"
+          :key="index"
+        >
+          <button
+            class="w-8 h-8 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow"
+            :class="{'border-primary' : categoryProduct === product }"
+            @click="$emit('change-slide', index)"
+          >
+            <span
+              class="inline text-xs font-bold text-center"
+              :class="{'text-black' : categoryProduct === product }"
+            >
+              {{ "$".repeat(index + 1) }}
+            </span>
+          </button>
+        </div>
+      </div>
       <button
         class="absolute bottom-0 right-0 px-5 py-2 mb-5 text-sm font-bold text-white rounded-sm bg-primary"
         @click="clickAction"
