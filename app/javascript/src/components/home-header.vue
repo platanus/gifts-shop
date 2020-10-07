@@ -1,35 +1,37 @@
 <template>
   <div
-    class="home-header"
+    class="sticky top-0 z-20 grid items-center w-full h-16 grid-cols-3 mx-auto bg-white shadow-md"
   >
-    <div class="store-elements-container">
+    <div class="flex items-center h-full ml-3 cursor-pointer text-primary">
       <img
-        class="home-header__icon home-header__icon--first"
+        class="block"
         src="../assets/store.svg"
         @click="goToStore"
       >
       <div
-        class="home-header__store-text"
+        class="my-auto ml-1 text-sm"
         @click="goToStore"
       >
         Vende tus productos
       </div>
     </div>
-    <div class="home-header__content">
+    <div class="h-full mt-1">
       <router-link to="/">
         <img
-          class="home-header__home-icon home-icon"
+          class="hidden h-12 mx-auto sm:block"
           src="../assets/buenas-ideas.svg"
         >
         <img
-          class="home-header__home-icon home-icon-tablet"
+          class="mx-auto sm:hidden"
           src="../assets/buenas-ideas-mini.svg"
         >
       </router-link>
     </div>
-    <div class="home-header__button-container">
+    <div class="mr-3 text-right">
       <router-link to="/favorites">
-        <button class="home-header__button">
+        <button
+          class="h-8 px-3 my-auto text-base border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
+        >
           Ver mis favoritas
         </button>
       </router-link>
@@ -67,162 +69,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-  @import '../../styles/variables';
-
-  .home-header {
-    position: sticky;
-    top: 0;
-    background-color: $c-header-background;
-    box-shadow: $box-shadow-header;
-    padding: 2vh 0;
-    z-index: 20;
-    align-items: center;
-    border-radius: 0 0 16px 16px;
-
-    &__store-text {
-      font-size: .9em;
-      align-self: center;
-      color: $label-color;
-
-      &:hover {
-        cursor: pointer;
-        text-decoration: underline;
-      }
-    }
-
-    &__content {
-      margin: 0 auto;
-      width: $m-width-grid;
-      position: relative;
-    }
-
-    &__home-icon {
-      height: 3em;
-      width: 100%;
-    }
-
-    &__button-container {
-      position: absolute;
-      right: 15px;
-      top: 15px;
-    }
-
-    &__button {
-      text-align: center;
-      background-color: $primary_color;
-      text-decoration: none;
-      height: 2.5em;
-      padding: 5px;
-      color: $white;
-      font-size: 15px;
-      margin-bottom: 3%;
-      border: 0;
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    &__icon {
-      flex: 1;
-      right: 0;
-      top: .7em;
-      height: 1.3em;
-      color: $c-header-foreground;
-
-      &--small {
-        width: .8em;
-        height: .8em;
-      }
-
-      &--first {
-        left: 0;
-      }
-
-      &:hover {
-        cursor: pointer;
-      }
-    }
-  }
-
-  .home-icon-tablet {
-    display: none;
-  }
-
-  .home-icon {
-    display: initial;
-  }
-
-  @media (min-width: $p-break) {
-    .home-header {
-      &__content {
-        width: $p-width-grid;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      &__home-icon {
-        height: 4em;
-        width: auto;
-        position: relative;
-        left: 0;
-        top: 0;
-      }
-
-      &__icon {
-        position: initial;
-        margin-left: .5em;
-      }
-
-      &__options {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        width: fit-content;
-      }
-    }
-
-    .home-icon-tablet {
-      display: initial;
-    }
-
-    .home-icon {
-      display: none;
-    }
-  }
-
-  @media (min-width: $t-break) {
-    .home-header__content {
-      width: $t-width-grid;
-    }
-
-    .home-icon-tablet {
-      display: none;
-    }
-
-    .home-icon {
-      display: initial;
-    }
-  }
-
-  @media (min-width: $d-break) {
-    .home-header__content {
-      width: $d-width-grid;
-    }
-  }
-
-  @media (min-width: $r-break) {
-    .home-header__content {
-      width: $r-width-grid;
-    }
-  }
-
-  .store-elements-container {
-    display: flex;
-    width: 180px;
-    margin-left: 15px;
-  }
-
-</style>
