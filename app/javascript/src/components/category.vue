@@ -22,6 +22,7 @@
           <product-card
             :product="product"
             v-bind="{ highlight : index === 1 }"
+            :category="category"
           />
         </div>
       </vueSlickCarousel>

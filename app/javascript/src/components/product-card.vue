@@ -91,6 +91,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    category: {
+      type: Object,
+      default: null,
+    },
   },
   computed: {
     ...mapState([
