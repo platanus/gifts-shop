@@ -3,7 +3,7 @@ class CategorySerializer < ActiveModel::Serializer
 
   def products
     ActiveModel::ArraySerializer.new(
-      object.products.where(status: :approved),
+      object.products.order(:price).where(status: :approved),
       each_serializer: ProductSerializer
     )
   end
