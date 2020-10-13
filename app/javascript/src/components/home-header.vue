@@ -16,15 +16,11 @@
         <span class="sm:hidden">Vender</span>
       </div>
     </div>
-    <div class="h-full mt-1">
+    <div class="h-full mt-2">
       <router-link to="/">
         <img
-          class="hidden h-12 mx-auto sm:block"
+          class="h-12 mx-auto"
           src="../assets/buenas-ideas.svg"
-        >
-        <img
-          class="mx-auto sm:hidden"
-          src="../assets/buenas-ideas-mini.svg"
         >
       </router-link>
     </div>
