@@ -114,6 +114,9 @@ export default {
     },
   },
   methods: {
+    openCategory(index) {
+      this.getCategory(this.favoriteProducts[index], index);
+    },
     closeModal() {
       this.modalIsOpen = false;
     },
@@ -124,6 +127,10 @@ export default {
     removeProduct() {
       this.modalIsOpen = false;
       this.$store.commit('removeFavoriteProduct', this.modalProduct);
+    },
+    async getCategory({ categoryId }, index) {
+      this.currentCategory = await categoriesApi.getCategory(categoryId);
+      this.currentCategoryIndex = index;
     },
   },
 };
