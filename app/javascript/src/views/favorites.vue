@@ -44,15 +44,15 @@
           </div>
           <div class="favorite-product__buttons-container">
             <button
-              v-if="openCategory !== index"
-              @click="openCategory = index"
+              v-if="currentCategoryIndex !== index"
+              @click="openCategory(index)"
               class="favorite-product__button favorite-product__button--left"
             >
               Ver categoría
             </button>
             <button
               v-else
-              @click="openCategory = -1"
+              @click="currentCategoryIndex = -1"
               class="favorite-product__button favorite-product__button--left"
             >
               Ocultar
@@ -67,11 +67,11 @@
         </div>
         <div class="favorite-product__preview">
           <div
-            class="favorite-product__preview-card"
-            :class="{'favorite-product__preview-card--expanded': openCategory === index}"
+            v-if="currentCategoryIndex === index"
+            class="favorite-product__preview-card--expanded"
           >
             <category
-              :category="category"
+              :category="currentCategory"
               :hide-favorite-button="true"
             />
           </div>
@@ -86,12 +86,14 @@ import { mapState } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 import modal from '../components/modal';
+import categoriesApi from '../api/category.js';
 
 export default {
   name: 'Favorites',
   data() {
     return {
-      openCategory: -1,
+      currentCategoryIndex: -1,
+      currentCategory: null,
       modalProduct: -1,
       modalIsOpen: false,
     };
@@ -112,6 +114,9 @@ export default {
     },
   },
   methods: {
+    openCategory(index) {
+      this.getCategory(this.favoriteProducts[index], index);
+    },
     closeModal() {
       this.modalIsOpen = false;
     },
@@ -122,6 +127,10 @@ export default {
     removeProduct() {
       this.modalIsOpen = false;
       this.$store.commit('removeFavoriteProduct', this.modalProduct);
+    },
+    async getCategory({ categoryId }, index) {
+      this.currentCategory = await categoriesApi.getCategory(categoryId);
+      this.currentCategoryIndex = index;
     },
   },
 };
