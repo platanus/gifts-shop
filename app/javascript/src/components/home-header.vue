@@ -12,27 +12,25 @@
         class="my-auto ml-1 text-sm"
         @click="goToStore"
       >
-        Vende tus productos
+        <span class="hidden sm:inline">Vende tus productos</span>
+        <span class="sm:hidden">Vender</span>
       </div>
     </div>
-    <div class="h-full mt-1">
+    <div class="h-full mt-2">
       <router-link to="/">
         <img
-          class="hidden h-12 mx-auto sm:block"
+          class="h-12 mx-auto"
           src="../assets/buenas-ideas.svg"
-        >
-        <img
-          class="mx-auto sm:hidden"
-          src="../assets/buenas-ideas-mini.svg"
         >
       </router-link>
     </div>
     <div class="mr-3 text-right">
       <router-link to="/favorites">
         <button
-          class="h-8 px-3 my-auto text-base border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
+          class="h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
         >
-          Ver mis favoritas
+          <span class="hidden sm:inline">Ver mis favoritos</span>
+          <span class="sm:hidden">Favoritos</span>
         </button>
       </router-link>
     </div>

@@ -5,7 +5,7 @@
     <div>
       <vueSlickCarousel
         ref="slider"
-        class="w-full mt-8"
+        class="w-full sm:mt-8"
         :arrows="false"
         :center-mode="true"
         :center-padding="0"
