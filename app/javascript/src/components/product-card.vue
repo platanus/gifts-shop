@@ -27,24 +27,32 @@
         @load="loaded = true;"
         v-show="loaded"
       >
+      <div class="sm:hidden">
+        <div class="absolute top-0 block w-full h-full opacity-50 bg-gradient-to-b from-transparent via-transparent to-black" />
+        <p class="absolute bottom-0 block mx-3 mb-2 text-xl font-bold text-white">
+          {{ product.name }}
+        </p>
+      </div>
     </div>
     <div
-      class="relative flex flex-col w-7/12 mt-3 ml-3 mr-8 product__info"
+      class="relative flex flex-col w-full px-3 mt-1 sm:mt-3 sm:pr-8 sm:h-auto product__info"
     >
-      <span class="text-xl font-bold">{{ product.name }}</span>
-      <span
-        class="text-xs text-red-700"
-        :class="{ 'invisible' : !highlight }"
-      >
-        🛍️ Top choice
-      </span>
+      <div class="h-32">
+        <span class="hidden text-xl font-bold sm:block">{{ product.name }}</span>
+        <span
+          class="text-xs text-red-700"
+          :class="{ 'hidden' : !highlight }"
+        >
+          🛍️ Top choice
+        </span>
 
-      <p class="mt-5 text-justify text-md">
-        {{ product.description }}
-      </p>
-      <div class="absolute bottom-0 mb-5">
-        <p class="pb-2 text-xs font-bold uppercase">
-          Escoge tu opción
+        <p class="min-h-full mt-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
+          {{ product.description }}
+        </p>
+      </div>
+      <div class="mb-5 text-center sm:text-left sm:absolute sm:bottom-0">
+        <p class="pb-2 text-sm font-bold tracking-wider uppercase">
+          Escoge tu opción:
         </p>
         <div
           class="inline"
@@ -52,12 +60,12 @@
           :key="index"
         >
           <button
-            class="w-8 h-8 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow"
+            class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow sm:mr-2 sm:ml-0"
             :class="{'border-primary' : categoryProduct === product }"
             @click="$emit('change-slide', index)"
           >
             <span
-              class="inline text-xs font-bold text-center"
+              class="inline text-base font-bold text-center outline-none"
               :class="{'text-black' : categoryProduct === product }"
             >
               {{ "$".repeat(index + 1) }}
@@ -66,7 +74,7 @@
         </div>
       </div>
       <button
-        class="absolute bottom-0 right-0 px-5 py-2 mb-5 text-sm font-bold text-white rounded-sm bg-primary"
+        class="px-5 py-2 mb-6 text-sm font-bold text-white rounded-sm sm:absolute sm:bottom-0 sm:mr-8 sm:right-0 bg-primary place-self-center"
         @click="clickAction"
       >
         <span class="inline text-center">VER PRODUCTO</span>
