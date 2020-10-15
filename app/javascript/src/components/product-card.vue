@@ -1,9 +1,9 @@
 <template>
   <div
-    class="flex flex-row w-full bg-white border border-gray-100 border-solid rounded-md shadow-md product"
+    class="flex flex-col w-auto mx-auto bg-white border border-gray-100 border-solid rounded-md shadow-md sm:w-full sm:flex-row product"
   >
     <div
-      class="relative product__image"
+      class="relative w-full h-56 product__image sm:h-auto"
     >
       <div
         v-if="!hideFavoriteButton"
@@ -137,15 +137,17 @@ export default {
 };
 </script>
 <style lang="scss">
-  .product {
-    height: 20rem;
+  @media (min-width: 640px) { // sm-breakpoint
+    .product {
+      height: 20rem;
 
-    &__image {
-      width: 45%;
-    }
+      &__image {
+        width: 45%;
+      }
 
-    &__info {
-      width: 55%;
+      &__info {
+        width: 55%;
+      }
     }
   }
 </style>
