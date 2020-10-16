@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="w-full min-h-screen bg-background">
     <home-header />
     <modal
       :show-modal="modalIsOpen"
