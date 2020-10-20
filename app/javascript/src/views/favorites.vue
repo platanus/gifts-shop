@@ -25,12 +25,14 @@
         :key="index"
       >
         <div
-          class="favorite-product"
-          :class="{'favorite-product-container--last': index === favoriteProducts.length - 1}"
+          class="flex flex-col justify-between w-full sm:flex-row"
         >
-          <div class="favorite-product__image-name-container">
-            <div class="favorite-product__image-container">
-              <img
+          <div class="flex items-center">
+            <img
+              class="flex-none transition-opacity duration-200 opacity-50 cursor-pointer hover:text-black hover:opacity-100"
+              src="../assets/cross.svg"
+              @click="openModal(product.id)"
+            >
                 class="favorite-product__image"
                 :src="product.imageUrl"
               >
@@ -56,12 +58,6 @@
               class="favorite-product__button favorite-product__button--left"
             >
               Ocultar
-            </button>
-            <button
-              class="favorite-product__button favorite-product__button--red favorite-product__button--right"
-              @click="openModal(product.id)"
-            >
-              Sacar de favoritos
             </button>
           </div>
         </div>
