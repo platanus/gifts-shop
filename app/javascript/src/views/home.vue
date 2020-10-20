@@ -21,7 +21,7 @@
         <button
           class="px-1 py-2 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
 
-          @click="$store.dispatch('getProducts')"
+          @click="getAnotherCategory()"
         >
           SIGAMOS BUSCANDO
         </button>
@@ -60,6 +60,15 @@ export default {
     this.$store.dispatch('getProducts').then(() => {
       this.$store.loading = false;
     });
+  },
+  methods: {
+    getAnotherCategory() {
+      this.$store.dispatch('getProducts');
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    },
   },
 };
 </script>
