@@ -45,7 +45,7 @@
                 {{ product.name }}
               </p>
               <div class="text-gray-700">
-                ${{ product.price }}
+                {{ product.price | toSigns }}
               </div>
             </div>
           </div>
