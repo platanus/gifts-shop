@@ -94,6 +94,7 @@ import category from '../components/category';
 import HomeHeader from '../components/home-header';
 import modal from '../components/modal';
 import categoriesApi from '../api/category.js';
+import priceToSigns from '../utils/price-to-signs';
 
 export default {
   name: 'Favorites',
@@ -118,6 +119,9 @@ export default {
   filters: {
     toUpper(value) {
       return value.charAt(0).toUpperCase() + value.slice(1);
+    },
+    toSigns(value) {
+      return priceToSigns(value);
     },
   },
   methods: {
