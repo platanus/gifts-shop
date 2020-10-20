@@ -68,7 +68,7 @@
               class="inline text-base font-bold text-center outline-none"
               :class="{'text-black' : categoryProduct === product }"
             >
-              {{ "$".repeat(index + 1) }}
+              {{ categoryProduct.price | toSigns }}
             </span>
           </button>
         </div>
