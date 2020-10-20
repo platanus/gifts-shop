@@ -44,18 +44,24 @@
               </div>
             </div>
           </div>
-          <div class="favorite-product__buttons-container">
+          <div class="flex flex-row justify-center mb-4 sm:mb-0 sm:flex-col">
+            <button
+              class="px-5 py-1 mx-2 my-1 text-sm font-bold text-white rounded-sm bg-primary"
+              @click="clickAction(product)"
+            >
+              Ver producto
+            </button>
             <button
               v-if="currentCategoryIndex !== index"
               @click="openCategory(index)"
-              class="favorite-product__button favorite-product__button--left"
+              class="px-5 py-1 mx-2 my-1 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary"
             >
               Ver categoría
             </button>
             <button
               v-else
               @click="currentCategoryIndex = -1"
-              class="favorite-product__button favorite-product__button--left"
+              class="px-5 py-1 mx-2 my-1 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary"
             >
               Ocultar
             </button>
@@ -78,7 +84,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 import modal from '../components/modal';
@@ -110,6 +116,13 @@ export default {
     },
   },
   methods: {
+    ...mapActions([
+      'markClicked',
+    ]),
+    clickAction(product) {
+      this.markClicked(product.id);
+      window.open(product.link, '_blank');
+    },
     openCategory(index) {
       this.getCategory(this.favoriteProducts[index], index);
     },
