@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container">
+  <div class="w-full min-h-screen text-base bg-background">
     <home-header />
     <modal
       :show-modal="modalIsOpen"
@@ -16,52 +16,59 @@
         Mejor no
       </template>
     </modal>
-    <div class="favorite-products">
+    <div class="flex flex-col w-full mx-auto my-4 rounded sm:my-10 sm:shadow-md sm:bg-white bg-background favorite-products ">
       <div v-if="Object.keys(favoriteProducts).length === 0">
         No tienes ningún producto favorito 😢
       </div>
       <div
         v-for="(product, index) in favoriteProducts"
         :key="index"
+        class="w-auto px-3 my-3 bg-white rounded shadow-sm sm:px-6 sm:bg-none sm:shadow-none"
       >
         <div
-          class="favorite-product"
-          :class="{'favorite-product-container--last': index === favoriteProducts.length - 1}"
+          class="flex flex-col justify-between w-full sm:flex-row"
         >
-          <div class="favorite-product__image-name-container">
-            <div class="favorite-product__image-container">
+          <div class="flex items-center">
+            <img
+              class="flex-none transition-opacity duration-200 opacity-50 cursor-pointer hover:text-black hover:opacity-100"
+              src="../assets/cross.svg"
+              @click="openModal(product.id)"
+            >
+            <div class="justify-center flex-none w-32 h-32 mx-5 my-4 sm:mx-6 sm:w-40 sm:h-40">
               <img
-                class="favorite-product__image"
+                class="self-center object-contain h-full min-w-full"
                 :src="product.imageUrl"
               >
             </div>
             <div>
-              <div>{{ product.name | toUpper }}</div>
-              <div class="favorite-product__price">
-                ${{ product.price }}
+              <p class="text-sm sm:text-lg">
+                {{ product.name }}
+              </p>
+              <div class="text-gray-700">
+                {{ product.price | toSigns }}
               </div>
             </div>
           </div>
-          <div class="favorite-product__buttons-container">
+          <div class="flex flex-row justify-center mb-4 sm:mb-0 sm:flex-col">
+            <button
+              class="px-5 py-1 mx-2 my-1 text-sm font-bold text-white rounded-sm bg-primary"
+              @click="clickAction(product)"
+            >
+              Ver producto
+            </button>
             <button
               v-if="currentCategoryIndex !== index"
               @click="openCategory(index)"
-              class="favorite-product__button favorite-product__button--left"
+              class="px-5 py-1 mx-2 my-1 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary"
             >
               Ver categoría
             </button>
             <button
               v-else
               @click="currentCategoryIndex = -1"
-              class="favorite-product__button favorite-product__button--left"
+              class="px-5 py-1 mx-2 my-1 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary"
             >
               Ocultar
-            </button>
-            <button
-              class="favorite-product__button favorite-product__button--red favorite-product__button--right"
-              @click="openModal(product.id)"
-            >
-              Sacar de favoritos
             </button>
           </div>
         </div>
@@ -82,11 +89,12 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 import modal from '../components/modal';
 import categoriesApi from '../api/category.js';
+import priceToSigns from '../utils/price-to-signs';
 
 export default {
   name: 'Favorites',
@@ -112,8 +120,18 @@ export default {
     toUpper(value) {
       return value.charAt(0).toUpperCase() + value.slice(1);
     },
+    toSigns(value) {
+      return priceToSigns(value);
+    },
   },
   methods: {
+    ...mapActions([
+      'markClicked',
+    ]),
+    clickAction(product) {
+      this.markClicked(product.id);
+      window.open(product.link, '_blank');
+    },
     openCategory(index) {
       this.getCategory(this.favoriteProducts[index], index);
     },
@@ -141,17 +159,6 @@ export default {
 
   .favorite-products {
     width: calc(min(90%, 700px));
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    margin: 10px auto;
-    font-size: 1.2em;
-    color: $product-name-font-color;
-    border: 1px solid rgba(148, 148, 148, .16);
-    box-shadow: 0 2px 6px rgba(148, 148, 148, .24);
-    border-radius: 6px;
-    background-color: #fff;
-    padding-bottom: 40px;
   }
 
   .favorite-product {
@@ -159,77 +166,6 @@ export default {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-
-    @media(max-width: 640px) {
-      flex-direction: column;
-    }
-
-    &__image-name-container {
-      display: flex;
-      align-items: center;
-
-      @media(max-width: 640px) {
-        margin-bottom: 10px;
-      }
-    }
-
-    &__buttons-container {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-
-      @media(max-width: 640px) {
-        flex-direction: row;
-      }
-    }
-
-    &__image-container {
-      display: flex;
-      justify-content: center;
-      width: 150px;
-      height: 150px;
-      margin-right: 20px;
-    }
-
-    &__image {
-      object-fit: scale-down;
-      max-height: 100%;
-      max-width: 100%;
-    }
-
-    &__price {
-      color: #949494;
-      font-size: .8em;
-    }
-
-    &__button {
-      text-align: center;
-      background-color: $primary_color;
-      text-decoration: none;
-      padding: 5px;
-      color: $white;
-      font-size: 15px;
-      margin-bottom: 3%;
-      border: 0;
-
-      &:hover {
-        cursor: pointer;
-      }
-
-      &--red {
-        background-color: $danger_color;
-      }
-
-      @media(max-width: 640px) {
-        &--left {
-          margin-right: 10px;
-        }
-
-        &--right {
-          margin-left: 10px;
-        }
-      }
-    }
 
     &__preview {
       overflow: hidden;
