@@ -115,4 +115,8 @@ export default {
   .category {
     width: calc(min(100%, 900px));
   }
+
+  .slick-active {
+    z-index: 1;
+  }
 </style>
