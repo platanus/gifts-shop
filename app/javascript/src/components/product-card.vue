@@ -22,14 +22,18 @@
         >
       </div>
       <img
-        class="object-cover w-full h-full"
+        class="object-cover w-full h-full cursor-pointer"
         :src="product.imageUrl"
         @load="loaded = true;"
         v-show="loaded"
+        @click="clickAction"
       >
       <div class="sm:hidden">
         <div class="absolute top-0 block w-full h-full opacity-50 bg-gradient-to-b from-transparent via-transparent to-black" />
-        <p class="absolute bottom-0 block mx-3 mb-2 text-xl font-bold text-white">
+        <p
+          class="absolute bottom-0 block mx-3 mb-2 text-xl font-bold text-white cursor-pointer"
+          @click="clickAction"
+        >
           {{ product.name }}
         </p>
       </div>
@@ -38,7 +42,12 @@
       class="relative flex flex-col w-full px-3 mt-1 sm:mt-3 sm:pr-8 sm:h-auto product__info"
     >
       <div class="h-32">
-        <span class="hidden text-xl font-bold sm:block">{{ product.name }}</span>
+        <span
+          class="hidden text-xl font-bold cursor-pointer sm:block"
+          @click="clickAction"
+        >
+          {{ product.name }}
+        </span>
         <span
           class="text-xs text-red-700"
           :class="{ 'hidden' : !highlight }"
