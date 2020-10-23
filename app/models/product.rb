@@ -60,6 +60,11 @@ class Product < ApplicationRecord
     image.attached?
   end
 
+  def add_click
+    clicks = self.clicks + 1
+    update(clicks: clicks)
+  end
+
   private
 
   def hex_value(red, green, blue)
