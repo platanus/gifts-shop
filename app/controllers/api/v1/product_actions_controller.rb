@@ -1,7 +1,11 @@
 class Api::V1::ProductActionsController < Api::V1::BaseController
   def create
     product_action = save_action(permitted_params[:action_type])
-    save_promoted if permitted_params[:action_type] == 'click'
+    if permitted_params[:action_type] == 'click'
+      save_promoted
+      product = Product.find_by(id: permitted_params[:product_id])
+      product.add_click
+    end
     respond_with product_action
   end
 
