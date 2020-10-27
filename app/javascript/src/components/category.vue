@@ -91,6 +91,13 @@ export default {
       return value.toUpperCase();
     },
   },
+  watch: {
+    category: {
+      deep: true,
+      inmediate: true,
+      handler: 'updateMostClickedIndex',
+    },
+  },
 };
 </script>
 
