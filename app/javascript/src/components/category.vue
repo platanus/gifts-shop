@@ -22,7 +22,7 @@
         >
           <product-card
             :product="product"
-            v-bind="{ highlight : index === 1 }"
+            v-bind="{ highlight : index === mostClickedIndex }"
             :category="category"
             @change-slide="changeSlide"
           />
@@ -49,6 +49,7 @@ export default {
     return {
       selectedProductIndex: 1,
       products: [],
+      mostClickedIndex: 0,
     };
   },
   methods: {
@@ -57,6 +58,12 @@ export default {
     },
     changeSlide(index) {
       this.$refs.slider.goTo(index);
+    },
+    updateMostClickedIndex() {
+      const products = this.category.products;
+
+      const mostClickedProduct = products.reduce((p, c) => (p.clicks > c.clicks ? p : c));
+      this.mostClickedIndex = products.indexOf(mostClickedProduct);
     },
   },
   props: {
