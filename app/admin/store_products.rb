@@ -71,7 +71,6 @@ ActiveAdmin.register Product do
       row :created_at
       row :updated_at
       row :deleted
-      row :average_color
       row :gender
       row :age
       row :novelty
