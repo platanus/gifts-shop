@@ -33,23 +33,15 @@ class Product < ApplicationRecord
     end
   end
 
-  def set_average_color
-    image = MiniMagick::Image.open(ActiveStorage::Blob.service.path_for(self.image.key))
-    red, blue, green = image.resize("1x1").get_pixels[0][0]
-    update(average_color: hex_value(red, blue, green))
-  end
-
   def attach_image_from_url(url)
     require 'open-uri'
     downloaded_image = open(url)
     filename = File.basename(URI.parse(url).path)
     image.attach(io: downloaded_image, filename: "#{filename}_#{id}.jpg")
-    set_average_color
   end
 
   def update_image(image_param)
     image.attach(image_param)
-    set_average_color
   end
 
   def validate_image
