@@ -4,7 +4,7 @@ class Api::V1::ProductActionsController < Api::V1::BaseController
     if permitted_params[:action_type] == 'click'
       save_promoted
       product = Product.find_by(id: permitted_params[:product_id])
-      product.add_click
+      product&.add_click
     end
     respond_with product_action
   end
