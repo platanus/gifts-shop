@@ -52,7 +52,7 @@
           class="text-xs text-red-700"
           :class="{ 'hidden' : !highlight }"
         >
-          🛍️ Top choice
+          🛍️ Regalo Popular!
         </span>
 
         <p class="min-h-full mt-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
