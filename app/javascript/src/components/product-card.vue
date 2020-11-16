@@ -97,11 +97,6 @@ import convertToClp from '../utils/convert-to-clp';
 import priceToSigns from '../utils/price-to-signs';
 
 export default {
-  data() {
-    return {
-      loaded: false,
-    };
-  },
   methods: {
     ...mapActions([
       'markClicked',
