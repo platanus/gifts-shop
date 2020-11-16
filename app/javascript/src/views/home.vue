@@ -29,7 +29,8 @@
     </div>
     <div class="loader-spinner">
       <clip-loader
-        :loading="this.$store.loading"
+        :loading="loading"
+        v-show="loading"
       />
     </div>
   </div>
@@ -63,7 +64,7 @@ export default {
   mounted() {
     this.$store.commit('setNextPage', 0);
     this.$store.dispatch('getProducts').then(() => {
-      this.$store.loading = false;
+      this.loading = false;
     });
   },
   methods: {
