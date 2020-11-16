@@ -1,7 +1,10 @@
 <template>
   <div class="block w-full min-h-screen text-base bg-background">
     <home-header />
-    <div v-if="category">
+    <div
+      v-if="category"
+      v-show="!loading"
+    >
       <div class="py-4 bg-secondary">
         <p class="flex justify-center text-white">
           Encontramos:&nbsp; <span class="font-bold">{{ category.name }}</span>
@@ -13,6 +16,7 @@
       <category
         :category="category"
         v-if="category"
+        @loaded-category="loadedCategory"
       />
       <div class="flex flex-col w-48 pt-10 mx-auto text-gray-700 align-items-center">
         <p class="pb-3 text-center">
@@ -29,7 +33,8 @@
     </div>
     <div class="loader-spinner">
       <clip-loader
-        :loading="this.$store.loading"
+        :loading="loading"
+        v-show="loading"
       />
     </div>
   </div>
@@ -48,6 +53,11 @@ export default {
     ClipLoader,
     HomeHeader,
   },
+  data() {
+    return {
+      loading: true,
+    };
+  },
   computed: {
     ...mapState([
       'products',
@@ -58,16 +68,20 @@ export default {
   mounted() {
     this.$store.commit('setNextPage', 0);
     this.$store.dispatch('getProducts').then(() => {
-      this.$store.loading = false;
+      this.loading = false;
     });
   },
   methods: {
     getAnotherCategory() {
+      this.loading = true;
       this.$store.dispatch('getProducts');
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
       });
+    },
+    loadedCategory() {
+      this.loading = false;
     },
   },
 };

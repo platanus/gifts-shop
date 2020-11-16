@@ -25,6 +25,7 @@
             v-bind="{ highlight : index === mostClickedIndex }"
             :category="category"
             @change-slide="changeSlide"
+            @loaded-image="loadedImage"
           />
         </div>
       </vueSlickCarousel>
@@ -50,6 +51,7 @@ export default {
       selectedProductIndex: 1,
       products: [],
       mostClickedIndex: 0,
+      loadedImages: 0,
     };
   },
   methods: {
@@ -64,6 +66,13 @@ export default {
 
       const mostClickedProduct = products.reduce((p, c) => (p.clicks > c.clicks ? p : c));
       this.mostClickedIndex = products.indexOf(mostClickedProduct);
+    },
+    loadedImage() {
+      this.loadedImages++;
+      if (this.loadedImages === this.category.products.length) {
+        this.loadedImages = 0;
+        this.$emit('loaded-category');
+      }
     },
   },
   props: {
