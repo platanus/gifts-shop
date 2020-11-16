@@ -48,6 +48,11 @@ export default {
     ClipLoader,
     HomeHeader,
   },
+  data() {
+    return {
+      loading: true,
+    };
+  },
   computed: {
     ...mapState([
       'products',
