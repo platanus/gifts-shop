@@ -1,7 +1,10 @@
 <template>
   <div class="block w-full min-h-screen text-base bg-background">
     <home-header />
-    <div v-if="category">
+    <div
+      v-if="category"
+      v-show="!loading"
+    >
       <div class="py-4 bg-secondary">
         <p class="flex justify-center text-white">
           Encontramos:&nbsp; <span class="font-bold">{{ category.name }}</span>
@@ -70,6 +73,7 @@ export default {
   },
   methods: {
     getAnotherCategory() {
+      this.loading = true;
       this.$store.dispatch('getProducts');
       window.scrollTo({
         top: 0,
