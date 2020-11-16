@@ -13,6 +13,7 @@
       <category
         :category="category"
         v-if="category"
+        @loaded-category="loadedCategory"
       />
       <div class="flex flex-col w-48 pt-10 mx-auto text-gray-700 align-items-center">
         <p class="pb-3 text-center">
@@ -74,6 +75,9 @@ export default {
         top: 0,
         behavior: 'smooth',
       });
+    },
+    loadedCategory() {
+      this.loading = false;
     },
   },
 };
