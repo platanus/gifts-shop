@@ -24,8 +24,7 @@
       <img
         class="object-cover w-full h-full cursor-pointer"
         :src="product.imageUrl"
-        @load="loaded = true;"
-        v-show="loaded"
+        @load="$emit('loaded-image')"
         @click="clickAction"
       >
       <div class="sm:hidden">
