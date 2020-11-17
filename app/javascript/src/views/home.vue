@@ -14,6 +14,7 @@
         </p>
       </div>
       <category
+        ref="category"
         :category="category"
         v-if="category"
         @loaded-category="loadedCategory"
@@ -74,6 +75,7 @@ export default {
   methods: {
     getAnotherCategory() {
       this.loading = true;
+      this.$refs.category.changeSlide(0);
       this.$store.dispatch('getProducts');
       window.scrollTo({
         top: 0,
