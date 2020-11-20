@@ -80,7 +80,7 @@
             CORREO ELECTRÓNICO
           </div>
           <input
-            type="email"
+            type="text"
             v-model="email"
             :class="getHtmlClass('product-input__box', 'email')"
             name="email"
