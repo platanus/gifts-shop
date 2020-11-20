@@ -171,6 +171,7 @@ export default {
       this.validateName();
       this.validatePrice();
       this.validateLink();
+      this.validateEmail();
       if (Object.keys(this.errors).length === 0) {
         return true;
       }
@@ -204,6 +205,15 @@ export default {
         '(\\#[-a-z\\d_]*)?$', 'i');
       if (!pattern.test(this.link)) {
         this.errors.link = 'El link debe ser válido';
+      }
+    },
+    validateEmail() {
+      const pattern = new RegExp(
+        '\\A[^@\\s]+@[^@\\s]+\\z', 'i');
+      if (this.email === '') {
+        this.errors.email = 'Debes ingresar un correo electrónico';
+      } else if (!pattern.test(this.email)) {
+        this.errors.email = 'El correo electrónico debe ser válido';
       }
     },
     getHtmlClass(baseClass, errorName) {
