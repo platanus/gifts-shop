@@ -209,7 +209,7 @@ export default {
     },
     validateEmail() {
       const pattern = new RegExp(
-        '\\A[^@\\s]+@[^@\\s]+\\z', 'i');
+        '^[^@\\s]+@[^@\\s]+$', 'i');
       if (this.email === '') {
         this.errors.email = 'Debes ingresar un correo electrónico';
       } else if (!pattern.test(this.email)) {
