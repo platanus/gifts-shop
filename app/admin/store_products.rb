@@ -20,6 +20,7 @@ ActiveAdmin.register Product do
     column :price
     column :link
     column :email
+    column :clicks
     column :created_at
     column :status
     actions
