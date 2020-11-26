@@ -22,9 +22,9 @@
       </div>
     </div>
     <div
-      class="relative flex flex-col w-full px-3 mt-1 sm:mt-3 sm:pr-8 sm:h-auto product__info"
+      class="relative flex flex-col w-full h-full px-3 mt-1 sm:mt-3 sm:h-auto product__info"
     >
-      <div class="h-32">
+      <div class="w-full text-center sm:text-left product__description">
         <span
           class="hidden text-xl font-bold cursor-pointer sm:block gtm"
           @click="clickAction"
@@ -54,35 +54,45 @@
           <span>{{ isLiked ? "Guardado!" : "Guardar" }}</span>
         </button>
       </div>
-      <div class="mb-5 text-center sm:text-left sm:absolute sm:bottom-0">
+      <div class="mt-5 text-center sm:mt-0 sm:w-full sm:text-left">
         <p class="pb-2 text-sm font-bold tracking-wider uppercase">
           Escoge tu opción:
         </p>
-        <div
-          class="inline"
-          v-for="(categoryProduct, index) in category.products"
-          :key="index"
-        >
-          <button
-            class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow sm:mr-2 sm:ml-0 gtm"
-            :class="{'border-primary' : categoryProduct === product }"
-            @click="$emit('change-slide', index)"
+        <div class="flex flex-row justify-center sm:justify-start">
+          <div
+            class="inline"
+            v-for="(categoryProduct, index) in category.products"
+            :key="index"
           >
-            <span
-              class="inline text-base font-bold text-center outline-none"
-              :class="{'text-black' : categoryProduct === product }"
+            <button
+              class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow sm:mr-2 sm:ml-0"
+              :class="{'border-primary' : categoryProduct === product }"
+              @click="$emit('change-slide', index)"
             >
-              {{ categoryProduct.price | toSigns }}
-            </span>
+              <span
+                class="inline text-base font-bold text-center outline-none"
+                :class="{'text-black' : categoryProduct === product }"
+              >
+                {{ categoryProduct.price | toSigns }}
+              </span>
+            </button>
+          </div>
+        </div>
+        <div class="flex flex-col w-full mt-5 mb-3 text-xs sm:mb-0 sm:flex-row">
+          <button
+            class="w-full px-4 py-3 mb-2 font-bold text-white rounded-l-sm sm:mb-0 sm:w-1/2 bg-primary place-self-center"
+            @click="clickAction"
+          >
+            <span class="text-center">QUIERO VER ESTE REGALO</span>
+          </button>
+          <button
+            class="w-full px-5 py-3 font-bold text-white rounded-r-sm sm:w-1/2 bg-secondary place-self-center"
+            @click="getAnotherCategory"
+          >
+            <span class="text-center">SIGAMOS BUSCANDO</span>
           </button>
         </div>
       </div>
-      <button
-        class="px-5 py-2 mb-6 text-sm font-bold text-white rounded-sm sm:absolute sm:bottom-0 sm:mr-8 sm:right-0 bg-primary place-self-center gtm"
-        @click="clickAction"
-      >
-        <span class="inline text-center">VER PRODUCTO</span>
-      </button>
     </div>
   </div>
 </template>
@@ -161,7 +171,7 @@ export default {
 <style lang="scss">
   @media (min-width: 640px) { // sm-breakpoint
     .product {
-      height: 20rem;
+      height: 24rem;
 
       &__image {
         width: 45%;
@@ -169,6 +179,10 @@ export default {
 
       &__info {
         width: 55%;
+      }
+
+      &__description {
+        height: 13rem;
       }
     }
   }
