@@ -71,14 +71,6 @@ export default {
     ...mapMutations([
       'setLoading',
     ]),
-    getAnotherCategory() {
-      this.setLoading(true);
-      this.$store.dispatch('getProducts');
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    },
     loadedCategory() {
       this.setLoading(false);
     },
