@@ -42,7 +42,7 @@
 
 <script>
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 
@@ -53,27 +53,26 @@ export default {
     ClipLoader,
     HomeHeader,
   },
-  data() {
-    return {
-      loading: true,
-    };
-  },
   computed: {
     ...mapState([
       'products',
       'category',
       'likes',
+      'loading',
     ]),
   },
   mounted() {
     this.$store.commit('setNextPage', 0);
     this.$store.dispatch('getProducts').then(() => {
-      this.loading = false;
+      this.setLoading(false);
     });
   },
   methods: {
+    ...mapMutations([
+      'setLoading',
+    ]),
     getAnotherCategory() {
-      this.loading = true;
+      this.setLoading(true);
       this.$store.dispatch('getProducts');
       window.scrollTo({
         top: 0,
@@ -81,7 +80,7 @@ export default {
       });
     },
     loadedCategory() {
-      this.loading = false;
+      this.setLoading(false);
     },
   },
 };
