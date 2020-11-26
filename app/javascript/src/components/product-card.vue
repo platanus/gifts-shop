@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex';
+import { mapActions, mapState, mapMutations } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 import priceToSigns from '../utils/price-to-signs';
 
@@ -96,6 +96,9 @@ export default {
   methods: {
     ...mapActions([
       'markClicked',
+    ]),
+    ...mapMutations([
+      'setLoading',
     ]),
     clickAction() {
       this.markClicked(this.product.id);
@@ -107,6 +110,14 @@ export default {
       } else {
         this.$store.commit('addFavoriteProduct', this.product);
       }
+    },
+    getAnotherCategory() {
+      this.setLoading(true);
+      this.$store.dispatch('getProducts');
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
     },
   },
   props: {
