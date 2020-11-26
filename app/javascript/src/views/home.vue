@@ -18,18 +18,6 @@
         v-if="category"
         @loaded-category="loadedCategory"
       />
-      <div class="flex flex-col w-48 pt-10 mx-auto text-gray-700 align-items-center">
-        <p class="pb-3 text-center">
-          No te convence?🤔
-        </p>
-        <button
-          class="px-1 py-2 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white gtm"
-
-          @click="getAnotherCategory()"
-        >
-          SIGAMOS BUSCANDO
-        </button>
-      </div>
     </div>
     <div class="loader-spinner">
       <clip-loader

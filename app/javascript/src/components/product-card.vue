@@ -83,13 +83,13 @@
             class="w-full px-4 py-3 mb-2 font-bold text-white rounded-l-sm sm:mb-0 sm:w-1/2 bg-primary place-self-center"
             @click="clickAction"
           >
-            <span class="text-center">QUIERO VER ESTE REGALO</span>
+            <span class="text-center">🎁 QUIERO VER ESTE REGALO</span>
           </button>
           <button
             class="w-full px-5 py-3 font-bold text-white rounded-r-sm sm:w-1/2 bg-secondary place-self-center"
             @click="getAnotherCategory"
           >
-            <span class="text-center">SIGAMOS BUSCANDO</span>
+            <span class="text-center">🔎 SIGAMOS BUSCANDO</span>
           </button>
         </div>
       </div>
