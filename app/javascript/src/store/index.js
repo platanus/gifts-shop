@@ -17,7 +17,7 @@ const store = new Vuex.Store({
     products: [],
     category: null,
     likes: 0,
-    loading: false,
+    loading: true,
     minPrice: 5000,
     maxPrice: 30000,
     promoted: 4,
@@ -41,6 +41,9 @@ const store = new Vuex.Store({
       const { ...favoriteProductsCopy } = state.favoriteProducts;
       delete favoriteProductsCopy[payload];
       Vue.set(state, 'favoriteProducts', favoriteProductsCopy);
+    },
+    setLoading: (state, payload) => {
+      state.loading = payload;
     },
   },
   actions: {
