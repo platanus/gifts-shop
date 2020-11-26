@@ -5,22 +5,6 @@
     <div
       class="relative w-full h-56 product__image sm:h-auto"
     >
-      <div
-        v-if="!hideFavoriteButton"
-        class="absolute top-0 right-0 z-10 flex justify-center p-1 mt-5 mr-5 bg-white rounded-full shadow hover:cursor-pointer"
-        @click="setLikeStatus"
-      >
-        <img
-          v-if="isLiked"
-          class="cursor-pointer"
-          src="../assets/like-color-badge.svg"
-        >
-        <img
-          v-else
-          class="cursor-pointer"
-          src="../assets/like-badge.svg"
-        >
-      </div>
       <img
         class="object-cover w-full h-full cursor-pointer"
         :src="product.imageUrl"
@@ -54,9 +38,21 @@
           🛍️ Regalo Popular!
         </span>
 
-        <p class="min-h-full mt-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
+        <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
           {{ product.description }}
         </p>
+        <button
+          class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm"
+          @click="setLikeStatus"
+        >
+          <img
+            class="inline fill-current"
+            :src="isLiked ? '../assets/save_filled.svg' : '../assets/save.svg'"
+            height="18"
+            width="18"
+          >
+          <span>{{ isLiked ? "Guardado!" : "Guardar" }}</span>
+        </button>
       </div>
       <div class="mb-5 text-center sm:text-left sm:absolute sm:bottom-0">
         <p class="pb-2 text-sm font-bold tracking-wider uppercase">
