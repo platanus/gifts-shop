@@ -42,7 +42,7 @@
     >
       <div class="h-32">
         <span
-          class="hidden text-xl font-bold cursor-pointer sm:block"
+          class="hidden text-xl font-bold cursor-pointer sm:block gtm"
           @click="clickAction"
         >
           {{ product.name }}
@@ -68,7 +68,7 @@
           :key="index"
         >
           <button
-            class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow sm:mr-2 sm:ml-0"
+            class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow sm:mr-2 sm:ml-0 gtm"
             :class="{'border-primary' : categoryProduct === product }"
             @click="$emit('change-slide', index)"
           >
@@ -82,7 +82,7 @@
         </div>
       </div>
       <button
-        class="px-5 py-2 mb-6 text-sm font-bold text-white rounded-sm sm:absolute sm:bottom-0 sm:mr-8 sm:right-0 bg-primary place-self-center"
+        class="px-5 py-2 mb-6 text-sm font-bold text-white rounded-sm sm:absolute sm:bottom-0 sm:mr-8 sm:right-0 bg-primary place-self-center gtm"
         @click="clickAction"
       >
         <span class="inline text-center">VER PRODUCTO</span>

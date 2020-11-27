@@ -23,7 +23,7 @@
           No te convence?🤔
         </p>
         <button
-          class="px-1 py-2 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
+          class="px-1 py-2 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white gtm"
 
           @click="getAnotherCategory()"
         >

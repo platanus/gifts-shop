@@ -27,7 +27,7 @@
     <div class="mr-3 text-right">
       <router-link to="/favorites">
         <button
-          class="h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
+          class="h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white gtm"
         >
           <span class="hidden sm:inline">Ver mis favoritos</span>
           <span class="sm:hidden">Favoritos</span>
