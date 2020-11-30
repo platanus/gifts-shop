@@ -111,6 +111,7 @@ export default {
     ]),
     ...mapMutations([
       'setLoading',
+      'setAnimateFavorites',
     ]),
     clickAction() {
       this.markClicked(this.product.id);
@@ -121,6 +122,7 @@ export default {
         this.$store.commit('removeFavoriteProduct', this.product.id);
       } else {
         this.$store.commit('addFavoriteProduct', this.product);
+        this.setAnimateFavorites(true);
       }
     },
     getAnotherCategory() {
