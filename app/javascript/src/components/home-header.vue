@@ -37,6 +37,8 @@
   </div>
 </template>
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 const MOBILE_WIDTH = 650;
 const TABLET_WIDTH = 1000;
 
@@ -50,7 +52,15 @@ export default {
       desktop,
     };
   },
+  computed: {
+    ...mapState([
+      'animateFavorites',
+    ]),
+  },
   methods: {
+    ...mapMutations([
+      'setAnimateFavorites',
+    ]),
     goToStore() {
       window.location = '/stores/catalog/new';
     },
