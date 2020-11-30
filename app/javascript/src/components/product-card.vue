@@ -5,6 +5,15 @@
     <div
       class="relative w-full h-56 product__image sm:h-auto"
     >
+      <div
+        class="absolute left-0 mt-4"
+        :class="{ 'hidden' : !highlight }"
+      >
+        <div class="w-auto px-3 pt-1 pb-2 text-white bg-red-700 rounded-r">
+          <span class="hidden text-xs font-bold sm:inline">🔥 Top Choice</span>
+          <span class="inline text-xs font-bold sm:hidden">🔥 TOP</span>
+        </div>
+      </div>
       <img
         class="object-cover w-full h-full cursor-pointer"
         :src="product.imageUrl"
@@ -31,13 +40,6 @@
         >
           {{ product.name }}
         </span>
-        <span
-          class="text-xs text-red-700"
-          :class="{ 'hidden' : !highlight }"
-        >
-          🛍️ Regalo Popular!
-        </span>
-
         <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
           {{ product.description }}
         </p>
