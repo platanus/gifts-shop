@@ -23,6 +23,7 @@ const store = new Vuex.Store({
     promoted: 4,
     nextPage: 1,
     favoriteProducts: {},
+    animateFavorites: false,
   },
   mutations: {
     setCategory: (state, payload) => {
@@ -44,6 +45,9 @@ const store = new Vuex.Store({
     },
     setLoading: (state, payload) => {
       state.loading = payload;
+    },
+    setAnimateFavorites: (state, payload) => {
+      state.animateFavorites = payload;
     },
   },
   actions: {
