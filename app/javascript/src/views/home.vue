@@ -6,10 +6,10 @@
       v-show="!loading"
     >
       <div class="py-4 bg-secondary">
-        <p class="flex justify-center text-white">
+        <p class="flex justify-center mb-4 text-3xl text-white">
           Encontramos:&nbsp; <span class="font-bold">{{ category.name }}</span>
         </p>
-        <p class="flex justify-center px-4 text-sm leading-5 text-center text-white">
+        <p class="flex justify-center px-4 text-lg font-light leading-5 text-center text-white">
           {{ category.description }}
         </p>
       </div>
