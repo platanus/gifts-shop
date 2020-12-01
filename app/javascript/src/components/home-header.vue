@@ -2,7 +2,7 @@
   <div
     class="sticky top-0 z-20 grid items-center w-full h-16 grid-cols-3 mx-auto bg-white shadow-md"
   >
-    <div class="flex items-center h-full ml-3 cursor-pointer text-primary">
+    <div class="flex items-center h-full ml-3 cursor-pointer text-primary gtm">
       <img
         class="block"
         src="../assets/store.svg"
@@ -27,7 +27,7 @@
     <div class="mr-3 text-right">
       <router-link to="/favorites">
         <button
-          class="relative h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white"
+          class="relative h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm gtm text-primary border-primary hover:bg-primary hover:text-white"
           @click="setAnimateFavorites(false)"
         >
           <div

@@ -15,7 +15,7 @@
         </div>
       </div>
       <img
-        class="object-cover w-full h-full cursor-pointer"
+        class="object-cover w-full h-full cursor-pointer gtm"
         :src="product.imageUrl"
         @load="$emit('loaded-image')"
         @click="clickAction"
@@ -23,7 +23,7 @@
       <div class="sm:hidden">
         <div class="absolute top-0 block w-full h-full opacity-50 bg-gradient-to-b from-transparent via-transparent to-black" />
         <p
-          class="absolute bottom-0 block mx-3 mb-2 text-xl font-bold text-white cursor-pointer"
+          class="absolute bottom-0 block mx-3 mb-2 text-xl font-bold text-white cursor-pointer gtm"
           @click="clickAction"
         >
           {{ product.name }}
@@ -35,7 +35,7 @@
     >
       <div class="w-full text-center sm:text-left product__description">
         <span
-          class="hidden text-xl font-bold cursor-pointer sm:block"
+          class="hidden text-xl font-bold cursor-pointer gtm sm:block"
           @click="clickAction"
         >
           {{ product.name }}
@@ -44,7 +44,7 @@
           {{ product.description }}
         </p>
         <button
-          class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm"
+          class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm gtm"
           @click="setLikeStatus"
         >
           <img
@@ -67,7 +67,7 @@
             :key="index"
           >
             <button
-              class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow sm:mr-2 sm:ml-0"
+              class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow gtm sm:mr-2 sm:ml-0"
               :class="{'border-primary' : categoryProduct === product }"
               @click="$emit('change-slide', index)"
             >
@@ -82,13 +82,13 @@
         </div>
         <div class="flex flex-col w-full mt-5 mb-3 text-xs sm:mb-0 sm:flex-row">
           <button
-            class="w-full px-4 py-3 mb-2 font-bold text-white rounded-l-sm sm:mb-0 sm:w-1/2 bg-primary place-self-center"
+            class="w-full px-4 py-3 mb-2 font-bold text-white rounded-l-sm gtm sm:mb-0 sm:w-1/2 bg-primary place-self-center"
             @click="clickAction"
           >
             <span class="text-center">🎁 QUIERO VER ESTE REGALO</span>
           </button>
           <button
-            class="w-full px-5 py-3 font-bold text-white rounded-r-sm sm:w-1/2 bg-secondary place-self-center"
+            class="w-full px-5 py-3 font-bold text-white rounded-r-sm gtm sm:w-1/2 bg-secondary place-self-center"
             @click="getAnotherCategory"
           >
             <span class="text-center">🔎 SIGAMOS BUSCANDO</span>
