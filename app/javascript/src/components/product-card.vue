@@ -48,8 +48,16 @@
           @click="setLikeStatus"
         >
           <img
+            v-if="isLiked"
             class="inline fill-current"
-            :src="isLiked ? '../assets/save_filled.svg' : '../assets/save.svg'"
+            src="../assets/save_filled.svg"
+            height="18"
+            width="18"
+          >
+          <img
+            v-else
+            class="inline fill-current"
+            src="../assets/save.svg"
             height="18"
             width="18"
           >
