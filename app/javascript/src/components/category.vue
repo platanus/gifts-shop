@@ -30,6 +30,31 @@
         </div>
       </vueSlickCarousel>
     </div>
+    <p
+      class="mt-5 text-xs tracking-wider text-center text-gray-600 uppercase sm:mt-2"
+    >
+      Rango de precios:
+    </p>
+    <div
+      class="w-full p-2 mx-auto mt-5 text-center bg-white shadow sm:mt-2 sm:rounded-full sm:w-2/3"
+    >
+      <p
+        class="range"
+      >
+        <span class="inline-block">
+          <span class="inline-block w-6 h-6 border border-gray-500 border-solid rounded-full range__circle">$</span>
+          : 5000 - 10000
+        </span>
+        <span class="inline-block">
+          <span class="inline-block w-6 h-6 ml-5 border border-gray-500 border-solid rounded-full range__circle">$$</span>
+          : 10000 - 15000
+        </span>
+        <span class="inline-block">
+          <span class="inline-block w-6 h-6 ml-5 border border-gray-500 border-solid rounded-full range__circle">$$$</span>
+          : 15000 - 20000
+        </span>
+      </p>
+    </div>
   </div>
 </template>
 
@@ -142,4 +167,14 @@ export default {
   .slick-active {
     z-index: 1;
   }
+
+  .range {
+    font-size: .65rem;
+    line-height: 1rem;
+
+    &__circle {
+      padding-top: .19rem;
+    }
+  }
+
 </style>

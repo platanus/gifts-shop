@@ -18,18 +18,6 @@
         v-if="category"
         @loaded-category="loadedCategory"
       />
-      <div class="flex flex-col w-48 pt-10 mx-auto text-gray-700 align-items-center">
-        <p class="pb-3 text-center">
-          No te convence?🤔
-        </p>
-        <button
-          class="px-1 py-2 text-sm font-bold transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white gtm"
-
-          @click="getAnotherCategory()"
-        >
-          SIGAMOS BUSCANDO
-        </button>
-      </div>
     </div>
     <div class="loader-spinner">
       <clip-loader
@@ -42,7 +30,7 @@
 
 <script>
 import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
 
@@ -53,35 +41,26 @@ export default {
     ClipLoader,
     HomeHeader,
   },
-  data() {
-    return {
-      loading: true,
-    };
-  },
   computed: {
     ...mapState([
       'products',
       'category',
       'likes',
+      'loading',
     ]),
   },
   mounted() {
     this.$store.commit('setNextPage', 0);
     this.$store.dispatch('getProducts').then(() => {
-      this.loading = false;
+      this.setLoading(false);
     });
   },
   methods: {
-    getAnotherCategory() {
-      this.loading = true;
-      this.$store.dispatch('getProducts');
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    },
+    ...mapMutations([
+      'setLoading',
+    ]),
     loadedCategory() {
-      this.loading = false;
+      this.setLoading(false);
     },
   },
 };

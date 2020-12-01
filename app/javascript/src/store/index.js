@@ -17,12 +17,13 @@ const store = new Vuex.Store({
     products: [],
     category: null,
     likes: 0,
-    loading: false,
+    loading: true,
     minPrice: 5000,
     maxPrice: 30000,
     promoted: 4,
     nextPage: 1,
     favoriteProducts: {},
+    animateFavorites: false,
   },
   mutations: {
     setCategory: (state, payload) => {
@@ -41,6 +42,12 @@ const store = new Vuex.Store({
       const { ...favoriteProductsCopy } = state.favoriteProducts;
       delete favoriteProductsCopy[payload];
       Vue.set(state, 'favoriteProducts', favoriteProductsCopy);
+    },
+    setLoading: (state, payload) => {
+      state.loading = payload;
+    },
+    setAnimateFavorites: (state, payload) => {
+      state.animateFavorites = payload;
     },
   },
   actions: {

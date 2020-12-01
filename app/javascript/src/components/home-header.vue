@@ -2,7 +2,7 @@
   <div
     class="sticky top-0 z-20 grid items-center w-full h-16 grid-cols-3 mx-auto bg-white shadow-md"
   >
-    <div class="flex items-center h-full ml-3 cursor-pointer text-primary">
+    <div class="flex items-center h-full ml-3 cursor-pointer text-primary gtm">
       <img
         class="block"
         src="../assets/store.svg"
@@ -27,8 +27,15 @@
     <div class="mr-3 text-right">
       <router-link to="/favorites">
         <button
-          class="h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm text-primary border-primary hover:bg-primary hover:text-white gtm"
+          class="relative h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm gtm text-primary border-primary hover:bg-primary hover:text-white"
+          @click="setAnimateFavorites(false)"
         >
+          <div
+            v-show="animateFavorites"
+          >
+            <span class="absolute top-0 right-0 w-3 h-3 -mt-1 -mr-1 rounded-full animate-ping bg-primary" />
+            <span class="absolute top-0 right-0 w-3 h-3 -mt-1 -mr-1 rounded-full bg-primary" />
+          </div>
           <span class="hidden sm:inline">Ver mis favoritos</span>
           <span class="sm:hidden">Favoritos</span>
         </button>
@@ -37,6 +44,8 @@
   </div>
 </template>
 <script>
+import { mapMutations, mapState } from 'vuex';
+
 const MOBILE_WIDTH = 650;
 const TABLET_WIDTH = 1000;
 
@@ -50,7 +59,15 @@ export default {
       desktop,
     };
   },
+  computed: {
+    ...mapState([
+      'animateFavorites',
+    ]),
+  },
   methods: {
+    ...mapMutations([
+      'setAnimateFavorites',
+    ]),
     goToStore() {
       window.location = '/stores/catalog/new';
     },
