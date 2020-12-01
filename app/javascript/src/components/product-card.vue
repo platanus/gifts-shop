@@ -123,7 +123,7 @@ export default {
     ]),
     clickAction() {
       this.markClicked(this.product.id);
-      window.open(this.product.link, '_blank');
+      window.open(this.productLink, '_blank');
     },
     setLikeStatus() {
       if (this.isLiked) {
@@ -166,6 +166,9 @@ export default {
     ]),
     isLiked() {
       return this.product.id in this.favoriteProducts;
+    },
+    productLink() {
+      return `${this.product.link}?ref=bazar.sorteoamigosecreto.com`;
     },
   },
   filters: {

@@ -130,7 +130,7 @@ export default {
     ]),
     clickAction(product) {
       this.markClicked(product.id);
-      window.open(product.link, '_blank');
+      window.open(this.productLink(product), '_blank');
     },
     openCategory(index) {
       this.getCategory(this.favoriteProducts[index], index);
@@ -149,6 +149,9 @@ export default {
     async getCategory({ categoryId }, index) {
       this.currentCategory = await categoriesApi.getCategory(categoryId);
       this.currentCategoryIndex = index;
+    },
+    productLink(product) {
+      return `${product.link}?ref=bazar.amigosecreto.com`;
     },
   },
 };
