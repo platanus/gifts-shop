@@ -134,6 +134,7 @@ export default {
       }
     },
     getAnotherCategory() {
+      this.$store.commit('addIdeasSearched');
       this.setLoading(true);
       this.$store.dispatch('getProducts');
       window.scrollTo({
