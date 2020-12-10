@@ -24,6 +24,7 @@ const store = new Vuex.Store({
     nextPage: 1,
     favoriteProducts: {},
     animateFavorites: false,
+    ideasSearched: 0,
   },
   mutations: {
     setCategory: (state, payload) => {
@@ -48,6 +49,9 @@ const store = new Vuex.Store({
     },
     setAnimateFavorites: (state, payload) => {
       state.animateFavorites = payload;
+    },
+    addIdeasSearched: (state) => {
+      state.ideasSearched += 1;
     },
   },
   actions: {
