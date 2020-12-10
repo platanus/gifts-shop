@@ -112,6 +112,8 @@ import { mapActions, mapState, mapMutations } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 import priceToSigns from '../utils/price-to-signs';
 
+const CLICKS_BEFORE_NOTIFICATION = 10;
+
 export default {
   methods: {
     ...mapActions([
@@ -137,6 +139,14 @@ export default {
       this.$store.commit('addIdeasSearched');
       this.setLoading(true);
       this.$store.dispatch('getProducts');
+      if (this.$store.state.ideasSearched === CLICKS_BEFORE_NOTIFICATION) {
+        this.$notify({
+          title: '¿ Aún no encuentras el regalo que buscas ?',
+          message: 'No te preocupes ! tenemos una alternativa para ti',
+          clickableMessage: 'queleregalo.cl →',
+          clickableMessageLink: 'http://queleregalo.cl',
+        });
+      }
       window.scrollTo({
         top: 0,
         behavior: 'smooth',
