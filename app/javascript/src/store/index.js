@@ -8,7 +8,10 @@ Vue.use(Vuex);
 
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
-  reducer: (state) => ({ favoriteProducts: state.favoriteProducts }),
+  reducer: (state) => ({
+    favoriteProducts: state.favoriteProducts,
+    nextPage: state.nextPage,
+  }),
 });
 
 // eslint-disable-next-line new-cap
