@@ -50,7 +50,6 @@ export default {
     ]),
   },
   mounted() {
-    this.$store.commit('setNextPage', 0);
     this.$store.dispatch('getProducts').then(() => {
       this.setLoading(false);
     });
