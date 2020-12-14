@@ -5,7 +5,7 @@
       v-if="category"
       v-show="!loading"
     >
-      <div class="py-4 bg-secondary">
+      <div class="py-4 bg-secondary m-auto category-header">
         <p class="flex justify-center mb-4 text-3xl text-white">
           Encontramos:&nbsp; <span class="font-bold">{{ category.name }}</span>
         </p>
@@ -73,6 +73,10 @@ export default {
     justify-content: center;
     height: 42px;
     margin-top: 25px;
+  }
+
+  .category-header {
+    width: calc(min(100%, 900px));
   }
 
 </style>
