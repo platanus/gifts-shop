@@ -90,7 +90,7 @@
         </div>
         <div class="flex flex-col w-full mt-5 mb-3 text-xs sm:mb-0 sm:flex-row">
           <button
-            class="w-full px-3 py-3 mb-2 font-bold text-white rounded-l-sm gtm sm:mb-0 sm:w-1/2 bg-primary place-self-center"
+            class="w-full px-3 py-3 mb-2 font-bold text-white rounded-l-sm gtm sm:mb-0 sm:mr-1 sm:w-1/2 bg-primary place-self-center"
             @click="clickAction"
           >
             <span class="text-center">🎁 QUIERO VER ESTE REGALO</span>
