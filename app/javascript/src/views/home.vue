@@ -5,11 +5,12 @@
       v-if="category"
       v-show="!loading"
     >
-      <div class="py-4 bg-secondary m-auto category-header">
-        <p class="flex justify-center mb-4 text-3xl text-white">
-          Encontramos:&nbsp; <span class="font-bold">{{ category.name }}</span>
+      <div class="py-4 sm:bg-secondary bg-white m-auto category-header">
+        <p class="flex justify-center text-2xl text-gray-800 sm:mb-4 sm:text-3xl sm:text-white">
+          <span class="hidden sm:flex">Encontramos:&nbsp; </span>
+          <span class="font-bold">{{ category.name }}</span>
         </p>
-        <p class="flex justify-center px-4 text-lg font-light leading-5 text-center text-white">
+        <p class="hidden sm:flex justify-center px-4 text-lg font-light leading-5 text-center text-white">
           {{ category.description }}
         </p>
       </div>
