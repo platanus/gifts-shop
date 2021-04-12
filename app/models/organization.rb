@@ -1,6 +1,4 @@
 class Organization < ApplicationRecord
-  include LedgerizerTenant
-  include LedgerizerAccountable
 
   validates :name, presence: true, length: { minimum: 3, maximum: 20 }
 
