@@ -6,10 +6,6 @@ RSpec.describe Organization, type: :model do
     expect(organization).to be_valid
   end
 
-  describe "associations" do
-    it { is_expected.to have_many(:deposits).dependent(:destroy) }
-  end
-
   describe "validations" do
     it { is_expected.to validate_presence_of(:name) }
   end
