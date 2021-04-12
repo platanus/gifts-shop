@@ -1,15 +1,12 @@
 class ProductAction < ApplicationRecord
   include PowerTypes::Observable
-  include LedgerizerDocument
 
   belongs_to :product
-  enum action_type: { display: 0, like: 1, dislike: 2, click: 3, promoted_click: 4 }
+  enum action_type: { display: 0, like: 1, dislike: 2, click: 3 }
 
   validates :action_type, presence: true
 
   delegate :store, to: :product
-
-  PROMOTED_CLICK_COST = ENV.fetch('CPC').to_i
 
   self.ignored_columns = ['receiver_id']
 end

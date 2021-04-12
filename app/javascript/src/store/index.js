@@ -23,7 +23,6 @@ const store = new Vuex.Store({
     loading: true,
     minPrice: 5000,
     maxPrice: 30000,
-    promoted: 4,
     nextPage: 1,
     favoriteProducts: {},
     animateFavorites: false,
@@ -32,9 +31,6 @@ const store = new Vuex.Store({
   mutations: {
     setCategory: (state, payload) => {
       state.category = payload;
-    },
-    setPromoted: (state, payload) => {
-      state.promoted = payload;
     },
     setNextPage: (state, payload) => {
       state.nextPage = payload;
