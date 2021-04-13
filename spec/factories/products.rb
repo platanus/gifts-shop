@@ -6,12 +6,13 @@ FactoryBot.define do
     link { "MyString" }
     email { "MyString" }
     description { "MyText" }
-    clicks_cost { 1.5 }
     store
     novelty { 3 }
     category
     trait :with_image do
-      image { fixture_file_upload(Rails.root.join('spec/fixtures/files/example.jpg'), 'image/jpg') }
+      image do
+        Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/files/test.jpg'), 'image/jpg')
+      end
     end
   end
 end

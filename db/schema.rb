@@ -2,15 +2,15 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `bin/rails
+# db:schema:load`. When creating a new database, `bin/rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_143726) do
+ActiveRecord::Schema.define(version: 2021_04_13_141709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,7 +47,14 @@ ActiveRecord::Schema.define(version: 2020_09_23_143726) do
     t.bigint "byte_size", null: false
     t.string "checksum", null: false
     t.datetime "created_at", null: false
+    t.string "service_name", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
   create_table "admin_users", force: :cascade do |t|
@@ -72,69 +79,6 @@ ActiveRecord::Schema.define(version: 2020_09_23_143726) do
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
-  create_table "deposits", force: :cascade do |t|
-    t.bigint "store_id"
-    t.bigint "amount", default: 0, null: false
-    t.string "amount_currency", default: "CLP", null: false
-    t.bigint "organization_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.date "deposit_time", null: false
-    t.index ["organization_id"], name: "index_deposits_on_organization_id"
-    t.index ["store_id"], name: "index_deposits_on_store_id"
-  end
-
-  create_table "ledgerizer_accounts", force: :cascade do |t|
-    t.string "tenant_type"
-    t.bigint "tenant_id"
-    t.string "accountable_type"
-    t.bigint "accountable_id"
-    t.string "name"
-    t.string "currency"
-    t.string "account_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["accountable_type", "accountable_id"], name: "index_ledgerizer_accounts_on_acc_type_and_acc_id"
-    t.index ["tenant_type", "tenant_id"], name: "index_ledgerizer_accounts_on_tenant_type_and_tenant_id"
-  end
-
-  create_table "ledgerizer_entries", force: :cascade do |t|
-    t.string "tenant_type"
-    t.bigint "tenant_id"
-    t.string "code"
-    t.string "document_type"
-    t.bigint "document_id"
-    t.date "entry_date"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["document_type", "document_id"], name: "index_ledgerizer_entries_on_document_type_and_document_id"
-    t.index ["tenant_type", "tenant_id"], name: "index_ledgerizer_entries_on_tenant_type_and_tenant_id"
-  end
-
-  create_table "ledgerizer_lines", force: :cascade do |t|
-    t.string "tenant_type"
-    t.bigint "tenant_id"
-    t.bigint "entry_id"
-    t.date "entry_date"
-    t.string "entry_code"
-    t.string "account_type"
-    t.string "document_type"
-    t.bigint "document_id"
-    t.bigint "account_id"
-    t.string "accountable_type"
-    t.bigint "accountable_id"
-    t.string "account_name"
-    t.integer "amount_cents", default: 0, null: false
-    t.string "amount_currency", default: "CLP", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_ledgerizer_lines_on_account_id"
-    t.index ["accountable_type", "accountable_id"], name: "index_ledgerizer_lines_on_accountable_type_and_accountable_id"
-    t.index ["document_type", "document_id"], name: "index_ledgerizer_lines_on_document_type_and_document_id"
-    t.index ["entry_id"], name: "index_ledgerizer_lines_on_entry_id"
-    t.index ["tenant_type", "tenant_id"], name: "index_ledgerizer_lines_on_tenant_type_and_tenant_id"
-  end
-
   create_table "organizations", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -154,11 +98,9 @@ ActiveRecord::Schema.define(version: 2020_09_23_143726) do
     t.float "price"
     t.integer "clicks", default: 0
     t.string "link"
-    t.float "clicks_cost"
     t.bigint "store_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "promoted", default: false
     t.boolean "deleted", default: false
     t.text "average_color", default: "#000000"
     t.integer "gender", default: 0
@@ -185,11 +127,9 @@ ActiveRecord::Schema.define(version: 2020_09_23_143726) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name"
-    t.float "balance", default: 0.0
     t.bigint "region_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "has_enough_balance", default: false
     t.index ["email"], name: "index_stores_on_email", unique: true
     t.index ["region_id"], name: "index_stores_on_region_id"
     t.index ["reset_password_token"], name: "index_stores_on_reset_password_token", unique: true
@@ -208,10 +148,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_143726) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "deposits", "organizations"
-  add_foreign_key "deposits", "stores"
-  add_foreign_key "ledgerizer_lines", "ledgerizer_accounts", column: "account_id"
-  add_foreign_key "ledgerizer_lines", "ledgerizer_entries", column: "entry_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "product_actions", "products"
   add_foreign_key "products", "stores"
 end

@@ -65,7 +65,6 @@ ActiveAdmin.register Product do
           image_tag(url_for(product.image), size: 250, class: "aa-product__image")
         end
       end
-      row :clicks_cost
       row :created_at
       row :updated_at
       row :deleted
