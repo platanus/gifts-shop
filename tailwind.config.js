@@ -8,6 +8,10 @@ module.exports = {
         secondary: '#0088D7',
         background: '#f4f8f8',
       },
+      fontFamily: {
+        sans: ['Karla', 'sans-serif'],
+        title: ['PT Sans Caption', 'sans-serif'],
+      },
     },
   },
   variants: {},
