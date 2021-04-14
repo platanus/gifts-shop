@@ -18,6 +18,16 @@ module.exports = {
         primary: '#35c6ad',
         secondary: '#0088D7',
         background: '#f4f8f8',
+        'gf-purple': {
+          lighter: '#fef1fd',
+          light: 'dfdbff',
+          DEFAULT: 'aca2ff',
+          dark: '8376eb',
+          darker: '585268',
+        },
+        'gf-red': 'ff855f',
+        'gf-gray': '979797',
+        'gf-blue': '64abff',
       },
       fontFamily: {
         sans: ['Karla', 'sans-serif'],
