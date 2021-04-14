@@ -2,6 +2,17 @@
 
 module.exports = {
   theme: {
+    fontSize: {
+      '3xs': '12px',
+      '2xs': '15px',
+      xs: '16px',
+      sm: '18px',
+      md: '20px',
+      lg: '22px',
+      xl: '25px',
+      '2xl': '30px',
+      '3xl': '40px',
+    },
     extend: {
       colors: {
         primary: '#35c6ad',
