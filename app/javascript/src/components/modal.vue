@@ -1,15 +1,15 @@
 <template>
   <div
-    class="transition-all duration-300 ease-in-out fixed w-full h-full top-0 left-0 flex items-center justify-center"
+    class="fixed top-0 left-0 flex items-center justify-center w-full h-full transition-all duration-300 ease-in-out"
     :class="{ 'opacity-0': !showModal, 'opacity-100': showModal, 'closed-modal': !showModal, 'z-30': showModal }"
   >
     <div
       @click="close"
       class="absolute w-full h-full bg-gray-900 opacity-50"
     />
-    <div class="bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-30 overflow-y-auto">
-      <div class="py-4 text-left px-6">
-        <div class="flex justify-between items-center pb-3">
+    <div class="z-30 w-11/12 mx-auto overflow-y-auto bg-white rounded shadow-lg md:max-w-md">
+      <div class="px-6 py-4 text-left">
+        <div class="flex items-center justify-between pb-3">
           <p class="text-2xl font-bold">
             <slot name="title" />
           </p>
@@ -18,7 +18,7 @@
             class="cursor-pointer"
           >
             <img
-              src="../assets/cross.svg"
+              :src="require('assets/images/cross.svg')"
               alt="close-modal-cross"
             >
           </div>
@@ -29,13 +29,13 @@
         <div class="flex justify-end pt-2">
           <button
             @click="accept"
-            class="px-4 bg-transparent p-3 rounded-lg text-teal-500 hover:bg-gray-100 hover:text-teal-400 mr-2"
+            class="p-3 px-4 mr-2 text-teal-500 bg-transparent rounded-lg hover:bg-gray-100 hover:text-teal-400"
           >
             <slot name="accept-button-text" />
           </button>
           <button
             @click="close"
-            class="px-4 bg-transparent p-3 rounded-lg text-teal-500 hover:bg-gray-100 hover:text-teal-400 mr-2"
+            class="p-3 px-4 mr-2 text-teal-500 bg-transparent rounded-lg hover:bg-gray-100 hover:text-teal-400"
           >
             <slot name="cancel-button-text" />
           </button>

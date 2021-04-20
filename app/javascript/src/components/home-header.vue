@@ -6,7 +6,7 @@
       <router-link to="/">
         <img
           class="h-12 mx-auto"
-          src="../assets/buenas-ideas.svg"
+          :src="require('assets/images/buenas-ideas.svg')"
         >
       </router-link>
     </div>
