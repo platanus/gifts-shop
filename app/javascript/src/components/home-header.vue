@@ -2,20 +2,6 @@
   <div
     class="sticky top-0 z-20 grid items-center w-full h-16 grid-cols-3 mx-auto bg-white shadow-md"
   >
-    <div class="flex items-center h-full ml-3 cursor-pointer text-primary gtm">
-      <img
-        class="block"
-        src="../assets/store.svg"
-        @click="goToStore"
-      >
-      <div
-        class="my-auto ml-1 text-sm"
-        @click="goToStore"
-      >
-        <span class="hidden sm:inline">Vende tus productos</span>
-        <span class="sm:hidden">Vender</span>
-      </div>
-    </div>
     <div class="h-full mt-2">
       <router-link to="/">
         <img
@@ -68,9 +54,6 @@ export default {
     ...mapMutations([
       'setAnimateFavorites',
     ]),
-    goToStore() {
-      window.location = '/stores/catalog/new';
-    },
     onResize() {
       this.mobile = window.innerWidth <= MOBILE_WIDTH;
       this.desktop = window.innerWidth > TABLET_WIDTH;
