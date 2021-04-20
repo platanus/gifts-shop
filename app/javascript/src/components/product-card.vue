@@ -50,14 +50,14 @@
           <img
             v-if="isLiked"
             class="inline fill-current"
-            src="../assets/save_filled.svg"
+            :src="require('assets/images/save_filled.svg')"
             height="18"
             width="18"
           >
           <img
             v-else
             class="inline fill-current"
-            src="../assets/save.svg"
+            :src="require('assets/images/save.svg')"
             height="18"
             width="18"
           >
