@@ -31,7 +31,7 @@
           <div class="flex items-center">
             <img
               class="flex-none transition-opacity duration-200 opacity-50 cursor-pointer hover:text-black hover:opacity-100"
-              src="../assets/cross.svg"
+              :src="require('assets/images/cross.svg')"
               @click="openModal(product.id)"
             >
             <div class="justify-center flex-none w-32 h-32 mx-5 my-4 sm:mx-6 sm:w-40 sm:h-40">
