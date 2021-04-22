@@ -25,8 +25,10 @@ gem 'puma', '~> 3.12'
 gem 'rack-cors', '~> 1.0.5'
 gem 'rails', '~> 6.1.3'
 gem 'rails-i18n'
+gem 'recipient_interceptor'
 gem 'responders'
 gem 'sass-rails', '~> 6.0'
+gem 'send_grid_mailer'
 gem 'sentry-raven'
 gem 'sidekiq'
 gem 'simple_token_authentication', '~> 1.0'
@@ -39,6 +41,7 @@ gem 'webpacker', '~> 4.0'
 
 group :development do
   gem 'annotate'
+  gem 'letter_opener'
   gem 'listen'
   gem 'spring'
 end

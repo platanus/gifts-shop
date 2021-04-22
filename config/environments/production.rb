@@ -1,3 +1,4 @@
+require Rails.root.join("config/mailer")
 Rails.application.configure do
   config.force_ssl = true
   config.cache_classes = true
