@@ -27,13 +27,25 @@ const store = new Vuex.Store({
     favoriteProducts: {},
     animateFavorites: false,
     ideasSearched: 0,
+    emailModalIsOpen: false,
+    sharedProduct: null,
+    userEmail: '',
   },
   mutations: {
+    setUserEmail: (state, payload) => {
+      state.userEmail = payload;
+    },
     setCategory: (state, payload) => {
       state.category = payload;
     },
     setNextPage: (state, payload) => {
       state.nextPage = payload;
+    },
+    toggleEmailModal: (state) => {
+      state.emailModalIsOpen = !state.emailModalIsOpen;
+    },
+    setSharedProduct: (state, payload) => {
+      state.sharedProduct = payload;
     },
     addFavoriteProduct: (state, payload) => {
       Vue.set(state.favoriteProducts, payload.id, payload);

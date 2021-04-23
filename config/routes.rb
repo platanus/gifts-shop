@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   scope path: '/api' do
     api_version(module: "Api::V1", path: { value: "v1" }, defaults: { format: 'json' }) do
       resources :products, only: [:index]
+      resources :product_share, only: [:create]
       resources :product_actions, only: [:create]
       resources :stores, only: [:show]
       resources :categories, only: [:index, :show]

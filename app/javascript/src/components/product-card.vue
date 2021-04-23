@@ -43,6 +43,7 @@
         <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
           {{ product.description }}
         </p>
+
         <button
           class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm gtm"
           @click="setLikeStatus"
@@ -62,6 +63,12 @@
             width="18"
           >
           <span>{{ isLiked ? "Guardado!" : "Guardar" }}</span>
+        </button>
+        <button
+          class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm gtm"
+          @click="openModal"
+        >
+          <span>Compartir!</span>
         </button>
       </div>
       <div class="mt-5 text-center sm:mt-0 sm:w-full sm:text-left">
@@ -134,6 +141,10 @@ export default {
         this.$store.commit('addFavoriteProduct', this.product);
         this.setAnimateFavorites(true);
       }
+    },
+    openModal() {
+      this.$store.commit('setSharedProduct', this.product);
+      this.$store.commit('toggleEmailModal');
     },
     getAnotherCategory() {
       this.$store.commit('addIdeasSearched');
