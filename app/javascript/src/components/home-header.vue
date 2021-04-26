@@ -10,28 +10,9 @@
         >
       </router-link>
     </div>
-    <div class="mr-3 text-right">
-      <router-link to="/favorites">
-        <button
-          class="relative h-8 px-3 my-auto text-sm transition-all duration-200 border border-solid rounded-sm gtm text-primary border-primary hover:bg-primary hover:text-white"
-          @click="setAnimateFavorites(false)"
-        >
-          <div
-            v-show="animateFavorites"
-          >
-            <span class="absolute top-0 right-0 w-3 h-3 -mt-1 -mr-1 rounded-full animate-ping bg-primary" />
-            <span class="absolute top-0 right-0 w-3 h-3 -mt-1 -mr-1 rounded-full bg-primary" />
-          </div>
-          <span class="hidden sm:inline">Ver mis favoritos</span>
-          <span class="sm:hidden">Favoritos</span>
-        </button>
-      </router-link>
-    </div>
   </div>
 </template>
 <script>
-import { mapMutations, mapState } from 'vuex';
-
 const MOBILE_WIDTH = 650;
 const TABLET_WIDTH = 1000;
 
@@ -45,15 +26,7 @@ export default {
       desktop,
     };
   },
-  computed: {
-    ...mapState([
-      'animateFavorites',
-    ]),
-  },
   methods: {
-    ...mapMutations([
-      'setAnimateFavorites',
-    ]),
     onResize() {
       this.mobile = window.innerWidth <= MOBILE_WIDTH;
       this.desktop = window.innerWidth > TABLET_WIDTH;

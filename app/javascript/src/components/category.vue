@@ -105,10 +105,6 @@ export default {
       type: Object,
       default: null,
     },
-    hideFavoriteButton: {
-      type: Boolean,
-      default: false,
-    },
   },
   computed: {
     selectedProduct() {
