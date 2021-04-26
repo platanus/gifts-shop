@@ -9,7 +9,6 @@ Vue.use(Vuex);
 const vuexLocal = new VuexPersistence({
   storage: window.localStorage,
   reducer: (state) => ({
-    favoriteProducts: state.favoriteProducts,
     nextPage: state.nextPage,
   }),
 });
@@ -24,8 +23,6 @@ const store = new Vuex.Store({
     minPrice: 5000,
     maxPrice: 30000,
     nextPage: 1,
-    favoriteProducts: {},
-    animateFavorites: false,
     ideasSearched: 0,
     emailModalIsOpen: false,
     sharedProduct: null,
@@ -47,19 +44,8 @@ const store = new Vuex.Store({
     setSharedProduct: (state, payload) => {
       state.sharedProduct = payload;
     },
-    addFavoriteProduct: (state, payload) => {
-      Vue.set(state.favoriteProducts, payload.id, payload);
-    },
-    removeFavoriteProduct: (state, payload) => {
-      const { ...favoriteProductsCopy } = state.favoriteProducts;
-      delete favoriteProductsCopy[payload];
-      Vue.set(state, 'favoriteProducts', favoriteProductsCopy);
-    },
     setLoading: (state, payload) => {
       state.loading = payload;
-    },
-    setAnimateFavorites: (state, payload) => {
-      state.animateFavorites = payload;
     },
     addIdeasSearched: (state) => {
       state.ideasSearched += 1;

@@ -43,27 +43,6 @@
         <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
           {{ product.description }}
         </p>
-
-        <button
-          class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm gtm"
-          @click="setLikeStatus"
-        >
-          <img
-            v-if="isLiked"
-            class="inline fill-current"
-            :src="require('assets/images/save_filled.svg')"
-            height="18"
-            width="18"
-          >
-          <img
-            v-else
-            class="inline fill-current"
-            :src="require('assets/images/save.svg')"
-            height="18"
-            width="18"
-          >
-          <span>{{ isLiked ? "Guardado!" : "Guardar" }}</span>
-        </button>
         <button
           class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm gtm"
           @click="openModal"
@@ -115,7 +94,7 @@
 </template>
 
 <script>
-import { mapActions, mapState, mapMutations } from 'vuex';
+import { mapActions, mapMutations } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 import priceToSigns from '../utils/price-to-signs';
 
@@ -128,19 +107,10 @@ export default {
     ]),
     ...mapMutations([
       'setLoading',
-      'setAnimateFavorites',
     ]),
     clickAction() {
       this.markClicked(this.product.id);
       window.open(this.productLink, '_blank');
-    },
-    setLikeStatus() {
-      if (this.isLiked) {
-        this.$store.commit('removeFavoriteProduct', this.product.id);
-      } else {
-        this.$store.commit('addFavoriteProduct', this.product);
-        this.setAnimateFavorites(true);
-      }
     },
     openModal() {
       this.$store.commit('setSharedProduct', this.product);
@@ -173,22 +143,12 @@ export default {
       type: Boolean,
       default: false,
     },
-    hideFavoriteButton: {
-      type: Boolean,
-      default: false,
-    },
     category: {
       type: Object,
       default: null,
     },
   },
   computed: {
-    ...mapState([
-      'favoriteProducts',
-    ]),
-    isLiked() {
-      return this.product.id in this.favoriteProducts;
-    },
     productLink() {
       return `${this.product.link}?ref=bazar.sorteoamigosecreto.com`;
     },
