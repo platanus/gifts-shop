@@ -7,6 +7,7 @@ class Product < ApplicationRecord
   belongs_to :store
   belongs_to :category, optional: true
   has_many :product_actions, dependent: :destroy
+  has_many :product_share, dependent: :destroy
 
   validates :name, presence: true, length: { minimum: 5 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1 }
@@ -77,11 +78,9 @@ end
 #  price         :float
 #  clicks        :integer          default(0)
 #  link          :string
-#  clicks_cost   :float
 #  store_id      :bigint(8)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  promoted      :boolean          default(FALSE)
 #  deleted       :boolean          default(FALSE)
 #  average_color :text             default("#000000")
 #  gender        :integer          default("either")
