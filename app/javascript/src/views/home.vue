@@ -100,7 +100,7 @@ export default {
     },
     productShareByEmail(product) {
       this.setUserEmail(this.email);
-      productsApi.shareByEmail(product.name, product.price, this.productLink(product), this.email);
+      productsApi.shareByEmail(product.id, this.userEmail, this.productLink(product));
       this.toggleEmailModal();
     },
     productLink(product) {

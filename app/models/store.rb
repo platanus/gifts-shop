@@ -24,11 +24,9 @@ end
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
 #  name                   :string
-#  balance                :float            default(0.0)
 #  region_id              :bigint(8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
-#  has_enough_balance     :boolean          default(FALSE)
 #
 # Indexes
 #
