@@ -22,17 +22,17 @@ export default {
       },
     });
   },
-  shareByEmail(name, price, link, email) {
-    const path = '/api/v1/product_share/';
+  shareByEmail(payload, email, link) {
+    const path = '/api/v1/product_share';
 
     return api({
       method: 'post',
       url: path,
       data: {
-        product_name: name,
-        product_price: price,
+        product_id: payload,
         product_link: link,
         to_email: email,
+        platform: 'email',
       },
     });
   },
