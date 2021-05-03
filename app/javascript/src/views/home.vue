@@ -3,24 +3,7 @@
     <home-header />
     <modal
       :show-modal="emailModalIsOpen"
-      @accept="productShareByEmail(sharedProduct)"
-      @close="closeModal"
-    >
-      <template #title>
-        Ingresa tu correo para compartir este regalo!
-      </template>
-      <template #body>
-        <input
-          v-model="email"
-          placeholder="example@platan.us"
-          type="email"
-          class="px-2 py-2 h-10 leading-normal block w-full text-gray-800 bg-white font-sans rounded-lg text-left border border-black focus:border-blue-500"
-        >
-      </template>
-      <template #accept-button-text>
-        ENVIAR
-      </template>
-    </modal>
+    />
     <div
       v-if="category"
       v-show="!loading"
@@ -55,15 +38,9 @@ import { mapState, mapMutations } from 'vuex';
 import modal from '../components/modal-share-email.vue';
 import category from '../components/category';
 import HomeHeader from '../components/home-header';
-import productsApi from '../api/products';
 
 export default {
   name: 'HomeView',
-  data() {
-    return {
-      email: '',
-    };
-  },
   components: {
     category,
     ClipLoader,
@@ -77,8 +54,6 @@ export default {
       'likes',
       'loading',
       'emailModalIsOpen',
-      'sharedProduct',
-      'userEmail',
     ]),
   },
   mounted() {
@@ -89,22 +64,9 @@ export default {
   methods: {
     ...mapMutations([
       'setLoading',
-      'toggleEmailModal',
-      'setUserEmail',
     ]),
     loadedCategory() {
       this.setLoading(false);
-    },
-    closeModal() {
-      this.toggleEmailModal();
-    },
-    productShareByEmail(product) {
-      this.setUserEmail(this.email);
-      productsApi.shareByEmail(product.id, this.userEmail, this.productLink(product));
-      this.toggleEmailModal();
-    },
-    productLink(product) {
-      return `${product.link}?ref=bazar.sorteoamigosecreto.com`;
     },
   },
 };

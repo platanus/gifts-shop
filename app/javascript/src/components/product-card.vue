@@ -107,14 +107,16 @@ export default {
     ]),
     ...mapMutations([
       'setLoading',
+      'toggleEmailModal',
+      'setSharedProduct',
     ]),
     clickAction() {
       this.markClicked(this.product.id);
-      window.open(this.productLink, '_blank');
+      window.open(this.product.referenceUrl, '_blank');
     },
     openModal() {
-      this.$store.commit('setSharedProduct', this.product);
-      this.$store.commit('toggleEmailModal');
+      this.setSharedProduct(this.product);
+      this.toggleEmailModal();
     },
     getAnotherCategory() {
       this.$store.commit('addIdeasSearched');
@@ -146,11 +148,6 @@ export default {
     category: {
       type: Object,
       default: null,
-    },
-  },
-  computed: {
-    productLink() {
-      return `${this.product.link}?ref=bazar.sorteoamigosecreto.com`;
     },
   },
   filters: {
