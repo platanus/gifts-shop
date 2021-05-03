@@ -14,12 +14,6 @@ class Product < ApplicationRecord
   validates :link, presence: true
   validates :email, presence: true
   validates :description, presence: true
-  validates :novelty,
-    numericality: { greater_than: 0, less_than_or_equal_to: 5 },
-    allow_blank: true
-
-  enum gender: { either: 0, male: 1, female: 2 }
-  enum age: { any: 0, kid: 1, teen: 2, adult: 3 }
 
   aasm column: :status do
     state :awaiting_approval, initial: true
@@ -56,16 +50,6 @@ class Product < ApplicationRecord
   def add_click
     clicks = self.clicks + 1
     update(clicks: clicks)
-  end
-
-  private
-
-  def hex_value(red, green, blue)
-    "##{to_hex red}#{to_hex green}#{to_hex blue}"
-  end
-
-  def to_hex(value)
-    value.to_s(16).rjust(2, '0').upcase
   end
 end
 

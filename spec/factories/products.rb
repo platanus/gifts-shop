@@ -7,7 +7,6 @@ FactoryBot.define do
     email { "MyString" }
     description { "MyText" }
     store
-    novelty { 3 }
     category
     trait :with_image do
       image do
