@@ -51,16 +51,6 @@ class Product < ApplicationRecord
     clicks = self.clicks + 1
     update(clicks: clicks)
   end
-
-  private
-
-  def hex_value(red, green, blue)
-    "##{to_hex red}#{to_hex green}#{to_hex blue}"
-  end
-
-  def to_hex(value)
-    value.to_s(16).rjust(2, '0').upcase
-  end
 end
 
 # == Schema Information
