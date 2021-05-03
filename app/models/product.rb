@@ -14,12 +14,6 @@ class Product < ApplicationRecord
   validates :link, presence: true
   validates :email, presence: true
   validates :description, presence: true
-  validates :novelty,
-    numericality: { greater_than: 0, less_than_or_equal_to: 5 },
-    allow_blank: true
-
-  enum gender: { either: 0, male: 1, female: 2 }
-  enum age: { any: 0, kid: 1, teen: 2, adult: 3 }
 
   aasm column: :status do
     state :awaiting_approval, initial: true
