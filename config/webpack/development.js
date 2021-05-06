@@ -1,5 +1,16 @@
-process.env.NODE_ENV = process.env.NODE_ENV || 'development'
+const dotenv = require('dotenv');
 
-const environment = require('./environment')
+const paths = [
+  '.env.local',
+  `.env.${process.env.NODE_ENV}`,
+  '.env',
+];
+paths.forEach(path => {
+  dotenv.config({ path, silent: true });
+});
 
-module.exports = environment.toWebpackConfig()
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+const environment = require('./environment');
+
+module.exports = environment.toWebpackConfig();
