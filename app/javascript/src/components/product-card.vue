@@ -43,11 +43,26 @@
         <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
           {{ product.description }}
         </p>
+        <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
+          RECUERDALO!
+        </p>
         <button
-          class="px-2 py-1 text-sm text-red-700 border border-red-700 border-solid rounded-sm gtm"
+          class="px-2 py-1 text-sm border border-gray-700 border-solid rounded-sm gtm"
           @click="openModal"
         >
-          <span>Compartir!</span>
+          <img
+            :src="require('assets/images/mail.svg')"
+            class="w-6"
+          >
+        </button>
+        <button
+          class="px-2 py-1 text-sm border border-gray-700 border-solid rounded-sm gtm"
+          @click="whatsappShare"
+        >
+          <img
+            :src="require('assets/images/whatsapp.svg')"
+            class="w-6"
+          >
         </button>
       </div>
       <div class="mt-5 text-center sm:mt-0 sm:w-full sm:text-left">
@@ -101,6 +116,11 @@ import priceToSigns from '../utils/price-to-signs';
 const CLICKS_BEFORE_NOTIFICATION = 10;
 
 export default {
+  data() {
+    return {
+      whatsappNumber: process.env.PHONE_NUMBER,
+    };
+  },
   methods: {
     ...mapActions([
       'markClicked',
@@ -113,6 +133,9 @@ export default {
     clickAction() {
       this.markClicked(this.product.id);
       window.open(this.product.referenceUrl, '_blank');
+    },
+    whatsappShare() {
+      window.open(this.whatsappShareLink, '_blank');
     },
     openModal() {
       this.setSharedProduct(this.product);
@@ -148,6 +171,14 @@ export default {
     category: {
       type: Object,
       default: null,
+    },
+  },
+  computed: {
+    whatsappShareLink() {
+      return `http://wa.me/${this.whatsappNumber}/?text=${this.whatsappShareText}`;
+    },
+    whatsappShareText() {
+      return encodeURI(`Buenas Ideas | Adquiere tu ${this.product.name} visitando: ${this.product.referenceUrl}`);
     },
   },
   filters: {

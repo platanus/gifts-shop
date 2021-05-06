@@ -20,6 +20,6 @@ class ProductMailer < ApplicationMailer
   private
 
   def share_email_subject
-    "Compartiste el producto: #{@product_name} | Gifting"
+    "Compartiste el producto: #{@product_name} | Buenas Ideas"
   end
 end
