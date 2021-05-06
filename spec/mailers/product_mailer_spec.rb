@@ -20,7 +20,7 @@ RSpec.describe ProductMailer, type: :mailer do
 
     it 'renders the subject' do
       expect(mail.subject)
-        .to eq("Compartiste el producto: #{params[:product_name]} | Gifting")
+        .to eq("Compartiste el producto: #{params[:product_name]} | Buenas Ideas")
     end
 
     it 'renders the sender email' do
