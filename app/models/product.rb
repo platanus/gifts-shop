@@ -57,23 +57,21 @@ end
 #
 # Table name: products
 #
-#  id            :bigint(8)        not null, primary key
-#  name          :string
-#  price         :float
-#  clicks        :integer          default(0)
-#  link          :string
-#  store_id      :bigint(8)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  deleted       :boolean          default(FALSE)
-#  average_color :text             default("#000000")
-#  gender        :integer          default("either")
-#  age           :integer          default("any")
-#  novelty       :integer
-#  status        :string
-#  category_id   :bigint(8)
-#  email         :string
-#  description   :text
+#  id             :bigint(8)        not null, primary key
+#  name           :string
+#  price          :float
+#  clicks         :integer          default(0)
+#  link           :string
+#  store_id       :bigint(8)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  deleted        :boolean          default(FALSE)
+#  status         :string
+#  category_id    :bigint(8)
+#  email          :string
+#  description    :text
+#  promoted       :boolean          default(FALSE)
+#  price_interval :integer          default(0)
 #
 # Indexes
 #
