@@ -2,15 +2,17 @@ ActiveAdmin.register Product do
   menu parent: I18n.t('activeadmin.titles.stores')
 
   permit_params :store_id, :name, :category_id, :price, :description,
-                :link, :email, :status
+                :link, :email, :status, :promoted
 
   filter :name
   filter :store
   filter :category
   filter :price
+  filter :price_interval
   filter :link
   filter :created_at
   filter :status, as: :select
+  filter :promoted
 
   index do
     id_column
@@ -18,11 +20,13 @@ ActiveAdmin.register Product do
     column :name
     column :category
     column :price
+    column :price_interval
     column :link
     column :email
     column :clicks
     column :created_at
     column :status
+    column :promoted
     actions
   end
 
@@ -56,6 +60,7 @@ ActiveAdmin.register Product do
       row :name
       row :category
       row :price
+      row :price_interval
       row :description
       row :clicks
       row :link
@@ -69,6 +74,7 @@ ActiveAdmin.register Product do
       row :updated_at
       row :deleted
       row :status
+      row :promoted
     end
   end
 
@@ -83,6 +89,7 @@ ActiveAdmin.register Product do
       f.input :email
       f.input :image, as: :file, hint: image_hint(f.object.image)
       f.input :status, as: :select, collection: product.aasm.states(permitted: true).map(&:name)
+      f.input :promoted
     end
     f.actions
   end
