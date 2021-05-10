@@ -3,6 +3,9 @@ class Product < ApplicationRecord
   include Rails.application.routes.url_helpers
   include AASM
 
+  INTERVAL_LIMITS = ENV.fetch("PRICE_INTERVAL_LIMITS", "5000,10000,15000,20000")
+                       .split(",").map(&:to_i)
+
   has_one_attached :image
   belongs_to :store
   belongs_to :category, optional: true
@@ -14,6 +17,9 @@ class Product < ApplicationRecord
   validates :link, presence: true
   validates :email, presence: true
   validates :description, presence: true
+  validates :price_interval, presence: true
+
+  before_save :update_price_interval
 
   aasm column: :status do
     state :awaiting_approval, initial: true
@@ -50,6 +56,16 @@ class Product < ApplicationRecord
   def add_click
     clicks = self.clicks + 1
     update(clicks: clicks)
+  end
+
+  private
+
+  def update_price_interval
+    index = 0
+    until price <= INTERVAL_LIMITS[index + 1]
+      index += 1
+    end
+    self.price_interval = index
   end
 end
 
