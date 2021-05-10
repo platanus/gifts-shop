@@ -3,7 +3,7 @@ class ProductSerializer < ActiveModel::Serializer
 
   attributes :id, :name, :price, :store_name, :image_url,
              :link, :description, :category_id, :clicks,
-             :reference_url
+             :reference_url, :promoted, :price_interval
 
   def store_name
     object.store.name
