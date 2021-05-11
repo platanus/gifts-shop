@@ -3,6 +3,9 @@ class Product < ApplicationRecord
   include Rails.application.routes.url_helpers
   include AASM
 
+  INTERVAL_LIMITS = ENV.fetch("PRICE_INTERVAL_LIMITS", "5000,10000,15000,20000")
+                       .split(",").map(&:to_i)
+
   has_one_attached :image
   belongs_to :store
   belongs_to :category, optional: true
@@ -14,6 +17,9 @@ class Product < ApplicationRecord
   validates :link, presence: true
   validates :email, presence: true
   validates :description, presence: true
+  validates :price_interval, presence: true
+
+  before_save :update_price_interval
 
   aasm column: :status do
     state :awaiting_approval, initial: true
@@ -51,29 +57,37 @@ class Product < ApplicationRecord
     clicks = self.clicks + 1
     update(clicks: clicks)
   end
+
+  private
+
+  def update_price_interval
+    index = 0
+    until price <= INTERVAL_LIMITS[index + 1]
+      index += 1
+    end
+    self.price_interval = index
+  end
 end
 
 # == Schema Information
 #
 # Table name: products
 #
-#  id            :bigint(8)        not null, primary key
-#  name          :string
-#  price         :float
-#  clicks        :integer          default(0)
-#  link          :string
-#  store_id      :bigint(8)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  deleted       :boolean          default(FALSE)
-#  average_color :text             default("#000000")
-#  gender        :integer          default("either")
-#  age           :integer          default("any")
-#  novelty       :integer
-#  status        :string
-#  category_id   :bigint(8)
-#  email         :string
-#  description   :text
+#  id             :bigint(8)        not null, primary key
+#  name           :string
+#  price          :float
+#  clicks         :integer          default(0)
+#  link           :string
+#  store_id       :bigint(8)
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  deleted        :boolean          default(FALSE)
+#  status         :string
+#  category_id    :bigint(8)
+#  email          :string
+#  description    :text
+#  promoted       :boolean          default(FALSE)
+#  price_interval :integer          default(0)
 #
 # Indexes
 #
