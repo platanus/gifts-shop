@@ -12,6 +12,7 @@ RSpec.describe Product, type: :model do
     it { is_expected.to validate_presence_of(:link) }
     it { is_expected.to validate_presence_of(:email) }
     it { is_expected.to validate_presence_of(:description) }
+    it { is_expected.to validate_presence_of(:price_interval) }
   end
 
   describe 'associations' do
