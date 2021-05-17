@@ -8,7 +8,7 @@
         class="w-full sm:mt-8"
         :arrows="false"
         :center-mode="true"
-        :center-padding="0"
+        center-padding="0"
         :fade="true"
         :initial-slide="1"
         :slides-to-show="1"
