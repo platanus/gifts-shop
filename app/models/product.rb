@@ -26,11 +26,11 @@ class Product < ApplicationRecord
     state :approved, :rejected
 
     event :approve do
-      transitions from: [:awaiting_approval, :rejected], to: :approved, guard: :image_attached?
+      transitions from: [:approved, :awaiting_approval, :rejected], to: :approved, guard: :image_attached?
     end
 
     event :reject do
-      transitions from: [:awaiting_approval, :approved], to: :rejected
+      transitions from: [:rejected, :awaiting_approval, :approved], to: :rejected
     end
   end
 
