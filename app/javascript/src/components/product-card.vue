@@ -84,7 +84,7 @@
                 class="inline text-base font-bold text-center outline-none"
                 :class="{'text-black' : categoryProduct === product }"
               >
-                {{ categoryProduct.price | toSigns }}
+                {{ categoryProduct.priceInterval | toSigns }}
               </span>
             </button>
           </div>
@@ -111,7 +111,6 @@
 <script>
 import { mapActions, mapMutations } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
-import priceToSigns from '../utils/price-to-signs';
 
 const CLICKS_BEFORE_NOTIFICATION = 10;
 
@@ -188,7 +187,7 @@ export default {
       return `$${price}`;
     },
     toSigns(value) {
-      return priceToSigns(value);
+      return '$'.repeat(value + 1);
     },
   },
 };
