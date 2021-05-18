@@ -41,17 +41,13 @@
       <p
         class="range"
       >
-        <span class="inline-block">
-          <span class="inline-block w-6 h-6 border border-gray-500 border-solid rounded-full range__circle">$</span>
-          : 5000 - 10000
-        </span>
-        <span class="inline-block">
-          <span class="inline-block w-6 h-6 ml-5 border border-gray-500 border-solid rounded-full range__circle">$$</span>
-          : 10000 - 15000
-        </span>
-        <span class="inline-block">
-          <span class="inline-block w-6 h-6 ml-5 border border-gray-500 border-solid rounded-full range__circle">$$$</span>
-          : 15000 - 20000
+        <span
+          v-for="i in (priceIntervals.length - 1)"
+          :key="i"
+          class="inline-block ml-5 first:ml-0"
+        >
+          <span class="inline-block w-6 h-6 border border-gray-500 border-solid rounded-full range__circle"> {{ '$'.repeat(i) }}</span>
+          {{ `: ${priceIntervals[i-1]} - ${priceIntervals[i]}` }}
         </span>
       </p>
     </div>
@@ -109,6 +105,10 @@ export default {
   computed: {
     selectedProduct() {
       return this.category.products[this.selectedProductIndex];
+    },
+    priceIntervals() {
+      // eslint-disable-next-line no-undef
+      return process.env.PRICE_INTERVAL_LIMITS.split(',');
     },
   },
   filters: {
