@@ -1,6 +1,6 @@
 <template>
   <div class="block w-full min-h-screen text-base bg-background">
-    <home-header />
+    <navbar />
     <modal
       :show-modal="emailModalIsOpen"
     />
@@ -8,12 +8,12 @@
       v-if="category"
       v-show="!loading"
     >
-      <div class="py-4 sm:bg-secondary bg-white m-auto category-header">
+      <div class="py-4 m-auto bg-white sm:bg-secondary category-header">
         <p class="flex justify-center text-2xl text-gray-800 sm:mb-4 sm:text-3xl sm:text-white">
           <span class="hidden sm:flex">Encontramos:&nbsp; </span>
           <span class="font-bold">{{ category.name }}</span>
         </p>
-        <p class="hidden sm:flex justify-center px-4 text-lg font-light leading-5 text-center text-white">
+        <p class="justify-center hidden px-4 text-lg font-light leading-5 text-center text-white sm:flex">
           {{ category.description }}
         </p>
       </div>
@@ -37,14 +37,14 @@ import ClipLoader from 'vue-spinner/src/ClipLoader.vue';
 import { mapState, mapMutations } from 'vuex';
 import modal from '../components/modal-share-email.vue';
 import category from '../components/category';
-import HomeHeader from '../components/home-header';
+import navbar from '../components/navbar';
 
 export default {
   name: 'HomeView',
   components: {
     category,
     ClipLoader,
-    HomeHeader,
+    navbar,
     modal,
   },
   computed: {
