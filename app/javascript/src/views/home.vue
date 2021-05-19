@@ -73,8 +73,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../../styles/variables';
-
   .loader-spinner {
     display: flex;
     justify-content: center;

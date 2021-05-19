@@ -132,8 +132,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../../styles/variables';
-
   @keyframes pump {
     50% {
       transform: scale(1);
