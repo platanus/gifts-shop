@@ -27,6 +27,7 @@ const store = new Vuex.Store({
     emailModalIsOpen: false,
     sharedProduct: null,
     userEmail: '',
+    selectedInterval: 0,
   },
   mutations: {
     setUserEmail: (state, payload) => {
@@ -49,6 +50,9 @@ const store = new Vuex.Store({
     },
     addIdeasSearched: (state) => {
       state.ideasSearched += 1;
+    },
+    setSelectedInterval: (state, payload) => {
+      state.selectedInterval = payload;
     },
   },
   actions: {
