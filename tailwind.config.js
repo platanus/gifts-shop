@@ -23,12 +23,17 @@ module.exports = {
         'gf-gray': {
           DEFAULT: '#979797',
           dark: '#545454',
+          light: '#f5f5f5',
         },
       },
       fontFamily: {
         sans: ['Open Sans', 'sans-serif'],
         title: ['PT Sans Caption', 'sans-serif'],
         roboto: ['Roboto', 'sans-serif'],
+      },
+      boxShadow: {
+        'gf-header': '0px 1px 4px rgba(0, 0, 0, 0.25)',
+        'gf-card': '0px 2px 4px rgba(0, 0, 0, 0.25)',
       },
     },
   },
