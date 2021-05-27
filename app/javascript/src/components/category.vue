@@ -1,7 +1,11 @@
 <template>
   <div
-    class="flex flex-col m-auto category"
+    class="flex flex-col"
   >
+    <category-header
+      :category-name="category.name"
+      class="md:shadow-gf-header"
+    />
     <div>
       <vueSlickCarousel
         ref="slider"
@@ -61,11 +65,13 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import convertToClp from '../utils/convert-to-clp';
 
 import productCard from './product-card';
+import categoryHeader from './category-header';
 
 export default {
   components: {
     productCard,
     VueSlickCarousel,
+    categoryHeader,
   },
   data() {
     return {
@@ -132,8 +138,6 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '../../styles/variables';
-
   @keyframes pump {
     50% {
       transform: scale(1);
@@ -154,10 +158,6 @@ export default {
     70% {
       transform: scale(1);
     }
-  }
-
-  .category {
-    width: calc(min(100%, 900px));
   }
 
   .slick-active {

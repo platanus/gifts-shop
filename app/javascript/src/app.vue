@@ -7,13 +7,3 @@
   </div>
 </template>
 
-<style lang="scss">
-  @import '../styles/variables';
-
-  .home-main {
-    display: flex;
-    align-self: center;
-    justify-content: center;
-    font-size: 11px;
-  }
-</style>
