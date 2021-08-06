@@ -43,119 +43,23 @@
         <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
           {{ product.description }}
         </p>
-        <p class="my-2 text-sm text-justify sm:mt-3 sm:mr-0 sm:text-base">
-          RECUERDALO!
-        </p>
-        <button
-          class="px-2 py-1 text-sm border border-gray-700 border-solid rounded-sm gtm"
-          @click="openModal"
-        >
-          <img
-            :src="require('assets/images/mail.svg')"
-            class="w-6"
-          >
-        </button>
-        <button
-          class="px-2 py-1 text-sm border border-gray-700 border-solid rounded-sm gtm"
-          @click="whatsappShare"
-        >
-          <img
-            :src="require('assets/images/whatsapp.svg')"
-            class="w-6"
-          >
-        </button>
-      </div>
-      <div class="mt-5 text-center sm:mt-0 sm:w-full sm:text-left">
-        <p class="pb-2 text-sm font-bold tracking-wider uppercase">
-          Escoge tu opción:
-        </p>
-        <div class="flex flex-row justify-center sm:justify-start">
-          <div
-            class="inline"
-            v-for="(storeProduct, index) in store.products"
-            :key="index"
-          >
-            <button
-              class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow gtm sm:mr-2 sm:ml-0"
-              :class="{'border-primary' : storeProduct === product }"
-              @click="$emit('change-slide', index)"
-            >
-              <span
-                class="inline text-base font-bold text-center outline-none"
-                :class="{'text-black' : storeProduct === product }"
-              >
-                {{ storeProduct.priceInterval | toSigns }}
-              </span>
-            </button>
-          </div>
-        </div>
-        <div class="flex flex-col w-full mt-5 mb-3 text-xs sm:mb-0 sm:flex-row">
-          <button
-            class="w-full px-3 py-3 mb-2 font-bold text-white rounded-l-sm gtm sm:mb-0 sm:mr-1 sm:w-1/2 bg-primary place-self-center"
-            @click="clickAction"
-          >
-            <span class="text-center">🎁 QUIERO VER ESTE REGALO</span>
-          </button>
-          <button
-            class="w-full px-3 py-3 font-bold text-white rounded-r-sm gtm sm:w-1/2 bg-secondary place-self-center"
-            @click="getAnotherstore"
-          >
-            <span class="text-center">🔎 SIGAMOS BUSCANDO</span>
-          </button>
-        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapActions, mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import convertToClp from '../utils/convert-to-clp';
 
-const CLICKS_BEFORE_NOTIFICATION = 10;
-
 export default {
-  data() {
-    return {
-      whatsappNumber: process.env.PHONE_NUMBER,
-    };
-  },
   methods: {
     ...mapActions([
       'markClicked',
     ]),
-    ...mapMutations([
-      'setLoading',
-      'toggleEmailModal',
-      'setSharedProduct',
-    ]),
     clickAction() {
       this.markClicked(this.product.id);
       window.open(this.product.referenceUrl, '_blank');
-    },
-    whatsappShare() {
-      window.open(this.whatsappShareLink, '_blank');
-    },
-    openModal() {
-      this.setSharedProduct(this.product);
-      this.toggleEmailModal();
-    },
-    getAnotherstore() {
-      this.$store.commit('addIdeasSearched');
-      this.setLoading(true);
-      this.$store.dispatch('getProducts');
-      if (this.$store.state.ideasSearched === CLICKS_BEFORE_NOTIFICATION) {
-        this.$notify({
-          title: '¿ Aún no encuentras el regalo que buscas ?',
-          message: 'No te preocupes ! tenemos una alternativa para ti',
-          clickableMessage: 'queleregalo.cl →',
-          clickableMessageLink: 'http://queleregalo.cl',
-        });
-      }
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
     },
   },
   props: {
@@ -172,22 +76,11 @@ export default {
       default: null,
     },
   },
-  computed: {
-    whatsappShareLink() {
-      return `http://wa.me/${this.whatsappNumber}/?text=${this.whatsappShareText}`;
-    },
-    whatsappShareText() {
-      return encodeURI(`Buenas Ideas | Adquiere tu ${this.product.name} visitando: ${this.product.referenceUrl}`);
-    },
-  },
   filters: {
     Price(value) {
       const price = convertToClp(value);
 
       return `$${price}`;
-    },
-    toSigns(value) {
-      return '$'.repeat(value + 1);
     },
   },
 };
