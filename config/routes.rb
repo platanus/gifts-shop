@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
       resources :product_share, only: [:create]
       resources :product_actions, only: [:create]
-      resources :stores, only: [:show]
+      resources :stores, only: [:index]
       resources :categories, only: [:index, :show]
     end
   end

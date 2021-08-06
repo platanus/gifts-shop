@@ -8,8 +8,9 @@ class Store < ApplicationRecord
 
   validates :name, presence: true, length: { minimum: 5, maximum: 20 }
 
-  def account
-    accounts.first
+  def self.randomized(seed = 0.0)
+    connection.execute(Arel.sql("SELECT SETSEED(#{seed})"))
+    order(Arel.sql('RANDOM()'))
   end
 end
 
