@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-
-  def show; end
-
+  def show
+    response.headers.delete('X-Frame-Options')
+  end
 end
