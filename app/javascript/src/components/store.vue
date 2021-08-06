@@ -2,8 +2,8 @@
   <div
     class="flex flex-col"
   >
-    <category-header
-      :category-name="category.name"
+    <store-header
+      :store-name="store.name"
       class="md:shadow-gf-header"
     />
     <div>
@@ -20,14 +20,14 @@
         @beforeChange="changeProduct"
       >
         <div
-          v-for="(product, index) in category.products"
+          v-for="(product, index) in store.products"
           :key="index"
           class="flex"
         >
           <product-card
             :product="product"
             v-bind="{ highlight : index === mostClickedIndex }"
-            :category="category"
+            :store="store"
             @change-slide="changeSlide"
             @loaded-image="loadedImage"
           />
@@ -65,13 +65,13 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css';
 import convertToClp from '../utils/convert-to-clp';
 
 import productCard from './product-card';
-import categoryHeader from './category-header';
+import storeHeader from './store-header';
 
 export default {
   components: {
     productCard,
     VueSlickCarousel,
-    categoryHeader,
+    storeHeader,
   },
   data() {
     return {
@@ -89,28 +89,28 @@ export default {
       this.$refs.slider.goTo(index);
     },
     updateMostClickedIndex() {
-      const products = this.category.products;
+      const products = this.store.products;
 
       const mostClickedProduct = products.reduce((p, c) => (p.clicks > c.clicks ? p : c));
       this.mostClickedIndex = products.indexOf(mostClickedProduct);
     },
     loadedImage() {
       this.loadedImages++;
-      if (this.loadedImages === this.category.products.length) {
+      if (this.loadedImages === this.store.products.length) {
         this.loadedImages = 0;
-        this.$emit('loaded-category');
+        this.$emit('loaded-store');
       }
     },
   },
   props: {
-    category: {
+    store: {
       type: Object,
       default: null,
     },
   },
   computed: {
     selectedProduct() {
-      return this.category.products[this.selectedProductIndex];
+      return this.store.products[this.selectedProductIndex];
     },
     priceIntervals() {
       // eslint-disable-next-line no-undef
@@ -128,7 +128,7 @@ export default {
     },
   },
   watch: {
-    category: {
+    store: {
       deep: true,
       inmediate: true,
       handler: 'updateMostClickedIndex',

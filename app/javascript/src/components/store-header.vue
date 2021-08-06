@@ -9,10 +9,10 @@
         <p
           class="mx-4 text-sm font-roboto text-gf-gray-dark"
         >
-          Estás buscando en la categoría:
+          Estás buscando en la tienda:
         </p>
         <div class="flex items-center justify-between mt-2 mx-3 text-2xl md:text-3xl font-semibold border rounded-md text-gf-gray-dark px-2.5 h-12 md:h-14 md:max-w-md">
-          <p>{{ categoryName }}</p>
+          <p>{{ storeName }}</p>
           <button
             @click="getProducts"
             class="h-full"
@@ -48,7 +48,7 @@ import { mapState, mapMutations, mapActions } from 'vuex';
 
 export default {
   props: {
-    categoryName: {
+    storeName: {
       type: String,
       required: true,
     },
