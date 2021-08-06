@@ -72,19 +72,19 @@
         <div class="flex flex-row justify-center sm:justify-start">
           <div
             class="inline"
-            v-for="(categoryProduct, index) in category.products"
+            v-for="(storeProduct, index) in store.products"
             :key="index"
           >
             <button
               class="w-12 h-12 mx-1 text-gray-600 border border-gray-400 border-solid rounded-full shadow gtm sm:mr-2 sm:ml-0"
-              :class="{'border-primary' : categoryProduct === product }"
+              :class="{'border-primary' : storeProduct === product }"
               @click="$emit('change-slide', index)"
             >
               <span
                 class="inline text-base font-bold text-center outline-none"
-                :class="{'text-black' : categoryProduct === product }"
+                :class="{'text-black' : storeProduct === product }"
               >
-                {{ categoryProduct.priceInterval | toSigns }}
+                {{ storeProduct.priceInterval | toSigns }}
               </span>
             </button>
           </div>
@@ -98,7 +98,7 @@
           </button>
           <button
             class="w-full px-3 py-3 font-bold text-white rounded-r-sm gtm sm:w-1/2 bg-secondary place-self-center"
-            @click="getAnotherCategory"
+            @click="getAnotherstore"
           >
             <span class="text-center">🔎 SIGAMOS BUSCANDO</span>
           </button>
@@ -140,7 +140,7 @@ export default {
       this.setSharedProduct(this.product);
       this.toggleEmailModal();
     },
-    getAnotherCategory() {
+    getAnotherstore() {
       this.$store.commit('addIdeasSearched');
       this.setLoading(true);
       this.$store.dispatch('getProducts');
@@ -167,7 +167,7 @@ export default {
       type: Boolean,
       default: false,
     },
-    category: {
+    store: {
       type: Object,
       default: null,
     },

@@ -3,6 +3,7 @@ import Vuex from 'vuex';
 import VuexPersistence from 'vuex-persist';
 
 import productsApi from '../api/products';
+import storesApi from '../api/stores';
 
 Vue.use(Vuex);
 
@@ -17,7 +18,7 @@ const vuexLocal = new VuexPersistence({
 const store = new Vuex.Store({
   state: {
     products: [],
-    category: null,
+    store: null,
     likes: 0,
     loading: true,
     minPrice: 5000,
@@ -33,8 +34,8 @@ const store = new Vuex.Store({
     setUserEmail: (state, payload) => {
       state.userEmail = payload;
     },
-    setCategory: (state, payload) => {
-      state.category = payload;
+    setStore: (state, payload) => {
+      state.store = payload;
     },
     setNextPage: (state, payload) => {
       state.nextPage = payload;
@@ -57,9 +58,9 @@ const store = new Vuex.Store({
   },
   actions: {
     getProducts: context => {
-      productsApi.category(context.state.nextPage).then((response) => {
+      storesApi.index(context.state.nextPage).then((response) => {
         context.commit('setNextPage', response.meta.nextPage);
-        context.commit('setCategory', response.categories[0]);
+        context.commit('setStore', response.stores[0]);
       });
     },
     markClicked: (context, payload) => {

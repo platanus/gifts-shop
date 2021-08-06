@@ -5,10 +5,10 @@
       :show-modal="emailModalIsOpen"
     />
     <div
-      v-if="category"
+      v-if="store"
     >
-      <category
-        :category="category"
+      <store
+        :store="store"
       />
     </div>
   </div>
@@ -17,19 +17,19 @@
 <script>
 import { mapState } from 'vuex';
 import modal from '../components/modal-share-email.vue';
-import category from '../components/category';
+import store from '../components/store';
 import navbar from '../components/navbar';
 
 export default {
   name: 'HomeView',
   components: {
-    category,
+    store,
     navbar,
     modal,
   },
   computed: {
     ...mapState([
-      'category',
+      'store',
       'emailModalIsOpen',
     ]),
   },
