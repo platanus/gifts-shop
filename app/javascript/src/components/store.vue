@@ -5,6 +5,9 @@
     <store-header
       :store-name="store.name"
       class="md:shadow-gf-header"
+      @change-slide="changeSlide"
+      :selected-index="selectedProductIndex"
+      :products="store.products"
     />
     <div>
       <vueSlickCarousel
@@ -33,27 +36,6 @@
           />
         </div>
       </vueSlickCarousel>
-    </div>
-    <p
-      class="mt-5 text-xs tracking-wider text-center text-gray-600 uppercase sm:mt-2"
-    >
-      Rango de precios:
-    </p>
-    <div
-      class="w-full p-2 mx-auto mt-5 text-center bg-white shadow sm:mt-2 sm:rounded-full sm:w-2/3"
-    >
-      <p
-        class="range"
-      >
-        <span
-          v-for="i in (priceIntervals.length - 1)"
-          :key="i"
-          class="inline-block ml-5 first:ml-0"
-        >
-          <span class="inline-block w-6 h-6 border border-gray-500 border-solid rounded-full range__circle"> {{ '$'.repeat(i) }}</span>
-          {{ `: ${priceIntervals[i-1]} - ${priceIntervals[i]}` }}
-        </span>
-      </p>
     </div>
   </div>
 </template>
