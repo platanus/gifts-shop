@@ -11,8 +11,45 @@
         >
           Estás buscando en la tienda:
         </p>
-        <div class="flex items-center justify-between mt-2 mx-3 text-2xl md:text-3xl font-semibold border rounded-md text-gf-gray-dark px-2.5 h-12 md:h-14 md:max-w-md">
-          <p>{{ storeName }}</p>
+        <div class="flex items-center justify-between mx-3 text-2xl md:text-3xl font-semibold border rounded-md text-gf-gray-dark px-2.5 py-1 md:max-w-md">
+          <div>
+            <h2>{{ store.name }}</h2>
+            <div class="flex space-x-2">
+              <a
+                v-if="store.instagram"
+                :href="store.instagram"
+                target="_blank"
+              >
+                <img
+                  class="w-4 h-4"
+                  :src="require('assets/images/instagram.svg')"
+                  alt="instagram"
+                >
+              </a>
+              <a
+                v-if="store.facebook"
+                :href="store.facebook"
+                target="_blank"
+              >
+                <img
+                  class="w-4 h-4"
+                  :src="require('assets/images/facebook.svg')"
+                  alt="facebook"
+                >
+              </a>
+              <a
+                v-if="store.twitter"
+                :href="store.twitter"
+                target="_blank"
+              >
+                <img
+                  class="w-4 h-4"
+                  :src="require('assets/images/twitter.svg')"
+                  alt="twitter"
+                >
+              </a>
+            </div>
+          </div>
           <button
             @click="getProducts"
             class="h-full"
@@ -55,8 +92,8 @@ import { mapActions } from 'vuex';
 
 export default {
   props: {
-    storeName: {
-      type: String,
+    store: {
+      type: Object,
       required: true,
     },
     selectedIndex: {
