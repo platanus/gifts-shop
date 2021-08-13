@@ -3,7 +3,7 @@
     class="flex flex-col"
   >
     <store-header
-      :store-name="store.name"
+      :store="store"
       class="md:shadow-gf-header"
       @change-slide="changeSlide"
       :selected-index="selectedProductIndex"

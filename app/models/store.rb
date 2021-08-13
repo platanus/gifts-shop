@@ -28,6 +28,10 @@ end
 #  region_id              :bigint(8)
 #  created_at             :datetime         not null
 #  updated_at             :datetime         not null
+#  website                :string
+#  facebook               :string
+#  instagram              :string
+#  twitter                :string
 #
 # Indexes
 #

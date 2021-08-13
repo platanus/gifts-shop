@@ -1,5 +1,5 @@
 class StoreSerializer < ActiveModel::Serializer
-  attributes :id, :name, :email, :products
+  attributes :id, :name, :email, :products, :website, :facebook, :instagram, :twitter
 
   def products
     ActiveModel::ArraySerializer.new(
