@@ -1,6 +1,4 @@
 ActiveAdmin.register Category do
-  menu parent: I18n.t('activeadmin.titles.stores')
-
   permit_params :name, :description
 
   filter :name

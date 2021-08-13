@@ -1,6 +1,4 @@
 ActiveAdmin.register Product do
-  menu parent: I18n.t('activeadmin.titles.stores')
-
   permit_params :store_id, :name, :category_id, :price, :description,
                 :link, :email, :status, :promoted
 
