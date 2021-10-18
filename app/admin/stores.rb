@@ -24,4 +24,30 @@ ActiveAdmin.register Store do
     end
     f.actions
   end
+
+  show do
+    attributes_table do
+      row :email
+      row :password
+      row :name
+      row :region_id
+      row :website
+      row :facebook
+      row :instagram
+      row :twitter
+    end
+
+    panel "Reporte de estadísticas general" do
+      attributes_table_for store do
+        row :total_products_clicks
+      end
+    end
+
+    panel "Reporte de estadísticas de productos" do
+      table_for store.products.order(clicks: :desc) do
+        column :name
+        column :clicks
+      end
+    end
+  end
 end

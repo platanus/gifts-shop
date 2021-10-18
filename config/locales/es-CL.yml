@@ -11,3 +11,5 @@ es-CL:
           awaiting_approval: Esperando aprobación
           approved: Aprobado
           rejected: Rechazado
+      store:
+        total_products_clicks: Clicks a productos

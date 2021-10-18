@@ -12,6 +12,10 @@ class Store < ApplicationRecord
     connection.execute(Arel.sql("SELECT SETSEED(#{seed})"))
     order(Arel.sql('RANDOM()'))
   end
+
+  def total_products_clicks
+    products.sum(:clicks)
+  end
 end
 
 # == Schema Information
