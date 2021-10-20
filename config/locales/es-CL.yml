@@ -6,6 +6,8 @@ es-CL:
   activerecord:
     attributes:
       product:
+        name: Nombre de producto
+        times_displayed: Vistas de productos
         status:
           one: Estado
           awaiting_approval: Esperando aprobación
@@ -13,3 +15,4 @@ es-CL:
           rejected: Rechazado
       store:
         total_products_clicks: Clicks a productos
+
