@@ -64,7 +64,10 @@ const store = new Vuex.Store({
       });
     },
     markClicked: (context, payload) => {
-      productsApi.markClicked(payload);
+      productsApi.addProductAction(payload, 'click');
+    },
+    markDisplayed: (context, payload) => {
+      productsApi.addProductAction(payload, 'display');
     },
   },
   plugins: [vuexLocal.plugin],
