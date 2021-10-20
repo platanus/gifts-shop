@@ -58,6 +58,10 @@ class Product < ApplicationRecord
     update(clicks: clicks)
   end
 
+  def times_displayed
+    product_actions.display.size
+  end
+
   private
 
   def update_price_interval
