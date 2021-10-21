@@ -10,7 +10,7 @@ export default {
       url: path,
     });
   },
-  markClicked(payload) {
+  addProductAction(payload, actionType) {
     const path = '/api/v1/product_actions';
 
     return api({
@@ -18,7 +18,7 @@ export default {
       url: path,
       data: {
         product_id: payload,
-        action_type: 'click',
+        action_type: actionType,
       },
     });
   },

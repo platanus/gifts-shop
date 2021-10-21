@@ -47,6 +47,7 @@ ActiveAdmin.register Store do
       table_for store.products.order(clicks: :desc) do
         column :name
         column :clicks
+        column :times_displayed
       end
     end
   end

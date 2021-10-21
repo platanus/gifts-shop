@@ -43,6 +43,7 @@
 <script>
 import VueSlickCarousel from 'vue-slick-carousel';
 import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+import { mapActions } from 'vuex';
 
 import convertToClp from '../utils/convert-to-clp';
 
@@ -66,6 +67,7 @@ export default {
   methods: {
     changeProduct(oldSlideIndex, newSlideIndex) {
       this.selectedProductIndex = newSlideIndex;
+      this.productDisplayedAction();
     },
     changeSlide(index) {
       this.$refs.slider.goTo(index);
@@ -82,6 +84,12 @@ export default {
         this.loadedImages = 0;
         this.$emit('loaded-store');
       }
+    },
+    ...mapActions([
+      'markDisplayed',
+    ]),
+    productDisplayedAction() {
+      this.markDisplayed(this.selectedProduct.id);
     },
   },
   props: {
@@ -115,6 +123,9 @@ export default {
       inmediate: true,
       handler: 'updateMostClickedIndex',
     },
+  },
+  mounted() {
+    this.productDisplayedAction();
   },
 };
 </script>
