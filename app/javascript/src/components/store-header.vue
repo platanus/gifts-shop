@@ -18,6 +18,7 @@
               <a
                 v-if="store.instagram"
                 :href="store.instagram"
+                @click="incrementSocialNetworkClicks('instagram')"
                 target="_blank"
               >
                 <img
@@ -29,6 +30,7 @@
               <a
                 v-if="store.facebook"
                 :href="store.facebook"
+                @click="incrementSocialNetworkClicks('facebook')"
                 target="_blank"
               >
                 <img
@@ -40,6 +42,7 @@
               <a
                 v-if="store.twitter"
                 :href="store.twitter"
+                @click="incrementSocialNetworkClicks('twitter')"
                 target="_blank"
               >
                 <img
@@ -89,6 +92,7 @@
 </template>
 <script>
 import { mapActions } from 'vuex';
+import storesApi from '../api/stores.js';
 
 export default {
   props: {
@@ -109,6 +113,9 @@ export default {
     ...mapActions([
       'getProducts',
     ]),
+    incrementSocialNetworkClicks(socialMedia) {
+      storesApi.addSocialNetworkClick(this.store.id, socialMedia);
+    },
   },
   filters: {
     toSigns(value) {
