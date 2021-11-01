@@ -40,6 +40,7 @@ ActiveAdmin.register Store do
     panel "Reporte de estadísticas general" do
       attributes_table_for store do
         row :total_products_clicks
+        row :total_products_displays
       end
     end
 

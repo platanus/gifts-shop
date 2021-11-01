@@ -16,6 +16,10 @@ class Store < ApplicationRecord
   def total_products_clicks
     products.sum(:clicks)
   end
+
+  def total_products_displays
+    products.sum(&:times_displayed)
+  end
 end
 
 # == Schema Information
