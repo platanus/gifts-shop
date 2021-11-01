@@ -41,6 +41,9 @@ ActiveAdmin.register Store do
       attributes_table_for store do
         row :total_products_clicks
         row :total_products_displays
+        row :facebook_clicks
+        row :instagram_clicks
+        row :twitter_clicks
       end
     end
 
