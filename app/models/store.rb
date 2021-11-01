@@ -20,6 +20,20 @@ class Store < ApplicationRecord
   def total_products_displays
     products.sum(&:times_displayed)
   end
+
+  def add_social_network_click(social_network)
+    case social_network
+    when 'facebook'
+      facebook_clicks = self.facebook_clicks + 1
+      update(facebook_clicks: facebook_clicks)
+    when 'instagram'
+      instagram_clicks = self.instagram_clicks + 1
+      update(instagram_clicks: instagram_clicks)
+    when 'twitter'
+      twitter_clicks = self.twitter_clicks + 1
+      update(twitter_clicks: twitter_clicks)
+    end
+  end
 end
 
 # == Schema Information
@@ -40,6 +54,9 @@ end
 #  facebook               :string
 #  instagram              :string
 #  twitter                :string
+#  facebook_clicks        :integer          default(0)
+#  instagram_clicks       :integer          default(0)
+#  twitter_clicks         :integer          default(0)
 #
 # Indexes
 #
