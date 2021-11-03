@@ -9,6 +9,11 @@ class Api::V1::StoresController < Api::V1::BaseController
     }
   end
 
+  def add_social_network_click
+    store = Store.find(params[:id])
+    store.add_social_network_click(params[:social_media])
+  end
+
   private
 
   def index_params

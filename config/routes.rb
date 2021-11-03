@@ -6,7 +6,11 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
       resources :product_share, only: [:create]
       resources :product_actions, only: [:create]
-      resources :stores, only: [:index]
+      resources :stores, only: [:index] do
+        member do
+          post 'add_social_network_click'
+        end
+      end
       resources :categories, only: [:index, :show]
     end
   end
