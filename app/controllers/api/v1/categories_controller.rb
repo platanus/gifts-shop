@@ -2,7 +2,7 @@ class Api::V1::CategoriesController < Api::V1::BaseController
   before_action :set_random_seed, only: :index
 
   def index
-    category = Category.randomized(session[:seed]).page(query_params[:page]).per(1)
+    category = Category.not_empty.randomized(session[:seed]).page(query_params[:page]).per(1)
     get_new_seed unless category.next_page
     respond_with category, meta: {
       next_page: category.next_page
