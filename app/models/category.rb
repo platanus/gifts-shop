@@ -7,7 +7,8 @@ class Category < ApplicationRecord
   validates :description, presence: true
 
   scope :not_empty, -> do
-    ids = left_joins(:products).where.not(products: { id: nil })
+    ids = left_joins(:products).where(products: { status: 'approved' })
+                               .where.not(products: { id: nil })
     where(id: ids)
   end
 
