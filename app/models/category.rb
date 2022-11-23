@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  COLD_CATEGORY_ID = ENV.fetch('COLD_CATEGORY_ID', nil)
+
   has_many :products, dependent: :destroy
 
   validates :name, presence: true
@@ -9,9 +11,13 @@ class Category < ApplicationRecord
     where(id: ids)
   end
 
-  def self.randomized(seed = 0.0)
-    connection.execute(Arel.sql("SELECT SETSEED(#{seed})"))
-    order(Arel.sql('RANDOM()'))
+  def self.randomized(seed = 0.0, cold = nil)
+    if cold && COLD_CATEGORY_ID.present?
+      order("case when categories.id = #{COLD_CATEGORY_ID} then 0 else 1 end")
+    else
+      connection.execute(Arel.sql("SELECT SETSEED(#{seed})"))
+      order(Arel.sql('RANDOM()'))
+    end
   end
 end
 
